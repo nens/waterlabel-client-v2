@@ -35,14 +35,14 @@ class App extends Component {
       guiShowEmail: false,
       guidShowSuccesSave: false,
       guiEditLabel: false,
-      guiLabelTab: "DAK", // "TUIN", "VOORZIENING"
+      guiLabelTab: "Dak", // "Tuin", "Voorziening"
       guiInfoTab: "PERSONAL", // "CALCULATION", "WHY"
     };
 
     this.fetchAssetTypes();
   };
 
-  fetchAssetTypes () {
+  fetchAssetTypes = () => {
     const that = this;
     fetch( "/api/v2/waterlabelassettypes/")
     .then(function(response) {
@@ -61,7 +61,7 @@ class App extends Component {
     });
   }
 
-  fetchBuildings () {
+  fetchBuildings = () => {
 
     this.setState({searchAddressState: "SEND"});
 
@@ -93,7 +93,7 @@ class App extends Component {
     });
   }
 
-  fetchWaterlabelsFromBuilding () {
+  fetchWaterlabelsFromBuilding = () => {
 
     this.setState({fetchWaterlabelState: "SEND"});
 
@@ -119,17 +119,19 @@ class App extends Component {
     });
   }
 
-  createNewLabel() {
-    return;
+  createNewLabel = () => {
+    // return;
   }
-  changeLabel(){
-    return;
+  changeLabel = () => {
+    this.setState({
+      editedWaterlabel: JSON.parse(JSON.stringify(this.state.latestWaterlabel))
+    })
   }
-  saveLabel(){
-    return;
+  saveLabel = () => {
+    // return;
   }
 
-  render () {
+  render  = () => {
     return (
       <div className="App">
 
@@ -308,6 +310,7 @@ class App extends Component {
               changeLabel={this.changeLabel}
               saveLabel={this.saveLabel}
               setGuiLabelTab={tab => this.setState({guiLabelTab: tab})}
+              setEditedWaterlabel={newLabel => this.setState({editedWaterlabel: newLabel})}
             />
           </div>
 
