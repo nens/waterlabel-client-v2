@@ -27,6 +27,10 @@ class App extends Component {
       currentWaterLabels: [],
       latestWaterlabel: null,
       editedWaterlabel: null,
+      editedFinishedWaterlabel: null,
+
+      computedWaterlabelState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
+      computedWaterlabel: null,
 
       email: "",
       waterlabelSaved: "NOT_SEND", // "SEND", "RECEIVED" , "FAILED"
@@ -123,12 +127,73 @@ class App extends Component {
     // return;
   }
   changeLabel = () => {
+
+    const waterlabelToChange = this.state.editedFinishedWaterlabel;
+
     this.setState({
       editedWaterlabel: JSON.parse(JSON.stringify(this.state.latestWaterlabel))
-    })
+    },
+    (_ => {
+      this.fetchComputedLabel(this.state.editedWaterlabel);
+    }))
   }
   saveLabel = () => {
     // return;
+  }
+
+  setEditedWaterlabel = (newLabel) => {
+    this.setState(
+      {editedWaterlabel: newLabel},
+      (_ => {
+        this.fetchComputedLabel(this.state.editedWaterlabel);
+      })
+    )
+  }
+
+  fetchComputedLabel = (label) => {
+    this.setState({computedWaterlabelState: "SEND"});
+    console.log('fetchComputedLabel label', label);
+
+    const that = this;
+    fetch( 
+      `/api/v2/waterlabels/compute/`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          assets: label.assets,
+        }),
+      }
+    )
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(parsedJSON) {
+      that.setState({
+        computedWaterlabelState: "RECEIVED",
+        computedWaterlabel: parsedJSON,
+      })
+      console.log(JSON.stringify(parsedJSON));
+    })
+    .catch(error => {
+      that.setState({computedWaterlabelState: "FAILED"})
+      console.error('Error:', error);
+
+    });
+  }
+
+  editingWaterlabelReady = () => {
+    let finishedWaterlabel = JSON.parse(JSON.stringify(this.state.editedWaterlabel));
+    finishedWaterlabel.code = this.state.computedWaterlabel && this.state.computedWaterlabel.code;
+    finishedWaterlabel.building = this.state.selectedAddress.id;
+    // email is set In later state ! only pass it to the api
+    // finishedWaterlabel.email = this.state.email;
+
+    this.setState({
+      editedFinishedWaterlabel: finishedWaterlabel,
+    })
   }
 
   render  = () => {
@@ -288,31 +353,54 @@ class App extends Component {
           </div>
         </div> */}
 
+        {
+        this.state.computedWaterlabel ?
+        <div>
+          <h3>ComputedLabel</h3>
+          <span>{this.state.computedWaterlabelState } </span>
+          <span>{this.state.computedWaterlabel.code}</span>
+        </div>
+        :
+        null
+        }
+
         <form>
           <div>_____________________________________</div>
           
+          {
+          this.state.assetTypeFetchState === "RECEIVED" &&
+          ( this.state.latestWaterlabel || this.state.editedWaterlabel) ?
+
           <div
-            style={
-              this.state.assetTypeFetchState === "RECEIVED" &&
-              ( this.state.latestWaterlabel || this.state.editedWaterlabel) ?
-              {}
-              :
-              {display: "none"}
-            }
+            // style={
+            //   this.state.assetTypeFetchState === "RECEIVED" &&
+            //   ( this.state.latestWaterlabel || this.state.editedWaterlabel) ?
+            //   {}
+            //   :
+            //   {display: "none"}
+            // }
           >
             <LabelForm
               assetTypesFromServer={this.state.assetTypesFromServer}
               latestWaterlabel={this.state.latestWaterlabel}
               editedWaterlabel={this.state.editedWaterlabel}
+              editedFinishedWaterlabel={this.state.editedFinishedWaterlabel}
               guiLabelTab={this.state.guiLabelTab}
 
               createNewLabel={this.createNewLabel}
               changeLabel={this.changeLabel}
               saveLabel={this.saveLabel}
               setGuiLabelTab={tab => this.setState({guiLabelTab: tab})}
-              setEditedWaterlabel={newLabel => this.setState({editedWaterlabel: newLabel})}
+              setEditedWaterlabel={this.setEditedWaterlabel}
+              editingWaterlabelReady={this.editingWaterlabelReady}
+
+              computedWaterlabelState={this.state.computedWaterlabelState}
+              computedWaterlabel={this.state.computedWaterlabel}
             />
           </div>
+          :
+          null
+          }
 
           <div>  _____________________________________</div>
 
