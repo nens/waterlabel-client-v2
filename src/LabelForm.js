@@ -14,7 +14,7 @@ function LabelForm (props) {
     guiLabelTab,
     createNewLabel,
     changeLabel,
-    saveLabel,
+    // saveLabel,
     setGuiLabelTab,
     setEditedWaterlabel,
     editingWaterlabelReady,
@@ -33,7 +33,7 @@ function LabelForm (props) {
     <h1>Title LabelForm</h1>
 
     <div>
-      <button
+      {/* <button
         onClick={ e =>{
           createNewLabel();
           e.preventDefault();
@@ -47,9 +47,9 @@ function LabelForm (props) {
         }
       >
         Nieuw Label
-      </button>
+      </button> */}
 
-      <button
+      {/* <button
         onClick={e=>{
           saveLabel();
           e.preventDefault();
@@ -62,7 +62,7 @@ function LabelForm (props) {
         }
       >
         Label Opslaan
-      </button>
+      </button> */}
       <button
         onClick={e => {
           e.preventDefault();
@@ -85,13 +85,12 @@ function LabelForm (props) {
           editingWaterlabelReady();
           
         }}
-        // style={
-        //   latestWaterlabel !== null &&
-        //   editedWaterlabel === null ?
-        //   {}
-        //   :
-        //   {display: "none"}
-        // }
+        style={
+          editedWaterlabel !== null ?
+          {}
+          :
+          {display: "none"}
+        }
       >
         Klaar
       </button>

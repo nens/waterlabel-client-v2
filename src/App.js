@@ -12,9 +12,9 @@ class App extends Component {
       assetTypesFromServer: [],
       assetTypeFetchState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
 
-      searchPostcode: "",
+      searchPostcode: "1188AL",
       searchStreet: "",
-      searchNumber: "",
+      searchNumber: "20",//"36",
       searchAddition: "",
       searchCity: "",
 
@@ -28,6 +28,7 @@ class App extends Component {
       latestWaterlabel: null,
       editedWaterlabel: null,
       editedFinishedWaterlabel: null,
+      saveWaterlabelState:  "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
 
       computedWaterlabelState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
       computedWaterlabel: null,
@@ -71,8 +72,8 @@ class App extends Component {
 
     const that = this;
 
-    const postcode = "1188AL";
-    const number = "36"
+    const postcode = this.state.searchPostcode;
+    const number = this.state.searchNumber;
     fetch( `/api/v2/buildings/?postalcode=${postcode}&housenumber=${number}&page_size=1000000`)
     .then(function(response) {
       return response.json();
@@ -98,6 +99,8 @@ class App extends Component {
   }
 
   fetchWaterlabelsFromBuilding = () => {
+    // if adddress is not selected return;
+    if (!this.state.selectedAddress) return;
 
     this.setState({fetchWaterlabelState: "SEND"});
 
@@ -124,21 +127,75 @@ class App extends Component {
   }
 
   createNewLabel = () => {
-    // return;
-  }
-  changeLabel = () => {
-
-    const waterlabelToChange = this.state.editedFinishedWaterlabel;
-
     this.setState({
-      editedWaterlabel: JSON.parse(JSON.stringify(this.state.latestWaterlabel))
+      editedWaterlabel: {assets: []},
     },
     (_ => {
       this.fetchComputedLabel(this.state.editedWaterlabel);
     }))
   }
+  changeLabel = () => {
+
+    const waterlabelToChange = this.state.editedFinishedWaterlabel ? 
+      {assets:  JSON.parse(JSON.stringify(this.state.editedFinishedWaterlabel.assets))}
+      :
+      {assets: JSON.parse(JSON.stringify(this.state.latestWaterlabel.assets))};
+
+    this.setState({
+      editedWaterlabel: waterlabelToChange,
+      editedFinishedWaterlabel: null
+    },
+    (_ => {
+      this.fetchComputedLabel(this.state.editedWaterlabel);
+    }))
+  }
+
+  openSaveModal = () => {
+    // this.saveLabel();
+    this.setState({
+      guiShowEmail: true,
+    })
+  }
+
   saveLabel = () => {
-    // return;
+    this.setState({saveWaterlabelState: "SEND"});
+
+    const that = this;
+
+    
+    fetch( 
+      `/api/v2/waterlabels/`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          assets: this.state.editedFinishedWaterlabel.assets,
+          building: this.state.selectedAddress.id,
+          email: this.state.email,
+        }),
+      }
+    )
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(parsedJSON) {
+      that.setState({
+        saveWaterlabelState: "RECEIVED",
+        guidShowSuccesSave: true,
+        guidShowEmail: false,
+        // currentWaterLabels: parsedJSON.results,
+        // latestWaterlabel: parsedJSON.results[0], // assume first one from api is latest waterlabel
+      });
+      console.log(JSON.stringify(parsedJSON));
+      that.fetchWaterlabelsFromBuilding();
+    })
+    .catch(error => {
+      that.setState({saveWaterlabelState: "FAILED"})
+      console.error('Error:', error);
+
+    });
   }
 
   setEditedWaterlabel = (newLabel) => {
@@ -151,6 +208,11 @@ class App extends Component {
   }
 
   fetchComputedLabel = (label) => {
+    // the computation endpoint cannot handle zero assets
+    // this is for now the best place to check on this since it is called at plenty of places
+    if (label.assets.length === 0) {
+      return;
+    }
     this.setState({computedWaterlabelState: "SEND"});
     console.log('fetchComputedLabel label', label);
 
@@ -193,10 +255,48 @@ class App extends Component {
 
     this.setState({
       editedFinishedWaterlabel: finishedWaterlabel,
+      editedWaterlabel: null,
     })
   }
 
   render  = () => {
+
+    const {
+      assetTypesFromServer,
+      assetTypeFetchState, // "SEND", "RECEIVED", "FAILED"
+
+      searchPostcode,
+      searchStreet,
+      searchNumber,
+      searchAddition,
+      searchCity,
+
+      searchOnCityStreet,
+      searchAddressState, // "SEND", "RECEIVED", "FAILED"
+      foundAddressesList,
+      selectedAddress,
+      
+      fetchWaterlabelState, // "SEND", "RECEIVED", "FAILED"
+      currentWaterLabels,
+      latestWaterlabel,
+      editedWaterlabel,
+      editedFinishedWaterlabel,
+      saveWaterlabelState, // "SEND", "RECEIVED", "FAILED"
+
+      computedWaterlabelState, // "SEND", "RECEIVED", "FAILED"
+      computedWaterlabel,
+
+      email,
+      waterlabelSaved, // "SEND", "RECEIVED" , "FAILED"
+      
+      guiShowVideo,
+      guiShowEmail,
+      guidShowSuccesSave,
+      guiEditLabel,
+      guiLabelTab, // "Tuin", "Voorziening"
+      guiInfoTab, 
+    } = this.state;
+
     return (
       <div className="App">
 
@@ -209,10 +309,40 @@ class App extends Component {
           )}
         </ul>
         </div> */}
-        
-        <form>
 
-        <div
+        <button
+          style={ foundAddressesList.length !== 0 ? {} : {visibility:"hidden"}}
+          onClick={_ =>{
+            this.setState({
+              foundAddressesList: [],
+              selectedAddress: null,
+              searchAddressState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
+              
+              fetchWaterlabelState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
+              currentWaterLabels: [],
+              latestWaterlabel: null,
+              editedWaterlabel: null,
+              editedFinishedWaterlabel: null,
+              saveWaterlabelState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
+
+              computedWaterlabelState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
+              computedWaterlabel: null,
+
+              email,
+              waterlabelSaved: "NOT_SEND", // "SEND", "RECEIVED" , "FAILED"
+            })
+          }}
+        >
+          BACK
+        </button>
+        
+        <form
+          style={
+            this.state.foundAddressesList.length === 0 ? {} : {display: "none"} 
+          }
+        >
+
+          <div
             style={
               this.state.searchOnCityStreet===true ? {} : {display: "none"} 
             }
@@ -278,8 +408,8 @@ class App extends Component {
               onChange={e=>this.setState({searchAddition: e.target.value})}
             />
           </div>
-          
-          
+        {/* </form> */}
+        {/* <form> */}
           <div>
             <button
               style={
@@ -307,6 +437,7 @@ class App extends Component {
               Zoek op postcode
             </button>
           </div>
+        
           
           <div>
             <button
@@ -318,27 +449,61 @@ class App extends Component {
             >
               Zoek
             </button>
+          </div>
+        </form>
+        <hr/>
+        <form
+          style={
+            foundAddressesList.length !== 0 &&
+            selectedAddress === null 
+            ? 
+            {} 
+            : 
+            {display: "none"} 
+          }
+        >
+          <div>
             <span>{this.state.searchAddressState}</span>
             <div>Found Addresses:</div>
+            <ul>
             {
               this.state.foundAddressesList.map(address=>{
                 return (
-                  <div
+                  <li
                     key={address.houseaddresses[0].housenumber}
+                    onClick={_ =>{
+                      this.setState(
+                        {selectedAddress: address},
+                        (this.fetchWaterlabelsFromBuilding)
+                      )
+                    }}
                   >
                     <span>{address.houseaddresses[0].street}</span>
                     <span>{address.houseaddresses[0].housenumber}</span>
-                  </div>
+                  </li>
                 );
               })
             }
+            </ul>
+          </div>
+          <hr/>
+          </form>
+          <div
+            style={
+              selectedAddress !== null 
+              ? 
+              {} 
+              : 
+              {display: "none"} 
+            }
+          >
+            <hr/>
             <div>Selected Address:</div>
             <div>
               <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].street}</span>
               <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].housenumber}</span>
             </div>
           </div>
-        </form>
 
         {/* <div>
           <span>fetchWaterlabelState: </span>
@@ -363,13 +528,53 @@ class App extends Component {
         :
         null
         }
+        {
+          <div>
+            <button
+              onClick={ e =>{
+                this.createNewLabel();
+                e.preventDefault();
+              }}
+              // style={
+              //   latestWaterlabel === null &&
+              //   editedWaterlabel === null &&
+              //   computedWaterlabel == null ?
+              //   {}
+              //   :
+              //   {display: "none"}
+              // }
+            >
+              Nieuw Label
+            </button>
+          </div>
+          
+        }
+        {
+        this.state.editedFinishedWaterlabel ?
+        <div>
+          {/* <h3>ComputedLabel</h3>
+          <span>{this.state.computedWaterlabelState } </span>
+          <span>{this.state.computedWaterlabel.code}</span> */}
+          <button
+            onClick={e=>{
+              // this.saveLabel();
+              this.openSaveModal();
+              e.preventDefault();
+            }}
+          >
+            Label Opslaan
+          </button>
+        </div>
+        :
+        null
+        }
 
         <form>
           <div>_____________________________________</div>
           
           {
           this.state.assetTypeFetchState === "RECEIVED" &&
-          ( this.state.latestWaterlabel || this.state.editedWaterlabel) ?
+          ( this.state.latestWaterlabel || this.state.editedWaterlabel || this.state.editedFinishedWaterlabel) ?
 
           <div
             // style={
@@ -389,7 +594,7 @@ class App extends Component {
 
               createNewLabel={this.createNewLabel}
               changeLabel={this.changeLabel}
-              saveLabel={this.saveLabel}
+              // saveLabel={this.saveLabel}
               setGuiLabelTab={tab => this.setState({guiLabelTab: tab})}
               setEditedWaterlabel={this.setEditedWaterlabel}
               editingWaterlabelReady={this.editingWaterlabelReady}
@@ -406,18 +611,86 @@ class App extends Component {
 
         </form>
 
-        <form>
-          <div>
-            <label htmlFor="email">
-              Email:
-            </label>
-            <input
-              id="email"
-              value={this.state.email}
-              onChange={e=>this.setState({email: e.target.value})}
-            />
-          </div>
-        </form>
+        <div
+          style={
+            this.state.guiShowEmail | this.state.guidShowSuccesSave ?
+            {}
+            :
+            {display: "none"}
+          }
+        >
+          <form
+            style={
+              this.state.saveWaterlabelState !== "RECEIVED" ?
+              {}
+              :
+              {display: "none"} // should not edit qq
+            }
+          >
+            <div>
+              <label htmlFor="email">
+                Email:
+              </label>
+              <input
+                id="email"
+                value={this.state.email}
+                onChange={e=>this.setState({email: e.target.value})}
+              />
+            </div>
+            <div
+              // style={
+              //   this.state.saveWaterlabelState === "SEND" ?
+              //   {}
+              //   :
+              //   { visibility: "hidden"} // should not edit qq
+              // }
+            >
+              {this.state.saveWaterlabelState + ''}
+            </div>
+            <div>
+              <button
+                onClick={e=>{
+                  this.setState({guiShowEmail: false});
+                  e.preventDefault();
+                }}
+              >
+                Annuleer
+              </button>
+              <button
+                onClick={e=>{
+                  this.saveLabel();
+                  e.preventDefault();
+                }}
+              >
+                Verzend
+              </button>
+            </div>
+          </form>
+          <form
+            style={
+              this.state.saveWaterlabelState === "RECEIVED" ?
+              {}
+              :
+              {display: "none"} // should not edit qq
+            }
+          >
+            <button
+                onClick={e=>{
+                  // this.saveLabel();
+                  this.setState({
+                    saveWaterlabelState: "NOT_SEND",
+                    guidShowSuccesSave: false,
+                    editedWaterlabel: null,
+                    editedFinishedWaterlabel: null,
+                    computedWaterlabel: null,
+                  })
+                  e.preventDefault();
+                }}
+              >
+              Terug
+            </button>
+          </form>
+        </div>
 
         <div>
             <div>
