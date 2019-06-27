@@ -27,79 +27,11 @@ function LabelForm (props) {
   const assetsToUse = waterlabelToUse && waterlabelToUse.assets;
   const filteredAssetTypes = assetTypesFromServer.filter(type=>type.category === guiLabelTab)
 
-  // console.log('props', props)
 
   return <div>
-    <h1>Title LabelForm</h1>
-
-    <div>
-      {/* <button
-        onClick={ e =>{
-          createNewLabel();
-          e.preventDefault();
-        }}
-        style={
-          latestWaterlabel === null &&
-          editedWaterlabel === null ?
-          {}
-          :
-          {display: "none"}
-        }
-      >
-        Nieuw Label
-      </button> */}
-
-      {/* <button
-        onClick={e=>{
-          saveLabel();
-          e.preventDefault();
-        }}
-        style={
-          editedWaterlabel != null ?
-          {}
-          :
-          {display: "none"}
-        }
-      >
-        Label Opslaan
-      </button> */}
-      <button
-        onClick={e => {
-          e.preventDefault();
-          changeLabel();
-          
-        }}
-        style={
-          latestWaterlabel !== null &&
-          editedWaterlabel === null ?
-          {}
-          :
-          {display: "none"}
-        }
-      >
-        Verander
-      </button>
-      <button
-        onClick={e => {
-          e.preventDefault();
-          editingWaterlabelReady();
-          
-        }}
-        style={
-          editedWaterlabel !== null ?
-          {}
-          :
-          {display: "none"}
-        }
-      >
-        Klaar
-      </button>
-    </div>
-        
     <div>
       <button
         onClick={e=>{
-          // this.setState({guiLabelTab: "DAK"})
           setGuiLabelTab("Dak");
           e.preventDefault();
         }}
@@ -108,7 +40,6 @@ function LabelForm (props) {
       </button>
       <button
         onClick={e=>{
-          // this.setState({guiLabelTab: "TUIN"})
           setGuiLabelTab("Tuin");
           e.preventDefault();
         }}
@@ -117,7 +48,6 @@ function LabelForm (props) {
       </button>
       <button
         onClick={e=>{
-          // this.setState({guiLabelTab: "VOORZIENING"})
           setGuiLabelTab("Voorziening");
           e.preventDefault();
         }}
@@ -147,7 +77,8 @@ function LabelForm (props) {
                     key={index}
                     style={assetInActiveTab? {}:{display:"none"}}
                   >
-                    
+                    {/* <hr/> */}
+                    <div>____________________________________</div>
                     { asset.asset_type === null 
                       ?
                        <select
@@ -242,23 +173,63 @@ function LabelForm (props) {
                   </li>
                 );
           })}
+          <li
+            style={editedWaterlabel? {}:{display:"none"}}
+          >
+            {/* <hr/> */}
+            <div>____________________________________</div>
+            <button
+              onClick={e=>{
+                // this.setState({guiLabelTab: "VOORZIENING"})
+                e.preventDefault();
+                // setGuiLabelTab("Voorziening");
+                const copyLabel = JSON.parse(JSON.stringify(editedWaterlabel));
+                copyLabel.assets.push({asset_type: null})
+                setEditedWaterlabel(copyLabel);
+              }}
+            >
+              NEW
+            </button>
+          </li>
         </ul>
+        
+      </div>
+      <div>
         <button
-          style={editedWaterlabel? {}:{display:"none"}}
-          onClick={e=>{
-            // this.setState({guiLabelTab: "VOORZIENING"})
+          onClick={e => {
             e.preventDefault();
-            // setGuiLabelTab("Voorziening");
-            const copyLabel = JSON.parse(JSON.stringify(editedWaterlabel));
-            copyLabel.assets.push({asset_type: null})
-            setEditedWaterlabel(copyLabel);
+            changeLabel();
+            
           }}
+          style={
+            latestWaterlabel !== null &&
+            editedWaterlabel === null ?
+            {}
+            :
+            {display: "none"}
+          }
         >
-          NEW
+          Verander
+        </button>
+        <button
+          onClick={e => {
+            e.preventDefault();
+            editingWaterlabelReady();
+            
+          }}
+          style={
+            editedWaterlabel !== null ?
+            {}
+            :
+            {display: "none"}
+          }
+        >
+          Klaar
         </button>
       </div>
 
     </div>
+    
   </div>
 }
 

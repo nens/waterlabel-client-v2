@@ -451,7 +451,7 @@ class App extends Component {
             </button>
           </div>
         </form>
-        <hr/>
+        
         <form
           style={
             foundAddressesList.length !== 0 &&
@@ -462,6 +462,7 @@ class App extends Component {
             {display: "none"} 
           }
         >
+          <hr/>
           <div>
             <span>{this.state.searchAddressState}</span>
             <div>Found Addresses:</div>
@@ -486,7 +487,6 @@ class App extends Component {
             }
             </ul>
           </div>
-          <hr/>
           </form>
           <div
             style={
@@ -497,7 +497,7 @@ class App extends Component {
               {display: "none"} 
             }
           >
-            <hr/>
+            {/* <hr/> */}
             <div>Selected Address:</div>
             <div>
               <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].street}</span>
@@ -517,10 +517,23 @@ class App extends Component {
             <span>{this.state.latestWaterlabel && this.state.latestWaterlabel.timestamp}</span>
           </div>
         </div> */}
+        {
+        latestWaterlabel && 
+        !computedWaterlabel ?
+        <div>
+          {/* <hr/> */}
+          <h3>Your label is</h3>
+          <span>{latestWaterlabel.code } </span>
+          {/* <span>{this.state.computedWaterlabel.code}</span> */}
+        </div>
+        :
+        null
+        }
 
         {
         this.state.computedWaterlabel ?
         <div>
+          <hr/>
           <h3>ComputedLabel</h3>
           <span>{this.state.computedWaterlabelState } </span>
           <span>{this.state.computedWaterlabel.code}</span>
@@ -535,14 +548,15 @@ class App extends Component {
                 this.createNewLabel();
                 e.preventDefault();
               }}
-              // style={
-              //   latestWaterlabel === null &&
-              //   editedWaterlabel === null &&
-              //   computedWaterlabel == null ?
-              //   {}
-              //   :
-              //   {display: "none"}
-              // }
+              style={
+                selectedAddress !== null &&
+                latestWaterlabel === null &&
+                editedWaterlabel === null &&
+                computedWaterlabel == null ?
+                {}
+                :
+                {display: "none"}
+              }
             >
               Nieuw Label
             </button>
@@ -570,21 +584,12 @@ class App extends Component {
         }
 
         <form>
-          <div>_____________________________________</div>
-          
           {
           this.state.assetTypeFetchState === "RECEIVED" &&
           ( this.state.latestWaterlabel || this.state.editedWaterlabel || this.state.editedFinishedWaterlabel) ?
 
-          <div
-            // style={
-            //   this.state.assetTypeFetchState === "RECEIVED" &&
-            //   ( this.state.latestWaterlabel || this.state.editedWaterlabel) ?
-            //   {}
-            //   :
-            //   {display: "none"}
-            // }
-          >
+          <div>
+            <hr/>
             <LabelForm
               assetTypesFromServer={this.state.assetTypesFromServer}
               latestWaterlabel={this.state.latestWaterlabel}
@@ -606,9 +611,6 @@ class App extends Component {
           :
           null
           }
-
-          <div>  _____________________________________</div>
-
         </form>
 
         <div
@@ -619,6 +621,7 @@ class App extends Component {
             {display: "none"}
           }
         >
+          <hr/>
           <form
             style={
               this.state.saveWaterlabelState !== "RECEIVED" ?
@@ -693,6 +696,7 @@ class App extends Component {
         </div>
 
         <div>
+            <hr/>
             <div>
               <button
                 onClick={e=>{
