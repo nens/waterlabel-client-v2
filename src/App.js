@@ -70,14 +70,24 @@ class App extends Component {
   }
 
   fetchBuildings = () => {
-
     this.setState({searchAddressState: "SEND"});
-
     const that = this;
 
-    const postcode = this.state.searchPostcode;
-    const number = this.state.searchNumber;
-    fetch( `/api/v2/buildings/?postalcode=${postcode}&housenumber=${number}&page_size=1000000`)
+    const {
+      searchCity,
+      searchStreet,
+      searchNumber,
+      searchPostcode,
+      searchOnCityStreet,
+    } = this.state;
+
+    const url = 
+      searchOnCityStreet ?
+      `/api/v2/buildings/?city=${searchCity}&street=${searchStreet}&housenumber=${searchNumber}&page_size=1000000`
+      :
+      `/api/v2/buildings/?postalcode=${searchPostcode}&housenumber=${searchNumber}&page_size=1000000`;
+
+    fetch(url)
     .then(function(response) {
       return response.json();
     })
