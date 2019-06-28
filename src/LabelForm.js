@@ -36,22 +36,14 @@ function LabelForm (props) {
         setGuiLabelTab={setGuiLabelTab}
       />
       <div>
-      {/* <h4>guiLabelTab: {guiLabelTab}</h4> */}
         
         <div>
           <ul>
             {
-              // latestWaterlabel && latestWaterlabel.assets
               assetsToUse && assetsToUse
                 .map( (asset, index) => {
-                  // const filteredAssetTypeNames = filteredAssetTypes.map(type=>type.code);
-                  // const currentAssetType = filteredAssetTypes.filter(type=>type.code === asset.asset_type)[0];
-                  
                   const assetInActiveTab = 
-                    asset.category ===  guiLabelTab; // || 
-                    // asset.asset_type === null ; // also show new assets that user has not given type yet
-                  
-
+                    asset.category ===  guiLabelTab; 
                   return (
                     <li
                       key={index}

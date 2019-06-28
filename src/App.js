@@ -476,7 +476,6 @@ class App extends Component {
             >
               Zoek op straat
             </button>
-
             <button
               style={
                 searchOnCityStreet===true ? {} : {display: "none"} 
@@ -498,6 +497,11 @@ class App extends Component {
             >
               Zoek
             </button>
+            <div
+              style={foundAddressesList.length === 0 && searchAddressState === "RECEIVED" ? {} : {display: "none"}}
+            >
+              Er werd geen adres gevonden. Probeert u het opnieuw
+            </div>
           </div>
         </form>
         
