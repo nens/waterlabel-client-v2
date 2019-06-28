@@ -1,6 +1,7 @@
 import React,  { Component } from 'react';
 import './App.css';
 
+import SelectAddressFromList from "./SelectAddressFromList";
 import LabelForm from "./LabelForm";
 import InfoTabs from "./InfoTabs";
 import SaveModal from "./SaveModal";
@@ -117,7 +118,7 @@ class App extends Component {
       that.setState({
         fetchWaterlabelState: "RECEIVED",
         currentWaterLabels: parsedJSON.results,
-        latestWaterlabel: parsedJSON.results[0], // assume first one from api is latest waterlabel
+        latestWaterlabel: parsedJSON.results[0] || null, // assume first one from api is latest waterlabel
       })
       console.log(JSON.stringify(parsedJSON));
     })
@@ -302,7 +303,8 @@ class App extends Component {
     return (
       <div className="App">
 
-        {/* <div>
+        {/* 
+        <div>
           <span>assetTypeFetchState: </span>
           {this.state.assetTypeFetchState}
         <ul>
@@ -310,7 +312,8 @@ class App extends Component {
             <li>{asset.name}</li>
           )}
         </ul>
-        </div> */}
+        </div> 
+        */}
 
         <button
           style={ foundAddressesList.length !== 0 ? {} : {visibility:"hidden"}}
@@ -318,20 +321,24 @@ class App extends Component {
             this.setState({
               foundAddressesList: [],
               selectedAddress: null,
-              searchAddressState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
+              searchAddressState: "NOT_SEND",   
               
-              fetchWaterlabelState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
+              fetchWaterlabelState: "NOT_SEND",   
               currentWaterLabels: [],
               latestWaterlabel: null,
               editedWaterlabel: null,
               editedFinishedWaterlabel: null,
-              saveWaterlabelState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
+              saveWaterlabelState: "NOT_SEND",  
 
-              computedWaterlabelState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
+              computedWaterlabelState: "NOT_SEND",  
               computedWaterlabel: null,
 
               email,
-              waterlabelSaved: "NOT_SEND", // "SEND", "RECEIVED" , "FAILED"
+              waterlabelSaved: "NOT_SEND",  
+              guiShowVideo: false,
+              guiShowEmail: false,
+              guidShowSuccesSave: false,
+              guiEditLabel: false,
             })
           }}
         >
@@ -454,7 +461,7 @@ class App extends Component {
           </div>
         </form>
         
-        <form
+        <div
           style={
             foundAddressesList.length !== 0 &&
             selectedAddress === null 
@@ -464,48 +471,35 @@ class App extends Component {
             {display: "none"} 
           }
         >
-          <hr/>
+          <SelectAddressFromList
+            foundAddressesList={foundAddressesList}
+            selectedAddress={selectedAddress}
+            searchAddressState={searchAddressState}
+            selectAddress={address=>{
+              this.setState(
+                {selectedAddress: address},
+                (this.fetchWaterlabelsFromBuilding)
+              )
+            }}
+          />
+        </div>
+
+        <div
+          style={
+            selectedAddress !== null 
+            ? 
+            {} 
+            : 
+            {display: "none"} 
+          }
+        >
+          {/* <hr/> */}
+          <div>Selected Address:</div>
           <div>
-            <span>{this.state.searchAddressState}</span>
-            <div>Found Addresses:</div>
-            <ul>
-            {
-              this.state.foundAddressesList.map(address=>{
-                return (
-                  <li
-                    key={address.houseaddresses[0].housenumber}
-                    onClick={_ =>{
-                      this.setState(
-                        {selectedAddress: address},
-                        (this.fetchWaterlabelsFromBuilding)
-                      )
-                    }}
-                  >
-                    <span>{address.houseaddresses[0].street}</span>
-                    <span>{address.houseaddresses[0].housenumber}</span>
-                  </li>
-                );
-              })
-            }
-            </ul>
+            <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].street}</span>
+            <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].housenumber}</span>
           </div>
-          </form>
-          <div
-            style={
-              selectedAddress !== null 
-              ? 
-              {} 
-              : 
-              {display: "none"} 
-            }
-          >
-            {/* <hr/> */}
-            <div>Selected Address:</div>
-            <div>
-              <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].street}</span>
-              <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].housenumber}</span>
-            </div>
-          </div>
+        </div>
 
         {/* <div>
           <span>fetchWaterlabelState: </span>

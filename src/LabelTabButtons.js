@@ -1,5 +1,4 @@
 import React from 'react';
-import TabStyles from "./TabStyles.css";
 
 export default LabelTabButtons;
 
