@@ -303,6 +303,7 @@ class App extends Component {
     return (
       <div className="App">
 
+        {/*_______________________________________ OVERVIEW ALL ASSETS */}
         {/* 
         <div>
           <span>assetTypeFetchState: </span>
@@ -315,6 +316,7 @@ class App extends Component {
         </div> 
         */}
 
+        {/*_______________________________________ BACK BUTTON */}
         <button
           style={ foundAddressesList.length !== 0 ? {} : {visibility:"hidden"}}
           onClick={_ =>{
@@ -345,6 +347,7 @@ class App extends Component {
           BACK
         </button>
         
+        {/*_______________________________________ SEARCH ADDDRESS FORM */}
         <form
           style={
             this.state.foundAddressesList.length === 0 ? {} : {display: "none"} 
@@ -417,8 +420,6 @@ class App extends Component {
               onChange={e=>this.setState({searchAddition: e.target.value})}
             />
           </div>
-        {/* </form> */}
-        {/* <form> */}
           <div>
             <button
               style={
@@ -446,8 +447,6 @@ class App extends Component {
               Zoek op postcode
             </button>
           </div>
-        
-          
           <div>
             <button
               onClick={ e => {
@@ -461,6 +460,7 @@ class App extends Component {
           </div>
         </form>
         
+        {/*_______________________________________ LIST FOUND ADDRESSES */}
         <div
           style={
             foundAddressesList.length !== 0 &&
@@ -483,7 +483,8 @@ class App extends Component {
             }}
           />
         </div>
-
+        
+        {/*_______________________________________ SELECTED ADDRESS */}
         <div
           style={
             selectedAddress !== null 
@@ -500,7 +501,8 @@ class App extends Component {
             <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].housenumber}</span>
           </div>
         </div>
-
+        
+        {/*_______________________________________ FETCH WATERLABEL STATE */}
         {/* <div>
           <span>fetchWaterlabelState: </span>
           <span>{this.state.fetchWaterlabelState}</span>
@@ -513,6 +515,8 @@ class App extends Component {
             <span>{this.state.latestWaterlabel && this.state.latestWaterlabel.timestamp}</span>
           </div>
         </div> */}
+
+        {/*_______________________________________ LATEST WATERLABEL */}
         {
         latestWaterlabel && 
         !computedWaterlabel ?
@@ -525,7 +529,7 @@ class App extends Component {
         :
         null
         }
-
+         {/*_______________________________________ COMPUTED WATERLABEL */}
         {
         this.state.computedWaterlabel ?
         <div>
@@ -537,6 +541,7 @@ class App extends Component {
         :
         null
         }
+        {/*_______________________________________ NEW WATERLABEL BUTTON */}
         {
           <div>
             <button
@@ -559,6 +564,7 @@ class App extends Component {
           </div>
           
         }
+         {/*_______________________________________ SAVE BUTTON */}
         {
         this.state.editedFinishedWaterlabel ?
         <div>
@@ -579,6 +585,7 @@ class App extends Component {
         null
         }
 
+        {/*_______________________________________ WATERLABEL TAB + FROM */}
         <form>
           {
           this.state.assetTypeFetchState === "RECEIVED" &&
@@ -608,7 +615,8 @@ class App extends Component {
           null
           }
         </form>
-
+        
+        {/*_______________________________________ SAVE MODAL */}
         <div
           style={
             this.state.guiShowEmail | this.state.guidShowSuccesSave ?
@@ -634,7 +642,8 @@ class App extends Component {
             }}
           />
         </div>
-
+        
+        {/*_______________________________________ INFO TABS */}
         <div
           style={selectedAddress===null? {display:"none"}:{}}
         >
