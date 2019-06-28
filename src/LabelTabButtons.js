@@ -1,4 +1,5 @@
 import React from 'react';
+import TabStyles from "./TabStyles.css";
 
 export default LabelTabButtons;
 
@@ -16,6 +17,7 @@ function LabelTabButtons (props) {
           setGuiLabelTab("Dak");
           e.preventDefault();
         }}
+        className={guiLabelTab === "Dak" ? "TabActive" :  ""}
       >
         Mijn dak
       </button>
@@ -24,6 +26,7 @@ function LabelTabButtons (props) {
           setGuiLabelTab("Tuin");
           e.preventDefault();
         }}
+        className={guiLabelTab === "Tuin" ? "TabActive" :  ""}
       >
         Mijn tuin
       </button>
@@ -32,6 +35,7 @@ function LabelTabButtons (props) {
           setGuiLabelTab("Voorziening");
           e.preventDefault();
         }}
+        className={guiLabelTab === "Voorziening" ? "TabActive" :  ""}
       >
         Mijn voorzieningen
       </button>

@@ -1,4 +1,15 @@
+.TabActive {
+  background-color: white;
+  border-bottom-width: 0px;
+}
+
 .App {
+  margin-left: 100px;
+  margin-top: 20px;
+}
+
+
+/* .App {
   text-align: center;
 }
 
@@ -30,4 +41,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
