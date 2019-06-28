@@ -2,6 +2,7 @@ import React,  { Component } from 'react';
 import './App.css';
 
 import LabelForm from "./LabelForm";
+import InfoTabs from "./InfoTabs";
 
 class App extends Component {
 
@@ -695,74 +696,14 @@ class App extends Component {
           </form>
         </div>
 
-        <div>
-            <hr/>
-            <div>
-              <button
-                onClick={e=>{
-                  this.setState({guiInfoTab: "PERSONAL"})
-                  e.preventDefault();
-                }}
-              >
-                Persoonlijke tips voor een beter label
-              </button>
-              <button
-                onClick={e=>{
-                  this.setState({guiInfoTab: "CALCULATION"})
-                  e.preventDefault();
-                }}
-              >
-                Uitleg berekening
-              </button>
-              <button
-                onClick={e=>{
-                  this.setState({guiInfoTab: "WHY"})
-                  e.preventDefault();
-                }}
-              >
-                Waarom het waterlabel?
-              </button>
-            </div>
-            <div>
-              <div
-                style={this.state.guiInfoTab==="PERSONAL"? {} : {display: "none"}}
-              >
-                Personal text
-              </div>
-              <div
-                style={this.state.guiInfoTab==="CALCULATION"? {} : {display: "none"}}
-              >
-                CALCULATION X Y
-              </div>
-              <div
-                style={this.state.guiInfoTab==="WHY"? {} : {display: "none"}}
-              >
-                WHY DID WE MAKE WATER LABEL ??
-              </div>
-              {/* {this.state.guiInfoTab==="PERSONAL"?
-              <div>
-                Personal text
-              </div>
-              :
-              null
-              }
-              {this.state.guiInfoTab==="CALCULATION"?
-              <div>
-                CALCULATION text
-              </div>
-              :
-              null
-              }
-              {this.state.guiInfoTab==="WHY"?
-              <div>
-                WHY text
-              </div>
-              :
-              null
-              } */}
-            </div>
-        </div>
-
+        <div
+          style={selectedAddress===null? {display:"none"}:{}}
+        >
+          <InfoTabs
+            setInfoTab={tab=>this.setState({guiInfoTab: tab})}
+            guiInfoTab={guiInfoTab}
+          />
+        </div> 
       </div>
     );
   };
