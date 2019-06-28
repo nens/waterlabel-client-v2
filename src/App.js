@@ -11,38 +11,37 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
       assetTypesFromServer: [],
       assetTypeFetchState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
-
+      // searchPostcode: "",
+      // searchStreet: "",
+      // searchNumber: "",
+      // searchAddition: "",
+      // searchCity: "",
+      // email: "",
       searchPostcode: "1188AL",
-      searchStreet: "",
+      searchStreet: "KABELWEG",
+      searchCity: "AMSTERDAM",
       searchNumber: "20",//"36",
       searchAddition: "",
-      searchCity: "",
+      email: "1231@32132.COM",
 
       searchOnCityStreet: false,
       searchAddressState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
       foundAddressesList: [],
       selectedAddress: null,
-      
       fetchWaterlabelState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
       currentWaterLabels: [],
       latestWaterlabel: null,
       editedWaterlabel: null,
+      newAssetTypeMustBeSelected: false,
       editedFinishedWaterlabel: null,
       saveWaterlabelState:  "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
-
       computedWaterlabelState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
       computedWaterlabel: null,
-
-      email: "",
-      waterlabelSaved: "NOT_SEND", // "SEND", "RECEIVED" , "FAILED"
-      
       guiShowVideo: false,
       guiShowEmail: false,
-      guidShowSuccesSave: false,
-      guiEditLabel: false,
+      guiShowSuccesSave: false,
       guiLabelTab: "Dak", // "Tuin", "Voorziening"
       guiInfoTab: "PERSONAL", // "CALCULATION", "WHY"
     };
@@ -196,8 +195,8 @@ class App extends Component {
     .then(function(parsedJSON) {
       that.setState({
         saveWaterlabelState: "RECEIVED",
-        guidShowSuccesSave: true,
-        guidShowEmail: false,
+        guiShowSuccesSave: true,
+        guiShowEmail: false,
         // currentWaterLabels: parsedJSON.results,
         // latestWaterlabel: parsedJSON.results[0], // assume first one from api is latest waterlabel
       });
@@ -224,6 +223,9 @@ class App extends Component {
     // the computation endpoint cannot handle zero assets
     // this is for now the best place to check on this since it is called at plenty of places
     if (label.assets.filter(asset => asset.asset_type !== null).length === 0 ) {
+      this.setState({
+        computedWaterlabel: null,
+      })
       return;
     }
     this.setState({computedWaterlabelState: "SEND"});
@@ -293,6 +295,8 @@ class App extends Component {
       currentWaterLabels,
       latestWaterlabel,
       editedWaterlabel,
+      newAssetTypeMustBeSelected,
+      
       editedFinishedWaterlabel,
       saveWaterlabelState, // "SEND", "RECEIVED", "FAILED"
 
@@ -300,12 +304,10 @@ class App extends Component {
       computedWaterlabel,
 
       email,
-      waterlabelSaved, // "SEND", "RECEIVED" , "FAILED"
       
       guiShowVideo,
       guiShowEmail,
-      guidShowSuccesSave,
-      guiEditLabel,
+      guiShowSuccesSave,
       guiLabelTab, // "Tuin", "Voorziening"
       guiInfoTab, 
     } = this.state;
@@ -317,9 +319,9 @@ class App extends Component {
         {/* 
         <div>
           <span>assetTypeFetchState: </span>
-          {this.state.assetTypeFetchState}
+          {assetTypeFetchState}
         <ul>
-          {this.state.assetTypesFromServer.map(asset=>
+          {assetTypesFromServer.map(asset=>
             <li>{asset.name}</li>
           )}
         </ul>
@@ -346,27 +348,51 @@ class App extends Component {
               computedWaterlabel: null,
 
               email,
-              waterlabelSaved: "NOT_SEND",  
               guiShowVideo: false,
               guiShowEmail: false,
-              guidShowSuccesSave: false,
-              guiEditLabel: false,
+              guiShowSuccesSave: false,
             })
           }}
         >
           BACK
         </button>
+        {/* _____________________________________ SHOW VIDEO */}
+        <div
+          style={guiShowVideo? {}: {display:"none"}}
+        >
+          <hr/>
+          <div>
+              Link to Youtube !!!
+          </div>
+          <button
+            onClick={e=>{
+              e.preventDefault();
+              this.setState({guiShowVideo:false})
+            }}
+          >
+            X
+          </button>
+          <hr/>
+        </div>
         
         {/*_______________________________________ SEARCH ADDDRESS FORM */}
         <form
           style={
-            this.state.foundAddressesList.length === 0 ? {} : {display: "none"} 
+            foundAddressesList.length === 0 ? {} : {display: "none"} 
           }
         >
+          <button
+            onClick={e=>{
+              e.preventDefault();
+              this.setState({guiShowVideo:true})
+            }}
+          >
+            Show Video
+          </button>
 
           <div
             style={
-              this.state.searchOnCityStreet===true ? {} : {display: "none"} 
+              searchOnCityStreet===true ? {} : {display: "none"} 
             }
           >
             <label htmlFor="searchCity">
@@ -374,7 +400,7 @@ class App extends Component {
             </label>
             <input
               id="searchCity"
-              value={this.state.searchCity}
+              value={searchCity}
               onChange={e=>this.setState({searchCity: e.target.value})}
             />
           </div>
@@ -389,7 +415,7 @@ class App extends Component {
             </label>
             <input
               id="searchPostcode"
-              value={this.state.searchPostcode}
+              value={searchPostcode}
               onChange={e=>this.setState({searchPostcode: e.target.value})}
             />
           </div>
@@ -404,7 +430,7 @@ class App extends Component {
             </label>
             <input
               id="searchStreet"
-              value={this.state.searchStreet}
+              value={searchStreet}
               onChange={e=>this.setState({searchStreet: e.target.value})}
             />
           </div>
@@ -415,7 +441,7 @@ class App extends Component {
             </label>
             <input
               id="searchNumber"
-              value={this.state.searchNumber}
+              value={searchNumber}
               onChange={e=>this.setState({searchNumber: e.target.value})}
             />
           </div>
@@ -426,19 +452,18 @@ class App extends Component {
             </label>
             <input
               id="searchAddition"
-              value={this.state.searchAddition}
+              value={searchAddition}
               onChange={e=>this.setState({searchAddition: e.target.value})}
             />
           </div>
           <div>
             <button
               style={
-                this.state.searchOnCityStreet===false ? {} : {display: "none"} 
+                searchOnCityStreet===false ? {} : {display: "none"} 
               }
               onClick={ e => {
-                this.setState({searchOnCityStreet: true})
-                // prevent form reloading with preventDefault
                 e.preventDefault();
+                this.setState({searchOnCityStreet: true})
               }}
             >
               Zoek op straat
@@ -446,12 +471,11 @@ class App extends Component {
 
             <button
               style={
-                this.state.searchOnCityStreet===true ? {} : {display: "none"} 
+                searchOnCityStreet===true ? {} : {display: "none"} 
               }
               onClick={ e => {
-                this.setState({searchOnCityStreet: false})
-                // prevent form reloading with preventDefault
                 e.preventDefault();
+                this.setState({searchOnCityStreet: false})
               }}
             >
               Zoek op postcode
@@ -460,9 +484,8 @@ class App extends Component {
           <div>
             <button
               onClick={ e => {
-                this.fetchBuildings();
-                // prevent form reloading with preventDefault
                 e.preventDefault();
+                this.fetchBuildings();
               }}
             >
               Zoek
@@ -504,7 +527,6 @@ class App extends Component {
             {display: "none"} 
           }
         >
-          {/* <hr/> */}
           <div>Selected Address:</div>
           <div>
             <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].street}</span>
@@ -515,10 +537,10 @@ class App extends Component {
         {/*_______________________________________ FETCH WATERLABEL STATE */}
         {/* <div>
           <span>fetchWaterlabelState: </span>
-          <span>{this.state.fetchWaterlabelState}</span>
+          <span>{fetchWaterlabelState}</span>
           <div>
             <span>Amount waterlabel: </span>
-            <span>{this.state.currentWaterLabels.length}</span>
+            <span>{currentWaterLabels.length}</span>
           </div>
           <div>
             <span>Timestamp latest label: </span>
@@ -531,10 +553,8 @@ class App extends Component {
         latestWaterlabel && 
         !computedWaterlabel ?
         <div>
-          {/* <hr/> */}
           <h3>Your label is</h3>
           <span>{latestWaterlabel.code } </span>
-          {/* <span>{this.state.computedWaterlabel.code}</span> */}
         </div>
         :
         null
@@ -556,8 +576,8 @@ class App extends Component {
           <div>
             <button
               onClick={ e =>{
-                this.createNewLabel();
                 e.preventDefault();
+                this.createNewLabel();
               }}
               style={
                 selectedAddress !== null &&
@@ -583,9 +603,8 @@ class App extends Component {
           <span>{this.state.computedWaterlabel.code}</span> */}
           <button
             onClick={e=>{
-              // this.saveLabel();
-              this.openSaveModal();
               e.preventDefault();
+              this.openSaveModal();
             }}
           >
             Label Opslaan
@@ -598,27 +617,26 @@ class App extends Component {
         {/*_______________________________________ WATERLABEL TAB + FROM */}
         <form>
           {
-          this.state.assetTypeFetchState === "RECEIVED" &&
-          ( this.state.latestWaterlabel || this.state.editedWaterlabel || this.state.editedFinishedWaterlabel) ?
+          assetTypeFetchState === "RECEIVED" &&
+          ( latestWaterlabel || editedWaterlabel || editedFinishedWaterlabel) ?
 
           <div>
             <hr/>
             <LabelForm
-              assetTypesFromServer={this.state.assetTypesFromServer}
-              latestWaterlabel={this.state.latestWaterlabel}
-              editedWaterlabel={this.state.editedWaterlabel}
-              editedFinishedWaterlabel={this.state.editedFinishedWaterlabel}
-              guiLabelTab={this.state.guiLabelTab}
-
+              assetTypesFromServer={assetTypesFromServer}
+              latestWaterlabel={latestWaterlabel}
+              editedWaterlabel={editedWaterlabel}
+              editedFinishedWaterlabel={editedFinishedWaterlabel}
+              newAssetTypeMustBeSelected={newAssetTypeMustBeSelected}
+              setNewAssetTypeMustBeSelected={bool=> this.setState({newAssetTypeMustBeSelected: bool})}
+              guiLabelTab={guiLabelTab}
               createNewLabel={this.createNewLabel}
               changeLabel={this.changeLabel}
-              // saveLabel={this.saveLabel}
               setGuiLabelTab={tab => this.setState({guiLabelTab: tab})}
               setEditedWaterlabel={this.setEditedWaterlabel}
               editingWaterlabelReady={this.editingWaterlabelReady}
-
-              computedWaterlabelState={this.state.computedWaterlabelState}
-              computedWaterlabel={this.state.computedWaterlabel}
+              computedWaterlabelState={computedWaterlabelState}
+              computedWaterlabel={computedWaterlabel}
             />
           </div>
           :
@@ -629,7 +647,7 @@ class App extends Component {
         {/*_______________________________________ SAVE MODAL */}
         <div
           style={
-            this.state.guiShowEmail | this.state.guidShowSuccesSave ?
+            guiShowEmail | guiShowSuccesSave ?
             {}
             :
             {display: "none"}
@@ -644,7 +662,8 @@ class App extends Component {
             closeModal={()=>{
               this.setState({
                 saveWaterlabelState: "NOT_SEND",
-                guidShowSuccesSave: false,
+                guiShowSuccesSave: false,
+                guiShowEmail: false,
                 editedWaterlabel: null,
                 editedFinishedWaterlabel: null,
                 computedWaterlabel: null,

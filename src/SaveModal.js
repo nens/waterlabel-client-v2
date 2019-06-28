@@ -42,16 +42,16 @@ function SaveModal (props) {
             <div>
               <button
                 onClick={e=>{
-                  setGuiHideEmail();
                   e.preventDefault();
+                  setGuiHideEmail();
                 }}
               >
                 Annuleer
               </button>
               <button
                 onClick={e=>{
-                  saveLabel();
                   e.preventDefault();
+                  saveLabel();
                 }}
               >
                 Verzend
@@ -68,8 +68,8 @@ function SaveModal (props) {
           >
             <button
                 onClick={e=>{
-                  closeModal();
                   e.preventDefault();
+                  closeModal();
                 }}
               >
               Terug

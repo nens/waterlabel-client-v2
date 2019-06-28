@@ -14,6 +14,8 @@ function LabelForm (props) {
     assetTypesFromServer,
     latestWaterlabel,
     editedWaterlabel,
+    newAssetTypeMustBeSelected,
+    setNewAssetTypeMustBeSelected,
     editedFinishedWaterlabel,
     guiLabelTab,
     changeLabel,
@@ -35,6 +37,7 @@ function LabelForm (props) {
       <LabelTabButtons
         guiLabelTab={guiLabelTab}
         setGuiLabelTab={setGuiLabelTab}
+        setNewAssetTypeMustBeSelected={setNewAssetTypeMustBeSelected}
       />
       <div>
       {/* <h4>guiLabelTab: {guiLabelTab}</h4> */}
@@ -60,7 +63,7 @@ function LabelForm (props) {
                     >
                       {/* <hr/> */}
                       <div>____________________________________</div>
-                      { asset.asset_type === null 
+                      {/* { asset.asset_type === null 
                         ?
                         <select
                           onChange={ event => {
@@ -69,11 +72,19 @@ function LabelForm (props) {
 
                             const selectedAsset = assetTypesFromServer.filter(type=>type.code === event.target.value)[0];
                             const copyLabel = copyLabelData(waterlabelToUse);
-                            copyLabel.assets[index].asset_type = selectedAsset.code;
-                            copyLabel.assets[index].storage = selectedAsset.storage;  
-                            copyLabel.assets[index].infiltration = selectedAsset.infiltration;
-                            copyLabel.assets[index].sewer_connection = true;
-                            copyLabel.assets[index].area = 0;
+                            // copyLabel.assets[index].asset_type = selectedAsset.code;
+                            // copyLabel.assets[index].storage = selectedAsset.storage;  
+                            // copyLabel.assets[index].infiltration = selectedAsset.infiltration;
+                            // copyLabel.assets[index].sewer_connection = true;
+                            // copyLabel.assets[index].area = 0;
+                            const newAsset = {
+                              asset_type : selectedAsset.code,
+                              storage : selectedAsset.storage,  
+                              infiltration : selectedAsset.infiltration,
+                              sewer_connection : true,
+                              area : 0,
+                            };
+                            copyLabel.push(newAsset);
                             setEditedWaterlabel(copyLabel);
                           }}
                         >
@@ -83,8 +94,8 @@ function LabelForm (props) {
                         </select>
                         :
                         <div>asset_type: {asset.asset_type}</div>
-                      }
-                    
+                      } */}
+                      <div>asset_type: {asset.asset_type}</div>
 
                       <div>
                         {
@@ -205,15 +216,39 @@ function LabelForm (props) {
             >
               <div>____________________________________</div>
               <button
+                style={newAssetTypeMustBeSelected?{display:"none"}:{}}
                 onClick={e=>{
                   e.preventDefault();
-                  const copyLabel = JSON.parse(JSON.stringify(editedWaterlabel));
-                  copyLabel.assets.push({asset_type: null})
-                  setEditedWaterlabel(copyLabel);
+                  setNewAssetTypeMustBeSelected(true);
                 }}
               >
                 NEW
               </button>
+              <select
+                style={newAssetTypeMustBeSelected?{}:{display:"none"}}
+                onChange={ event => {
+                  event.preventDefault();
+                  console.log(JSON.stringify(event.target.value));
+
+                  const selectedAsset = assetTypesFromServer.filter(type=>type.code === event.target.value)[0];
+                  const copyLabel = copyLabelData(waterlabelToUse);
+                  const newAsset = {
+                    asset_type : selectedAsset.code,
+                    storage : selectedAsset.storage,  
+                    infiltration : selectedAsset.infiltration,
+                    sewer_connection : true,
+                    area : 0,
+                  };
+                  copyLabel.assets.push(newAsset);
+                  setEditedWaterlabel(copyLabel);
+                  setNewAssetTypeMustBeSelected(false);
+                }}
+              >
+                {filteredAssetTypes.map(assetType=>
+                  <option key={assetType.name} value={assetType.code}>{assetType.name}</option>
+                )}
+                <option style={{display:"none"}} disabled selected value> -- select an option -- </option>
+              </select>
             </li>
           </ul>
           

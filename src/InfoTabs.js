@@ -15,8 +15,8 @@ function InfoTabs (props) {
         <div>
           <button
             onClick={e=>{
-              setInfoTab("PERSONAL")
               e.preventDefault();
+              setInfoTab("PERSONAL")
             }}
             className={guiInfoTab === "PERSONAL" ? "TabActive" :  ""}
           >
@@ -24,8 +24,8 @@ function InfoTabs (props) {
           </button>
           <button
             onClick={e=>{
-              setInfoTab("CALCULATION")
               e.preventDefault();
+              setInfoTab("CALCULATION")
             }}
             className={guiInfoTab === "CALCULATION" ? "TabActive" :  ""}
           >
@@ -33,8 +33,8 @@ function InfoTabs (props) {
           </button>
           <button
             onClick={e=>{
-              setInfoTab("WHY")
               e.preventDefault();
+              setInfoTab("WHY")
             }}
             className={guiInfoTab === "WHY" ? "TabActive" :  ""}
           >
