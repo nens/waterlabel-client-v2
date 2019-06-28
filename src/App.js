@@ -35,7 +35,7 @@ class App extends Component {
       currentWaterLabels: [],
       latestWaterlabel: null,
       editedWaterlabel: null,
-      newAssetType: null,
+      showLabelFormDetails: false,
 
       editedFinishedWaterlabel: null,
       saveWaterlabelState:  "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
@@ -301,7 +301,7 @@ class App extends Component {
       currentWaterLabels,
       latestWaterlabel,
       editedWaterlabel,
-      newAssetType,
+      showLabelFormDetails,
       
       editedFinishedWaterlabel,
       saveWaterlabelState, // "SEND", "RECEIVED", "FAILED"
@@ -635,9 +635,9 @@ class App extends Component {
               latestWaterlabel={latestWaterlabel}
               editedWaterlabel={editedWaterlabel}
               editedFinishedWaterlabel={editedFinishedWaterlabel}
-              newAssetType={newAssetType}
-              setNewAssetType={asset=> this.setState({newAssetType: asset})}
               guiLabelTab={guiLabelTab}
+              showLabelFormDetails={showLabelFormDetails}
+              setShowLabelFormDetails={bool=>this.setState({showLabelFormDetails:bool})}
               createNewLabel={this.createNewLabel}
               changeLabel={this.changeLabel}
               setGuiLabelTab={tab => this.setState({guiLabelTab: tab})}

@@ -14,9 +14,7 @@ function LabelTabButtons (props) {
       <button
         onClick={e=>{
           e.preventDefault();
-          setGuiLabelTab("Dak");
-          // setNewAssetTypeMustBeSelected(false);
-          
+          setGuiLabelTab("Dak");          
         }}
         className={guiLabelTab === "Dak" ? "TabActive" :  ""}
       >
@@ -25,9 +23,7 @@ function LabelTabButtons (props) {
       <button
         onClick={e=>{
           e.preventDefault();
-          setGuiLabelTab("Tuin");
-          // setNewAssetTypeMustBeSelected(false);
-          
+          setGuiLabelTab("Tuin");          
         }}
         className={guiLabelTab === "Tuin" ? "TabActive" :  ""}
       >
@@ -37,7 +33,6 @@ function LabelTabButtons (props) {
         onClick={e=>{
           e.preventDefault();
           setGuiLabelTab("Voorziening");
-          // setNewAssetTypeMustBeSelected(false);
           
         }}
         className={guiLabelTab === "Voorziening" ? "TabActive" :  ""}
