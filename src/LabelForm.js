@@ -86,31 +86,46 @@ function LabelForm (props) {
                       }
                     
 
-                    <div>
-                        <label>area: </label> 
-                        <input
-                          value={asset.area}
-                          onChange={ event => {
-                            const copyLabel = copyLabelData(waterlabelToUse);
-                            copyLabel.assets[index].area = event.target.value;                          
-                            setEditedWaterlabel(copyLabel);
-                          }}
-                        >
-                        </input>
+                      <div>
+                        {
+                          editedWaterlabel ?
+                          <div>
+                            <label>area: </label> 
+                            <input
+                              value={asset.area}
+                              onChange={ event => {
+                                const copyLabel = copyLabelData(waterlabelToUse);
+                                copyLabel.assets[index].area = event.target.value;                          
+                                setEditedWaterlabel(copyLabel);
+                              }}
+                            >
+                            </input>
+                          </div>
+                          :
+                          <div>{asset.area}</div>
+                        }
                       </div>
                       <div>
-                        <label>storage: </label> 
-                        <input
-                          value={asset.storage}
-                          onChange={ event => {
-                            const copyLabel = copyLabelData(waterlabelToUse);
-                            copyLabel.assets[index].storage = event.target.value;                          
-                            setEditedWaterlabel(copyLabel);
-                          }}
-                        >
-                        </input>
+                        {
+                          editedWaterlabel ?
+                          <div>
+                            <label>storage: </label> 
+                            <input
+                              value={asset.storage}
+                              onChange={ event => {
+                                const copyLabel = copyLabelData(waterlabelToUse);
+                                copyLabel.assets[index].storage = event.target.value;                          
+                                setEditedWaterlabel(copyLabel);
+                              }}
+                            >
+                            </input>
+                          </div>
+                          :
+                          <div>{asset.storage}</div>
+                        }
                       </div>
                       <div> 
+                        {/* 
                         <label>infiltration: </label> 
                         <input
                           value={asset.infiltration}
@@ -120,36 +135,67 @@ function LabelForm (props) {
                             setEditedWaterlabel(copyLabel);
                           }}
                         >
-                        </input>
+                        </input> 
+                        */}
+                        {
+                          editedWaterlabel ?
+                          <div>
+                            <label>infiltration: </label> 
+                            <input
+                              value={asset.infiltration}
+                              onChange={ event => {
+                                const copyLabel = copyLabelData(waterlabelToUse);
+                                copyLabel.assets[index].infiltration = event.target.value;                          
+                                setEditedWaterlabel(copyLabel);
+                              }}
+                            >
+                            </input> 
+                          </div>
+                          :
+                          <div>{asset.infiltration}</div>
+                        }
                       </div>
                       <div>
-                        <label>sewer_connection: </label> 
                         {
-                        asset.asset_type ?
-                        <input
-                          type="checkbox"
-                          checked={asset.sewer_connection}
-                          onChange={ event => {
-                            // const newAsset = {
-                            //   ...copyLabel.assets[index],
-                            //   sewer_connection: event.target.checked
-                            // };
-                            // const newAssets = [...copyLabel.assets];
-                            // newAssets[index] = newAsset;
-                            // const newcopyLabel = {
-                            //   ...copyLabel,
-                            //   assets: newAssets
-                            // };
+                            editedWaterlabel ?
+                            <div>
+                              <input
+                                type="checkbox"
+                                checked={asset.sewer_connection}
+                                onChange={ event => {
+                                  // const newAsset = {
+                                  //   ...copyLabel.assets[index],
+                                  //   sewer_connection: event.target.checked
+                                  // };
+                                  // const newAssets = [...copyLabel.assets];
+                                  // newAssets[index] = newAsset;
+                                  // const newcopyLabel = {
+                                  //   ...copyLabel,
+                                  //   assets: newAssets
+                                  // };
+                                  const copyLabel = copyLabelData(waterlabelToUse);
+                                  copyLabel.assets[index].sewer_connection = event.target.checked;                          
+                                  setEditedWaterlabel(copyLabel);
+                                }}
+                              >
+                              </input>
+                            </div>
+                            :
+                            <div>{asset.sewer_connection + ''}</div>
+                          }
+                      </div>
+                      <div>
+                        <button
+                          style={editedWaterlabel?{}:{display:"none"}}
+                          onClick={e=>{
+                            e.preventDefault();
                             const copyLabel = copyLabelData(waterlabelToUse);
-                            copyLabel.assets[index].sewer_connection = event.target.checked;                          
+                            copyLabel.assets.splice(index, 1); // remove index from array                    
                             setEditedWaterlabel(copyLabel);
                           }}
-                          
                         >
-                        </input>
-                        :
-                        null
-                        }
+                          X
+                        </button>
                       </div>
                     </li>
                   );
@@ -157,13 +203,10 @@ function LabelForm (props) {
             <li
               style={editedWaterlabel? {}:{display:"none"}}
             >
-              {/* <hr/> */}
               <div>____________________________________</div>
               <button
                 onClick={e=>{
-                  // this.setState({guiLabelTab: "VOORZIENING"})
                   e.preventDefault();
-                  // setGuiLabelTab("Voorziening");
                   const copyLabel = JSON.parse(JSON.stringify(editedWaterlabel));
                   copyLabel.assets.push({asset_type: null})
                   setEditedWaterlabel(copyLabel);

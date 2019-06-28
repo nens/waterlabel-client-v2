@@ -223,7 +223,7 @@ class App extends Component {
   fetchComputedLabel = (label) => {
     // the computation endpoint cannot handle zero assets
     // this is for now the best place to check on this since it is called at plenty of places
-    if (label.assets.length === 0) {
+    if (label.assets.filter(asset => asset.asset_type !== null).length === 0 ) {
       return;
     }
     this.setState({computedWaterlabelState: "SEND"});
