@@ -37,7 +37,7 @@ function LabelForm (props) {
         setGuiLabelTab={setGuiLabelTab}
       />
       <div>
-        <h4>guiLabelTab: {guiLabelTab}</h4>
+      {/* <h4>guiLabelTab: {guiLabelTab}</h4> */}
         
         <div>
           <ul>

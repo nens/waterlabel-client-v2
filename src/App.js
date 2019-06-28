@@ -3,6 +3,7 @@ import './App.css';
 
 import LabelForm from "./LabelForm";
 import InfoTabs from "./InfoTabs";
+import SaveModal from "./SaveModal";
 
 class App extends Component {
 
@@ -622,78 +623,22 @@ class App extends Component {
             {display: "none"}
           }
         >
-          <hr/>
-          <form
-            style={
-              this.state.saveWaterlabelState !== "RECEIVED" ?
-              {}
-              :
-              {display: "none"} // should not edit qq
-            }
-          >
-            <div>
-              <label htmlFor="email">
-                Email:
-              </label>
-              <input
-                id="email"
-                value={this.state.email}
-                onChange={e=>this.setState({email: e.target.value})}
-              />
-            </div>
-            <div
-              // style={
-              //   this.state.saveWaterlabelState === "SEND" ?
-              //   {}
-              //   :
-              //   { visibility: "hidden"} // should not edit qq
-              // }
-            >
-              {this.state.saveWaterlabelState + ''}
-            </div>
-            <div>
-              <button
-                onClick={e=>{
-                  this.setState({guiShowEmail: false});
-                  e.preventDefault();
-                }}
-              >
-                Annuleer
-              </button>
-              <button
-                onClick={e=>{
-                  this.saveLabel();
-                  e.preventDefault();
-                }}
-              >
-                Verzend
-              </button>
-            </div>
-          </form>
-          <form
-            style={
-              this.state.saveWaterlabelState === "RECEIVED" ?
-              {}
-              :
-              {display: "none"} // should not edit qq
-            }
-          >
-            <button
-                onClick={e=>{
-                  // this.saveLabel();
-                  this.setState({
-                    saveWaterlabelState: "NOT_SEND",
-                    guidShowSuccesSave: false,
-                    editedWaterlabel: null,
-                    editedFinishedWaterlabel: null,
-                    computedWaterlabel: null,
-                  })
-                  e.preventDefault();
-                }}
-              >
-              Terug
-            </button>
-          </form>
+          <SaveModal
+            saveWaterlabelState={saveWaterlabelState}
+            email={email}
+            setEmail={email=>this.setState({email: email})}
+            setGuiHideEmail={()=>this.setState({guiShowEmail: false})}
+            saveLabel={this.saveLabel}
+            closeModal={()=>{
+              this.setState({
+                saveWaterlabelState: "NOT_SEND",
+                guidShowSuccesSave: false,
+                editedWaterlabel: null,
+                editedFinishedWaterlabel: null,
+                computedWaterlabel: null,
+              })
+            }}
+          />
         </div>
 
         <div
