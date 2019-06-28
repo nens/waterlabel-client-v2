@@ -1,12 +1,9 @@
 import React from 'react';
 
 import LabelTabButtons from "./LabelTabButtons";
+import {copyLabelData, } from "./utils/labelFunctions";
 
 export default LabelForm;
-
-function copyLabelData (labelToCopy) {
-  return JSON.parse(JSON.stringify(labelToCopy))
-}
 
 function LabelForm (props) {
 
@@ -14,8 +11,6 @@ function LabelForm (props) {
     assetTypesFromServer,
     latestWaterlabel,
     editedWaterlabel,
-    newAssetTypeMustBeSelected,
-    setNewAssetTypeMustBeSelected,
     editedFinishedWaterlabel,
     guiLabelTab,
     changeLabel,
@@ -37,7 +32,7 @@ function LabelForm (props) {
       <LabelTabButtons
         guiLabelTab={guiLabelTab}
         setGuiLabelTab={setGuiLabelTab}
-        setNewAssetTypeMustBeSelected={setNewAssetTypeMustBeSelected}
+        // setNewAssetType={setNewAssetType}
       />
       <div>
       {/* <h4>guiLabelTab: {guiLabelTab}</h4> */}
@@ -49,11 +44,11 @@ function LabelForm (props) {
               assetsToUse && assetsToUse
                 .map( (asset, index) => {
                   // const filteredAssetTypeNames = filteredAssetTypes.map(type=>type.code);
-                  const currentAssetType = filteredAssetTypes.filter(type=>type.code === asset.asset_type)[0];
+                  // const currentAssetType = filteredAssetTypes.filter(type=>type.code === asset.asset_type)[0];
                   
                   const assetInActiveTab = 
-                    currentAssetType || 
-                    asset.asset_type === null ; // also show new assets that user has not given type yet
+                    asset.category ===  guiLabelTab; // || 
+                    // asset.asset_type === null ; // also show new assets that user has not given type yet
                   
 
                   return (
@@ -63,7 +58,7 @@ function LabelForm (props) {
                     >
                       {/* <hr/> */}
                       <div>____________________________________</div>
-                      {/* { asset.asset_type === null 
+                      { asset.type === null 
                         ?
                         <select
                           onChange={ event => {
@@ -72,30 +67,20 @@ function LabelForm (props) {
 
                             const selectedAsset = assetTypesFromServer.filter(type=>type.code === event.target.value)[0];
                             const copyLabel = copyLabelData(waterlabelToUse);
-                            // copyLabel.assets[index].asset_type = selectedAsset.code;
-                            // copyLabel.assets[index].storage = selectedAsset.storage;  
-                            // copyLabel.assets[index].infiltration = selectedAsset.infiltration;
-                            // copyLabel.assets[index].sewer_connection = true;
-                            // copyLabel.assets[index].area = 0;
-                            const newAsset = {
-                              asset_type : selectedAsset.code,
-                              storage : selectedAsset.storage,  
-                              infiltration : selectedAsset.infiltration,
-                              sewer_connection : true,
-                              area : 0,
-                            };
-                            copyLabel.push(newAsset);
+                            copyLabel.assets[index].asset_type = selectedAsset.code;
+                            copyLabel.assets[index].type = selectedAsset;
+                            copyLabel.assets[index].category = guiLabelTab
                             setEditedWaterlabel(copyLabel);
                           }}
                         >
                           {filteredAssetTypes.map(assetType=>
                             <option key={assetType.name} value={assetType.code}>{assetType.name}</option>
                           )}
+                          <option style={{display:"none"}} disabled selected value> -- select an option -- </option>
                         </select>
                         :
                         <div>asset_type: {asset.asset_type}</div>
-                      } */}
-                      <div>asset_type: {asset.asset_type}</div>
+                      }
 
                       <div>
                         {
@@ -216,39 +201,24 @@ function LabelForm (props) {
             >
               <div>____________________________________</div>
               <button
-                style={newAssetTypeMustBeSelected?{display:"none"}:{}}
+                // style={newAssetType?{display:"none"}:{}}
                 onClick={e=>{
                   e.preventDefault();
-                  setNewAssetTypeMustBeSelected(true);
+                  const copyLabel = copyLabelData(waterlabelToUse);
+                  copyLabel.assets.push({
+                    area: 0,
+                    storage: 0,
+                    infiltration: 0,
+                    sewer_connection: true,
+                    category: guiLabelTab,
+                    type: null,
+                    asset_type: null,
+                  })                
+                  setEditedWaterlabel(copyLabel);
                 }}
               >
                 NEW
               </button>
-              <select
-                style={newAssetTypeMustBeSelected?{}:{display:"none"}}
-                onChange={ event => {
-                  event.preventDefault();
-                  console.log(JSON.stringify(event.target.value));
-
-                  const selectedAsset = assetTypesFromServer.filter(type=>type.code === event.target.value)[0];
-                  const copyLabel = copyLabelData(waterlabelToUse);
-                  const newAsset = {
-                    asset_type : selectedAsset.code,
-                    storage : selectedAsset.storage,  
-                    infiltration : selectedAsset.infiltration,
-                    sewer_connection : true,
-                    area : 0,
-                  };
-                  copyLabel.assets.push(newAsset);
-                  setEditedWaterlabel(copyLabel);
-                  setNewAssetTypeMustBeSelected(false);
-                }}
-              >
-                {filteredAssetTypes.map(assetType=>
-                  <option key={assetType.name} value={assetType.code}>{assetType.name}</option>
-                )}
-                <option style={{display:"none"}} disabled selected value> -- select an option -- </option>
-              </select>
             </li>
           </ul>
           

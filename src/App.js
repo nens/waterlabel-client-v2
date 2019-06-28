@@ -5,6 +5,7 @@ import SelectAddressFromList from "./SelectAddressFromList";
 import LabelForm from "./LabelForm";
 import InfoTabs from "./InfoTabs";
 import SaveModal from "./SaveModal";
+import {copyLabelData, setAssesCategories} from "./utils/labelFunctions";
 
 class App extends Component {
 
@@ -34,7 +35,8 @@ class App extends Component {
       currentWaterLabels: [],
       latestWaterlabel: null,
       editedWaterlabel: null,
-      newAssetTypeMustBeSelected: false,
+      newAssetType: null,
+
       editedFinishedWaterlabel: null,
       saveWaterlabelState:  "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
       computedWaterlabelState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
@@ -124,12 +126,16 @@ class App extends Component {
       return response.json();
     })
     .then(function(parsedJSON) {
+      const preppedWaterlabels = parsedJSON.results.map(waterlabel=>{
+        waterlabel.assets = setAssesCategories(waterlabel.assets, that.state.assetTypesFromServer);
+        return waterlabel;
+      })
       that.setState({
         fetchWaterlabelState: "RECEIVED",
-        currentWaterLabels: parsedJSON.results,
-        latestWaterlabel: parsedJSON.results[0] || null, // assume first one from api is latest waterlabel
+        currentWaterLabels: preppedWaterlabels,
+        latestWaterlabel: preppedWaterlabels[0] || null, // assume first one from api is latest waterlabel
       })
-      console.log(JSON.stringify(parsedJSON));
+      console.log(JSON.stringify(preppedWaterlabels));
     })
     .catch(error => {
       that.setState({fetchWaterlabelState: "FAILED"})
@@ -149,9 +155,9 @@ class App extends Component {
   changeLabel = () => {
 
     const waterlabelToChange = this.state.editedFinishedWaterlabel ? 
-      {assets:  JSON.parse(JSON.stringify(this.state.editedFinishedWaterlabel.assets))}
+      {assets:  copyLabelData(this.state.editedFinishedWaterlabel).assets}
       :
-      {assets: JSON.parse(JSON.stringify(this.state.latestWaterlabel.assets))};
+      {assets: copyLabelData(this.state.latestWaterlabel).assets};
 
     this.setState({
       editedWaterlabel: waterlabelToChange,
@@ -262,7 +268,7 @@ class App extends Component {
   }
 
   editingWaterlabelReady = () => {
-    let finishedWaterlabel = JSON.parse(JSON.stringify(this.state.editedWaterlabel));
+    let finishedWaterlabel = copyLabelData(this.state.editedWaterlabel);
     finishedWaterlabel.code = this.state.computedWaterlabel && this.state.computedWaterlabel.code;
     finishedWaterlabel.building = this.state.selectedAddress.id;
     // email is set In later state ! only pass it to the api
@@ -295,7 +301,7 @@ class App extends Component {
       currentWaterLabels,
       latestWaterlabel,
       editedWaterlabel,
-      newAssetTypeMustBeSelected,
+      newAssetType,
       
       editedFinishedWaterlabel,
       saveWaterlabelState, // "SEND", "RECEIVED", "FAILED"
@@ -378,7 +384,9 @@ class App extends Component {
         {/*_______________________________________ SEARCH ADDDRESS FORM */}
         <form
           style={
-            foundAddressesList.length === 0 ? {} : {display: "none"} 
+            foundAddressesList.length === 0 &&
+            assetTypeFetchState === "RECEIVED" ? 
+            {} : {display: "none"} 
           }
         >
           <button
@@ -627,8 +635,8 @@ class App extends Component {
               latestWaterlabel={latestWaterlabel}
               editedWaterlabel={editedWaterlabel}
               editedFinishedWaterlabel={editedFinishedWaterlabel}
-              newAssetTypeMustBeSelected={newAssetTypeMustBeSelected}
-              setNewAssetTypeMustBeSelected={bool=> this.setState({newAssetTypeMustBeSelected: bool})}
+              newAssetType={newAssetType}
+              setNewAssetType={asset=> this.setState({newAssetType: asset})}
               guiLabelTab={guiLabelTab}
               createNewLabel={this.createNewLabel}
               changeLabel={this.changeLabel}
