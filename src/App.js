@@ -1,5 +1,6 @@
 import React,  { Component } from 'react';
 import './App.css';
+import playButton from './img/play-knop.svg';
 
 import SelectAddressFromList from "./SelectAddressFromList";
 import LabelForm from "./LabelForm";
@@ -408,13 +409,15 @@ class App extends Component {
               this.setState({guiShowVideo:true})
             }}
           >
-            <span>Kijk hier hoe het werkt</span>
-            <i></i>
+            <div>Kijk hier hoe het werkt</div>
+            <i>
+              <img src={playButton} alt="Play-Video" />
+            </i>
           </button>
 
-          <div>
+          <legend>
             Zoek hier naar een woning
-          </div>
+          </legend>
 
           <div className="InputBlock">
           <div
@@ -456,7 +459,7 @@ class App extends Component {
                 id="searchPostcode"
                 value={searchPostcode}
                 onChange={e=>this.setState({searchPostcode: e.target.value})}
-                placeholder="Bijv. 1234AB"
+                placeholder="1234 AB"
               />
             </div>
             
@@ -508,6 +511,7 @@ class App extends Component {
           </div>
           <div>
             <button
+              className="ButtonToggleStreetPostcode"
               style={
                 searchOnCityStreet===false ? {} : {display: "none"} 
               }
@@ -519,6 +523,7 @@ class App extends Component {
               Zoek op straat
             </button>
             <button
+              className="ButtonToggleStreetPostcode"
               style={
                 searchOnCityStreet===true ? {} : {display: "none"} 
               }
@@ -532,6 +537,7 @@ class App extends Component {
           </div>
           <div>
             <button
+              className="ButtonSearch"
               onClick={ e => {
                 e.preventDefault();
                 this.fetchBuildings();

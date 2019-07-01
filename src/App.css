@@ -1,3 +1,15 @@
+/* Remove dotted line 
+https://stackoverflow.com/questions/19886843/how-to-remove-outline-border-from-input-button
+For now not because of accesibility
+*/
+/* button{
+  outline:none;
+}
+button::-moz-focus-inner {
+  border: 0;
+} */
+/*  */
+
 .TabActive {
   background-color: white;
   border-bottom-width: 0px;
@@ -46,7 +58,7 @@ html, body, #root, .App {
 /* Selects the span next to the header */
 .SearchAddressForm form h1 + span {
   /*  push content below subheader down */
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   color: black;
   font-size: 20px
 }
@@ -54,11 +66,21 @@ html, body, #root, .App {
 .SearchAddressForm form .YoutubeButton{
   background-color: transparent;
   border: none;
+  outline: none;
+  margin-bottom: 50px;
+  cursor: pointer;
 }
 
-.SearchAddressForm form .YoutubeButton span {
+.SearchAddressForm form .YoutubeButton div {
   color: #707070;
   font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.SearchAddressForm form legend {
+  color: #707070;
+  font-size: 16px;
+  margin-bottom: 16px;
 }
 
 .SearchAddressForm form .InputBlock {
@@ -69,12 +91,28 @@ html, body, #root, .App {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: stretch;
+  align-items: center;
+  margin-top: 6px;
+}
+.SearchAddressForm form .InputBlock .Row .LabelLeft,
+.SearchAddressForm form .InputBlock .Row .LabelRight {
+  color: black;
+  font-size: 16px;
 }
 .SearchAddressForm form .InputBlock .Row .LabelLeft {
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: 100px;
+}
+.SearchAddressForm form .InputBlock .Row .LabelRight {
+  margin-left: 10px;
+}
+.SearchAddressForm form .InputBlock .Row input {
+  color: #707070;
+  font-size: 19px;
+  border-radius: 3px0;
+  border-width: 0;
+  height: 31px;
 }
 .SearchAddressForm form .InputBlock .Row .LabelLeft + input {
   flex-grow: 0;
@@ -85,14 +123,34 @@ html, body, #root, .App {
 .SearchAddressForm form .InputBlock .Row .LabelRight + input {
   flex-grow: 0;
   flex-shrink: 0;
-  flex-basis: 60px;
-  max-width: 60px;
+  flex-basis: 50px;
+  max-width: 50px;
 }
 .SearchAddressForm form .InputBlock .Row .LabelLeft + .InputWholeRow {
   flex-grow: 0;
   flex-shrink: 0;
-  flex-basis: 213px;
-  max-width: 213px;
+  flex-basis: 204px;
+  max-width: 204px;
+}
+.SearchAddressForm form .ButtonToggleStreetPostcode {
+  color: #707070;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin-top: 6px;
+  margin-bottom: 20px;
+}
+
+.SearchAddressForm form .ButtonSearch {
+  color: white;
+  font-size: 18px;
+  background-color: #0086A6;
+  border: none;
+  width:116px;
+  height: 35px;
+  border-radius: 17px;
+  margin-bottom: 20px;
 }
 
 
