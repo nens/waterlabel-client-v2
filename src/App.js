@@ -1,6 +1,7 @@
 import React,  { Component } from 'react';
 import './App.css';
 import playButton from './img/play-knop.svg';
+import closeVideoButton from './img/weg-knop.svg';
 
 import SelectAddressFromList from "./SelectAddressFromList";
 import LabelForm from "./LabelForm";
@@ -336,8 +337,11 @@ class App extends Component {
         */}
 
         {/*_______________________________________ BACK BUTTON */}
-        <button
+        <div
           style={ foundAddressesList.length !== 0 ? {} : {display:"none"}}
+        >
+        <button
+          
           onClick={_ =>{
             this.setState({
               foundAddressesList: [],
@@ -363,13 +367,20 @@ class App extends Component {
         >
           BACK
         </button>
+        </div>
         {/* _____________________________________ SHOW VIDEO */}
         <div
+          className="ModalYoutube"
           style={guiShowVideo? {}: {display:"none"}}
         >
-          <hr/>
-          <div>
-              Link to Youtube !!!
+          <div
+            className="YoutubeFrame"
+          >
+              <iframe 
+                allowFullScreen
+                frameBorder="0"
+                src="https://www.youtube.com/embed/jARteOPf_aI?rel=0&autoplay=1">
+              </iframe>
           </div>
           <button
             onClick={e=>{
@@ -377,9 +388,10 @@ class App extends Component {
               this.setState({guiShowVideo:false})
             }}
           >
-            X
+            <i>
+              <img src={closeVideoButton} alt="Play-Video" />
+            </i>
           </button>
-          <hr/>
         </div>
         
         {/*_______________________________________ SEARCH ADDDRESS FORM */}
@@ -535,7 +547,7 @@ class App extends Component {
               Zoek op postcode
             </button>
           </div>
-          <div>
+          {/* <div> */}
             <button
               className="ButtonSearch"
               onClick={ e => {
@@ -546,11 +558,13 @@ class App extends Component {
               Zoek
             </button>
             <div
+              className="ErrorText"
               style={foundAddressesList.length === 0 && searchAddressState === "RECEIVED" ? {} : {display: "none"}}
             >
-              Er werd geen adres gevonden. Probeert u het opnieuw
+              <div>Onbekend adres</div>
+              <div>Probeert u het nogmaals </div>
             </div>
-          </div>
+          {/* </div> */}
         </form>
         </div>
         
