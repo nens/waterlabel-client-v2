@@ -14,18 +14,18 @@ class App extends Component {
     this.state = {
       assetTypesFromServer: [],
       assetTypeFetchState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
-      // searchPostcode: "",
-      // searchStreet: "",
-      // searchNumber: "",
-      // searchAddition: "",
-      // searchCity: "",
-      // email: "",
-      searchPostcode: "1188AL",
-      searchStreet: "KABELWEG",
-      searchCity: "AMSTERDAM",
-      searchNumber: "20",//"36",
+      searchPostcode: "",
+      searchStreet: "",
+      searchNumber: "",
       searchAddition: "",
-      email: "1231@32132.COM",
+      searchCity: "",
+      email: "",
+      // searchPostcode: "1188AL",
+      // searchStreet: "KABELWEG",
+      // searchCity: "AMSTERDAM",
+      // searchNumber: "20",//"36",
+      // searchAddition: "",
+      // email: "1231@32132.COM",
 
       searchOnCityStreet: false,
       searchAddressState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
@@ -336,7 +336,7 @@ class App extends Component {
 
         {/*_______________________________________ BACK BUTTON */}
         <button
-          style={ foundAddressesList.length !== 0 ? {} : {visibility:"hidden"}}
+          style={ foundAddressesList.length !== 0 ? {} : {display:"none"}}
           onClick={_ =>{
             this.setState({
               foundAddressesList: [],
@@ -382,87 +382,129 @@ class App extends Component {
         </div>
         
         {/*_______________________________________ SEARCH ADDDRESS FORM */}
-        <form
-          style={
+        <div
+          className={
             foundAddressesList.length === 0 &&
             assetTypeFetchState === "RECEIVED" ? 
-            {} : {display: "none"} 
+            "SearchAddressForm" 
+            : 
+            "SearchAddressForm HideSearchAddressForm"
           }
         >
+        <form
+        // style={
+        //   foundAddressesList.length === 0 &&
+        //   assetTypeFetchState === "RECEIVED" ? 
+        //   {} : {display: "none"} 
+        // }
+        >
+          <h1>Waterlabel.net</h1>
+          <span>Wat doe ik tegen wateroverlast?</span>
+        
           <button
+            className="YoutubeButton"
             onClick={e=>{
               e.preventDefault();
               this.setState({guiShowVideo:true})
             }}
           >
-            Show Video
+            <span>Kijk hier hoe het werkt</span>
+            <i></i>
           </button>
 
+          <div>
+            Zoek hier naar een woning
+          </div>
+
+          <div className="InputBlock">
           <div
+            className="Row"
             style={
               searchOnCityStreet===true ? {} : {display: "none"} 
             }
           >
-            <label htmlFor="searchCity">
-              Stad:
+            <label 
+              className="LabelLeft" 
+              htmlFor="searchCity"
+            >
+              Stad
             </label>
             <input
+              className="InputWholeRow"
               id="searchCity"
               value={searchCity}
               onChange={e=>this.setState({searchCity: e.target.value})}
-            />
-          </div>
-
-          <div
-            style={
-              this.state.searchOnCityStreet===false ? {} : {display: "none"} 
-            }
-          >
-            <label htmlFor="searchPostcode">
-              Postcode:
-            </label>
-            <input
-              id="searchPostcode"
-              value={searchPostcode}
-              onChange={e=>this.setState({searchPostcode: e.target.value})}
+              placeholder="Bijv. Amsterdam"
             />
           </div>
           
-          <div
-            style={
-              this.state.searchOnCityStreet===true ? {} : {display: "none"} 
-            }
-          >
-            <label htmlFor="searchStreet">
-            Straat:
-            </label>
-            <input
-              id="searchStreet"
-              value={searchStreet}
-              onChange={e=>this.setState({searchStreet: e.target.value})}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="searchNumber">
-              Nummer:
-            </label>
-            <input
-              id="searchNumber"
-              value={searchNumber}
-              onChange={e=>this.setState({searchNumber: e.target.value})}
-            />
-          </div>
           
-          <div>
-            <label htmlFor="searchAddition">
-              Toevoeging:
-            </label>
-            <input
-              id="searchAddition"
-              value={searchAddition}
-              onChange={e=>this.setState({searchAddition: e.target.value})}
-            />
+            <div
+              className="Row"
+              style={
+                this.state.searchOnCityStreet===false ? {} : {display: "none"} 
+              }
+            >
+              <label 
+                className="LabelLeft" 
+                htmlFor="searchPostcode"
+              >
+                Postcode
+              </label>
+              <input
+                className="InputWholeRow"
+                id="searchPostcode"
+                value={searchPostcode}
+                onChange={e=>this.setState({searchPostcode: e.target.value})}
+                placeholder="Bijv. 1234AB"
+              />
+            </div>
+            
+            <div
+              className="Row"
+              style={
+                this.state.searchOnCityStreet===true ? {} : {display: "none"} 
+              }
+            >
+              <label 
+                className="LabelLeft" 
+                htmlFor="searchStreet"
+              >
+              Straat
+              </label>
+              <input
+                className="InputWholeRow"
+                id="searchStreet"
+                value={searchStreet}
+                onChange={e=>this.setState({searchStreet: e.target.value})}
+              />
+            </div>
+
+            <div
+              className="Row" 
+            >
+              <label 
+                className="LabelLeft" 
+                htmlFor="searchNumber"
+              >
+                Huisnr.
+              </label>
+              <input
+                id="searchNumber"
+                value={searchNumber}
+                onChange={e=>this.setState({searchNumber: e.target.value})}
+              />
+              <label
+                className="LabelRight" 
+                htmlFor="searchAddition">
+                Toev.
+              </label>
+              <input
+                id="searchAddition"
+                value={searchAddition}
+                onChange={e=>this.setState({searchAddition: e.target.value})}
+              />
+            </div>
           </div>
           <div>
             <button
@@ -504,6 +546,7 @@ class App extends Component {
             </div>
           </div>
         </form>
+        </div>
         
         {/*_______________________________________ LIST FOUND ADDRESSES */}
         <div

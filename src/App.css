@@ -3,10 +3,99 @@
   border-bottom-width: 0px;
 }
 
-.App {
-  margin-left: 100px;
-  margin-top: 20px;
+html, body, #root, .App {
+  width: 100%;
+  height: 100%;
+  background-color: #EEFAFF;
+  font-family: 'Rigid Square', 'Regular', 'Roboto', sans-serif;
 }
+
+.App {
+  /* margin-left: 100px;
+  margin-top: 20px; */
+  width: 100%;
+  height: 100%;
+  
+}
+
+.SearchAddressForm {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.HideSearchAddressForm {
+  display: none;
+}
+
+.SearchAddressForm form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.SearchAddressForm form h1 {
+  margin-top: -10px; /*this will move the entire content up */
+  margin-bottom: 10px; /*To make the subheader closer to the header */
+  color: black;
+  font-size: 30px;
+}
+/* Selects the span next to the header */
+.SearchAddressForm form h1 + span {
+  /*  push content below subheader down */
+  margin-bottom: 40px;
+  color: black;
+  font-size: 20px
+}
+
+.SearchAddressForm form .YoutubeButton{
+  background-color: transparent;
+  border: none;
+}
+
+.SearchAddressForm form .YoutubeButton span {
+  color: #707070;
+  font-size: 20px;
+}
+
+.SearchAddressForm form .InputBlock {
+  /* background-color: red; */
+}
+
+.SearchAddressForm form .InputBlock .Row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.SearchAddressForm form .InputBlock .Row .LabelLeft {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 100px;
+}
+.SearchAddressForm form .InputBlock .Row .LabelLeft + input {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 100px;
+  max-width: 100px;
+}
+.SearchAddressForm form .InputBlock .Row .LabelRight + input {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 60px;
+  max-width: 60px;
+}
+.SearchAddressForm form .InputBlock .Row .LabelLeft + .InputWholeRow {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 213px;
+  max-width: 213px;
+}
+
+
 
 
 /* .App {
