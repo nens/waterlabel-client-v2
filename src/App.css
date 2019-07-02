@@ -291,19 +291,23 @@ html, body, #root, .App {
 .AnyLabelVisual .BackgroundImage {
   /* position: absolute; */
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
-.AnyLabelVisual .BackgroundImage img {
+.AnyLabelVisual .BackgroundImage .Margin {
   width: 200px;
-  margin-top: 80px;
+  margin-top: 50px;
   margin-bottom: 80px;
+  margin-left: 40px;
 }
-.AnyLabelVisual .Text {
+
+.AnyLabelVisual .BackgroundImage .Margin img {
   width: 100%;
-  height: 100%;
-  background-color: hsla(120, 0%, 100%, 0.50);
-  position: absolute;
+  margin-top: 16px;
+}
+
+
+.AnyLabelVisual .Text {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -311,7 +315,22 @@ html, body, #root, .App {
   font-size: 27px;
   color: #3F3F3F;
 }
+.AnyLabelVisual .NoLabelYetLayOver {
+  width: 100%;
+  height: 100%;
+  background-color: hsla(120, 0%, 100%, 0.50);
+  position: absolute;
+}
 
+/* _____________________________________________________ new BUTTON */
+
+.NewButton {
+  background-color: #0086A6;
+  margin-top: 16px;
+  width: 90%;
+  min-height: 50px;
+  height: 50px;
+}
 
 /* .App {
   text-align: center;

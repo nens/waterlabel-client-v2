@@ -231,7 +231,14 @@ class App extends Component {
   fetchComputedLabel = (label) => {
     // the computation endpoint cannot handle zero assets
     // this is for now the best place to check on this since it is called at plenty of places
-    if (label.assets.filter(asset => asset.asset_type !== null).length === 0 ) {
+    if (
+      label.assets
+        .filter(asset => asset.asset_type !== null)
+        .reduce((acc, curr)=>acc+curr.area, 0 )
+         === 0
+        // .length === 0 
+    )
+    {
       this.setState({
         computedWaterlabel: null,
       })
@@ -249,7 +256,18 @@ class App extends Component {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          assets: label.assets,
+          assets: label.assets.map(asset=>{
+            const newAsset = {
+              asset_type: asset.asset_type,
+              area: parseInt(asset.area,10),
+              infiltration: parseInt(asset.infiltration,10),
+              storage: parseInt(asset.storage,10),
+              sewer_connection: asset.sewer_connection,
+            };
+            return newAsset;
+          }),
+          building: this.state.selectedAddress.id,
+          email: "dummie-email_waterlabel@nelen-schuurmans.nl",
         }),
       }
     )
@@ -649,61 +667,92 @@ class App extends Component {
           }
         >
           <div 
-            className="Text"
+            className="Text NoLabelYetLayOver"
+            style={
+              (
+              selectedAddress !== null &&
+              latestWaterlabel === null &&
+              editedWaterlabel === null &&
+              computedWaterlabel == null
+              )
+              ||
+                (
+                  editedWaterlabel && 
+                  (
+                    computedWaterlabel === null ||
+                    ( computedWaterlabel && computedWaterlabel.detail === "The assets sum up to zero area")
+                  )
+                )
+              ?
+              {}
+              :
+              {display: "none"}
+            }
           >
             <legend>U heeft nog geen label</legend>
           </div>
+          
+         
           <div 
             className="BackgroundImage"
-          >
-              <img src={labelsImage}/>
+          >   
+              {/*_______________________________________ COMPUTED WATERLABEL */}
+              {/*_______________________________________ LATEST WATERLABEL */}
+              <div
+                className="Margin"
+              >
+                <div
+                  className="Text"
+                  style={
+                    computedWaterlabel ||
+                    latestWaterlabel ?
+                    {}
+                    :
+                    {visibility: "hidden"}
+                  }
+                >
+                  {
+                  computedWaterlabel ? 
+                  <legend>{"Voorlopig label " + (computedWaterlabel && computedWaterlabel.code)}</legend>
+                  :
+                  <legend>{"U heeft label " + (latestWaterlabel && latestWaterlabel.code)}</legend>
+                  }
+                </div>
+                <img src={labelsImage}/>
+              </div>
           </div>
+          
         </div>
 
-        {/*_______________________________________ LATEST WATERLABEL */}
-        {
-        latestWaterlabel && 
-        !computedWaterlabel ?
-        <div>
-          <h3>Your label is</h3>
-          <span>{latestWaterlabel.code } </span>
-        </div>
-        :
-        null
-        }
-         {/*_______________________________________ COMPUTED WATERLABEL */}
-        {
-        this.state.computedWaterlabel ?
-        <div>
-          <hr/>
-          <h3>ComputedLabel</h3>
-          <span>{this.state.computedWaterlabelState } </span>
-          <span>{this.state.computedWaterlabel.code}</span>
-        </div>
-        :
-        null
-        }
+         
         {/*_______________________________________ NEW WATERLABEL BUTTON */}
         {
-          <div>
+          // <div
+
+          // >
             <button
+              className="StandardButton StandardTile NewButton"
               onClick={ e =>{
                 e.preventDefault();
                 this.createNewLabel();
               }}
               style={
+                (
                 selectedAddress !== null &&
                 latestWaterlabel === null &&
                 editedWaterlabel === null &&
-                computedWaterlabel == null ?
+                computedWaterlabel == null 
+                )
+                
+                ?
                 {}
                 :
                 {display: "none"}
               }
             >
-              Nieuw Label
+              NIEUW LABEL
             </button>
-          </div>
+          // </div>
           
         }
          {/*_______________________________________ SAVE BUTTON */}

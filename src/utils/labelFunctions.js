@@ -1,4 +1,5 @@
 export function copyLabelData (labelToCopy) {
+  console.log('labelToCopy', labelToCopy, JSON.stringify(labelToCopy));
   return JSON.parse(JSON.stringify(labelToCopy))
 }
 
