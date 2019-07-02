@@ -338,6 +338,7 @@ class App extends Component {
 
         {/*_______________________________________ BACK BUTTON */}
         <div
+          className="AddressHeader"
           style={ foundAddressesList.length !== 0 ? {} : {display:"none"}}
         >
         <button
@@ -365,9 +366,35 @@ class App extends Component {
             })
           }}
         >
-          BACK
+          {"←"}
         </button>
+        {/* Flex wrapper */}
+        <div>
+          {/*_______________________________________ SELECTED ADDRESS */}
+          <div
+            // className="SelectedAddress"
+            style={
+              selectedAddress !== null 
+              ? 
+              {} 
+              : 
+              {visibility: "hidden"} 
+            }
+          >
+            <div>
+              <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].street}</span>
+              <span>{" "} </span>
+              <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].housenumber}</span>
+            </div>
+            <div>
+            <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].postalcode}</span>
+            <span>{" "} </span>
+            <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].city}</span>
+            </div>
+          </div>
+          </div>
         </div>
+        
         {/* _____________________________________ SHOW VIDEO */}
         <div
           className="ModalYoutube"
@@ -592,22 +619,7 @@ class App extends Component {
           />
         </div>
         
-        {/*_______________________________________ SELECTED ADDRESS */}
-        <div
-          style={
-            selectedAddress !== null 
-            ? 
-            {} 
-            : 
-            {display: "none"} 
-          }
-        >
-          <div>Selected Address:</div>
-          <div>
-            <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].street}</span>
-            <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].housenumber}</span>
-          </div>
-        </div>
+        
         
         {/*_______________________________________ FETCH WATERLABEL STATE */}
         {/* <div>

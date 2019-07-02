@@ -21,22 +21,34 @@ export default SelectAddressFromList;
       {display: "none"} 
     }
     >
-      <hr/>
       <div>
-        <span>{searchAddressState}</span>
-        <div>Found Addresses:</div>
+        {/* <span>{searchAddressState}</span> */}
+        <div>Selecteer het gewenste adres</div>
         <ul>
         {
           foundAddressesList.map(address=>{
             return (
               <li
                 key={address.houseaddresses[0].housenumber}
-                onClick={_ =>{
-                  selectAddress(address)
-                }}
               >
-                <span>{address.houseaddresses[0].street}</span>
-                <span>{address.houseaddresses[0].housenumber}</span>
+                <button
+                  onClick={e =>{
+                    e.preventDefault();
+                    selectAddress(address)
+                  }}
+                >
+                  <div>
+                    <span>{address.houseaddresses[0].street}</span>
+                    <span>{" "}</span>
+                    <span>{address.houseaddresses[0].housenumber}</span>
+                  </div>
+                  <div>
+                    <span>{address.houseaddresses[0].postalcode}</span>
+                    <span>{" "}</span>
+                    <span>{address.houseaddresses[0].city}</span>
+                  </div>
+                </button>
+                
               </li>
             );
           })

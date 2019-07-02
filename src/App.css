@@ -65,6 +65,38 @@ html, body, #root, .App {
   margin: 18px;
 }  */
 
+.AddressHeader {
+  position: relative;
+  height: 14%;
+  background-color: #0086A6;
+  color: white;
+  
+}
+.AddressHeader button {
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+
+  font-size: 40px;
+  background-color: transparent;
+  border: none;
+  color: white; /*why does this not inherit from parent div?*/
+}
+.AddressHeader > div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.AddressHeader .SelectedAddress {
+  font-size: 24px;
+}
+
+
+/* _________________________________________________________ Search Address Form */
 
 .SearchAddressForm {
   width: 100%;
