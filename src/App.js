@@ -372,7 +372,7 @@ class App extends Component {
         <div>
           {/*_______________________________________ SELECTED ADDRESS */}
           <div
-            // className="SelectedAddress"
+            className="SelectedAddress"
             style={
               selectedAddress !== null 
               ? 
@@ -576,7 +576,7 @@ class App extends Component {
           </div>
           {/* <div> */}
             <button
-              className="ButtonSearch"
+              className="ButtonSearch StandardButton"
               onClick={ e => {
                 e.preventDefault();
                 this.fetchBuildings();

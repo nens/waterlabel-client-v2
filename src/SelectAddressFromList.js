@@ -11,6 +11,9 @@ export default SelectAddressFromList;
   } = props;
 
   return (
+    <div
+      className="SelectAddressFromList"
+    >
     <form
     style={
       foundAddressesList.length !== 0 &&
@@ -23,7 +26,7 @@ export default SelectAddressFromList;
     >
       <div>
         {/* <span>{searchAddressState}</span> */}
-        <div>Selecteer het gewenste adres</div>
+        <legend>Selecteer het gewenste adres</legend>
         <ul>
         {
           foundAddressesList.map(address=>{
@@ -32,6 +35,7 @@ export default SelectAddressFromList;
                 key={address.houseaddresses[0].housenumber}
               >
                 <button
+                  className="StandardButton"
                   onClick={e =>{
                     e.preventDefault();
                     selectAddress(address)
@@ -41,8 +45,9 @@ export default SelectAddressFromList;
                     <span>{address.houseaddresses[0].street}</span>
                     <span>{" "}</span>
                     <span>{address.houseaddresses[0].housenumber}</span>
-                  </div>
-                  <div>
+                  {/* </div>
+                  <div> */}
+                    <span>{", "}</span>
                     <span>{address.houseaddresses[0].postalcode}</span>
                     <span>{" "}</span>
                     <span>{address.houseaddresses[0].city}</span>
@@ -56,5 +61,6 @@ export default SelectAddressFromList;
         </ul>
       </div>
     </form>
+    </div>
   );
 }
