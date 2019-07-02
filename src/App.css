@@ -10,7 +10,11 @@ button::-moz-focus-inner {
 } */
 /*  */
 
-.TabActive {
+/* .TabActive {
+  background-color: white;
+  border-bottom-width: 0px;
+} */
+.TabActive button {
   background-color: white;
   border-bottom-width: 0px;
 }
@@ -330,6 +334,40 @@ html, body, #root, .App {
   width: 90%;
   min-height: 50px;
   height: 50px;
+}
+/* ___________________________________________- InfoTabs */
+
+.InfoTabContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.InfoTabContainer button {
+  height: 62px;
+  border: none;
+  font-size: 19px;
+  color: #3F3F3F;
+}
+
+.InfoTabContainer button{
+  outline:none;
+}
+.InfoTabContainer button::-moz-focus-inner {
+  border: 0;
+}
+
+.InfoTabContainer .Info {
+  padding: 30px;
+  font-size: 16px;
+  color: #707070;
+  box-sizing: border-box;
+  /* move whole info tile op to overlap with button. Hacky.. */
+  margin-top: -14px;
+}
+.InfoTabContainer .Info pre {
+  white-space: normal;
 }
 
 /* .App {

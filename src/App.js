@@ -47,8 +47,8 @@ class App extends Component {
       guiShowVideo: false,
       guiShowEmail: false,
       guiShowSuccesSave: false,
-      guiLabelTab: "Dak", // "Tuin", "Voorziening"
-      guiInfoTab: "PERSONAL", // "CALCULATION", "WHY"
+      guiLabelTab: null,//"Dak", // "Tuin", "Voorziening"
+      guiInfoTab: null,//"PERSONAL", // "CALCULATION", "WHY"
     };
 
     this.fetchAssetTypes();
@@ -836,6 +836,7 @@ class App extends Component {
         {/*_______________________________________ INFO TABS */}
         <div
           style={selectedAddress===null? {display:"none"}:{}}
+          className="InfoTabContainer"
         >
           <InfoTabs
             setInfoTab={tab=>this.setState({guiInfoTab: tab})}
