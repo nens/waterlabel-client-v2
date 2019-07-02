@@ -29,6 +29,14 @@ button::-moz-focus-inner {
   /* margin-bottom: 20px; */
 }
 
+.StandardTile {
+  margin-top: 16px;
+  background-color: white;
+  width: 90%;
+  border-radius: 10px;
+  box-shadow: 0px 3px 3px hsla(120,0%,0%,0.16);
+}
+
 html, body, #root, .App {
   width: 100%;
   height: 100%;
@@ -41,6 +49,9 @@ html, body, #root, .App {
   margin-top: 20px; */
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   
 }
 
@@ -80,6 +91,8 @@ html, body, #root, .App {
 /* ________________________________________________ADDRESS HEADER */
 .AddressHeader {
   position: relative;
+  width: 100%;
+  min-height: 14vh;
   height: 14vh;
   background-color: #0086A6;
   color: white;
@@ -271,7 +284,33 @@ html, body, #root, .App {
   margin-bottom: 10px;
 }
 
-
+/* ________________________________________________ ANY LABEL */
+.AnyLabelVisual {
+  position: relative;
+}
+.AnyLabelVisual .BackgroundImage {
+  /* position: absolute; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.AnyLabelVisual .BackgroundImage img {
+  width: 200px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+.AnyLabelVisual .Text {
+  width: 100%;
+  height: 100%;
+  background-color: hsla(120, 0%, 100%, 0.50);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 27px;
+  color: #3F3F3F;
+}
 
 
 /* .App {

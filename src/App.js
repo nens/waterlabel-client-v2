@@ -1,6 +1,7 @@
 import React,  { Component } from 'react';
 import './App.css';
 import playButton from './img/play-knop.svg';
+import labelsImage from './img/labels.png';
 import closeVideoButton from './img/weg-knop.svg';
 
 import SelectAddressFromList from "./SelectAddressFromList";
@@ -634,6 +635,30 @@ class App extends Component {
             <span>{this.state.latestWaterlabel && this.state.latestWaterlabel.timestamp}</span>
           </div>
         </div> */}
+
+        {/* ______________________________________ ANY WATERLABEL VISUAL */}
+
+        <div
+          className="AnyLabelVisual StandardTile"
+          style={
+            selectedAddress !== null 
+            ? 
+            {} 
+            : 
+            {display: "none"} 
+          }
+        >
+          <div 
+            className="Text"
+          >
+            <legend>U heeft nog geen label</legend>
+          </div>
+          <div 
+            className="BackgroundImage"
+          >
+              <img src={labelsImage}/>
+          </div>
+        </div>
 
         {/*_______________________________________ LATEST WATERLABEL */}
         {
