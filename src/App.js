@@ -1,7 +1,7 @@
 import React,  { Component } from 'react';
+
 import './App.css';
 import labelsImage from './img/labels.png';
-
 import Header from "./Header";
 import YoutubeModal from './YoutubeModal';
 import SearchAddressForm from './SearchAddressForm';
@@ -9,6 +9,8 @@ import SelectAddressFromList from "./SelectAddressFromList";
 import LabelForm from "./LabelForm";
 import InfoTabs from "./InfoTabs";
 import SaveModal from "./SaveModal";
+
+import AppRender from './AppRender';
 import {copyLabelData, setAssesCategories} from "./utils/labelFunctions";
 
 
@@ -55,7 +57,6 @@ class App extends Component {
 
     this.fetchAssetTypes();
   };
-
   fetchAssetTypes = () => {
     const that = this;
     fetch( "/api/v2/waterlabelassettypes/")
@@ -74,7 +75,6 @@ class App extends Component {
       console.error('Error:', error);
     });
   }
-
   fetchBuildings = () => {
     this.setState({searchAddressState: "SEND"});
     const that = this;
@@ -116,7 +116,6 @@ class App extends Component {
 
     });
   }
-
   fetchWaterlabelsFromBuilding = () => {
     // if adddress is not selected return;
     if (!this.state.selectedAddress) return;
@@ -148,7 +147,6 @@ class App extends Component {
 
     });
   }
-
   createNewLabel = () => {
     this.setState({
       editedWaterlabel: {assets: []},
@@ -172,14 +170,12 @@ class App extends Component {
       this.fetchComputedLabel(this.state.editedWaterlabel);
     }))
   }
-
   openSaveModal = () => {
     // this.saveLabel();
     this.setState({
       guiShowEmail: true,
     })
   }
-
   saveLabel = () => {
     this.setState({saveWaterlabelState: "SEND"});
 
@@ -220,7 +216,6 @@ class App extends Component {
 
     });
   }
-
   setEditedWaterlabel = (newLabel) => {
     this.setState(
       {editedWaterlabel: newLabel},
@@ -229,7 +224,6 @@ class App extends Component {
       })
     )
   }
-
   fetchComputedLabel = (label) => {
     // the computation endpoint cannot handle zero assets
     // this is for now the best place to check on this since it is called at plenty of places
@@ -289,7 +283,6 @@ class App extends Component {
 
     });
   }
-
   editingWaterlabelReady = () => {
     let finishedWaterlabel = copyLabelData(this.state.editedWaterlabel);
     finishedWaterlabel.code = this.state.computedWaterlabel && this.state.computedWaterlabel.code;
@@ -302,11 +295,9 @@ class App extends Component {
       editedWaterlabel: null,
     })
   }
-
   setShowLabelFormDetails = (bool) => {
     this.setState({showLabelFormDetails:bool});
   }
-
   backToAddressSearchForm = () => {
     this.setState({
       foundAddressesList: [],
@@ -325,19 +316,15 @@ class App extends Component {
       guiShowSuccesSave: false,
     })
   }
-
   setGuiShowVideo = (bool) => {
     this.setState({guiShowVideo:bool})
   }
-
   setSearchCity = (searchCity) => {
     this.setState({searchCity: searchCity})
   }
-
   setSearchPostcode = (searchPostcode) => {
     this.setState({searchPostcode:searchPostcode})
   }
-
   setSearchStreet = (searchStreet) => {
     this.setState({searchStreet:searchStreet})
   }
@@ -378,11 +365,9 @@ class App extends Component {
       computedWaterlabel: null,
     });
   }
-
   setGuiInfoTab = (tab) => {
     this.setState({guiInfoTab: tab});
   }
-
 
   render  = () => {
 
@@ -423,228 +408,60 @@ class App extends Component {
     } = this.state;
 
     return (
-      <div className="App">
-        
-        <SearchAddressForm
-          foundAddressesList={foundAddressesList}
+        <AppRender
+          assetTypesFromServer={assetTypesFromServer}
           assetTypeFetchState={assetTypeFetchState}
-          searchAddressState={searchAddressState}
-          setGuiShowVideo={this.setGuiShowVideo}
-          setSearchOnCityStreet={this.setSearchOnCityStreet}
-          searchOnCityStreet={searchOnCityStreet}
-          setSearchCity={this.setSearchCity}
-          searchCity={searchCity}
-          setSearchStreet={this.setSearchStreet}
-          searchStreet={searchStreet}
-          setSearchPostcode={this.setSearchPostcode}
           searchPostcode={searchPostcode}
-          setSearchNumber={this.setSearchNumber}
+          searchStreet={searchStreet}
           searchNumber={searchNumber}
-          setSearchAddition={this.setSearchAddition}
           searchAddition={searchAddition}
-          fetchBuildings={this.fetchBuildings}
-        />
-        <YoutubeModal
-          guiShowVideo ={guiShowVideo}
-          setGuiShowVideo={this.setGuiShowVideo}
-        />
-        <Header
-          foundAddressesList={foundAddressesList}
-          backToAddressSearchForm={this.backToAddressSearchForm}
-          selectedAddress={selectedAddress}
-        />
-        <SelectAddressFromList
-          foundAddressesList={foundAddressesList}
-          selectedAddress={selectedAddress}
+          searchCity={searchCity}
+          searchOnCityStreet={searchOnCityStreet}
           searchAddressState={searchAddressState}
-          selectAddress={address=>{
-            this.selectAddress(address);
-          }}
+          foundAddressesList={foundAddressesList}
+          selectedAddress={selectedAddress}
+          fetchWaterlabelState={fetchWaterlabelState}
+          currentWaterLabels={currentWaterLabels}
+          latestWaterlabel={latestWaterlabel}
+          editedWaterlabel={editedWaterlabel}
+          showLabelFormDetails={showLabelFormDetails}
+          editedFinishedWaterlabel={editedFinishedWaterlabel}
+          saveWaterlabelState={saveWaterlabelState}
+          computedWaterlabelState={computedWaterlabelState}
+          computedWaterlabel={computedWaterlabel}
+          email={email}
+          guiShowVideo={guiShowVideo}
+          guiShowEmail={guiShowEmail}
+          guiShowSuccesSave={guiShowSuccesSave}
+          guiLabelTab={guiLabelTab}
+          guiInfoTab={guiInfoTab}
+          
+          fetchAssetTypes={this.fetchAssetTypes}
+          fetchBuildings={this.fetchBuildings}
+          fetchWaterlabelsFromBuilding={this.fetchWaterlabelsFromBuilding}
+          createNewLabel={this.createNewLabel}
+          changeLabel={this.changeLabel}
+          openSaveModal={this.openSaveModal}
+          saveLabel={this.saveLabel}
+          setEditedWaterlabel={this.setEditedWaterlabel}
+          fetchComputedLabel={this.fetchComputedLabel}
+          editingWaterlabelReady={this.editingWaterlabelReady}
+          setShowLabelFormDetails={this.setShowLabelFormDetails}
+          backToAddressSearchForm={this.backToAddressSearchForm}
+          setGuiShowVideo={this.setGuiShowVideo}
+          setSearchCity={this.setSearchCity}
+          setSearchPostcode={this.setSearchPostcode}
+          setSearchStreet={this.setSearchStreet}
+          setSearchNumber={this.setSearchNumber}
+          setSearchAddition={this.setSearchAddition}
+          setSearchOnCityStreet={this.setSearchOnCityStreet}
+          selectAddress={this.selectAddress}
+          setGuiLabelTab={this.setGuiLabelTab}
+          setEmail={this.setEmail}
+          setGuiShowEmail={this.setGuiShowEmail}
+          closeSaveModal={this.closeSaveModal}
+          setGuiInfoTab={this.setGuiInfoTab}
         />
-      
-        
-          
-        
-        {/* ______________________________________ ANY WATERLABEL VISUAL */}
-
-        <div
-          className="AnyLabelVisual StandardTile"
-          style={
-            selectedAddress !== null 
-            ? 
-            {} 
-            : 
-            {display: "none"} 
-          }
-        >
-          <div 
-            className="Text NoLabelYetLayOver"
-            style={
-              (
-              selectedAddress !== null &&
-              latestWaterlabel === null &&
-              editedWaterlabel === null &&
-              computedWaterlabel == null
-              )
-              ||
-                (
-                  editedWaterlabel && 
-                  (
-                    computedWaterlabel === null ||
-                    ( computedWaterlabel && computedWaterlabel.detail === "The assets sum up to zero area")
-                  )
-                )
-              ?
-              {}
-              :
-              {display: "none"}
-            }
-          >
-            <legend>U heeft nog geen label</legend>
-          </div>
-          
-         
-          <div 
-            className="BackgroundImage"
-          >   
-              {/*_______________________________________ COMPUTED WATERLABEL */}
-              {/*_______________________________________ LATEST WATERLABEL */}
-              <div
-                className="Margin"
-              >
-                <div
-                  className="Text"
-                  style={
-                    computedWaterlabel ||
-                    latestWaterlabel ?
-                    {}
-                    :
-                    {visibility: "hidden"}
-                  }
-                >
-                  {
-                  computedWaterlabel ? 
-                  <legend>{"Voorlopig label " + (computedWaterlabel && computedWaterlabel.code)}</legend>
-                  :
-                  <legend>{"U heeft label " + (latestWaterlabel && latestWaterlabel.code)}</legend>
-                  }
-                </div>
-                <img src={labelsImage}/>
-              </div>
-          </div>
-          
-        </div>
-
-         
-        {/*_______________________________________ NEW WATERLABEL BUTTON */}
-        {
-          // <div
-
-          // >
-            <button
-              className="StandardButton StandardTile NewButton"
-              onClick={ e =>{
-                e.preventDefault();
-                this.createNewLabel();
-              }}
-              style={
-                (
-                selectedAddress !== null &&
-                latestWaterlabel === null &&
-                editedWaterlabel === null &&
-                computedWaterlabel == null 
-                )
-                
-                ?
-                {}
-                :
-                {display: "none"}
-              }
-            >
-              NIEUW LABEL
-            </button>
-          // </div>
-          
-        }
-         {/*_______________________________________ SAVE BUTTON */}
-        {
-        editedFinishedWaterlabel ?
-        <div>
-          <button
-            onClick={e=>{
-              e.preventDefault();
-              this.openSaveModal();
-            }}
-          >
-            Label Opslaan
-          </button>
-        </div>
-        :
-        null
-        }
-
-        {/*_______________________________________ WATERLABEL TAB + FROM */}
-        <form>
-          {
-          assetTypeFetchState === "RECEIVED" &&
-          ( latestWaterlabel || editedWaterlabel || editedFinishedWaterlabel) ?
-
-          <div>
-            <hr/>
-            <LabelForm
-              assetTypesFromServer={assetTypesFromServer}
-              latestWaterlabel={latestWaterlabel}
-              editedWaterlabel={editedWaterlabel}
-              editedFinishedWaterlabel={editedFinishedWaterlabel}
-              guiLabelTab={guiLabelTab}
-              showLabelFormDetails={showLabelFormDetails}
-              setShowLabelFormDetails={bool=>this.setShowLabelFormDetails(bool)}
-              createNewLabel={this.createNewLabel}
-              changeLabel={this.changeLabel}
-              setGuiLabelTab={tab => this.setGuiLabelTab(tab)}
-              setEditedWaterlabel={this.setEditedWaterlabel}
-              editingWaterlabelReady={this.editingWaterlabelReady}
-              computedWaterlabelState={computedWaterlabelState}
-              computedWaterlabel={computedWaterlabel}
-            />
-          </div>
-          :
-          null
-          }
-        </form>
-        
-        {/*_______________________________________ SAVE MODAL */}
-        <div
-          style={
-            guiShowEmail | guiShowSuccesSave ?
-            {}
-            :
-            {display: "none"}
-          }
-        >
-          <SaveModal
-            saveWaterlabelState={saveWaterlabelState}
-            email={email}
-            setEmail={email=>this.setEmail(email)}
-            setGuiHideEmail={()=>this.setGuiShowEmail(false)}
-            saveLabel={this.saveLabel}
-            closeModal={()=>{
-              this.closeSaveModal();
-            }}
-          />
-        </div>
-        
-        {/*_______________________________________ INFO TABS */}
-        <div
-          style={selectedAddress===null? {display:"none"}:{}}
-          className="InfoTabContainer"
-        >
-          <InfoTabs
-            setInfoTab={tab=>this.setGuiInfoTab(tab)}
-            guiInfoTab={guiInfoTab}
-          />
-        </div> 
-      </div>
     );
   };
 }
