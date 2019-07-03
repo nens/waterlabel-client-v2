@@ -1,7 +1,7 @@
 import React from 'react';
+import './SaveModal.css';
 
 export default SaveModal;
-
 function SaveModal (props) {
 
   const {
@@ -11,12 +11,22 @@ function SaveModal (props) {
     setGuiHideEmail,
     saveLabel,
     closeModal,
+    guiShowEmail,
+    guiShowSuccesSave,
   } = props;
 
   return (
-    <div>
-          <hr/>
+    <div
+      className="ModalSave"
+      style={
+        guiShowEmail | guiShowSuccesSave ?
+        {}
+        :
+        {display: "none"}
+      }
+    >
           <form
+            className="Email"
             style={
               saveWaterlabelState !== "RECEIVED" ?
               {}
@@ -24,41 +34,48 @@ function SaveModal (props) {
               {display: "none"}
             }
           >
-            <div>
+            {/* <div> */}
+              <h1>Bijna klaar!</h1>
               <label htmlFor="email">
-                Email:
+                Om uw label op te slaan hebben wij uw email adres nodig ter controle.
               </label>
               <input
                 id="email"
                 value={email}
+                placeholder="Voer hier uw email adres in"
                 onChange={
                   event=>setEmail(event.target.value)
                 }
               />
-            </div>
-            <div>
+            {/* </div> */}
+            {/* <div>
               {saveWaterlabelState + ''}
-            </div>
-            <div>
+            </div> */}
+            <div
+              className="Row"
+            >
               <button
+                className="StandardButton Annuleer"
                 onClick={e=>{
                   e.preventDefault();
                   setGuiHideEmail();
                 }}
               >
-                Annuleer
+                ANNULEER
               </button>
               <button
+                className="StandardButton Verzend"
                 onClick={e=>{
                   e.preventDefault();
                   saveLabel();
                 }}
               >
-                Verzend
+                VERZEND
               </button>
             </div>
           </form>
           <form
+            className="Back"
             style={
               saveWaterlabelState === "RECEIVED" ?
               {}
@@ -66,13 +83,16 @@ function SaveModal (props) {
               {display: "none"} 
             }
           >
+            <h1>Gelukt!</h1>
+            <div>Dank u wel voor het deelnemen aan het waterlabel initiatief!</div>
             <button
+                className="StandardButton"
                 onClick={e=>{
                   e.preventDefault();
                   closeModal();
                 }}
               >
-              Terug
+              TERUG
             </button>
           </form>
         </div>

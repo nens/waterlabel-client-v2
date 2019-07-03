@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import labelsImage from './img/labels.png';
-
 import Header from "./Header";
 import YoutubeModal from './YoutubeModal';
 import SearchAddressForm from './SearchAddressForm';
@@ -11,7 +10,6 @@ import InfoTabs from "./InfoTabs";
 import SaveModal from "./SaveModal";
 
 export default AppRender;
-
 function AppRender (props) {
 
   const {
@@ -97,6 +95,18 @@ function AppRender (props) {
         guiShowVideo ={guiShowVideo}
         setGuiShowVideo={setGuiShowVideo}
       />
+      <SaveModal
+        guiShowEmail={guiShowEmail}
+        guiShowSuccesSave={guiShowSuccesSave}
+        saveWaterlabelState={saveWaterlabelState}
+        email={email}
+        setEmail={email=>setEmail(email)}
+        setGuiHideEmail={()=>setGuiShowEmail(false)}
+        saveLabel={saveLabel}
+        closeModal={()=>{
+          closeSaveModal();
+        }}
+      />   
       <Header
         foundAddressesList={foundAddressesList}
         backToAddressSearchForm={backToAddressSearchForm}
@@ -223,7 +233,6 @@ function AppRender (props) {
         assetTypeFetchState === "RECEIVED" &&
         ( latestWaterlabel || editedWaterlabel || editedFinishedWaterlabel) ?
         <div>
-          <hr/>
           <LabelForm
             assetTypesFromServer={assetTypesFromServer}
             latestWaterlabel={latestWaterlabel}
@@ -245,27 +254,7 @@ function AppRender (props) {
         null
         }
       </form>
-      {/*_______________________________________ SAVE MODAL */}
-      <div
-        style={
-          guiShowEmail | guiShowSuccesSave ?
-          {}
-          :
-          {display: "none"}
-        }
-      >
-        <SaveModal
-          saveWaterlabelState={saveWaterlabelState}
-          email={email}
-          setEmail={email=>setEmail(email)}
-          setGuiHideEmail={()=>setGuiShowEmail(false)}
-          saveLabel={saveLabel}
-          closeModal={()=>{
-            closeSaveModal();
-          }}
-        />
-      </div>
-      
+         
       {/*_______________________________________ INFO TABS */}
       <div
         style={selectedAddress===null? {display:"none"}:{}}

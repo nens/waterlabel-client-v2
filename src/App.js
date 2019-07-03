@@ -1,15 +1,5 @@
 import React,  { Component } from 'react';
 
-import './App.css';
-import labelsImage from './img/labels.png';
-import Header from "./Header";
-import YoutubeModal from './YoutubeModal';
-import SearchAddressForm from './SearchAddressForm';
-import SelectAddressFromList from "./SelectAddressFromList";
-import LabelForm from "./LabelForm";
-import InfoTabs from "./InfoTabs";
-import SaveModal from "./SaveModal";
-
 import AppRender from './AppRender';
 import {copyLabelData, setAssesCategories} from "./utils/labelFunctions";
 
@@ -21,12 +11,14 @@ class App extends Component {
     this.state = {
       assetTypesFromServer: [],
       assetTypeFetchState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
+      
       searchPostcode: "",
       searchStreet: "",
       searchNumber: "",
       searchAddition: "",
       searchCity: "",
       email: "",
+      
       // searchPostcode: "1188AL",
       // searchStreet: "KABELWEG",
       // searchCity: "AMSTERDAM",
