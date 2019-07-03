@@ -424,16 +424,7 @@ class App extends Component {
 
     return (
       <div className="App">
-
-        <Header
-          foundAddressesList={foundAddressesList}
-          backToAddressSearchForm={this.backToAddressSearchForm}
-          selectedAddress={selectedAddress}
-        />
-        <YoutubeModal
-          guiShowVideo ={guiShowVideo}
-          setGuiShowVideo={this.setGuiShowVideo}
-        />
+        
         <SearchAddressForm
           foundAddressesList={foundAddressesList}
           assetTypeFetchState={assetTypeFetchState}
@@ -453,47 +444,27 @@ class App extends Component {
           searchAddition={searchAddition}
           fetchBuildings={this.fetchBuildings}
         />
+        <YoutubeModal
+          guiShowVideo ={guiShowVideo}
+          setGuiShowVideo={this.setGuiShowVideo}
+        />
+        <Header
+          foundAddressesList={foundAddressesList}
+          backToAddressSearchForm={this.backToAddressSearchForm}
+          selectedAddress={selectedAddress}
+        />
+        <SelectAddressFromList
+          foundAddressesList={foundAddressesList}
+          selectedAddress={selectedAddress}
+          searchAddressState={searchAddressState}
+          selectAddress={address=>{
+            this.selectAddress(address);
+          }}
+        />
+      
         
+          
         
-        
-        
-        {/*_______________________________________ LIST FOUND ADDRESSES */}
-        <div
-          style={
-            foundAddressesList.length !== 0 &&
-            selectedAddress === null 
-            ? 
-            {} 
-            : 
-            {display: "none"} 
-          }
-        >
-          <SelectAddressFromList
-            foundAddressesList={foundAddressesList}
-            selectedAddress={selectedAddress}
-            searchAddressState={searchAddressState}
-            selectAddress={address=>{
-              this.selectAddress(address);
-            }}
-          />
-        </div>
-        
-        
-        
-        {/*_______________________________________ FETCH WATERLABEL STATE */}
-        {/* <div>
-          <span>fetchWaterlabelState: </span>
-          <span>{fetchWaterlabelState}</span>
-          <div>
-            <span>Amount waterlabel: </span>
-            <span>{currentWaterLabels.length}</span>
-          </div>
-          <div>
-            <span>Timestamp latest label: </span>
-            <span>{latestWaterlabel && latestWaterlabel.timestamp}</span>
-          </div>
-        </div> */}
-
         {/* ______________________________________ ANY WATERLABEL VISUAL */}
 
         <div
@@ -599,9 +570,6 @@ class App extends Component {
         {
         editedFinishedWaterlabel ?
         <div>
-          {/* <h3>ComputedLabel</h3>
-          <span>{computedWaterlabelState } </span>
-          <span>{computedWaterlabel.code}</span> */}
           <button
             onClick={e=>{
               e.preventDefault();
