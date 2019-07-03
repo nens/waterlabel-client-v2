@@ -2,13 +2,14 @@ import React,  { Component } from 'react';
 import './App.css';
 import playButton from './img/play-knop.svg';
 import labelsImage from './img/labels.png';
-import closeVideoButton from './img/weg-knop.svg';
 
+import Header from "./Header";
 import SelectAddressFromList from "./SelectAddressFromList";
 import LabelForm from "./LabelForm";
 import InfoTabs from "./InfoTabs";
 import SaveModal from "./SaveModal";
 import {copyLabelData, setAssesCategories} from "./utils/labelFunctions";
+import YoutubeModal from './YoutubeModal';
 
 class App extends Component {
 
@@ -423,84 +424,16 @@ class App extends Component {
     return (
       <div className="App">
 
-        {/*_______________________________________ OVERVIEW ALL ASSETS */}
-        {/* 
-        <div>
-          <span>assetTypeFetchState: </span>
-          {assetTypeFetchState}
-        <ul>
-          {assetTypesFromServer.map(asset=>
-            <li>{asset.name}</li>
-          )}
-        </ul>
-        </div> 
-        */}
-
-        {/*_______________________________________ BACK BUTTON */}
-        <div
-          className="AddressHeader"
-          style={ foundAddressesList.length !== 0 ? {} : {display:"none"}}
-        >
-        <button
-          
-          onClick={_ =>{
-            this.backToAddressSearchForm();
-          }}
-        >
-          {"←"}
-        </button>
-        {/* Flex wrapper */}
-        <div>
-          {/*_______________________________________ SELECTED ADDRESS */}
-          <div
-            className="SelectedAddress"
-            style={
-              selectedAddress !== null 
-              ? 
-              {} 
-              : 
-              {visibility: "hidden"} 
-            }
-          >
-            <div>
-              <span>{selectedAddress && selectedAddress.houseaddresses[0].street}</span>
-              <span>{" "} </span>
-              <span>{selectedAddress && selectedAddress.houseaddresses[0].housenumber}</span>
-            </div>
-            <div>
-            <span>{selectedAddress && selectedAddress.houseaddresses[0].postalcode}</span>
-            <span>{" "} </span>
-            <span>{selectedAddress && selectedAddress.houseaddresses[0].city}</span>
-            </div>
-          </div>
-          </div>
-        </div>
+        <Header
+          foundAddressesList={foundAddressesList}
+          backToAddressSearchForm={this.backToAddressSearchForm}
+          selectedAddress={selectedAddress}
+        />
+        <YoutubeModal
+          guiShowVideo ={guiShowVideo}
+          setGuiShowVideo={this.setGuiShowVideo}
+        />
         
-        {/* _____________________________________ SHOW VIDEO */}
-        <div
-          className="ModalYoutube"
-          style={guiShowVideo? {}: {display:"none"}}
-        >
-          <div
-            className="YoutubeFrame"
-          >
-              <iframe 
-                allowFullScreen
-                frameBorder="0"
-                src="https://www.youtube.com/embed/jARteOPf_aI?rel=0&autoplay=1">
-              </iframe>
-          </div>
-          <button
-            onClick={e=>{
-              e.preventDefault();
-              this.setGuiShowVideo(false);
-            }}
-          >
-            <i>
-              <img src={closeVideoButton} alt="Play-Video" />
-            </i>
-          </button>
-        </div>
         
         {/*_______________________________________ SEARCH ADDDRESS FORM */}
         <div
