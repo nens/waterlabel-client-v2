@@ -301,6 +301,87 @@ class App extends Component {
     })
   }
 
+  setShowLabelFormDetails = (bool) => {
+    this.setState({showLabelFormDetails:bool});
+  }
+
+  backToAddressSearchForm = () => {
+    this.setState({
+      foundAddressesList: [],
+      selectedAddress: null,
+      searchAddressState: "NOT_SEND",   
+      fetchWaterlabelState: "NOT_SEND",   
+      currentWaterLabels: [],
+      latestWaterlabel: null,
+      editedWaterlabel: null,
+      editedFinishedWaterlabel: null,
+      saveWaterlabelState: "NOT_SEND",  
+      computedWaterlabelState: "NOT_SEND",  
+      computedWaterlabel: null,
+      guiShowVideo: false,
+      guiShowEmail: false,
+      guiShowSuccesSave: false,
+    })
+  }
+
+  setGuiShowVideo = (bool) => {
+    this.setState({guiShowVideo:bool})
+  }
+
+  setSearchCity = (searchCity) => {
+    this.setState({searchCity: searchCity})
+  }
+
+  setSearchPostcode = (searchPostcode) => {
+    this.setState({searchPostcode:searchPostcode})
+  }
+
+  setSearchStreet = (searchStreet) => {
+    this.setState({searchStreet:searchStreet})
+  }
+  setSearchNumber = (searchNumber) => {
+    this.setState({searchNumber:searchNumber})
+  }
+  setSearchAddition = (searchAddition) => {
+    this.setState({searchAddition:searchAddition})
+  }
+  setSearchOnCityStreet = (bool) => {
+    this.setState({searchOnCityStreet:bool})
+  }
+  selectAddress = (address) => {
+    this.setState(
+      {selectedAddress: address},
+      (this.fetchWaterlabelsFromBuilding)
+    )
+  }
+  setShowLabelFormDetails = (bool) => {
+    this.setState({showLabelFormDetails: bool});
+  }
+  setGuiLabelTab = (tab) => {
+    this.setState({guiLabelTab:tab});
+  }
+  setEmail = (email) => {
+    this.setState({email: email});
+  }
+  setGuiShowEmail = (bool) => {
+    this.setState({guiShowEmail: bool})
+  }
+  closeSaveModal = () => {
+    this.setState({
+      saveWaterlabelState: "NOT_SEND",
+      guiShowSuccesSave: false,
+      guiShowEmail: false,
+      editedWaterlabel: null,
+      editedFinishedWaterlabel: null,
+      computedWaterlabel: null,
+    });
+  }
+
+  setGuiInfoTab = (tab) => {
+    this.setState({guiInfoTab: tab});
+  }
+
+
   render  = () => {
 
     const {
@@ -363,26 +444,7 @@ class App extends Component {
         <button
           
           onClick={_ =>{
-            this.setState({
-              foundAddressesList: [],
-              selectedAddress: null,
-              searchAddressState: "NOT_SEND",   
-              
-              fetchWaterlabelState: "NOT_SEND",   
-              currentWaterLabels: [],
-              latestWaterlabel: null,
-              editedWaterlabel: null,
-              editedFinishedWaterlabel: null,
-              saveWaterlabelState: "NOT_SEND",  
-
-              computedWaterlabelState: "NOT_SEND",  
-              computedWaterlabel: null,
-
-              email,
-              guiShowVideo: false,
-              guiShowEmail: false,
-              guiShowSuccesSave: false,
-            })
+            this.backToAddressSearchForm();
           }}
         >
           {"←"}
@@ -401,14 +463,14 @@ class App extends Component {
             }
           >
             <div>
-              <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].street}</span>
+              <span>{selectedAddress && selectedAddress.houseaddresses[0].street}</span>
               <span>{" "} </span>
-              <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].housenumber}</span>
+              <span>{selectedAddress && selectedAddress.houseaddresses[0].housenumber}</span>
             </div>
             <div>
-            <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].postalcode}</span>
+            <span>{selectedAddress && selectedAddress.houseaddresses[0].postalcode}</span>
             <span>{" "} </span>
-            <span>{this.state.selectedAddress && this.state.selectedAddress.houseaddresses[0].city}</span>
+            <span>{selectedAddress && selectedAddress.houseaddresses[0].city}</span>
             </div>
           </div>
           </div>
@@ -431,7 +493,7 @@ class App extends Component {
           <button
             onClick={e=>{
               e.preventDefault();
-              this.setState({guiShowVideo:false})
+              this.setGuiShowVideo(false);
             }}
           >
             <i>
@@ -464,7 +526,7 @@ class App extends Component {
             className="YoutubeButton"
             onClick={e=>{
               e.preventDefault();
-              this.setState({guiShowVideo:true})
+              this.setGuiShowVideo(true);
             }}
           >
             <div>Kijk hier hoe het werkt</div>
@@ -494,7 +556,7 @@ class App extends Component {
               className="InputWholeRow"
               id="searchCity"
               value={searchCity}
-              onChange={e=>this.setState({searchCity: e.target.value})}
+              onChange={e=>this.setSearchCity( e.target.value)}
               placeholder="Bijv. Amsterdam"
             />
           </div>
@@ -503,7 +565,7 @@ class App extends Component {
             <div
               className="Row"
               style={
-                this.state.searchOnCityStreet===false ? {} : {display: "none"} 
+                searchOnCityStreet===false ? {} : {display: "none"} 
               }
             >
               <label 
@@ -516,7 +578,7 @@ class App extends Component {
                 className="InputWholeRow"
                 id="searchPostcode"
                 value={searchPostcode}
-                onChange={e=>this.setState({searchPostcode: e.target.value})}
+                onChange={e=>this.setSearchPostcode(e.target.value)}
                 placeholder="1234 AB"
               />
             </div>
@@ -524,7 +586,7 @@ class App extends Component {
             <div
               className="Row"
               style={
-                this.state.searchOnCityStreet===true ? {} : {display: "none"} 
+                searchOnCityStreet===true ? {} : {display: "none"} 
               }
             >
               <label 
@@ -537,7 +599,7 @@ class App extends Component {
                 className="InputWholeRow"
                 id="searchStreet"
                 value={searchStreet}
-                onChange={e=>this.setState({searchStreet: e.target.value})}
+                onChange={e=>this.setSearchStreet(e.target.value)}
               />
             </div>
 
@@ -553,7 +615,7 @@ class App extends Component {
               <input
                 id="searchNumber"
                 value={searchNumber}
-                onChange={e=>this.setState({searchNumber: e.target.value})}
+                onChange={e=>this.setSearchNumber(e.target.value)}
               />
               <label
                 className="LabelRight" 
@@ -563,7 +625,7 @@ class App extends Component {
               <input
                 id="searchAddition"
                 value={searchAddition}
-                onChange={e=>this.setState({searchAddition: e.target.value})}
+                onChange={e=>this.setSearchAddition(e.target.value)}
               />
             </div>
           </div>
@@ -575,7 +637,7 @@ class App extends Component {
               }
               onClick={ e => {
                 e.preventDefault();
-                this.setState({searchOnCityStreet: true})
+                this.setSearchOnCityStreet(true)
               }}
             >
               Zoek op straat
@@ -587,7 +649,7 @@ class App extends Component {
               }
               onClick={ e => {
                 e.preventDefault();
-                this.setState({searchOnCityStreet: false})
+                this.setSearchOnCityStreet(false)
               }}
             >
               Zoek op postcode
@@ -630,10 +692,7 @@ class App extends Component {
             selectedAddress={selectedAddress}
             searchAddressState={searchAddressState}
             selectAddress={address=>{
-              this.setState(
-                {selectedAddress: address},
-                (this.fetchWaterlabelsFromBuilding)
-              )
+              this.selectAddress(address);
             }}
           />
         </div>
@@ -650,7 +709,7 @@ class App extends Component {
           </div>
           <div>
             <span>Timestamp latest label: </span>
-            <span>{this.state.latestWaterlabel && this.state.latestWaterlabel.timestamp}</span>
+            <span>{latestWaterlabel && latestWaterlabel.timestamp}</span>
           </div>
         </div> */}
 
@@ -757,11 +816,11 @@ class App extends Component {
         }
          {/*_______________________________________ SAVE BUTTON */}
         {
-        this.state.editedFinishedWaterlabel ?
+        editedFinishedWaterlabel ?
         <div>
           {/* <h3>ComputedLabel</h3>
-          <span>{this.state.computedWaterlabelState } </span>
-          <span>{this.state.computedWaterlabel.code}</span> */}
+          <span>{computedWaterlabelState } </span>
+          <span>{computedWaterlabel.code}</span> */}
           <button
             onClick={e=>{
               e.preventDefault();
@@ -790,10 +849,10 @@ class App extends Component {
               editedFinishedWaterlabel={editedFinishedWaterlabel}
               guiLabelTab={guiLabelTab}
               showLabelFormDetails={showLabelFormDetails}
-              setShowLabelFormDetails={bool=>this.setState({showLabelFormDetails:bool})}
+              setShowLabelFormDetails={bool=>this.setShowLabelFormDetails(bool)}
               createNewLabel={this.createNewLabel}
               changeLabel={this.changeLabel}
-              setGuiLabelTab={tab => this.setState({guiLabelTab: tab})}
+              setGuiLabelTab={tab => this.setGuiLabelTab(tab)}
               setEditedWaterlabel={this.setEditedWaterlabel}
               editingWaterlabelReady={this.editingWaterlabelReady}
               computedWaterlabelState={computedWaterlabelState}
@@ -817,18 +876,11 @@ class App extends Component {
           <SaveModal
             saveWaterlabelState={saveWaterlabelState}
             email={email}
-            setEmail={email=>this.setState({email: email})}
-            setGuiHideEmail={()=>this.setState({guiShowEmail: false})}
+            setEmail={email=>this.setEmail(email)}
+            setGuiHideEmail={()=>this.setGuiShowEmail(false)}
             saveLabel={this.saveLabel}
             closeModal={()=>{
-              this.setState({
-                saveWaterlabelState: "NOT_SEND",
-                guiShowSuccesSave: false,
-                guiShowEmail: false,
-                editedWaterlabel: null,
-                editedFinishedWaterlabel: null,
-                computedWaterlabel: null,
-              })
+              this.closeSaveModal();
             }}
           />
         </div>
@@ -839,7 +891,7 @@ class App extends Component {
           className="InfoTabContainer"
         >
           <InfoTabs
-            setInfoTab={tab=>this.setState({guiInfoTab: tab})}
+            setInfoTab={tab=>this.setGuiInfoTab(tab)}
             guiInfoTab={guiInfoTab}
           />
         </div> 
