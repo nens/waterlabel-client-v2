@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import labelsImage from './img/labels.png';
 import Header from "./Header";
 import YoutubeModal from './YoutubeModal';
 import SearchAddressForm from './SearchAddressForm';
@@ -8,6 +7,9 @@ import SelectAddressFromList from "./SelectAddressFromList";
 import LabelForm from "./LabelForm";
 import InfoTabs from "./InfoTabs";
 import SaveModal from "./SaveModal";
+import CurrentLabel from "./CurrentLabel";
+import labelsImage from './img/labels.png';
+
 
 export default AppRender;
 function AppRender (props) {
@@ -95,101 +97,72 @@ function AppRender (props) {
         guiShowVideo ={guiShowVideo}
         setGuiShowVideo={setGuiShowVideo}
       />
-      <SaveModal
-        guiShowEmail={guiShowEmail}
-        guiShowSuccesSave={guiShowSuccesSave}
-        saveWaterlabelState={saveWaterlabelState}
-        email={email}
-        setEmail={email=>setEmail(email)}
-        setGuiHideEmail={()=>setGuiShowEmail(false)}
-        saveLabel={saveLabel}
-        closeModal={()=>{
-          closeSaveModal();
-        }}
-      />   
+      
       <Header
         foundAddressesList={foundAddressesList}
         backToAddressSearchForm={backToAddressSearchForm}
         selectedAddress={selectedAddress}
       />
-      <SelectAddressFromList
-        foundAddressesList={foundAddressesList}
-        selectedAddress={selectedAddress}
-        searchAddressState={searchAddressState}
-        selectAddress={address=>{
-          selectAddress(address);
-        }}
-      />
-      {/* ______________________________________ ANY WATERLABEL VISUAL */}
       <div
-        className="AnyLabelVisual StandardTile"
-        style={
-          selectedAddress !== null 
-          ? 
-          {} 
+        className={
+          foundAddressesList.length === 0 
+          ?
+          "BodyHide" 
           : 
-          {display: "none"} 
+          "Body"
         }
       >
-        <div 
-          className="Text NoLabelYetLayOver"
+        <SaveModal
+          guiShowEmail={guiShowEmail}
+          guiShowSuccesSave={guiShowSuccesSave}
+          saveWaterlabelState={saveWaterlabelState}
+          email={email}
+          setEmail={email=>setEmail(email)}
+          setGuiHideEmail={()=>setGuiShowEmail(false)}
+          saveLabel={saveLabel}
+          closeModal={()=>{
+            closeSaveModal();
+          }}
+        />
+        <div
+          className="Tile"
           style={
-            (
-            selectedAddress !== null &&
-            latestWaterlabel === null &&
-            editedWaterlabel === null &&
-            computedWaterlabel == null
-            )
-            ||
-              (
-                editedWaterlabel && 
-                (
-                  computedWaterlabel === null ||
-                  ( computedWaterlabel && computedWaterlabel.detail === "The assets sum up to zero area")
-                )
-              )
-            ?
-            {}
-            :
-            {display: "none"}
+            foundAddressesList.length !== 0 &&
+            selectedAddress === null 
+            ? 
+            {} 
+            : 
+            {display: "none"} 
           }
         >
-          <legend>U heeft nog geen label</legend>
+          <SelectAddressFromList
+            foundAddressesList={foundAddressesList}
+            selectedAddress={selectedAddress}
+            searchAddressState={searchAddressState}
+            selectAddress={address=>{
+              selectAddress(address);
+            }}
+          />
         </div>
-        <div 
-          className="BackgroundImage"
-        >   
-            {/*_______________________________________ COMPUTED WATERLABEL */}
-            {/*_______________________________________ LATEST WATERLABEL */}
-            <div
-              className="Margin"
-            >
-              <div
-                className="Text"
-                style={
-                  computedWaterlabel ||
-                  latestWaterlabel ?
-                  {}
-                  :
-                  {visibility: "hidden"}
-                }
-              >
-                {
-                computedWaterlabel ? 
-                <legend>{"Voorlopig label " + (computedWaterlabel && computedWaterlabel.code)}</legend>
-                :
-                <legend>{"U heeft label " + (latestWaterlabel && latestWaterlabel.code)}</legend>
-                }
-              </div>
-              <img src={labelsImage}/>
-            </div>
+        <div
+          className="Tile"
+        >
+          <CurrentLabel
+            selectedAddress={selectedAddress}
+            latestWaterlabel={latestWaterlabel}
+            editedWaterlabel={editedWaterlabel}
+            computedWaterlabel={computedWaterlabel}
+          />
         </div>
-        
-      </div>
-      {/*_______________________________________ NEW WATERLABEL BUTTON */}
-      {
+        <div
+          className="Tile"
+          style={{
+            backgroundColor:"transparent",
+            boxShadow: "none",
+          }}
+        >
           <button
-            className="StandardButton StandardTile NewButton"
+            className="StandardButton NewButton"
             onClick={ e =>{
               e.preventDefault();
               createNewLabel();
@@ -209,9 +182,51 @@ function AppRender (props) {
           >
             NIEUW LABEL
           </button>
-      }
+        </div> 
+        <div
+          className="Tile"
+          style={
+            editedFinishedWaterlabel ? 
+            {
+            backgroundColor:"transparent",
+            boxShadow: "none",
+            }
+            :
+            {
+            display: "none"  
+            }
+          }
+        >
+          <button
+            className="StandardButton NewButton"
+            onClick={e=>{
+              e.preventDefault();
+              openSaveModal();
+            }}
+            style={
+              (
+              selectedAddress !== null &&
+              latestWaterlabel === null &&
+              editedWaterlabel === null &&
+              computedWaterlabel == null 
+              )
+              ?
+              {}
+              :
+              {display: "none"}
+            }
+          >
+            LABEL OPSLAAN
+          </button>
+        </div> 
+        
+      </div>
+      
+      
+      
+      
        {/*_______________________________________ SAVE BUTTON */}
-      {
+      {/* {
       editedFinishedWaterlabel ?
       <div>
         <button
@@ -225,10 +240,10 @@ function AppRender (props) {
       </div>
       :
       null
-      }
+      } */}
 
       {/*_______________________________________ WATERLABEL TAB + FROM */}
-      <form>
+      {/* <form>
         {
         assetTypeFetchState === "RECEIVED" &&
         ( latestWaterlabel || editedWaterlabel || editedFinishedWaterlabel) ?
@@ -254,9 +269,9 @@ function AppRender (props) {
         null
         }
       </form>
-         
+          */}
       {/*_______________________________________ INFO TABS */}
-      <div
+      {/* <div
         style={selectedAddress===null? {display:"none"}:{}}
         className="InfoTabContainer"
       >
@@ -264,7 +279,7 @@ function AppRender (props) {
           setInfoTab={tab=>setGuiInfoTab(tab)}
           guiInfoTab={guiInfoTab}
         />
-      </div> 
+      </div>  */}
     </div>
   );
 }

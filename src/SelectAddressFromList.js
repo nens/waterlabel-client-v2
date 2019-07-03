@@ -42,7 +42,7 @@ export default SelectAddressFromList;
               foundAddressesList.map(address=>{
                 return (
                   <li
-                    key={address.houseaddresses[0].housenumber}
+                    key={address.houseaddresses[0].housenumber + address.houseaddresses[0].street}
                   >
                     <button
                       className="StandardButton"
