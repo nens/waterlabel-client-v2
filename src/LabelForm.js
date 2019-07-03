@@ -30,7 +30,14 @@ function LabelForm (props) {
 
 
   return (
-    <div>
+    <div
+    style={{
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "stretch",
+    }}
+    >
       <LabelTabButtons
         guiLabelTab={guiLabelTab}
         setGuiLabelTab={setGuiLabelTab}
