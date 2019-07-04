@@ -346,8 +346,8 @@ class App extends Component {
   setShowLabelFormDetails = (bool) => {
     this.setState({showLabelFormDetails: bool});
   }
-  setGuiLabelTab = (tab) => {
-    this.setState({guiLabelTab:tab});
+  setGuiLabelTab = (tab, callback) => {
+    this.setState({guiLabelTab:tab}, callback);
   }
   setEmail = (email) => {
     this.setState({email: email});
@@ -365,8 +365,8 @@ class App extends Component {
       computedWaterlabel: null,
     });
   }
-  setGuiInfoTab = (tab) => {
-    this.setState({guiInfoTab: tab});
+  setGuiInfoTab = (tab, callback) => {
+    this.setState({guiInfoTab: tab}, callback);
   }
 
   render  = () => {

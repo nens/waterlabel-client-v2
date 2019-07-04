@@ -262,7 +262,7 @@ function AppRender (props) {
         />
 
         {/* _______________________________________ */}
-        <div  className="Tile"
+        <div  className="Tile PersonalTile"
           style={
             selectedAddress === null ?
             {display: "none"}
@@ -274,11 +274,14 @@ function AppRender (props) {
             onClick={e=>{
               e.preventDefault();
               if (guiInfoTab !== "PERSONAL") {
-                setGuiInfoTab("PERSONAL");
+                setGuiInfoTab("PERSONAL", _ => {
+                  const elmnt = document.getElementsByClassName("PersonalTile")[0];
+                  elmnt.scrollIntoView();  
+                });
               }
               else {
                 setGuiInfoTab(null);
-              }       
+              }
             }}
             className={
               guiInfoTab === "PERSONAL" ? "TabActive Tab" : "Tab TabInActive" 
@@ -296,7 +299,7 @@ function AppRender (props) {
         </div>
         {/* _______________________________________ */}
         {/* _______________________________________ */}
-        <div  className="Tile"
+        <div  className="Tile CalculationTile"
           style={
             selectedAddress === null ?
             {display: "none"}
@@ -308,11 +311,14 @@ function AppRender (props) {
             onClick={e=>{
               e.preventDefault();
               if (guiInfoTab !== "CALCULATION") {
-                setGuiInfoTab("CALCULATION");
+                setGuiInfoTab("CALCULATION", _ => {
+                  const elmnt = document.getElementsByClassName("CalculationTile")[0];
+                  elmnt.scrollIntoView();  
+                });
               }
               else {
                 setGuiInfoTab(null);
-              }       
+              }
             }}
             className={
               guiInfoTab === "CALCULATION" ? "TabActive Tab" : "Tab TabInActive" 
@@ -330,7 +336,7 @@ function AppRender (props) {
         </div>
         {/* _______________________________________ */}
         {/* _______________________________________ */}
-        <div  className="Tile"
+        <div  className="Tile WhyTile"
           style={
             selectedAddress === null ?
             {display: "none"}
@@ -342,11 +348,15 @@ function AppRender (props) {
             onClick={e=>{
               e.preventDefault();
               if (guiInfoTab !== "WHY") {
-                setGuiInfoTab("WHY");
+                setGuiInfoTab("WHY", _ => {
+                  const elmnt = document.getElementsByClassName("WhyTile")[0];
+                  elmnt.scrollIntoView();  
+                });
               }
               else {
                 setGuiInfoTab(null);
-              }       
+              } 
+                   
             }}
             className={
               guiInfoTab === "WHY" ? "TabActive Tab" : "Tab TabInActive" 
