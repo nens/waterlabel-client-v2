@@ -197,60 +197,6 @@ function AppRender (props) {
         >
           LABEL OPSLAAN
         </button>
-        {/* <div
-          className="Tile"
-          style={
-            assetTypeFetchState === "RECEIVED" &&
-            ( latestWaterlabel || editedWaterlabel || editedFinishedWaterlabel ) &&
-            (
-            guiLabelTab === "Dak" ||
-            guiLabelTab === null 
-            )
-            ?
-            {}
-            :
-            {display: "none"}
-          }
-        >
-          <button
-            onClick={e=>{
-              e.preventDefault();
-              setGuiLabelTab("Dak");
-              changeLabel();          
-            }}
-            className={
-              guiLabelTab === "Dak" ? "TabActive Tab" : "Tab TabInActive" 
-            }
-          >
-            <span>
-              <img src={dakImage} width="36px"/>
-            </span>
-            <span>Mijn dak</span>
-            <span
-              className="PlusIcon"
-            >
-              +
-            </span>
-          </button>
-          <div>
-            <LabelFormMobile
-              assetTypesFromServer={assetTypesFromServer}
-              latestWaterlabel={latestWaterlabel}
-              editedWaterlabel={editedWaterlabel}
-              editedFinishedWaterlabel={editedFinishedWaterlabel}
-              guiLabelTab={"Dak"}
-              showLabelFormDetails={showLabelFormDetails}
-              setShowLabelFormDetails={bool=>setShowLabelFormDetails(bool)}
-              createNewLabel={createNewLabel}
-              changeLabel={changeLabel}
-              setGuiLabelTab={tab => setGuiLabelTab(tab)}
-              setEditedWaterlabel={setEditedWaterlabel}
-              editingWaterlabelReady={editingWaterlabelReady}
-              computedWaterlabelState={computedWaterlabelState}
-              computedWaterlabel={computedWaterlabel}
-            />
-          </div>
-        </div> */}
         <LabelFormTileMobile
           assetTypeFetchState={assetTypeFetchState}
           latestWaterlabel={latestWaterlabel}
@@ -314,6 +260,109 @@ function AppRender (props) {
           tabText={"Mijn voorzieningen"}
           TabName={"Voorziening"}
         />
+
+        {/* _______________________________________ */}
+        <div  className="Tile"
+          style={
+            selectedAddress === null ?
+            {display: "none"}
+            :
+            {marginTop: "50px"}
+          }
+        >
+          <button
+            onClick={e=>{
+              e.preventDefault();
+              if (guiInfoTab !== "PERSONAL") {
+                setGuiInfoTab("PERSONAL");
+              }
+              else {
+                setGuiInfoTab(null);
+              }       
+            }}
+            className={
+              guiInfoTab === "PERSONAL" ? "TabActive Tab" : "Tab TabInActive" 
+            }
+          >
+            <span>{"Persoonlijke tips voor een beter label"}</span>
+          </button>
+          <div
+            className="InfoPage"
+          >
+            <p>
+              Persoonlijke tips zijn nog niet beschikbaar
+            </p>
+          </div>
+        </div>
+        {/* _______________________________________ */}
+        {/* _______________________________________ */}
+        <div  className="Tile"
+          style={
+            selectedAddress === null ?
+            {display: "none"}
+            :
+            {}
+          }
+        >
+          <button
+            onClick={e=>{
+              e.preventDefault();
+              if (guiInfoTab !== "CALCULATION") {
+                setGuiInfoTab("CALCULATION");
+              }
+              else {
+                setGuiInfoTab(null);
+              }       
+            }}
+            className={
+              guiInfoTab === "CALCULATION" ? "TabActive Tab" : "Tab TabInActive" 
+            }
+          >
+            <span>{"Uitleg berekening"}</span>
+          </button>
+          <div
+            className="InfoPage"
+          >
+            <p>
+              Uitleg van de berekening is momenteel nog niet beschikbaar.
+            </p>
+          </div>
+        </div>
+        {/* _______________________________________ */}
+        {/* _______________________________________ */}
+        <div  className="Tile"
+          style={
+            selectedAddress === null ?
+            {display: "none"}
+            :
+            {}
+          }
+        >
+          <button
+            onClick={e=>{
+              e.preventDefault();
+              if (guiInfoTab !== "WHY") {
+                setGuiInfoTab("WHY");
+              }
+              else {
+                setGuiInfoTab(null);
+              }       
+            }}
+            className={
+              guiInfoTab === "WHY" ? "TabActive Tab" : "Tab TabInActive" 
+            }
+          >
+            <span>{"Waarom het waterlabel?"}</span>
+          </button>
+          <div
+            className="InfoPage"
+          >
+            <p>
+            Hevige neerslag gaat steeds vaker voorkomen. Om de wateroverlast in de stad te beperken moet de overheid maatregelen nemen. Ook burgers kunnen maatregelen treffen om hun stad klimaatbestendiger te maken. Om de burger bewuster te maken is het regenwaterlabel, kortweg waterlabel, voor woningen ontwikkeld. Het waterlabel geeft informatie over de capaciteit van een huis / tuin om water vast te houden. Dit label is een initiatief van De Waag, de gemeente Rotterdam en Huisje Boompje Beter.
+            </p>
+          </div>
+        </div>
+        {/* _______________________________________ */}
         
       </div>
       
