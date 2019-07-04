@@ -1,7 +1,7 @@
 import React,  { Component } from 'react';
 
 import AppRender from './AppRender';
-import {copyLabelData, setAssesCategories} from "./utils/labelFunctions";
+import {copyLabelData, setAssetCategories} from "./utils/labelFunctions";
 
 
 class App extends Component {
@@ -123,7 +123,7 @@ class App extends Component {
     })
     .then(function(parsedJSON) {
       const preppedWaterlabels = parsedJSON.results.map(waterlabel=>{
-        waterlabel.assets = setAssesCategories(waterlabel.assets, that.state.assetTypesFromServer);
+        waterlabel.assets = setAssetCategories(waterlabel.assets, that.state.assetTypesFromServer);
         return waterlabel;
       })
       that.setState({
@@ -220,6 +220,8 @@ class App extends Component {
     // the computation endpoint cannot handle zero assets
     // this is for now the best place to check on this since it is called at plenty of places
     if (
+      !label
+      ||
       label.assets
         .filter(asset => asset.asset_type !== null)
         .reduce((acc, curr)=>acc+curr.area, 0 )
@@ -285,6 +287,7 @@ class App extends Component {
     this.setState({
       editedFinishedWaterlabel: finishedWaterlabel,
       editedWaterlabel: null,
+      guiLabelTab: null,
     })
   }
   setShowLabelFormDetails = (bool) => {

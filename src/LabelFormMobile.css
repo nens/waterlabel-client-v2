@@ -1,0 +1,99 @@
+.LabelFormMobile {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  box-sizing: border-box;
+  padding: 16px;
+}
+
+.LabelFormMobile > p {
+  color: #707070;
+  font-size: 15px;
+}
+
+.LabelFormMobile .Row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 6px;
+
+}
+
+.LabelFormMobile .RowForButtons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.LabelFormMobile .RowForButtons .Annuleer {
+  background-color: #8A9294;
+}
+
+.LabelFormMobile .RowForButtons .Annuleer,
+.LabelFormMobile .RowForButtons .Klaar {
+  width: 101px;
+  height: 31px;
+  font-size: 14px;
+}
+.LabelFormMobile ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.LabelFormMobile .Row .ColumnAssetType {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 60%;
+
+}
+.LabelFormMobile .Row .ColumnAssetType select {
+  width: 100%;
+}
+.LabelFormMobile .Row .ColumnAssetArea {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 30%;
+}
+.LabelFormMobile .Row .ColumnAssetArea input {
+  max-width: 70px;
+}
+.LabelFormMobile .Row .ButtonRemoveAsset {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 10%;
+}
+.LabelFormMobile .Row .ButtonRemoveAsset button {
+  background-color: transparent;
+  border: none;
+  color: #797979;
+  font-size: 18px;
+}
+
+.LabelFormMobile .AssetRowHeader .ColumnAssetArea {
+  color: #3F3F3F;
+  font-size: 16px;
+  text-decoration: underline;
+  text-align: left;
+}
+
+.LabelFormMobile .Row .NewAssetButton {
+  height: 31px;
+  width: 100%;
+  font-size: 14px;
+}
+
+
+/* className="Row AssetRow AssetRowHeader"
+>
+  <div
+    className="ColumnAssetType"
+  >
+
+  </div>
+  <div
+    className="ColumnAssetArea" */

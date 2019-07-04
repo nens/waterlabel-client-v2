@@ -5,10 +5,11 @@ import YoutubeModal from './YoutubeModal';
 import SearchAddressForm from './SearchAddressForm';
 import SelectAddressFromList from "./SelectAddressFromList";
 import LabelForm from "./LabelForm";
+import LabelFormMobile from "./LabelFormMobile";
 import InfoTabs from "./InfoTabs";
 import SaveModal from "./SaveModal";
 import CurrentLabel from "./CurrentLabel";
-import labelsImage from './img/labels.png';
+import dakImage from './img/dak.svg';
 
 
 export default AppRender;
@@ -154,71 +155,95 @@ function AppRender (props) {
             computedWaterlabel={computedWaterlabel}
           />
         </div>
-        <div
-          className="Tile"
-          style={{
-            backgroundColor:"transparent",
-            boxShadow: "none",
+        <button
+          className="Button StandardButton NewButton"
+          onClick={ e =>{
+            e.preventDefault();
+            createNewLabel();
           }}
+          style={
+            (
+            selectedAddress !== null &&
+            latestWaterlabel === null &&
+            editedWaterlabel === null &&
+            computedWaterlabel == null 
+            )
+            ?
+            {}
+            :
+            {display: "none"}
+          }
         >
-          <button
-            className="StandardButton NewButton"
-            onClick={ e =>{
-              e.preventDefault();
-              createNewLabel();
-            }}
-            style={
-              (
-              selectedAddress !== null &&
-              latestWaterlabel === null &&
-              editedWaterlabel === null &&
-              computedWaterlabel == null 
-              )
-              ?
-              {}
-              :
-              {display: "none"}
-            }
-          >
-            NIEUW LABEL
-          </button>
-        </div> 
+          NIEUW LABEL
+        </button>
+        <button
+          className="Button StandardButton NewButton"
+          onClick={e=>{
+            e.preventDefault();
+            openSaveModal();
+          }}
+          style={
+            editedFinishedWaterlabel ?
+            {}
+            :
+            {display: "none"}
+          }
+        >
+          LABEL OPSLAAN
+        </button>
         <div
           className="Tile"
           style={
-            editedFinishedWaterlabel ? 
-            {
-            backgroundColor:"transparent",
-            boxShadow: "none",
-            }
+            assetTypeFetchState === "RECEIVED" &&
+            ( latestWaterlabel || editedWaterlabel || editedFinishedWaterlabel ) &&
+            (
+            guiLabelTab === "Dak" ||
+            guiLabelTab === null 
+            )
+            ?
+            {}
             :
-            {
-            display: "none"  
-            }
+            {display: "none"}
           }
         >
           <button
-            className="StandardButton NewButton"
             onClick={e=>{
               e.preventDefault();
-              openSaveModal();
+              setGuiLabelTab("Dak");          
             }}
-            style={
-              (
-              selectedAddress !== null &&
-              latestWaterlabel === null &&
-              editedWaterlabel === null &&
-              computedWaterlabel == null 
-              )
-              ?
-              {}
-              :
-              {display: "none"}
+            className={
+              guiLabelTab === "Dak" ? "TabActive Tab" : "Tab TabInActive" 
             }
           >
-            LABEL OPSLAAN
+            <span>
+              <img src={dakImage} width="36px"/>
+            </span>
+            <span>Mijn dak</span>
+            <span
+              className="PlusIcon"
+            >
+              +
+            </span>
           </button>
-        </div> 
+          <div>
+            <LabelFormMobile
+              assetTypesFromServer={assetTypesFromServer}
+              latestWaterlabel={latestWaterlabel}
+              editedWaterlabel={editedWaterlabel}
+              editedFinishedWaterlabel={editedFinishedWaterlabel}
+              guiLabelTab={"Dak"}
+              showLabelFormDetails={showLabelFormDetails}
+              setShowLabelFormDetails={bool=>setShowLabelFormDetails(bool)}
+              createNewLabel={createNewLabel}
+              changeLabel={changeLabel}
+              setGuiLabelTab={tab => setGuiLabelTab(tab)}
+              setEditedWaterlabel={setEditedWaterlabel}
+              editingWaterlabelReady={editingWaterlabelReady}
+              computedWaterlabelState={computedWaterlabelState}
+              computedWaterlabel={computedWaterlabel}
+            />
+          </div>
+        </div>
         
       </div>
       

@@ -78,6 +78,45 @@ html, body, #root, .App {
   border-radius: 10px;
   box-shadow: 0px 3px 3px hsla(120,0%,0%,0.16);
 }
+.Body .Button {
+  margin-top: 16px;
+  width: 90%;
+  border-radius: 17px;
+  box-shadow: 0px 3px 3px hsla(120,0%,0%,0.16);
+}
+.Body .Tile .Tab {
+  width: 100%;
+  background-color: transparent;
+  height: 62px;
+  border: none;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  
+  box-sizing: border-box;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  color: #3F3F3F;
+  font-size: 20px;
+}
+
+.Body .Tile .Tab .PlusIcon {
+  font-size: 40px;
+}
+.Body .Tile .TabActive .PlusIcon {
+  visibility: hidden;
+}
+.Body .Tile .TabInActive + div {
+  display: none;
+}
+/* this styling should be done in labelform */
+/* .Body .Tile .Tab + div {
+  box-sizing: border-box;
+  padding: 16px;
+} */
 
 /* _____________________________________________ Youtube */
 .ModalYoutube {
