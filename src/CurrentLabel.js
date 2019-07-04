@@ -9,6 +9,7 @@ function CurrentLabel (props) {
     latestWaterlabel,
     editedWaterlabel,
     computedWaterlabel,
+    editedFinishedWaterlabel,
   } = props;
 
   return (
@@ -29,7 +30,8 @@ function CurrentLabel (props) {
             selectedAddress !== null &&
             latestWaterlabel === null &&
             editedWaterlabel === null &&
-            computedWaterlabel == null
+            computedWaterlabel == null &&
+            editedFinishedWaterlabel === null
             )
             ||
               (
@@ -58,6 +60,7 @@ function CurrentLabel (props) {
               <div
                 className="Text"
                 style={
+                  editedFinishedWaterlabel ||
                   computedWaterlabel ||
                   latestWaterlabel ?
                   {}
@@ -66,8 +69,10 @@ function CurrentLabel (props) {
                 }
               >
                 {
-                computedWaterlabel ? 
+                editedWaterlabel && computedWaterlabel ? 
                 <legend>{"Voorlopig label " + (computedWaterlabel && computedWaterlabel.code)}</legend>
+                : editedFinishedWaterlabel ?
+                <legend>{"Voorlopig label " + (editedFinishedWaterlabel && editedFinishedWaterlabel.code)}</legend>
                 :
                 <legend>{"U heeft label " + (latestWaterlabel && latestWaterlabel.code)}</legend>
                 }

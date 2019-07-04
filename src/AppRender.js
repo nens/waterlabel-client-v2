@@ -6,10 +6,13 @@ import SearchAddressForm from './SearchAddressForm';
 import SelectAddressFromList from "./SelectAddressFromList";
 import LabelForm from "./LabelForm";
 import LabelFormMobile from "./LabelFormMobile";
+import LabelFormTileMobile from "./LabelFormTileMobile";
 import InfoTabs from "./InfoTabs";
 import SaveModal from "./SaveModal";
 import CurrentLabel from "./CurrentLabel";
 import dakImage from './img/dak.svg';
+import tuinImage from './img/tuin.svg';
+import voorzieningImage from './img/voorziening.svg';
 
 
 export default AppRender;
@@ -153,6 +156,7 @@ function AppRender (props) {
             latestWaterlabel={latestWaterlabel}
             editedWaterlabel={editedWaterlabel}
             computedWaterlabel={computedWaterlabel}
+            editedFinishedWaterlabel={editedFinishedWaterlabel}
           />
         </div>
         <button
@@ -166,6 +170,7 @@ function AppRender (props) {
             selectedAddress !== null &&
             latestWaterlabel === null &&
             editedWaterlabel === null &&
+            editedFinishedWaterlabel === null &&
             computedWaterlabel == null 
             )
             ?
@@ -183,7 +188,8 @@ function AppRender (props) {
             openSaveModal();
           }}
           style={
-            editedFinishedWaterlabel ?
+            editedFinishedWaterlabel &&
+            !editedWaterlabel ?
             {}
             :
             {display: "none"}
@@ -191,7 +197,7 @@ function AppRender (props) {
         >
           LABEL OPSLAAN
         </button>
-        <div
+        {/* <div
           className="Tile"
           style={
             assetTypeFetchState === "RECEIVED" &&
@@ -209,7 +215,8 @@ function AppRender (props) {
           <button
             onClick={e=>{
               e.preventDefault();
-              setGuiLabelTab("Dak");          
+              setGuiLabelTab("Dak");
+              changeLabel();          
             }}
             className={
               guiLabelTab === "Dak" ? "TabActive Tab" : "Tab TabInActive" 
@@ -243,7 +250,70 @@ function AppRender (props) {
               computedWaterlabel={computedWaterlabel}
             />
           </div>
-        </div>
+        </div> */}
+        <LabelFormTileMobile
+          assetTypeFetchState={assetTypeFetchState}
+          latestWaterlabel={latestWaterlabel}
+          editedWaterlabel={editedWaterlabel}
+          editedFinishedWaterlabel={editedFinishedWaterlabel}
+          guiLabelTab={guiLabelTab}
+          setGuiLabelTab={setGuiLabelTab}
+          changeLabel={changeLabel}
+          assetTypesFromServer={assetTypesFromServer}
+          showLabelFormDetails={showLabelFormDetails}
+          setShowLabelFormDetails={setShowLabelFormDetails}
+          createNewLabel={createNewLabel}
+          setEditedWaterlabel={setEditedWaterlabel}
+          editingWaterlabelReady={editingWaterlabelReady}
+          computedWaterlabelState={computedWaterlabelState}
+          computedWaterlabel={computedWaterlabel}
+
+          tabImage={tuinImage}
+          tabText={"Mijn tuin"}
+          TabName={"Tuin"}
+        />
+        <LabelFormTileMobile
+          assetTypeFetchState={assetTypeFetchState}
+          latestWaterlabel={latestWaterlabel}
+          editedWaterlabel={editedWaterlabel}
+          editedFinishedWaterlabel={editedFinishedWaterlabel}
+          guiLabelTab={guiLabelTab}
+          setGuiLabelTab={setGuiLabelTab}
+          changeLabel={changeLabel}
+          assetTypesFromServer={assetTypesFromServer}
+          showLabelFormDetails={showLabelFormDetails}
+          setShowLabelFormDetails={setShowLabelFormDetails}
+          createNewLabel={createNewLabel}
+          setEditedWaterlabel={setEditedWaterlabel}
+          editingWaterlabelReady={editingWaterlabelReady}
+          computedWaterlabelState={computedWaterlabelState}
+          computedWaterlabel={computedWaterlabel}
+
+          tabImage={dakImage}
+          tabText={"Mijn dak"}
+          TabName={"Dak"}
+        />
+        <LabelFormTileMobile
+          assetTypeFetchState={assetTypeFetchState}
+          latestWaterlabel={latestWaterlabel}
+          editedWaterlabel={editedWaterlabel}
+          editedFinishedWaterlabel={editedFinishedWaterlabel}
+          guiLabelTab={guiLabelTab}
+          setGuiLabelTab={setGuiLabelTab}
+          changeLabel={changeLabel}
+          assetTypesFromServer={assetTypesFromServer}
+          showLabelFormDetails={showLabelFormDetails}
+          setShowLabelFormDetails={setShowLabelFormDetails}
+          createNewLabel={createNewLabel}
+          setEditedWaterlabel={setEditedWaterlabel}
+          editingWaterlabelReady={editingWaterlabelReady}
+          computedWaterlabelState={computedWaterlabelState}
+          computedWaterlabel={computedWaterlabel}
+
+          tabImage={voorzieningImage}
+          tabText={"Mijn voorzieningen"}
+          TabName={"Voorziening"}
+        />
         
       </div>
       

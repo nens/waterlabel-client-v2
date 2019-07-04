@@ -12,6 +12,7 @@ function LabelFormMobile (props) {
     latestWaterlabel,
     editedWaterlabel,
     editedFinishedWaterlabel,
+    setGuiLabelTab,
     guiLabelTab,
     changeLabel,
     showLabelFormDetails,
@@ -21,8 +22,8 @@ function LabelFormMobile (props) {
   } = props;
 
   const waterlabelToUse = 
-    editedFinishedWaterlabel ? editedFinishedWaterlabel : 
-    (editedWaterlabel ? editedWaterlabel : latestWaterlabel);
+    editedWaterlabel ? editedWaterlabel : 
+    (editedFinishedWaterlabel ? editedFinishedWaterlabel : latestWaterlabel);
 
   const assetsToUse = waterlabelToUse && waterlabelToUse.assets;
   const filteredAssetTypes = assetTypesFromServer.filter(type=>type.category === guiLabelTab)
@@ -193,6 +194,7 @@ function LabelFormMobile (props) {
           onClick={e => {
             e.preventDefault();
             setEditedWaterlabel(null);
+            setGuiLabelTab(null);
             
           }}
           style={

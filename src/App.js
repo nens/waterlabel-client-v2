@@ -152,11 +152,16 @@ class App extends Component {
     const waterlabelToChange = this.state.editedFinishedWaterlabel ? 
       {assets:  copyLabelData(this.state.editedFinishedWaterlabel).assets}
       :
-      {assets: copyLabelData(this.state.latestWaterlabel).assets};
+      this.state.latestWaterlabel?
+      {assets: copyLabelData(this.state.latestWaterlabel).assets}
+      :
+      {assets: []};
 
     this.setState({
       editedWaterlabel: waterlabelToChange,
-      editedFinishedWaterlabel: null
+      // comment this out so when someone first makes change then does "klaar"
+      // then does second change then does "annuleer" first change is not annulleert
+      // editedFinishedWaterlabel: null
     },
     (_ => {
       this.fetchComputedLabel(this.state.editedWaterlabel);
