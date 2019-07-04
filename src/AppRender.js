@@ -217,6 +217,7 @@ function AppRender (props) {
           tabImage={tuinImage}
           tabText={"Mijn tuin"}
           TabName={"Tuin"}
+          tileClassName={"TileTuin"}
         />
         <LabelFormTileMobile
           assetTypeFetchState={assetTypeFetchState}
@@ -238,6 +239,7 @@ function AppRender (props) {
           tabImage={dakImage}
           tabText={"Mijn dak"}
           TabName={"Dak"}
+          tileClassName={"TileDak"}
         />
         <LabelFormTileMobile
           assetTypeFetchState={assetTypeFetchState}
@@ -259,6 +261,7 @@ function AppRender (props) {
           tabImage={voorzieningImage}
           tabText={"Mijn voorzieningen"}
           TabName={"Voorziening"}
+          tileClassName={"TileVoorziening"}
         />
 
         {/* _______________________________________ */}
@@ -276,7 +279,7 @@ function AppRender (props) {
               if (guiInfoTab !== "PERSONAL") {
                 setGuiInfoTab("PERSONAL", _ => {
                   const elmnt = document.getElementsByClassName("PersonalTile")[0];
-                  elmnt.scrollIntoView();  
+                  elmnt.scrollIntoView({ behavior: 'smooth', block: 'start' });  
                 });
               }
               else {
@@ -313,7 +316,7 @@ function AppRender (props) {
               if (guiInfoTab !== "CALCULATION") {
                 setGuiInfoTab("CALCULATION", _ => {
                   const elmnt = document.getElementsByClassName("CalculationTile")[0];
-                  elmnt.scrollIntoView();  
+                  elmnt.scrollIntoView({ behavior: 'smooth', block: 'start' });  
                 });
               }
               else {
@@ -350,7 +353,7 @@ function AppRender (props) {
               if (guiInfoTab !== "WHY") {
                 setGuiInfoTab("WHY", _ => {
                   const elmnt = document.getElementsByClassName("WhyTile")[0];
-                  elmnt.scrollIntoView();  
+                  elmnt.scrollIntoView({ behavior: 'smooth', block: 'start' });  
                 });
               }
               else {

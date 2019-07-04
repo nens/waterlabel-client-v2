@@ -17,6 +17,7 @@ function LabelFormTileMobile (props) {
     tabImage,
     tabText,
     TabName,
+    tileClassName,
     assetTypesFromServer,
     showLabelFormDetails,
     setShowLabelFormDetails,
@@ -30,7 +31,7 @@ function LabelFormTileMobile (props) {
 
   return (
     <div
-    className="Tile"
+    className={`Tile ${tileClassName}`}
     style={
       assetTypeFetchState === "RECEIVED" &&
       ( latestWaterlabel || editedWaterlabel || editedFinishedWaterlabel ) &&
@@ -47,8 +48,12 @@ function LabelFormTileMobile (props) {
     <button
       onClick={e=>{
         e.preventDefault();
-        setGuiLabelTab(TabName);
-        changeLabel();          
+        setGuiLabelTab(TabName, _ => {
+          const elmnt = document.getElementsByClassName(tileClassName)[0];
+          elmnt.scrollIntoView({ behavior: 'smooth', block: 'start' });  
+          changeLabel();
+        });
+                  
       }}
       className={
         guiLabelTab === TabName ? "TabActive Tab" : "Tab TabInActive" 
