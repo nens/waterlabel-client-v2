@@ -10,6 +10,7 @@ import LabelFormTileMobile from "./LabelFormTileMobile";
 import InfoTabs from "./InfoTabs";
 import SaveModal from "./SaveModal";
 import CurrentLabel from "./CurrentLabel";
+import LoadingIcon from "./LoadingIcon";
 import dakImage from './img/dak.svg';
 import tuinImage from './img/tuin.svg';
 import voorzieningImage from './img/voorziening.svg';

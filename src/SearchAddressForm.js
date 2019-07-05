@@ -1,5 +1,7 @@
 import React from 'react';
 import playButton from './img/play-knop.svg';
+import LoadingIcon from "./LoadingIcon";
+
 
 export default SearchAddressForm;
 function SearchAddressForm (props) {
@@ -35,6 +37,23 @@ function SearchAddressForm (props) {
       "SearchAddressForm HideSearchAddressForm"
     }
   >
+    <div
+      // style={
+      //   searchAddressState == "SEND" ? {} : {visibil: "none"}
+      // }
+      className={searchAddressState == "SEND" ? 
+        "SpinnerContainer Visible" 
+        : 
+        "SpinnerContainer Invisible" 
+      }
+    >
+      <LoadingIcon
+        singleColor={"white"}
+        size={50}
+      />
+      <div>Bezig adressen te zoeken</div>
+    </div>
+
     <form
     // style={
     //   foundAddressesList.length === 0 &&
