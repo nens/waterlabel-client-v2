@@ -38,9 +38,6 @@ function SearchAddressForm (props) {
     }
   >
     <div
-      // style={
-      //   searchAddressState == "SEND" ? {} : {visibil: "none"}
-      // }
       className={searchAddressState == "SEND" ? 
         "SpinnerContainer Visible" 
         : 
@@ -51,7 +48,7 @@ function SearchAddressForm (props) {
         singleColor={"white"}
         size={50}
       />
-      <div>Bezig adressen te zoeken</div>
+      <div>Zoeken adressen</div>
     </div>
 
     <form

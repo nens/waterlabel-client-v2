@@ -167,11 +167,13 @@ class App extends Component {
       this.fetchComputedLabel(this.state.editedWaterlabel);
     }))
   }
-  openSaveModal = () => {
+  openSaveModal = (callBack) => {
     // this.saveLabel();
     this.setState({
       guiShowEmail: true,
-    })
+    },
+    callBack
+    )
   }
   saveLabel = () => {
     this.setState({saveWaterlabelState: "SEND"});

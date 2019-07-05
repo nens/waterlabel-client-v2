@@ -187,7 +187,11 @@ function AppRender (props) {
           className="Button StandardButton NewButton"
           onClick={e=>{
             e.preventDefault();
-            openSaveModal();
+            openSaveModal(_=>{
+              const elmnt = document.getElementsByClassName("ModalSave")[0]
+                                    .getElementsByClassName("Email")[0];
+              scrollElementIntoViewWorkaround(elmnt);
+            });
           }}
           style={
             editedFinishedWaterlabel &&

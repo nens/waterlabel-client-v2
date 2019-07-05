@@ -1,5 +1,6 @@
 import React from 'react';
 import './SaveModal.css';
+import LoadingIcon from "./LoadingIcon";
 
 export default SaveModal;
 function SaveModal (props) {
@@ -25,6 +26,20 @@ function SaveModal (props) {
         {display: "none"}
       }
     >
+          <div
+            className={saveWaterlabelState == "SEND" ? 
+              "SpinnerContainer Visible" 
+              : 
+              "SpinnerContainer Invisible" 
+            }
+          >
+            <LoadingIcon
+              singleColor={"white"}
+              size={50}
+            />
+            <div>Opslaan label</div>
+          </div>
+
           <form
             className="Email"
             style={
