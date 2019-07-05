@@ -363,7 +363,7 @@ class App extends Component {
   setGuiShowEmail = (bool) => {
     this.setState({guiShowEmail: bool})
   }
-  closeSaveModal = () => {
+  closeSaveModal = (callBack) => {
     this.setState({
       saveWaterlabelState: "NOT_SEND",
       guiShowSuccesSave: false,
@@ -371,7 +371,9 @@ class App extends Component {
       editedWaterlabel: null,
       editedFinishedWaterlabel: null,
       computedWaterlabel: null,
-    });
+    },
+    callBack
+    );
   }
   setGuiInfoTab = (tab, callback) => {
     this.setState({guiInfoTab: tab}, callback);

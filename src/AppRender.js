@@ -126,8 +126,8 @@ function AppRender (props) {
           setEmail={email=>setEmail(email)}
           setGuiHideEmail={()=>setGuiShowEmail(false)}
           saveLabel={saveLabel}
-          closeModal={()=>{
-            closeSaveModal();
+          closeModal={(callBack)=>{
+            closeSaveModal(callBack);
           }}
         />
         <div

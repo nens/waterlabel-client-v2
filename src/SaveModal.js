@@ -1,6 +1,8 @@
 import React from 'react';
 import './SaveModal.css';
 import LoadingIcon from "./LoadingIcon";
+import {scrollElementIntoViewWorkaround} from './utils/browserFunctions'
+
 
 export default SaveModal;
 function SaveModal (props) {
@@ -111,7 +113,10 @@ function SaveModal (props) {
                 className="StandardButton"
                 onClick={e=>{
                   e.preventDefault();
-                  closeModal();
+                  closeModal(_=>{
+                    const elmnt = document.getElementsByClassName("App")[0]
+                    scrollElementIntoViewWorkaround(elmnt);
+                  });
                 }}
               >
               TERUG
