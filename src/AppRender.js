@@ -13,6 +13,7 @@ import CurrentLabel from "./CurrentLabel";
 import dakImage from './img/dak.svg';
 import tuinImage from './img/tuin.svg';
 import voorzieningImage from './img/voorziening.svg';
+import {scrollElementIntoViewWorkaround} from './utils/browserFunctions'
 
 
 export default AppRender;
@@ -279,7 +280,7 @@ function AppRender (props) {
               if (guiInfoTab !== "PERSONAL") {
                 setGuiInfoTab("PERSONAL", _ => {
                   const elmnt = document.getElementsByClassName("PersonalTile")[0];
-                  elmnt.scrollIntoView({ behavior: 'smooth', block: 'start' });  
+                  scrollElementIntoViewWorkaround(elmnt);
                 });
               }
               else {
@@ -316,7 +317,7 @@ function AppRender (props) {
               if (guiInfoTab !== "CALCULATION") {
                 setGuiInfoTab("CALCULATION", _ => {
                   const elmnt = document.getElementsByClassName("CalculationTile")[0];
-                  elmnt.scrollIntoView({ behavior: 'smooth', block: 'start' });  
+                  scrollElementIntoViewWorkaround(elmnt);
                 });
               }
               else {
@@ -353,7 +354,7 @@ function AppRender (props) {
               if (guiInfoTab !== "WHY") {
                 setGuiInfoTab("WHY", _ => {
                   const elmnt = document.getElementsByClassName("WhyTile")[0];
-                  elmnt.scrollIntoView({ behavior: 'smooth', block: 'start' });  
+                  scrollElementIntoViewWorkaround(elmnt);
                 });
               }
               else {

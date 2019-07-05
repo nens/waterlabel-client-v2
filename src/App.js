@@ -347,6 +347,9 @@ class App extends Component {
     this.setState({showLabelFormDetails: bool});
   }
   setGuiLabelTab = (tab, callback) => {
+    if (this.state.editedWaterlabel === null) {
+      this.changeLabel();
+    }
     this.setState({guiLabelTab:tab}, callback);
   }
   setEmail = (email) => {

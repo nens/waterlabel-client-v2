@@ -1,5 +1,6 @@
 import React from 'react';
 import LabelFormMobile from "./LabelFormMobile";
+import {scrollElementIntoViewWorkaround} from './utils/browserFunctions';
 
 
 export default LabelFormTileMobile;
@@ -50,8 +51,7 @@ function LabelFormTileMobile (props) {
         e.preventDefault();
         setGuiLabelTab(TabName, _ => {
           const elmnt = document.getElementsByClassName(tileClassName)[0];
-          elmnt.scrollIntoView({ behavior: 'smooth', block: 'start' });  
-          changeLabel();
+          scrollElementIntoViewWorkaround(elmnt);
         });
                   
       }}

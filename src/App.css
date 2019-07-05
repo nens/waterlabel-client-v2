@@ -372,13 +372,13 @@ html, body, #root, .App {
 }
 .AnyLabelVisual .BackgroundImage .Margin {
   width: 200px;
-  margin-top: 50px;
-  margin-bottom: 80px;
+  margin-top: 26px;
+  margin-bottom: 26px;
   margin-left: 40px;
 }
 
 .AnyLabelVisual .BackgroundImage .Margin img {
-  width: 100%;
+  width: 50%;
   margin-top: 16px;
 }
 
