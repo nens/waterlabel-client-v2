@@ -62,10 +62,17 @@ function SaveModal (props) {
                   event=>setEmail(event.target.value)
                 }
               />
-            {/* </div> */}
-            {/* <div>
-              {saveWaterlabelState + ''}
-            </div> */}
+              <div
+                className="ErrorText"
+                style={
+                  saveWaterlabelState === "FAILED" ?
+                  {}
+                  :
+                  {display: "none"}
+                }
+              >
+                Oepsie.. Er ging iets mis bij het opslaan van het label
+              </div>
             <div
               className="Row"
             >

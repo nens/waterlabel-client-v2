@@ -89,6 +89,11 @@
   background-color: #8A9294;
 }
 
+/* ErrorText is handled by global css */
+/* .ModalSave .Email .ErrorText {
+
+} */
+
 .ModalSave .Email .Annuleer,
 .ModalSave .Email .Verzend,
 .ModalSave .Back button {

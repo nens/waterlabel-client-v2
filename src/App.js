@@ -196,6 +196,9 @@ class App extends Component {
       }
     )
     .then(function(response) {
+      if (response.status !== 201) {
+        throw ("waterlabel save status not 201: " + response.status);
+      }
       return response.json();
     })
     .then(function(parsedJSON) {
