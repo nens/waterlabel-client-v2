@@ -56,7 +56,7 @@ function LabelFormMobile (props) {
           <div
             className="ColumnAssetArea"
           >
-            Opp.
+            {guiLabelTab === "Voorziening" ? "Berging" : "Opp."}
           </div>
 
         </div>
@@ -109,29 +109,55 @@ function LabelFormMobile (props) {
                     </div>
 
                     {/* ___________________________________________ AREA OPPERVLAK */}
+                    
+                    {
+                      guiLabelTab !== "Voorziening" 
+                      ? 
+                      <div
+                        className="ColumnAssetArea"
+                      >
+                        {
+                          editedWaterlabel ?
+                          <div>
+                            {/* <label>area: </label>  */}
+                            <input
+                              value={asset.area}
+                              onChange={ event => {
+                                const copyLabel = copyLabelData(waterlabelToUse);
+                                copyLabel.assets[index].area = event.target.value;                          
+                                setEditedWaterlabel(copyLabel);
+                              }}
+                            >
+                            </input>
+                          </div>
+                          :
+                          <div>{asset.area}</div>
+                        }
+                      </div>
+                    :
                     <div
                       className="ColumnAssetArea"
                     >
-                      {
-                        editedWaterlabel ?
-                        <div>
-                          {/* <label>area: </label>  */}
-                          <input
-                            value={asset.area}
-                            onChange={ event => {
-                              const copyLabel = copyLabelData(waterlabelToUse);
-                              copyLabel.assets[index].area = event.target.value;                          
-                              setEditedWaterlabel(copyLabel);
-                            }}
-                          >
-                          </input>
-                        </div>
-                        :
-                        <div>{asset.area}</div>
-                      }
+                    {
+                      editedWaterlabel ?
+                      <div>
+                        <input
+                          value={asset.storage}
+                          onChange={ event => {
+                            const copyLabel = copyLabelData(waterlabelToUse);
+                            copyLabel.assets[index].storage = event.target.value;                          
+                            setEditedWaterlabel(copyLabel);
+                          }}
+                        >
+                        </input>
+                      </div>
+                      :
+                      <div>{asset.storage}</div>
+                    }
                     </div>
-                    <div>
-
+                  }
+                 <div>
+               
                     {/* __________________________________________ REMOVE ASSET */}
                     <div
                       className="ButtonRemoveAsset"
