@@ -101,3 +101,9 @@
   height: 31px;
   font-size: 14px;
 }
+
+.ModalSave .Email .Verzend:disabled {
+  background-color: #C4C9CB;
+  color: #8A9294;
+  cursor: not-allowed;
+}

@@ -18,6 +18,11 @@ function SaveModal (props) {
     guiShowSuccesSave,
   } = props;
 
+  function isEmailValid (email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+
   return (
     <div
       className="ModalSave"
@@ -89,6 +94,8 @@ function SaveModal (props) {
               </button>
               <button
                 className="StandardButton Verzend"
+                disabled={!isEmailValid(email)}
+                title={!isEmailValid(email)? "Kies een valide email adres" : "Waterlabel verzenden"}
                 onClick={e=>{
                   e.preventDefault();
                   saveLabel();
