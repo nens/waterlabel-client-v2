@@ -31,7 +31,7 @@ function CurrentLabel (props) {
             latestWaterlabel === null &&
             editedWaterlabel === null &&
             computedWaterlabel == null &&
-            editedFinishedWaterlabel === null
+            (editedFinishedWaterlabel === null || (editedFinishedWaterlabel && editedFinishedWaterlabel.code===null))
             )
             ||
               (
@@ -60,7 +60,7 @@ function CurrentLabel (props) {
               <div
                 className="Text"
                 style={
-                  editedFinishedWaterlabel ||
+                  (editedFinishedWaterlabel && editedFinishedWaterlabel.code) ||
                   computedWaterlabel ||
                   latestWaterlabel ?
                   {}
