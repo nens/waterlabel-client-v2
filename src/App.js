@@ -90,11 +90,15 @@ class App extends Component {
       return response.json();
     })
     .then(function(parsedJSON) {
+      const foundBuildingList = (parsedJSON.results && parsedJSON.results.length)? parsedJSON.results : [];
+      const unFlatFoundAddressesList = foundBuildingList.map( building => building.houseaddresses);
+      const foundAddressesList = [].concat.apply([], unFlatFoundAddressesList);
       that.setState(
         {
         searchAddressState: "RECEIVED",
-        foundAddressesList: (parsedJSON.results && parsedJSON.results.length)? parsedJSON.results : [],
-        selectedAddress: (parsedJSON.results && parsedJSON.results.length === 1 )? parsedJSON.results[0] : null,
+        // foundAddressesList: (parsedJSON.results && parsedJSON.results.length)? parsedJSON.results : [],
+        foundAddressesList: foundAddressesList,
+        selectedAddress: (((foundAddressesList).length === 1 )? foundAddressesList[0] : null),
         // currentWaterLabels: (parsedJSON.results && parsedJSON.results.length === 1 )? parsedJSON.results[0].waterlabels : [],
         // latestWaterlabel: (parsedJSON.results && parsedJSON.results.length === 1 )? parsedJSON.results[0].waterlabels[0] : null
         }
@@ -117,7 +121,7 @@ class App extends Component {
     const that = this;
 
     
-    fetch( `/api/v2/waterlabels/?building=${this.state.selectedAddress.id}`)
+    fetch( `/api/v2/waterlabels/?building=${this.state.selectedAddress.building}`)
     .then(function(response) {
       return response.json();
     })
@@ -190,7 +194,7 @@ class App extends Component {
         },
         body: JSON.stringify({
           assets: this.state.editedFinishedWaterlabel.assets,
-          building: this.state.selectedAddress.id,
+          building: this.state.selectedAddress.building,
           email: this.state.email,
         }),
       }
@@ -266,7 +270,7 @@ class App extends Component {
             };
             return newAsset;
           }),
-          building: this.state.selectedAddress.id,
+          building: this.state.selectedAddress.building,
           email: "dummie-email_waterlabel@nelen-schuurmans.nl",
         }),
       }
@@ -290,7 +294,7 @@ class App extends Component {
   editingWaterlabelReady = () => {
     let finishedWaterlabel = copyLabelData(this.state.editedWaterlabel);
     finishedWaterlabel.code = this.state.computedWaterlabel && this.state.computedWaterlabel.code;
-    finishedWaterlabel.building = this.state.selectedAddress.id;
+    finishedWaterlabel.building = this.state.selectedAddress.building;
     // email is set In later state ! only pass it to the api
     // finishedWaterlabel.email = this.state.email;
 
@@ -342,10 +346,13 @@ class App extends Component {
   setSearchOnCityStreet = (bool) => {
     this.setState({searchOnCityStreet:bool})
   }
-  selectAddress = (address) => {
+  selectAddress = (address, callback) => {
     this.setState(
       {selectedAddress: address},
-      (this.fetchWaterlabelsFromBuilding)
+      (_=>{
+        callback();
+        this.fetchWaterlabelsFromBuilding();
+      })
     )
   }
   setShowLabelFormDetails = (bool) => {

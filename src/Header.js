@@ -37,14 +37,16 @@ export default Header;
           }
         >
           <div>
-            <span>{selectedAddress && selectedAddress.houseaddresses[0].street}</span>
+            <span>{selectedAddress && selectedAddress.street}</span>
             <span>{" "} </span>
-            <span>{selectedAddress && selectedAddress.houseaddresses[0].housenumber}</span>
+            <span>{selectedAddress && selectedAddress.housenumber}</span>
+            <span>{" "} </span>
+            <span>{selectedAddress && selectedAddress.houseletter}</span>
           </div>
           <div>
-          <span>{selectedAddress && selectedAddress.houseaddresses[0].postalcode}</span>
+          <span>{selectedAddress && selectedAddress.postalcode}</span>
           <span>{" "} </span>
-          <span>{selectedAddress && selectedAddress.houseaddresses[0].city}</span>
+          <span>{selectedAddress && selectedAddress.city}</span>
           </div>
         </div>
         </div>

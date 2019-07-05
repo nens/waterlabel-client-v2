@@ -1,4 +1,6 @@
 import React from 'react';
+import {scrollElementIntoViewWorkaround} from './utils/browserFunctions'
+
 export default SelectAddressFromList;
 
  function SelectAddressFromList (props) {
@@ -42,25 +44,30 @@ export default SelectAddressFromList;
               foundAddressesList.map(address=>{
                 return (
                   <li
-                    key={address.houseaddresses[0].housenumber + address.houseaddresses[0].street}
+                    key={address.housenumber + address.street}
                   >
                     <button
                       className="StandardButton"
                       onClick={e =>{
                         e.preventDefault();
-                        selectAddress(address)
+                        selectAddress(address, _=> {
+                          const elmnt = document.getElementsByClassName("App")[0]
+                          scrollElementIntoViewWorkaround(elmnt);
+                        })
                       }}
                     >
                       <div>
-                        <span>{address.houseaddresses[0].street}</span>
+                        <span>{address.street}</span>
                         <span>{" "}</span>
-                        <span>{address.houseaddresses[0].housenumber}</span>
+                        <span>{address.housenumber}</span>
+                        <span style={address.houseletter?{}:{display:"none"}}>{" "} </span>
+                        <span style={address.houseletter?{}:{display:"none"}}>{address.houseletter}</span>
                       {/* </div>
                       <div> */}
                         <span>{", "}</span>
-                        <span>{address.houseaddresses[0].postalcode}</span>
+                        <span>{address.postalcode}</span>
                         <span>{" "}</span>
-                        <span>{address.houseaddresses[0].city}</span>
+                        <span>{address.city}</span>
                       </div>
                     </button>
                     

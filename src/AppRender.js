@@ -145,8 +145,8 @@ function AppRender (props) {
             foundAddressesList={foundAddressesList}
             selectedAddress={selectedAddress}
             searchAddressState={searchAddressState}
-            selectAddress={address=>{
-              selectAddress(address);
+            selectAddress={(address, callback)=>{
+              selectAddress(address, callback);
             }}
           />
         </div>
