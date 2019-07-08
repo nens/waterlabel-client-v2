@@ -1,7 +1,10 @@
 import React from 'react';
+import './SaveModal.css';
+import LoadingIcon from "./LoadingIcon";
+import {scrollElementIntoViewWorkaround} from './utils/browserFunctions'
+
 
 export default SaveModal;
-
 function SaveModal (props) {
 
   const {
@@ -11,12 +14,41 @@ function SaveModal (props) {
     setGuiHideEmail,
     saveLabel,
     closeModal,
+    guiShowEmail,
+    guiShowSuccesSave,
   } = props;
 
+  function isEmailValid (email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+
   return (
-    <div>
-          <hr/>
+    <div
+      className="ModalSave"
+      style={
+        guiShowEmail | guiShowSuccesSave ?
+        {}
+        :
+        {display: "none"}
+      }
+    >
+          <div
+            className={saveWaterlabelState == "SEND" ? 
+              "SpinnerContainer Visible" 
+              : 
+              "SpinnerContainer Invisible" 
+            }
+          >
+            <LoadingIcon
+              singleColor={"white"}
+              size={50}
+            />
+            <div>Opslaan label</div>
+          </div>
+
           <form
+            className="Email"
             style={
               saveWaterlabelState !== "RECEIVED" ?
               {}
@@ -24,41 +56,57 @@ function SaveModal (props) {
               {display: "none"}
             }
           >
-            <div>
+            {/* <div> */}
+              <h1>Bijna klaar!</h1>
               <label htmlFor="email">
-                Email:
+                Om uw label op te slaan hebben wij uw email adres nodig ter controle.
               </label>
               <input
                 id="email"
                 value={email}
+                placeholder="Voer hier uw email adres in"
                 onChange={
                   event=>setEmail(event.target.value)
                 }
               />
-            </div>
-            <div>
-              {saveWaterlabelState + ''}
-            </div>
-            <div>
+              <div
+                className="ErrorText"
+                style={
+                  saveWaterlabelState === "FAILED" ?
+                  {}
+                  :
+                  {display: "none"}
+                }
+              >
+                Oepsie.. Er ging iets mis bij het opslaan van het label
+              </div>
+            <div
+              className="Row"
+            >
               <button
+                className="StandardButton Annuleer"
                 onClick={e=>{
                   e.preventDefault();
                   setGuiHideEmail();
                 }}
               >
-                Annuleer
+                ANNULEER
               </button>
               <button
+                className="StandardButton Verzend"
+                disabled={!isEmailValid(email)}
+                title={!isEmailValid(email)? "Kies een valide email adres" : "Waterlabel verzenden"}
                 onClick={e=>{
                   e.preventDefault();
                   saveLabel();
                 }}
               >
-                Verzend
+                VERZEND
               </button>
             </div>
           </form>
           <form
+            className="Back"
             style={
               saveWaterlabelState === "RECEIVED" ?
               {}
@@ -66,13 +114,19 @@ function SaveModal (props) {
               {display: "none"} 
             }
           >
+            <h1>Gelukt!</h1>
+            <div>Dank u wel voor het deelnemen aan het waterlabel initiatief!</div>
             <button
+                className="StandardButton"
                 onClick={e=>{
                   e.preventDefault();
-                  closeModal();
+                  closeModal(_=>{
+                    const elmnt = document.getElementsByClassName("App")[0]
+                    scrollElementIntoViewWorkaround(elmnt);
+                  });
                 }}
               >
-              Terug
+              TERUG
             </button>
           </form>
         </div>

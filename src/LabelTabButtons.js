@@ -10,13 +10,19 @@ function LabelTabButtons (props) {
   } = props;
 
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <button
         onClick={e=>{
           e.preventDefault();
           setGuiLabelTab("Dak");          
         }}
-        className={guiLabelTab === "Dak" ? "TabActive" :  ""}
+        className={guiLabelTab === "Dak" ? "TabActive StandardTile" :  "StandardTile"}
       >
         Mijn dak
       </button>
@@ -25,7 +31,7 @@ function LabelTabButtons (props) {
           e.preventDefault();
           setGuiLabelTab("Tuin");          
         }}
-        className={guiLabelTab === "Tuin" ? "TabActive" :  ""}
+        className={guiLabelTab === "Tuin" ? "TabActive StandardTile" :  "StandardTile"}
       >
         Mijn tuin
       </button>
@@ -35,7 +41,7 @@ function LabelTabButtons (props) {
           setGuiLabelTab("Voorziening");
           
         }}
-        className={guiLabelTab === "Voorziening" ? "TabActive" :  ""}
+        className={guiLabelTab === "Voorziening" ? "TabActive StandardTile" :  "StandardTile"}
       >
         Mijn voorzieningen
       </button>

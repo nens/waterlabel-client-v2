@@ -1,13 +1,477 @@
-.TabActive {
+/* Remove dotted line 
+https://stackoverflow.com/questions/19886843/how-to-remove-outline-border-from-input-button
+For now not because of accesibility
+*/
+/* button{
+  outline:none;
+}
+button::-moz-focus-inner {
+  border: 0;
+} */
+/*  */
+
+/* .TabActive {
+  background-color: white;
+  border-bottom-width: 0px;
+} */
+.TabActive button {
   background-color: white;
   border-bottom-width: 0px;
 }
 
-.App {
-  margin-left: 100px;
-  margin-top: 20px;
+.ErrorText {
+  color: #d2604e;
 }
 
+.StandardButton {
+  color: white;
+  font-size: 18px;
+  background-color: #0086A6;
+  border: none;
+  /* height: 35px; */
+  border-radius: 17px;
+  /* margin-bottom: 20px; */
+}
+
+.StandardTile {
+  margin-top: 16px;
+  background-color: white;
+  width: 90%;
+  border-radius: 10px;
+  box-shadow: 0px 3px 3px hsla(120,0%,0%,0.16);
+}
+
+html, body, #root, .App {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  background-color: #EEFAFF;
+  font-family: 'Rigid Square', 'Regular', 'Roboto', sans-serif;
+  margin : 0 ;
+}
+
+.App {
+  /* margin-left: 100px;
+  margin-top: 20px; */
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.InfoPage {
+  box-sizing: border-box;
+  padding: 16px;
+  color: #707070;
+  font-size: 15px;
+}
+
+.Body {
+  width: 100%;
+  /* height: 100%;
+  min-height: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 16px;
+  position: relative;
+}
+.BodyHide {
+  display: none;
+}
+
+.Body .Tile {
+  margin-top: 16px;
+  background-color: white;
+  width: 90%;
+  border-radius: 10px;
+  box-shadow: 0px 3px 3px hsla(120,0%,0%,0.16);
+}
+.Body .Button {
+  margin-top: 16px;
+  width: 90%;
+  border-radius: 17px;
+  box-shadow: 0px 3px 3px hsla(120,0%,0%,0.16);
+}
+.Body .Tile .Tab {
+  width: 100%;
+  background-color: transparent;
+  height: 62px;
+  border: none;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  
+  box-sizing: border-box;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  color: #3F3F3F;
+  font-size: 20px;
+}
+
+.Body .Tile .Tab .PlusIcon {
+  font-size: 40px;
+}
+.Body .Tile .TabActive .PlusIcon {
+  visibility: hidden;
+}
+.Body .Tile .TabInActive + div {
+  display: none;
+}
+/* this styling should be done in labelform */
+/* .Body .Tile .Tab + div {
+  box-sizing: border-box;
+  padding: 16px;
+} */
+
+/* _____________________________________________ Youtube */
+.ModalYoutube {
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: hsla(120,0%,0%,0.53);
+  position: absolute;
+  top:0px;
+  left:0px;
+}
+
+.ModalYoutube .YoutubeFrame {
+  background-color: #3D3D3D;
+  /* HOW CAN WE CUSTOMIZE THIS ? */
+  /* https://stackoverflow.com/questions/52393814/css-100-width-of-youtube-embed-video */
+  /* width: 320px; */
+  /* height: 190px; */
+  /* width: 90%;
+  height: 200px; */
+  padding: 18px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+/* .ModalYoutube .YoutubeFrame iframe {
+  margin: 18px;
+}  */
+
+/* ________________________________________________ADDRESS HEADER */
+.AddressHeader {
+  position: relative;
+  width: 100%;
+  min-height: 14vh;
+  height: 14vh;
+  background-color: #0086A6;
+  color: white;
+  
+}
+.AddressHeader button {
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+
+  font-size: 40px;
+  background-color: transparent;
+  border: none;
+  color: white; /*why does this not inherit from parent div?*/
+}
+.AddressHeader > div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.AddressHeader .SelectedAddress {
+  font-size: 24px;
+  text-align: center;
+}
+
+
+/* _________________________________________________________ Search Address Form */
+
+.SearchAddressForm {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.HideSearchAddressForm {
+  display: none;
+}
+
+.SearchAddressForm .SpinnerContainer {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: hsla(120,0%,0%,0.53);
+  position: absolute;
+  top:0px;
+  left:0px;
+}
+.SearchAddressForm .SpinnerContainer div {
+  margin-top: 16px;
+  font-size: 18px;
+  color: white;
+}
+.SearchAddressForm .SpinnerContainer.Invisible {
+  visibility: hidden;
+  /* transition back currently does not work because it goes already to other screen. We could add this screen to the root element to solve it */
+  opacity: 0;
+  transition: opacity 1s;
+}
+.SearchAddressForm .SpinnerContainer.Visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.SearchAddressForm form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.SearchAddressForm form h1 {
+  margin-top: -10px; /*this will move the entire content up */
+  margin-bottom: 10px; /*To make the subheader closer to the header */
+  color: black;
+  font-size: 30px;
+}
+/* Selects the span next to the header */
+.SearchAddressForm form h1 + span {
+  /*  push content below subheader down */
+  margin-bottom: 50px;
+  color: black;
+  font-size: 20px
+}
+
+.SearchAddressForm form .YoutubeButton{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin-bottom: 50px;
+  cursor: pointer;
+}
+
+.SearchAddressForm form .YoutubeButton div {
+  color: #707070;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.SearchAddressForm form legend {
+  color: #707070;
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+/* .SearchAddressForm form .InputBlock {
+  background-color: red; 
+} */
+
+.SearchAddressForm form .InputBlock .Row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 6px;
+}
+.SearchAddressForm form .InputBlock .Row .LabelLeft,
+.SearchAddressForm form .InputBlock .Row .LabelRight {
+  color: black;
+  font-size: 16px;
+}
+.SearchAddressForm form .InputBlock .Row .LabelLeft {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 100px;
+}
+.SearchAddressForm form .InputBlock .Row .LabelRight {
+  margin-left: 10px;
+}
+.SearchAddressForm form .InputBlock .Row input {
+  color: #707070;
+  font-size: 19px;
+  border-radius: 3px0;
+  border-width: 0;
+  height: 31px;
+}
+.SearchAddressForm form .InputBlock .Row .LabelLeft + input {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 100px;
+  max-width: 100px;
+}
+.SearchAddressForm form .InputBlock .Row .LabelRight + input {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 50px;
+  max-width: 50px;
+}
+.SearchAddressForm form .InputBlock .Row .LabelLeft + .InputWholeRow {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 204px;
+  max-width: 204px;
+}
+.SearchAddressForm form .ButtonToggleStreetPostcode {
+  color: #707070;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin-top: 6px;
+  margin-bottom: 20px;
+}
+
+.SearchAddressForm form .ButtonSearch {
+  /* color: white;
+  font-size: 18px;
+  background-color: #0086A6;
+  border: none; */
+  width:116px;
+  height: 35px;
+  margin-bottom: 20px;
+  /* border-radius: 17px;
+  margin-bottom: 20px; */
+}
+
+.SearchAddressForm form .ErrorText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.SearchAddressForm form .ErrorText > div:first-child {
+  font-weight: bold;
+}
+/* __________________________________________________________ Search Address From List */
+.SelectAddressFromList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.SelectAddressFromList legend {
+  color: #707070;
+  font-size: 16px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+
+.SelectAddressFromList ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.SelectAddressFromList button {
+  min-height: 45px;
+  margin-bottom: 10px;
+  width: 90%;
+
+}
+
+/* ________________________________________________ ANY LABEL */
+.AnyLabelVisual {
+  position: relative;
+}
+.AnyLabelVisual .BackgroundImage {
+  /* position: absolute; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.AnyLabelVisual .BackgroundImage .Margin {
+  width: 200px;
+  margin-top: 26px;
+  margin-bottom: 26px;
+  margin-left: 40px;
+}
+
+.AnyLabelVisual .BackgroundImage .Margin img {
+  width: 50%;
+  margin-top: 16px;
+}
+
+
+.AnyLabelVisual .Text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 27px;
+  color: #3F3F3F;
+}
+.AnyLabelVisual .NoLabelYetLayOver {
+  width: 100%;
+  height: 100%;
+  background-color: hsla(120, 0%, 100%, 0.50);
+  position: absolute;
+}
+
+/* _____________________________________________________ new BUTTON */
+
+.NewButton {
+  background-color: #0086A6;
+  /* margin-top: 16px; */
+  width: 100%;
+  min-height: 50px;
+  height: 50px;
+}
+/* ___________________________________________- InfoTabs */
+
+.InfoTabContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.InfoTabContainer button {
+  height: 62px;
+  border: none;
+  font-size: 19px;
+  color: #3F3F3F;
+}
+
+.InfoTabContainer button{
+  outline:none;
+}
+.InfoTabContainer button::-moz-focus-inner {
+  border: 0;
+}
+
+.InfoTabContainer .Info {
+  padding: 30px;
+  font-size: 16px;
+  color: #707070;
+  box-sizing: border-box;
+  /* move whole info tile op to overlap with button. Hacky.. */
+  margin-top: -14px;
+}
+.InfoTabContainer .Info pre {
+  white-space: normal;
+}
 
 /* .App {
   text-align: center;
