@@ -151,7 +151,7 @@ function AppRender (props) {
           />
         </div>
         <div
-          className="Tile"
+          className="Mobile Tile"
         >
           <CurrentLabel
             selectedAddress={selectedAddress}
@@ -162,7 +162,7 @@ function AppRender (props) {
           />
         </div>
         <button
-          className="Button StandardButton NewButton"
+          className="Mobile Button StandardButton NewButton"
           onClick={ e =>{
             e.preventDefault();
             createNewLabel();
@@ -184,7 +184,7 @@ function AppRender (props) {
           NIEUW LABEL
         </button>
         <button
-          className="Button StandardButton NewButton"
+          className="Mobile Button StandardButton NewButton"
           onClick={e=>{
             e.preventDefault();
             openSaveModal(_=>{

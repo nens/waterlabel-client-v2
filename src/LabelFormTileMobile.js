@@ -32,7 +32,7 @@ function LabelFormTileMobile (props) {
 
   return (
     <div
-    className={`Tile ${tileClassName}`}
+    className={`Mobile Tile ${tileClassName}`}
     style={
       assetTypeFetchState === "RECEIVED" &&
       ( latestWaterlabel || editedWaterlabel || editedFinishedWaterlabel ) &&
