@@ -6,6 +6,7 @@ import './LabelFormTileDesktop.css';
 import dakImage from './img/dak.svg';
 import tuinImage from './img/tuin.svg';
 import voorzieningImage from './img/voorziening.svg';
+import tuinHuisGrasImage from './img/tt01.png';
 
 
 export default function LabelFormTileDesktop (props) {
@@ -107,7 +108,19 @@ export default function LabelFormTileDesktop (props) {
       </button>
     </div>
     
-    <div>
+    <div
+      className="DesktopLabelformTileBody"
+    >
+      <div
+        className="DesktopLabelformTileBodyLeft"
+      >
+        <h1>Wat is belangrijk?</h1>
+        <p >
+        Hoe meer water in de tuin kan worden vast gehouden, hoe beter! Dat betekent dus hoe groener, hoe beter!
+        </p>
+        <img src={tuinHuisGrasImage}/>
+      </div>
+      <div><div></div></div>
       <LabelFormDesktop
         assetTypesFromServer={assetTypesFromServer}
         latestWaterlabel={latestWaterlabel}

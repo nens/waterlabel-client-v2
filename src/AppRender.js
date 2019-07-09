@@ -228,22 +228,6 @@ function AppRender (props) {
           TabName={"Tuin"}
           tileClassName={"TileTuin"}
         />
-        {/* <LabelForm
-          assetTypesFromServer={assetTypesFromServer}
-          latestWaterlabel={latestWaterlabel}
-          editedWaterlabel={editedWaterlabel}
-          editedFinishedWaterlabel={editedFinishedWaterlabel}
-          guiLabelTab={guiLabelTab}
-          showLabelFormDetails={showLabelFormDetails}
-          setShowLabelFormDetails={bool=>setShowLabelFormDetails(bool)}
-          createNewLabel={createNewLabel}
-          changeLabel={changeLabel}
-          setGuiLabelTab={tab => setGuiLabelTab(tab)}
-          setEditedWaterlabel={setEditedWaterlabel}
-          editingWaterlabelReady={editingWaterlabelReady}
-          computedWaterlabelState={computedWaterlabelState}
-          computedWaterlabel={computedWaterlabel}
-        /> */}
         <LabelFormTileMobile
           assetTypeFetchState={assetTypeFetchState}
           latestWaterlabel={latestWaterlabel}

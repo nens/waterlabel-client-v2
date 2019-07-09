@@ -37,9 +37,7 @@ export default function LabelFormDesktop (props) {
       alignItems: "stretch",
     }}
     >
-      <p >
-      Hoe meer water in de tuin kan worden vast gehouden, hoe beter! Dat betekent dus hoe groener, hoe beter! Voer hieronder de statistieken van uw tuin in, daarmee berekenen wij een label!
-      </p>
+      
 
 
       <div> 
