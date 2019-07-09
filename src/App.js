@@ -291,7 +291,7 @@ class App extends Component {
 
     });
   }
-  editingWaterlabelReady = () => {
+  editingWaterlabelReady = (guiLabelTab) => {
     let finishedWaterlabel = copyLabelData(this.state.editedWaterlabel);
     finishedWaterlabel.code = this.state.computedWaterlabel && this.state.computedWaterlabel.code;
     finishedWaterlabel.building = this.state.selectedAddress.building;
@@ -301,9 +301,10 @@ class App extends Component {
     this.setState({
       editedFinishedWaterlabel: finishedWaterlabel,
       editedWaterlabel: null,
-      guiLabelTab: null,
+      guiLabelTab: guiLabelTab,
     })
   }
+
   setShowLabelFormDetails = (bool) => {
     this.setState({showLabelFormDetails:bool});
   }
@@ -362,6 +363,12 @@ class App extends Component {
     if (this.state.editedWaterlabel === null) {
       this.changeLabel();
     }
+    this.setState({guiLabelTab:tab}, callback);
+  }
+  setGuiLabelTabDesktop = (tab, callback) => {
+    // if (this.state.editedWaterlabel === null) {
+    //   this.changeLabel();
+    // }
     this.setState({guiLabelTab:tab}, callback);
   }
   setEmail = (email) => {
@@ -474,6 +481,7 @@ class App extends Component {
           setSearchOnCityStreet={this.setSearchOnCityStreet}
           selectAddress={this.selectAddress}
           setGuiLabelTab={this.setGuiLabelTab}
+          setGuiLabelTabDesktop={this.setGuiLabelTabDesktop}
           setEmail={this.setEmail}
           setGuiShowEmail={this.setGuiShowEmail}
           closeSaveModal={this.closeSaveModal}

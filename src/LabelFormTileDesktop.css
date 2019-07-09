@@ -1,0 +1,14 @@
+.Body .Desktop.Tile .TabContainerHorizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.Body .Desktop.Tile .TabContainerHorizontal > button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.Body .Desktop.Tile .TabContainerHorizontal > button > span {
+  margin: 4px;
+}

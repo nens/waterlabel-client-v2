@@ -1,11 +1,9 @@
 import React from 'react';
 
 import {copyLabelData, } from "./utils/labelFunctions";
-import './LabelFormMobile.css';
+// import './LabelFormMobile.css';
 
-export default LabelFormMobile;
-
-function LabelFormMobile (props) {
+export default function LabelFormDesktop (props) {
 
   const { 
     assetTypesFromServer,
@@ -208,6 +206,26 @@ function LabelFormMobile (props) {
               </button>
             </div>
           </li>
+          <liv
+            style={
+              editedWaterlabel === null && latestWaterlabel===null && editedFinishedWaterlabel===null ?
+              {}
+              :
+              {display: "none"}
+            }
+          >
+            <button
+              className="StandardButton VOERIN"
+              onClick={e => {
+                e.preventDefault();
+                changeLabel();
+                
+              }}
+              
+            >
+              VOER STATISTIEKEN IN
+            </button>
+          </liv>
         </ul>
         
       </div>
@@ -220,14 +238,15 @@ function LabelFormMobile (props) {
           onClick={e => {
             e.preventDefault();
             setEditedWaterlabel(null);
-            setGuiLabelTab(null);
+            // setGuiLabelTab(null);
             
           }}
           style={
             editedWaterlabel !== null ?
             {}
             :
-            {display: "none"}
+            // {display: "none"}
+            {visibility: "hidden"}
           }
         >
           ANNULEER
@@ -239,7 +258,7 @@ function LabelFormMobile (props) {
           className="StandardButton Klaar"
           onClick={e => {
             e.preventDefault();
-            editingWaterlabelReady(null);
+            editingWaterlabelReady(guiLabelTab);
             
           }}
           style={
@@ -250,6 +269,23 @@ function LabelFormMobile (props) {
           }
         >
           KLAAR
+        </button>
+        <button
+          className="StandardButton VOERIN"
+          onClick={e => {
+            e.preventDefault();
+            changeLabel();
+            
+          }}
+          style={
+            editedWaterlabel === null && (latestWaterlabel!==null || editedFinishedWaterlabel!==null) ?
+            {}
+            :
+            {display: "none"}
+          }
+          
+        >
+          Verander
         </button>
       </div>
         

@@ -31,5 +31,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://waterlabel.staging.lizard.net/"
+  "proxy": "http://0.0.0.0:5050/"
 }

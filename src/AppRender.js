@@ -7,6 +7,7 @@ import SelectAddressFromList from "./SelectAddressFromList";
 import LabelForm from "./LabelForm";
 import LabelFormMobile from "./LabelFormMobile";
 import LabelFormTileMobile from "./LabelFormTileMobile";
+import LabelFormTileDesktop from "./LabelFormTileDesktop";
 import InfoTabs from "./InfoTabs";
 import SaveModal from "./SaveModal";
 import CurrentLabel from "./CurrentLabel";
@@ -69,6 +70,7 @@ function AppRender (props) {
     setSearchOnCityStreet,
     selectAddress,
     setGuiLabelTab,
+    setGuiLabelTabDesktop,
     setEmail,
     setGuiShowEmail,
     closeSaveModal,
@@ -203,6 +205,45 @@ function AppRender (props) {
         >
           LABEL OPSLAAN
         </button>
+        <LabelFormTileDesktop
+          assetTypeFetchState={assetTypeFetchState}
+          latestWaterlabel={latestWaterlabel}
+          editedWaterlabel={editedWaterlabel}
+          editedFinishedWaterlabel={editedFinishedWaterlabel}
+          guiLabelTab={guiLabelTab}
+          setGuiLabelTab={setGuiLabelTab}
+          setGuiLabelTabDesktop={setGuiLabelTabDesktop}
+          changeLabel={changeLabel}
+          assetTypesFromServer={assetTypesFromServer}
+          showLabelFormDetails={showLabelFormDetails}
+          setShowLabelFormDetails={setShowLabelFormDetails}
+          createNewLabel={createNewLabel}
+          setEditedWaterlabel={setEditedWaterlabel}
+          editingWaterlabelReady={editingWaterlabelReady}
+          computedWaterlabelState={computedWaterlabelState}
+          computedWaterlabel={computedWaterlabel}
+
+          tabImage={tuinImage}
+          tabText={"Mijn tuin"}
+          TabName={"Tuin"}
+          tileClassName={"TileTuin"}
+        />
+        {/* <LabelForm
+          assetTypesFromServer={assetTypesFromServer}
+          latestWaterlabel={latestWaterlabel}
+          editedWaterlabel={editedWaterlabel}
+          editedFinishedWaterlabel={editedFinishedWaterlabel}
+          guiLabelTab={guiLabelTab}
+          showLabelFormDetails={showLabelFormDetails}
+          setShowLabelFormDetails={bool=>setShowLabelFormDetails(bool)}
+          createNewLabel={createNewLabel}
+          changeLabel={changeLabel}
+          setGuiLabelTab={tab => setGuiLabelTab(tab)}
+          setEditedWaterlabel={setEditedWaterlabel}
+          editingWaterlabelReady={editingWaterlabelReady}
+          computedWaterlabelState={computedWaterlabelState}
+          computedWaterlabel={computedWaterlabel}
+        /> */}
         <LabelFormTileMobile
           assetTypeFetchState={assetTypeFetchState}
           latestWaterlabel={latestWaterlabel}

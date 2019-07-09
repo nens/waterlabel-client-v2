@@ -20,11 +20,15 @@ function YoutubeModal (props) {
       <div
         className="YoutubeFrame"
       >
+          {guiShowVideo? 
           <iframe 
             allowFullScreen
             frameBorder="0"
-            src="https://www.youtube.com/embed/jARteOPf_aI?rel=0&autoplay=1">
+            src="https://www.youtube.com/embed/jARteOPf_aI?rel=0&autoplay=0">
           </iframe>
+          :
+          null
+          }
       </div>
       <button
         onClick={e=>{
