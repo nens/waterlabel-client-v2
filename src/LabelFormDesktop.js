@@ -17,6 +17,7 @@ export default function LabelFormDesktop (props) {
     setShowLabelFormDetails,
     setEditedWaterlabel,
     editingWaterlabelReady,
+    setGuiLabelTabDesktop,
   } = props;
 
   const waterlabelToUse = 
@@ -252,27 +253,37 @@ export default function LabelFormDesktop (props) {
         
       
         {/* _____________________________________________ KLAAR FINISHED BUTTON */}
-        <button
-          className="StandardButton Klaar"
-          onClick={e => {
-            e.preventDefault();
-            editingWaterlabelReady(guiLabelTab);
-            
-          }}
-          style={
-            editedWaterlabel !== null ?
-            {}
-            :
-            {display: "none"}
-          }
+        <div
+          className="KlaarButtonContainer"
         >
-          KLAAR
-        </button>
+          <button
+            className="StandardButton Klaar"
+            disabled={editedWaterlabel && editedWaterlabel.assets.map(asset => asset.asset_type).includes(null)}
+            onClick={e => {
+              e.preventDefault();
+              editingWaterlabelReady(guiLabelTab);
+              
+            }}
+            style={
+              editedWaterlabel !== null
+              ?
+              {}
+              :
+              {display: "none"}
+            }
+          >
+            KLAAR
+          </button>
+          <span>Kies eerst het type in het dropdown menu</span>
+        </div>
         <button
           className="StandardButton Verander"
           onClick={e => {
             e.preventDefault();
             changeLabel();
+            setGuiLabelTabDesktop(guiLabelTab || "Tuin", _ => {
+              // no op
+            });
             
           }}
           style={

@@ -235,22 +235,29 @@ function LabelFormMobile (props) {
         
       
         {/* _____________________________________________ KLAAR FINISHED BUTTON */}
-        <button
-          className="StandardButton Klaar"
-          onClick={e => {
-            e.preventDefault();
-            editingWaterlabelReady(null);
-            
-          }}
-          style={
-            editedWaterlabel !== null ?
-            {}
-            :
-            {display: "none"}
-          }
+        <div
+          className="KlaarButtonContainer"
         >
-          KLAAR
-        </button>
+          <span>Kies eerst het type in het dropdown menu</span>
+          <button
+            className="StandardButton Klaar"
+            disabled={editedWaterlabel && editedWaterlabel.assets.map(asset => asset.asset_type).includes(null)}
+            onClick={e => {
+              e.preventDefault();
+              editingWaterlabelReady(null);
+              
+            }}
+            style={
+              editedWaterlabel !== null ?
+              {}
+              :
+              {display: "none"}
+            }
+          >
+            KLAAR
+          </button>
+          
+        </div>
       </div>
         
     </div>

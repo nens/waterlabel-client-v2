@@ -138,6 +138,7 @@ export default function LabelFormTileDesktop (props) {
         editingWaterlabelReady={editingWaterlabelReady}
         computedWaterlabelState={computedWaterlabelState}
         computedWaterlabel={computedWaterlabel}
+        setGuiLabelTabDesktop={setGuiLabelTabDesktop}
       />
     </div>
   </div>
