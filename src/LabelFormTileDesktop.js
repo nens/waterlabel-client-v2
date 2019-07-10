@@ -39,8 +39,7 @@ export default function LabelFormTileDesktop (props) {
     <div
     className={`Desktop Tile`}
     style={
-      assetTypeFetchState === "RECEIVED" // &&
-      // ( latestWaterlabel || editedWaterlabel || editedFinishedWaterlabel )  
+      assetTypeFetchState === "RECEIVED"  
       ?
       {}
       :
@@ -54,8 +53,7 @@ export default function LabelFormTileDesktop (props) {
         onClick={e=>{
           e.preventDefault();
           setGuiLabelTabDesktop("Dak", _ => {
-            // const elmnt = document.getElementsByClassName(tileClassName)[0];
-            // scrollElementIntoViewWorkaround(elmnt);
+            // no op
           });
                     
         }}
@@ -74,13 +72,12 @@ export default function LabelFormTileDesktop (props) {
         onClick={e=>{
           e.preventDefault();
           setGuiLabelTabDesktop("Tuin", _ => {
-            // const elmnt = document.getElementsByClassName(tileClassName)[0];
-            // scrollElementIntoViewWorkaround(elmnt);
+            // no op
           });
                     
         }}
         className={
-          guiLabelTab === ("Tuin" || null) ? "TabActive Tab" : "Tab TabInActive" 
+          guiLabelTab === "Tuin" || guiLabelTab === null  ? "TabActive Tab" : "Tab TabInActive" 
         }
       >
         <span>
@@ -92,8 +89,7 @@ export default function LabelFormTileDesktop (props) {
         onClick={e=>{
           e.preventDefault();
           setGuiLabelTabDesktop("Voorziening", _ => {
-            // const elmnt = document.getElementsByClassName(tileClassName)[0];
-            // scrollElementIntoViewWorkaround(elmnt);
+            // no op
           });
                     
         }}

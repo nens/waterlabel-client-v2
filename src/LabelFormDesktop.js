@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {copyLabelData, } from "./utils/labelFunctions";
-// import './LabelFormMobile.css';
+import './LabelFormDesktop.css';
 
 export default function LabelFormDesktop (props) {
 
@@ -213,7 +213,7 @@ export default function LabelFormDesktop (props) {
             }
           >
             <button
-              className="StandardButton VOERIN"
+              className="StandardButton Voerin"
               onClick={e => {
                 e.preventDefault();
                 changeLabel();
@@ -269,7 +269,7 @@ export default function LabelFormDesktop (props) {
           KLAAR
         </button>
         <button
-          className="StandardButton VOERIN"
+          className="StandardButton Verander"
           onClick={e => {
             e.preventDefault();
             changeLabel();

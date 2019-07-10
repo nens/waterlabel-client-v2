@@ -32,15 +32,15 @@
 }
 
 .Body .Desktop.Tile .DesktopLabelformTileBody .DesktopLabelformTileBodyLeft+div {
-  height: 100%;
+  display: flex;
+  align-items: center;
 }
 .Body .Desktop.Tile .DesktopLabelformTileBody .DesktopLabelformTileBodyLeft+div>div {
-  max-width: 2px;
-  max-height: 80%;
+  height: 80%;
   border-right-style: solid;
-  border-right-width: 1px;
+  border-right-width: 2px;
   border-right-color: #707070;
-  display: block; 
+  display: block;
 
   /* content: "";
   display: block; 
@@ -64,4 +64,8 @@
 
 .Body .Desktop.Tile .DesktopLabelformTileBody .DesktopLabelformTileBodyLeft img {
   width: 240px;
+}
+
+.Body .Desktop.Tile .TabContainerHorizontal > .TabInActive {
+  background-color: #E9E9E9;
 }
