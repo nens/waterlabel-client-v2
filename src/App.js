@@ -48,7 +48,19 @@ class App extends Component {
     };
 
     this.fetchAssetTypes();
+    
+    window.addEventListener("beforeunload", this.confirmLeave);
   };
+
+  confirmLeave = (event) => {
+    const questionString = 'Weet u zeker dat u het waterlabel niet wilt opslaan?';
+    console.log('this.state.editedWaterlabel', this.state.editedWaterlabel, this.state.editedFinishedWaterlabel)
+    if (this.state.editedWaterlabel || this.state.editedFinishedWaterlabel) {
+      event.returnValue = questionString;
+      return questionString;
+    }
+  }
+
   fetchAssetTypes = () => {
     const that = this;
     fetch( "/api/v2/waterlabelassettypes/")
