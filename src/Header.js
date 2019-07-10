@@ -1,7 +1,7 @@
 import React from 'react';
-export default Header;
+import FormattedAddress from './FormattedAddress';
 
- function Header (props) {
+export default function Header (props) {
 
     const {
       foundAddressesList,
@@ -25,29 +25,10 @@ export default Header;
       </button>
       {/* Flex wrapper */}
       <div>
-        {/*_______________________________________ SELECTED ADDRESS */}
         <div
           className="SelectedAddress"
-          style={
-            selectedAddress !== null 
-            ? 
-            {} 
-            : 
-            {visibility: "hidden"} 
-          }
         >
-          <div>
-            <span>{selectedAddress && selectedAddress.street}</span>
-            <span>{" "} </span>
-            <span>{selectedAddress && selectedAddress.housenumber}</span>
-            <span>{" "} </span>
-            <span>{selectedAddress && selectedAddress.houseletter}</span>
-          </div>
-          <div>
-          <span>{selectedAddress && selectedAddress.postalcode}</span>
-          <span>{" "} </span>
-          <span>{selectedAddress && selectedAddress.city}</span>
-          </div>
+          {selectedAddress? <FormattedAddress address={selectedAddress}/> : null}
         </div>
         </div>
       </div>

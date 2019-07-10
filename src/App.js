@@ -91,8 +91,14 @@ class App extends Component {
     })
     .then(function(parsedJSON) {
       const foundBuildingList = (parsedJSON.results && parsedJSON.results.length)? parsedJSON.results : [];
-      const unFlatFoundAddressesList = foundBuildingList.map( building => building.houseaddresses);
+      const unFlatFoundAddressesList = foundBuildingList.map( building => {
+        return building.houseaddresses.map(address => {
+          address.building = building.id;
+          return address;
+        })
+      });
       const foundAddressesList = [].concat.apply([], unFlatFoundAddressesList);
+      
       that.setState(
         {
         searchAddressState: "RECEIVED",

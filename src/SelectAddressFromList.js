@@ -1,5 +1,6 @@
 import React from 'react';
 import {scrollElementIntoViewWorkaround} from './utils/browserFunctions'
+import FormattedAddress from './FormattedAddress';
 
 export default SelectAddressFromList;
 
@@ -56,19 +57,7 @@ export default SelectAddressFromList;
                         })
                       }}
                     >
-                      <div>
-                        <span>{address.street}</span>
-                        <span>{" "}</span>
-                        <span>{address.housenumber}</span>
-                        <span style={address.houseletter?{}:{display:"none"}}>{" "} </span>
-                        <span style={address.houseletter?{}:{display:"none"}}>{address.houseletter}</span>
-                      {/* </div>
-                      <div> */}
-                        <span>{", "}</span>
-                        <span>{address.postalcode}</span>
-                        <span>{" "}</span>
-                        <span>{address.city}</span>
-                      </div>
+                      <FormattedAddress address={address}/>
                     </button>
                     
                   </li>
