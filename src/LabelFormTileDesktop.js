@@ -121,6 +121,7 @@ export default function LabelFormTileDesktop (props) {
         </div>
         
       </div>
+      {/* vertical border */}
       <div><div></div></div>
       <LabelFormDesktop
         assetTypesFromServer={assetTypesFromServer}

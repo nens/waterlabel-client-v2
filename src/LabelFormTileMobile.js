@@ -38,7 +38,8 @@ function LabelFormTileMobile (props) {
       ( latestWaterlabel || editedWaterlabel || editedFinishedWaterlabel ) &&
       (
       guiLabelTab === TabName ||
-      guiLabelTab === null 
+      guiLabelTab === null ||
+      (guiLabelTab !== TabName && editedWaterlabel ===null)
       )
       ?
       {}
@@ -56,7 +57,7 @@ function LabelFormTileMobile (props) {
                   
       }}
       className={
-        guiLabelTab === TabName ? "TabActive Tab" : "Tab TabInActive" 
+        guiLabelTab === TabName && editedWaterlabel !== null ? "TabActive Tab" : "Tab TabInActive" 
       }
     >
       <span>
