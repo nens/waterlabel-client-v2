@@ -330,6 +330,7 @@ class App extends Component {
       guiShowVideo: false,
       guiShowEmail: false,
       guiShowSuccesSave: false,
+      guiLabelTab: null,
     })
   }
   setGuiShowVideo = (bool) => {
