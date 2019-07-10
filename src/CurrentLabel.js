@@ -10,6 +10,7 @@ function CurrentLabel (props) {
     editedWaterlabel,
     computedWaterlabel,
     editedFinishedWaterlabel,
+    openSaveModal,
   } = props;
 
   return (
@@ -77,7 +78,25 @@ function CurrentLabel (props) {
                 <legend>{"U heeft label " + (latestWaterlabel && latestWaterlabel.code)}</legend>
                 }
               </div>
+              
               <img src={labelsImage}/>
+              <button
+                className="Desktop StandardButton NieuwLabelOpslaan"
+                style={
+                  editedFinishedWaterlabel?
+                  {}
+                  :
+                  {display:"none"}
+                }
+                onClick={e=>{
+                  e.preventDefault();
+                  openSaveModal(_=>{
+                    // no op
+                  });
+                }}
+              >
+                NIEUW LABEL OPSLAAN
+              </button>
             </div>
         </div>
         

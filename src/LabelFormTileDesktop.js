@@ -114,7 +114,12 @@ export default function LabelFormTileDesktop (props) {
         <p >
         Hoe meer water in de tuin kan worden vast gehouden, hoe beter! Dat betekent dus hoe groener, hoe beter!
         </p>
-        <img src={tuinHuisGrasImage}/>
+        <div
+          className="ImgContainer"
+        >
+          <img src={tuinHuisGrasImage}/>
+        </div>
+        
       </div>
       <div><div></div></div>
       <LabelFormDesktop

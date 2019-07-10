@@ -172,6 +172,7 @@ function AppRender (props) {
             editedWaterlabel={editedWaterlabel}
             computedWaterlabel={computedWaterlabel}
             editedFinishedWaterlabel={editedFinishedWaterlabel}
+            openSaveModal={openSaveModal}
           />
         </div>
         <button
