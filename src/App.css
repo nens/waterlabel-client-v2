@@ -14,17 +14,37 @@ button::-moz-focus-inner {
   background-color: white;
   border-bottom-width: 0px;
 } */
-
-@media only screen and (min-width: 600px) {
-  .Mobile {
-    display: none;
-  }
+.Body {
+  width: 100%;
+  /* height: 100%;
+  min-height: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 16px;
+  position: relative;
 }
-@media only screen and (max-width: 599px) {
+/* @media only screen and (max-width: 799px) { */
   .Desktop {
     display: none;
   }
+/* } */
+
+@media only screen and (min-width: 800px) {
+  .Mobile {
+    display: none;
+  }
+  .Body {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch;
+  }
+  .Desktop {
+    display: initial;
+  }
 }
+
 
 .TabActive button {
   background-color: white;
@@ -81,16 +101,17 @@ html, body, #root, .App {
   font-size: 15px;
 }
 
-.Body {
-  width: 100%;
-  /* height: 100%;
-  min-height: 100%; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 16px;
-  position: relative;
-}
+
+/* already declared at top of page */
+/* @media only screen and (min-width: 800px) {
+  .Body {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch;
+  }
+} */
+
 .BodyHide {
   display: none;
 }
@@ -102,6 +123,13 @@ html, body, #root, .App {
   border-radius: 10px;
   box-shadow: 0px 3px 3px hsla(120,0%,0%,0.16);
 }
+.Body .Tile.Desktop.Currentlabel {
+  width: 20%;
+}
+.Body .Tile.Desktop {
+  width: 70%;
+}
+
 .Body .Button {
   margin-top: 16px;
   width: 90%;

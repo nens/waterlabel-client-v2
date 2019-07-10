@@ -163,6 +163,17 @@ function AppRender (props) {
             editedFinishedWaterlabel={editedFinishedWaterlabel}
           />
         </div>
+        <div
+          className="Desktop Tile Currentlabel"
+        >
+          <CurrentLabel
+            selectedAddress={selectedAddress}
+            latestWaterlabel={latestWaterlabel}
+            editedWaterlabel={editedWaterlabel}
+            computedWaterlabel={computedWaterlabel}
+            editedFinishedWaterlabel={editedFinishedWaterlabel}
+          />
+        </div>
         <button
           className="Mobile Button StandardButton NewButton"
           onClick={ e =>{

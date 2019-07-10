@@ -38,15 +38,9 @@
 .Body .Desktop.Tile .DesktopLabelformTileBody .DesktopLabelformTileBodyLeft+div>div {
   height: 80%;
   border-right-style: solid;
-  border-right-width: 2px;
+  border-right-width: 1px;
   border-right-color: #707070;
   display: block;
-
-  /* content: "";
-  display: block; 
-    background:red; 
-    min-width:100px;
-    min-height: 100px; */
 }
 
 .Body .Desktop.Tile .DesktopLabelformTileBody .DesktopLabelformTileBodyLeft h1 {
