@@ -42,6 +42,7 @@ class App extends Component {
       computedWaterlabel: null,
       guiShowVideo: false,
       guiShowEmail: false,
+      guiShowBackModal: true,
       guiShowSuccesSave: false,
       guiLabelTab: null,//"Dak", // "Tuin", "Voorziening"
       guiInfoTab: null,//"PERSONAL", // "CALCULATION", "WHY"
@@ -412,6 +413,10 @@ class App extends Component {
     this.setState({guiInfoTab: tab}, callback);
   }
 
+  setGuiShowBackModal = (bool) => {
+    this.setState({guiShowBackModal: bool})
+  }
+
   render  = () => {
 
     const {
@@ -448,6 +453,7 @@ class App extends Component {
       guiShowSuccesSave,
       guiLabelTab, // "Tuin", "Voorziening"
       guiInfoTab, 
+      guiShowBackModal,
     } = this.state;
 
     return (
@@ -505,6 +511,8 @@ class App extends Component {
           setGuiShowEmail={this.setGuiShowEmail}
           closeSaveModal={this.closeSaveModal}
           setGuiInfoTab={this.setGuiInfoTab}
+          guiShowBackModal={guiShowBackModal}
+          setGuiShowBackModal={this.setGuiShowBackModal}
         />
     );
   };

@@ -10,6 +10,8 @@ import LabelFormTileMobile from "./LabelFormTileMobile";
 import LabelFormTileDesktop from "./LabelFormTileDesktop";
 import InfoTabs from "./InfoTabs";
 import SaveModal from "./SaveModal";
+import BackModal from "./BackModal";
+
 import CurrentLabel from "./CurrentLabel";
 import LoadingIcon from "./LoadingIcon";
 import dakImage from './img/dak.svg';
@@ -75,6 +77,8 @@ function AppRender (props) {
     setGuiShowEmail,
     closeSaveModal,
     setGuiInfoTab,
+    setGuiShowBackModal,
+    guiShowBackModal
 
   } = props;
 
@@ -104,6 +108,11 @@ function AppRender (props) {
       <YoutubeModal
         guiShowVideo ={guiShowVideo}
         setGuiShowVideo={setGuiShowVideo}
+      />
+      <BackModal
+        backToAddressSearchForm={backToAddressSearchForm}
+        guiShowBackModal={guiShowBackModal}
+        setGuiShowBackModal={setGuiShowBackModal}
       />
       
       <Header
