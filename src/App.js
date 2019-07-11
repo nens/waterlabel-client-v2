@@ -242,11 +242,12 @@ class App extends Component {
 
     });
   }
-  setEditedWaterlabel = (newLabel) => {
+  setEditedWaterlabel = (newLabel, callBack) => {
     this.setState(
       {editedWaterlabel: newLabel},
       (_ => {
         this.fetchComputedLabel(this.state.editedWaterlabel);
+        callBack();
       })
     )
   }

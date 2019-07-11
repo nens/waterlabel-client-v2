@@ -27,13 +27,16 @@ export default function AssetList (props) {
           {
             assetsToUse && assetsToUse
               .map( (asset, index) => {
-                const assetInActiveTab = 
-                  asset.category ===  guiLabelTab; 
+                // const assetInActiveTab = 
+                //   asset.category ===  guiLabelTab;
+                const htmlId = index + '_index_asset_edited_waterlabel';
+                
                 return (
                   <li
                     key={index}
-                    style={assetInActiveTab? {}:{display:"none"}}
+                    // style={assetInActiveTab? {}:{display:"none"}}
                     className="Row"
+                    id={htmlId}
                   >
                     {/* _______________________________________________SELECT CATEGORY */}
                     <div
@@ -146,7 +149,13 @@ export default function AssetList (props) {
                     </div>
                   </li>
                 );
-          })}
+              })
+              // .filter(asset => {
+              //   const assetInActiveTab = 
+              //         asset.category ===  guiLabelTab || asset.category === null; 
+              //       return assetInActiveTab;
+              // })
+          }
           <li
             style={!editedWaterlabel || editedWaterlabel.assets.map(asset => asset.asset_type).includes(null)? {visibility:"hidden"}:{}}
             className="Row"
@@ -169,7 +178,11 @@ export default function AssetList (props) {
                     type: null,
                     asset_type: null,
                   })                
-                  setEditedWaterlabel(copyLabel);
+                  setEditedWaterlabel(copyLabel, _ => {
+                    const index = waterlabelToUse.assets.length - 1;
+                    const htmlId = index + '_index_asset_edited_waterlabel';
+                    document.getElementById(htmlId).getElementsByTagName('select').focus();
+                  });
                 }}
               >
                 + Nieuwe invoer
