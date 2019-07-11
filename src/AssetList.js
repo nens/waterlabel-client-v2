@@ -1,24 +1,17 @@
 import React from 'react';
 
 import {copyLabelData, } from "./utils/labelFunctions";
-import './LabelFormMobile.css';
 
-export default LabelFormMobile;
-
-function LabelFormMobile (props) {
+export default function AssetList (props) {
 
   const { 
     assetTypesFromServer,
     latestWaterlabel,
     editedWaterlabel,
     editedFinishedWaterlabel,
-    setGuiLabelTab,
     guiLabelTab,
     changeLabel,
-    showLabelFormDetails,
-    setShowLabelFormDetails,
     setEditedWaterlabel,
-    editingWaterlabelReady,
   } = props;
 
   const waterlabelToUse = 
@@ -30,36 +23,6 @@ function LabelFormMobile (props) {
 
 
   return (
-    <div
-    className="LabelFormMobile"
-    style={{
-      width: "100%",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "stretch",
-    }}
-    >
-      <p >
-      Hoe meer water in de tuin kan worden vast gehouden, hoe beter! Dat betekent dus hoe groener, hoe beter! Voer hieronder de statistieken van uw tuin in, daarmee berekenen wij een label!
-      </p>
-
-
-      <div> 
-        <div 
-          className="Row AssetRow AssetRowHeader"
-        >
-          <div
-            className="ColumnAssetType"
-          >
-
-          </div>
-          <div
-            className="ColumnAssetArea"
-          >
-            {guiLabelTab === "Voorziening" ? "Berging" : "Opp."}
-          </div>
-
-        </div>
         <ul>
           {
             assetsToUse && assetsToUse
@@ -124,7 +87,12 @@ function LabelFormMobile (props) {
                               value={asset.area}
                               onChange={ event => {
                                 const copyLabel = copyLabelData(waterlabelToUse);
-                                copyLabel.assets[index].area = event.target.value;                          
+                                let value =event.target.value;
+                                if (parseInt(value)) { // also ignore 0
+                                  copyLabel.assets[index].area = parseInt(value); 
+                                } else if (value==='') {
+                                  copyLabel.assets[index].area = ''; 
+                                }
                                 setEditedWaterlabel(copyLabel);
                               }}
                             >
@@ -144,16 +112,8 @@ function LabelFormMobile (props) {
                         <input
                           value={asset.storage}
                           onChange={ event => {
-                            // const copyLabel = copyLabelData(waterlabelToUse);
-                            // copyLabel.assets[index].storage = event.target.value;                          
-                            // setEditedWaterlabel(copyLabel);
                             const copyLabel = copyLabelData(waterlabelToUse);
-                            let value =event.target.value;
-                            if (parseInt(value)) { // also ignore 0
-                              copyLabel.assets[index].area = parseInt(value); 
-                            } else if (value==='') {
-                              copyLabel.assets[index].area = ''; 
-                            }
+                            copyLabel.assets[index].storage = event.target.value;                          
                             setEditedWaterlabel(copyLabel);
                           }}
                         >
@@ -216,58 +176,27 @@ function LabelFormMobile (props) {
               </button>
             </div>
           </li>
-        </ul>
-        
-      </div>
-      <div
-        className="RowForButtons"
-      >
-        {/* _____________________________________________ Annuleer FINISHED BUTTON */}
-        <button
-          className="StandardButton Annuleer"
-          onClick={e => {
-            e.preventDefault();
-            setEditedWaterlabel(null);
-            setGuiLabelTab(null);
-            
-          }}
-          style={
-            editedWaterlabel !== null ?
-            {}
-            :
-            {display: "none"}
-          }
-        >
-          ANNULEER
-        </button>
-        
-      
-        {/* _____________________________________________ KLAAR FINISHED BUTTON */}
-        <div
-          className="KlaarButtonContainer"
-        >
-          <button
-            className="StandardButton Klaar"
-            // disabled={editedWaterlabel && editedWaterlabel.assets.map(asset => asset.asset_type).includes(null)}
-            onClick={e => {
-              e.preventDefault();
-              editingWaterlabelReady(null);
-              
-            }}
+          <li
             style={
-              editedWaterlabel !== null ?
+              editedWaterlabel === null && latestWaterlabel===null && editedFinishedWaterlabel===null ?
               {}
               :
               {display: "none"}
             }
           >
-            KLAAR
-          </button>
-          <span>Kies eerst het type in het dropdown menu</span>
-        </div>
-      </div>
-        
-    </div>
+            <button
+              className="StandardButton Voerin"
+              onClick={e => {
+                e.preventDefault();
+                changeLabel();
+                
+              }}
+              
+            >
+              VOER STATISTIEKEN IN
+            </button>
+          </li>
+        </ul>
   );
 }
 

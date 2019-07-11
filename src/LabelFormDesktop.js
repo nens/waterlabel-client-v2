@@ -121,7 +121,12 @@ export default function LabelFormDesktop (props) {
                               value={asset.area}
                               onChange={ event => {
                                 const copyLabel = copyLabelData(waterlabelToUse);
-                                copyLabel.assets[index].area = event.target.value;                          
+                                let value =event.target.value;
+                                if (parseInt(value)) { // also ignore 0
+                                  copyLabel.assets[index].area = parseInt(value); 
+                                } else if (value==='') {
+                                  copyLabel.assets[index].area = ''; 
+                                }
                                 setEditedWaterlabel(copyLabel);
                               }}
                             >
@@ -177,7 +182,7 @@ export default function LabelFormDesktop (props) {
                 );
           })}
           <li
-            style={editedWaterlabel && editedWaterlabel.assets.map(asset => asset.asset_type).includes(null)? {visibility:"hidden"}:{}}
+            style={!editedWaterlabel || editedWaterlabel.assets.map(asset => asset.asset_type).includes(null)? {visibility:"hidden"}:{}}
             className="Row"
           >
             {/* ___________________________________________  NEW BUTTON */}

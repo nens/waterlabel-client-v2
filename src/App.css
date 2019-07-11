@@ -87,6 +87,17 @@ button::-moz-focus-inner {
 .Desktop.StandardButton.NieuwLabelOpslaan {
   font-size: 14px;
 }
+.Desktop.StandardButton.NieuwLabelOpslaan+span {
+  visibility: hidden;
+  color: #d2604e;
+}
+.Desktop.StandardButton.NieuwLabelOpslaan:disabled {
+  color: #707070;
+  background-color: #8A9294;
+}
+.Desktop.StandardButton.NieuwLabelOpslaan:disabled+span {
+  visibility: inherit;
+}
 
 .StandardTile {
   margin-top: 16px;
@@ -494,18 +505,21 @@ html, body, #root, .App {
 
 /* ________________________________________________ ANY LABEL */
 .AnyLabelVisual {
-  position: relative;
-}
-.AnyLabelVisual .BackgroundImage {
-  /* position: absolute; */
+  /* position: relative; */
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
   align-items: center;
-
   padding-top: 26px;
   padding-bottom: 26px;
   padding-left: 40px;
   padding-right: 40px;
+}
+.AnyLabelVisual .BackgroundImage {
+  position: relative;
+  /* display: flex;
+  justify-content: flex-start;
+  align-items: center; */
+
 }
 .AnyLabelVisual .BackgroundImage .Margin {
   /* width: 200px; */
@@ -513,6 +527,10 @@ html, body, #root, .App {
   /* margin-top: 26px;
   margin-bottom: 26px;
   margin-left: 40px; */
+  /* padding-top: 26px;
+  padding-bottom: 26px;
+  padding-left: 40px;
+  padding-right: 40px; */
 }
 
 .AnyLabelVisual .BackgroundImage .Margin img {
