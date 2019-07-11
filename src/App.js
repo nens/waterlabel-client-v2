@@ -22,7 +22,8 @@ class App extends Component {
       searchPostcode: "1188AL",
       searchStreet: "KABELWEG",
       searchCity: "AMSTERDAM",
-      searchNumber: "20",//"36",
+      // searchNumber: "20",//"36",
+      searchNumber: "",//"36",
       searchAddition: "",
       email: "1231@32132.COM",
 
@@ -50,7 +51,7 @@ class App extends Component {
 
     this.fetchAssetTypes();
     
-    window.addEventListener("beforeunload", this.confirmLeave);
+    // window.addEventListener("beforeunload", this.confirmLeave);
   };
 
   confirmLeave = (event) => {

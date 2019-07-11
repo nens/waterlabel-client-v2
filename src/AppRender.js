@@ -18,6 +18,7 @@ import dakImage from './img/dak.svg';
 import tuinImage from './img/tuin.svg';
 import voorzieningImage from './img/voorziening.svg';
 import {scrollElementIntoViewWorkaround} from './utils/browserFunctions'
+import {getLabelAssetsTotalArea} from './utils/labelFunctions';
 
 
 export default AppRender;
@@ -233,6 +234,7 @@ function AppRender (props) {
             :
             {display: "none"}
           }
+          disabled={editedFinishedWaterlabel && getLabelAssetsTotalArea(editedFinishedWaterlabel.assets) === 0}
         >
           LABEL OPSLAAN
         </button>
