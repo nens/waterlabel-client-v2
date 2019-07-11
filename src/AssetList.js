@@ -46,7 +46,7 @@ export default function AssetList (props) {
                     { asset.type === null 
                       ?
                       <select
-                        id={htmlId}
+                        className={htmlId}
                         onChange={ event => {
                           event.preventDefault();
                           console.log(JSON.stringify(event.target.value));
@@ -169,7 +169,7 @@ export default function AssetList (props) {
               <button
                 className="StandardButton NewAssetButton"
                 onClick={e=>{
-                  const that = this;
+                  const target = e.target;
                   e.preventDefault();
                   const copyLabel = copyLabelData(waterlabelToUse);
                   copyLabel.assets.push({
@@ -187,10 +187,15 @@ export default function AssetList (props) {
                     const htmlId = index + '_index_asset_edited_waterlabel';
                     setTimeout(_=> {
                       console.log('htmlId ' + htmlId, document.getElementById(htmlId))//that.refs[htmlId]);
-                      const selectBox = document.getElementById(htmlId);
-                      if (selectBox) {
-                        selectBox.focus(); // unfortuenedly this does not open the select, seems impossible ...
+                      const parent = target.closest("ul");
+                      console.log('parent', parent)
+                      if (parent) {
+                        const selectBox = parent.getElementsByClassName(htmlId);//document.getElementById(htmlId);
+                        if (selectBox && selectBox[0]) {
+                          selectBox[0].focus(); // unfortuenedly this does not open the select, seems impossible ...
+                        }
                       }
+                      
                     },
                     0
                     )
