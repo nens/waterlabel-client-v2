@@ -1,6 +1,12 @@
 export function copyLabelData (labelToCopy) {
+  return JSON.parse(JSON.stringify(labelToCopy));
+}
+
+export function copyLabelDataWithoutNullCategories (labelToCopy) {
   // console.log('labelToCopy', labelToCopy, JSON.stringify(labelToCopy));
-  return JSON.parse(JSON.stringify(labelToCopy))
+  let copiedLabel = JSON.parse(JSON.stringify(labelToCopy));
+  copiedLabel.assets = copiedLabel.assets.filter(asset => asset.asset_type !== null);
+  return copiedLabel;
 }
 
 export function setAssetCategories(assets, assetTypes) {

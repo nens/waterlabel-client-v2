@@ -66,3 +66,7 @@
 .Body .Desktop.Tile .TabContainerHorizontal > .TabInActive {
   background-color: #E9E9E9;
 }
+
+.Body .Desktop.Tile .TabContainerHorizontal > .Tab:disabled * {
+  opacity: 0.5;
+}

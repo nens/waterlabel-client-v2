@@ -35,6 +35,8 @@ export default function LabelFormTileDesktop (props) {
     selectedAddress,
   } = props;
 
+  const guiLabelTabConsideredDefault = guiLabelTab || "Dak";
+
 
   return (
     <div
@@ -59,8 +61,9 @@ export default function LabelFormTileDesktop (props) {
                     
         }}
         className={
-          guiLabelTab === "Dak" ? "TabActive Tab" : "Tab TabInActive" 
+          guiLabelTabConsideredDefault === "Dak" ? "TabActive Tab" : "Tab TabInActive" 
         }
+        disabled={editedWaterlabel !== null && guiLabelTabConsideredDefault !== "Dak"}
       >
         <span>
           <img src={dakImage} width="36px"/>
@@ -78,8 +81,9 @@ export default function LabelFormTileDesktop (props) {
                     
         }}
         className={
-          guiLabelTab === "Tuin" || guiLabelTab === null  ? "TabActive Tab" : "Tab TabInActive" 
+          guiLabelTabConsideredDefault === "Tuin"  ? "TabActive Tab" : "Tab TabInActive" 
         }
+        disabled={editedWaterlabel !== null && guiLabelTabConsideredDefault !== "Tuin"}
       >
         <span>
           <img src={tuinImage} width="36px"/>
@@ -95,8 +99,9 @@ export default function LabelFormTileDesktop (props) {
                     
         }}
         className={
-          guiLabelTab === "Voorziening" ? "TabActive Tab" : "Tab TabInActive" 
+          guiLabelTabConsideredDefault === "Voorziening" ? "TabActive Tab" : "Tab TabInActive" 
         }
+        disabled={editedWaterlabel !== null && guiLabelTabConsideredDefault !== "Voorziening"}
       >
         <span>
           <img src={voorzieningImage} width="36px"/>
@@ -129,7 +134,7 @@ export default function LabelFormTileDesktop (props) {
         latestWaterlabel={latestWaterlabel}
         editedWaterlabel={editedWaterlabel}
         editedFinishedWaterlabel={editedFinishedWaterlabel}
-        guiLabelTab={guiLabelTab || 'Tuin'}
+        guiLabelTab={guiLabelTabConsideredDefault}
         showLabelFormDetails={showLabelFormDetails}
         setShowLabelFormDetails={bool=>setShowLabelFormDetails(bool)}
         createNewLabel={createNewLabel}

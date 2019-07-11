@@ -1,7 +1,7 @@
 import React,  { Component } from 'react';
 
 import AppRender from './AppRender';
-import {copyLabelData, setAssetCategories} from "./utils/labelFunctions";
+import {copyLabelData, copyLabelDataWithoutNullCategories, setAssetCategories} from "./utils/labelFunctions";
 
 
 class App extends Component {
@@ -257,7 +257,7 @@ class App extends Component {
       ||
       label.assets
         .filter(asset => asset.asset_type !== null)
-        .reduce((acc, curr)=>acc+curr.area, 0 )
+        .reduce((acc, curr)=>acc+((parseInt(curr.area) || 0)), 0 )
          === 0
         // .length === 0 
     )
@@ -311,7 +311,7 @@ class App extends Component {
     });
   }
   editingWaterlabelReady = (guiLabelTab) => {
-    let finishedWaterlabel = copyLabelData(this.state.editedWaterlabel);
+    let finishedWaterlabel = copyLabelDataWithoutNullCategories(this.state.editedWaterlabel);
     finishedWaterlabel.code = this.state.computedWaterlabel && this.state.computedWaterlabel.code;
     finishedWaterlabel.building = this.state.selectedAddress.building;
     // email is set In later state ! only pass it to the api
