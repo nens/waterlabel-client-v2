@@ -238,7 +238,6 @@ function LabelFormMobile (props) {
         <div
           className="KlaarButtonContainer"
         >
-          <span>Kies eerst het type in het dropdown menu</span>
           <button
             className="StandardButton Klaar"
             disabled={editedWaterlabel && editedWaterlabel.assets.map(asset => asset.asset_type).includes(null)}
@@ -256,7 +255,7 @@ function LabelFormMobile (props) {
           >
             KLAAR
           </button>
-          
+          <span>Kies eerst het type in het dropdown menu</span>
         </div>
       </div>
         
