@@ -38,7 +38,6 @@
 .LabelFormMobile .RowForButtons .Annuleer,
 .LabelFormMobile .RowForButtons .Klaar {
   width: 101px;
-  height: 31px;
   font-size: 14px;
 }
 .RowForButtons .Klaar:disabled {
@@ -126,7 +125,6 @@
 }
 
 .LabelFormMobile .Row .NewAssetButton {
-  height: 31px;
   width: 100%;
   font-size: 14px;
 }

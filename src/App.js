@@ -42,7 +42,7 @@ class App extends Component {
       computedWaterlabel: null,
       guiShowVideo: false,
       guiShowEmail: false,
-      guiShowBackModal: true,
+      guiShowBackModal: false,
       guiShowSuccesSave: false,
       guiLabelTab: null,//"Dak", // "Tuin", "Voorziening"
       guiInfoTab: null,//"PERSONAL", // "CALCULATION", "WHY"

@@ -74,11 +74,10 @@ button::-moz-focus-inner {
   border-radius: 17px;
   /* margin-bottom: 20px; */
   box-shadow: 0px 3px 3px hsla(120,0%,0%,0.16);
-  padding: 4px;
+  padding: 8px;
 }
 
 .Desktop.StandardButton.NieuwLabelOpslaan {
-  /* height: 31px; */
   font-size: 14px;
 }
 
@@ -218,6 +217,12 @@ html, body, #root, .App {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.ModalBack .BackConfirm .Blijf {
+  background-color: #8A9294;
+}
+.ModalBack .BackConfirm .DoNotSave {
+  background-color: #d2604e;
 }
 /* _____________________________________________ Youtube */
 .ModalYoutube {
@@ -438,7 +443,7 @@ html, body, #root, .App {
   background-color: #0086A6;
   border: none; */
   width:116px;
-  height: 35px;
+  /* height: 35px; */
   margin-bottom: 20px;
   /* border-radius: 17px;
   margin-bottom: 20px; */
@@ -528,10 +533,9 @@ html, body, #root, .App {
 
 .NewButton {
   background-color: #0086A6;
-  /* margin-top: 16px; */
   width: 100%;
-  min-height: 50px;
-  height: 50px;
+  min-height: 50px; 
+   height: 50px;
 }
 /* ___________________________________________- InfoTabs */
 

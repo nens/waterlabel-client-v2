@@ -30,6 +30,7 @@ export default function BackModal (props) {
               <h1>Label niet opgeslagen. Weet u het zeker?</h1>
               <p>
                 Als u nu terug gaat wordt uw aangepaste label niet opgeslagen!
+                <br/>
                 Al uw wijzigingen gaan dan verloren!
               </p>
               
