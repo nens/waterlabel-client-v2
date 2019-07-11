@@ -12,6 +12,7 @@ export default function AssetList (props) {
     guiLabelTab,
     changeLabel,
     setEditedWaterlabel,
+    setGuiLabelTabDesktop,
   } = props;
 
   const waterlabelToUse = 
@@ -189,7 +190,8 @@ export default function AssetList (props) {
               onClick={e => {
                 e.preventDefault();
                 changeLabel();
-                
+                // setGuiLabelTabDesktop is only defined for desktoptab
+                setGuiLabelTabDesktop && setGuiLabelTabDesktop(guiLabelTab);
               }}
               
             >

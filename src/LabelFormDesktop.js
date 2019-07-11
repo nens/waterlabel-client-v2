@@ -66,6 +66,7 @@ export default function LabelFormDesktop (props) {
           guiLabelTab={guiLabelTab}
           changeLabel={changeLabel}
           setEditedWaterlabel={setEditedWaterlabel}
+          setGuiLabelTabDesktop={setGuiLabelTabDesktop}
         />
       </div>
       <div
