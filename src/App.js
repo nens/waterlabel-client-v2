@@ -196,7 +196,7 @@ class App extends Component {
     this.setState({
       guiShowEmail: true,
     },
-    callBack
+    callBack && callBack
     )
   }
   saveLabel = () => {
@@ -247,7 +247,7 @@ class App extends Component {
       {editedWaterlabel: newLabel},
       (_ => {
         this.fetchComputedLabel(this.state.editedWaterlabel);
-        callBack();
+        callBack && callBack();
       })
     )
   }
@@ -373,7 +373,7 @@ class App extends Component {
     this.setState(
       {selectedAddress: address},
       (_=>{
-        callback();
+        callback && callback();
         this.fetchWaterlabelsFromBuilding();
       })
     )

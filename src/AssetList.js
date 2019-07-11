@@ -21,6 +21,7 @@ export default function AssetList (props) {
 
   const assetsToUse = waterlabelToUse && waterlabelToUse.assets;
   const filteredAssetTypes = assetTypesFromServer.filter(type=>type.category === guiLabelTab)
+  
 
 
   return (
@@ -37,7 +38,6 @@ export default function AssetList (props) {
                     key={index}
                     // style={assetInActiveTab? {}:{display:"none"}}
                     className="Row"
-                    id={htmlId}
                   >
                     {/* _______________________________________________SELECT CATEGORY */}
                     <div
@@ -46,6 +46,7 @@ export default function AssetList (props) {
                     { asset.type === null 
                       ?
                       <select
+                        id={htmlId}
                         onChange={ event => {
                           event.preventDefault();
                           console.log(JSON.stringify(event.target.value));
@@ -168,10 +169,11 @@ export default function AssetList (props) {
               <button
                 className="StandardButton NewAssetButton"
                 onClick={e=>{
+                  const that = this;
                   e.preventDefault();
                   const copyLabel = copyLabelData(waterlabelToUse);
                   copyLabel.assets.push({
-                    area: 0,
+                    area: guiLabelTab === 'Dak' || guiLabelTab === 'Tuin' ? 10 : 0,
                     storage: 0,
                     infiltration: 0,
                     sewer_connection: true,
@@ -180,9 +182,20 @@ export default function AssetList (props) {
                     asset_type: null,
                   })                
                   setEditedWaterlabel(copyLabel, _ => {
-                    const index = waterlabelToUse.assets.length - 1;
+                    const index = waterlabelToUse.assets.length;
+                    
                     const htmlId = index + '_index_asset_edited_waterlabel';
-                    document.getElementById(htmlId).getElementsByTagName('select').focus();
+                    setTimeout(_=> {
+                      console.log('htmlId ' + htmlId, document.getElementById(htmlId))//that.refs[htmlId]);
+                      const selectBox = document.getElementById(htmlId);
+                      if (selectBox) {
+                        selectBox.focus(); // unfortuenedly this does not open the select, seems impossible ...
+                      }
+                    },
+                    0
+                    )
+
+                    // document.getElementById(htmlId) //.getElementsByTagName('select').focus();
                   });
                 }}
               >

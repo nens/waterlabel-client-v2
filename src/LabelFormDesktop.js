@@ -99,7 +99,7 @@ export default function LabelFormDesktop (props) {
         >
           <button
             className="StandardButton Klaar"
-            // disabled={editedWaterlabel && editedWaterlabel.assets.map(asset => asset.asset_type).includes(null)}
+            disabled={editedWaterlabel && editedWaterlabel.assets.map(asset => asset.asset_type).includes(null)}
             onClick={e => {
               e.preventDefault();
               editingWaterlabelReady(guiLabelTab);
