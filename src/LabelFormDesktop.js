@@ -205,7 +205,7 @@ export default function LabelFormDesktop (props) {
               </button>
             </div>
           </li>
-          <liv
+          <li
             style={
               editedWaterlabel === null && latestWaterlabel===null && editedFinishedWaterlabel===null ?
               {}
@@ -224,7 +224,7 @@ export default function LabelFormDesktop (props) {
             >
               VOER STATISTIEKEN IN
             </button>
-          </liv>
+          </li>
         </ul>
         
       </div>

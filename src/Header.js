@@ -7,6 +7,9 @@ export default function Header (props) {
       foundAddressesList,
       backToAddressSearchForm,
       selectedAddress,
+      setGuiShowBackModal,
+      editedFinishedWaterlabel,
+      editedWaterlabel,
     } = props;
 
     return (
@@ -18,7 +21,14 @@ export default function Header (props) {
       <button
         
         onClick={_ =>{
-          backToAddressSearchForm();
+          if (
+            editedFinishedWaterlabel || editedWaterlabel
+          ) {
+            setGuiShowBackModal(true);
+          } else {
+            backToAddressSearchForm();
+          }
+          
         }}
       >
         {"←"}

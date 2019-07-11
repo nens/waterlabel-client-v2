@@ -119,6 +119,9 @@ function AppRender (props) {
         foundAddressesList={foundAddressesList}
         backToAddressSearchForm={backToAddressSearchForm}
         selectedAddress={selectedAddress}
+        setGuiShowBackModal={setGuiShowBackModal}
+        editedFinishedWaterlabel={editedFinishedWaterlabel}
+        editedWaterlabel={editedWaterlabel}
       />
       <div
         className={
