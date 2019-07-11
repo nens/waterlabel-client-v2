@@ -32,6 +32,7 @@ export default function LabelFormTileDesktop (props) {
     editingWaterlabelReady,
     computedWaterlabelState,
     computedWaterlabel,
+    selectedAddress,
   } = props;
 
 
@@ -39,7 +40,7 @@ export default function LabelFormTileDesktop (props) {
     <div
     className={`Desktop Tile`}
     style={
-      assetTypeFetchState === "RECEIVED"  
+      assetTypeFetchState === "RECEIVED"  && selectedAddress !== null
       ?
       {}
       :

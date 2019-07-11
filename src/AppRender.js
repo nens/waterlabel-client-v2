@@ -177,6 +177,13 @@ function AppRender (props) {
         </div>
         <div
           className="Desktop Tile Currentlabel"
+          style={
+            selectedAddress !== null 
+            ? 
+            {} 
+            : 
+            {display: "none"} 
+          }
         >
           <CurrentLabel
             selectedAddress={selectedAddress}
@@ -251,6 +258,7 @@ function AppRender (props) {
           tabText={"Mijn tuin"}
           TabName={"Tuin"}
           tileClassName={"TileTuin"}
+          selectedAddress={selectedAddress}
         />
         <LabelFormTileMobile
           assetTypeFetchState={assetTypeFetchState}
