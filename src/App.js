@@ -150,10 +150,19 @@ class App extends Component {
         waterlabel.assets = setAssetCategories(waterlabel.assets, that.state.assetTypesFromServer);
         return waterlabel;
       })
+      const preppedWaterLabelsNewestFirst = preppedWaterlabels.sort((a,b)=>{
+        if (a.timestamp > b.timestamp) {
+          return -1;
+        } else if (a.timestamp < b.timestamp) {
+          return 1;
+        } else {
+          return 0;
+        }
+      })
       that.setState({
         fetchWaterlabelState: "RECEIVED",
-        currentWaterLabels: preppedWaterlabels,
-        latestWaterlabel: preppedWaterlabels[0] || null, // assume first one from api is latest waterlabel
+        currentWaterLabels: preppedWaterLabelsNewestFirst,
+        latestWaterlabel: preppedWaterLabelsNewestFirst[0] || null, // assume first one from api is latest waterlabel
       })
       console.log(JSON.stringify(preppedWaterlabels));
     })

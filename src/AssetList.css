@@ -3,21 +3,6 @@
   position: relative;
 }
 
-.ColumnAssetArea > div > span,
-.ColumnAssetStorage > div > span {
-  color: #3F3F3F;
-  opacity: 0.39;
-  position: relative;
-}
-.ColumnAssetArea > div > span {
-  left: -30px;
-}
-.ColumnAssetStorage > div > span {
-  left: -18px;
-}
-
-
-
 .AssetList .Row {
   margin-top: 16px;
   display: flex;
@@ -39,3 +24,28 @@
   align-items: center;
 }
 
+.AssetInputContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.AssetInputContainer > div {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.AssetInputContainer > div > span {
+  color: #3F3F3F;
+  opacity: 0.39;
+  position: absolute;
+}
+
+.ColumnAssetArea .AssetInputContainer > div > span {
+  left: -30px;
+}
+.ColumnAssetStorage .AssetInputContainer > div > span {
+  left: -18px;
+}
