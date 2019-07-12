@@ -1,4 +1,5 @@
 import React from 'react';
+import './AssetList.css';
 
 import {copyLabelData, } from "./utils/labelFunctions";
 
@@ -137,14 +138,16 @@ export default function AssetList (props) {
                               }}
                             >
                             </input>
+                            <span>m2</span>
                           </div>
                           :
-                          <div>{asset.area}</div>
+                          <div>{asset.area + ' m2'}</div>
                         }
                       </div>
                     :
                     <div
-                      className="ColumnAssetArea"
+                      className="ColumnAssetArea ColumnAssetStorage"
+                      title="Opslag in Liters"
                     >
                     {
                       editedWaterlabel ?
@@ -159,9 +162,10 @@ export default function AssetList (props) {
                           }}
                         >
                         </input>
+                        <span>L.</span>
                       </div>
                       :
-                      <div>{asset.storage}</div>
+                      <div>{asset.storage + ' L.'}</div>
                     }
                     </div>
                   }

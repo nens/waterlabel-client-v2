@@ -1,0 +1,17 @@
+.ColumnAssetArea > div ,
+.ColumnAssetStorage > div {
+  position: relative;
+}
+
+.ColumnAssetArea > div > span,
+.ColumnAssetStorage > div > span {
+  color: #3F3F3F;
+  opacity: 0.39;
+  position: relative;
+}
+.ColumnAssetArea > div > span {
+  left: -30px;
+}
+.ColumnAssetStorage > div > span {
+  left: -18px;
+}
