@@ -398,7 +398,7 @@ function AppRender (props) {
             className="InfoPage"
           >
             <p>
-              Uitleg van de berekening is momenteel nog niet beschikbaar.
+            STOWA en Stichting RIONED hebben een nieuwe uniforme scoringsmethodiek voor maatregelen tegen wateroverlast op particulier terrein gemaakt. Het waterlabel wordt bepaald door de hoeveelheid neerslag (in millimeters) die een perceel kan bergen en laten infiltreren bij een piekbui die in één uur valt. Daarbij gaat het om de gemiddelde berging over het gehele perceel. Het maakt dus niet uit of de eigenaar deze berging op het dak, ondergronds of in de tuin heeft gerealiseerd.
             </p>
           </div>
         </div>

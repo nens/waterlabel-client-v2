@@ -41,7 +41,9 @@ export default function AssetList (props) {
 
 
   return (
-        <ul>
+        <ul
+          className="AssetList"
+        >
           {
             assetsToUse && assetsToUse
               .map( (asset, index) => {
@@ -122,7 +124,9 @@ export default function AssetList (props) {
                       >
                         {
                           editedWaterlabel ?
-                          <div>
+                          <div
+                          className="AssetReadOnly"
+                          >
                             {/* <label>area: </label>  */}
                             <input
                               className={htmlAreaClass}
