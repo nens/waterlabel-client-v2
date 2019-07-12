@@ -7,14 +7,18 @@ import SelectAddressFromList from "./SelectAddressFromList";
 import LabelForm from "./LabelForm";
 import LabelFormMobile from "./LabelFormMobile";
 import LabelFormTileMobile from "./LabelFormTileMobile";
+import LabelFormTileDesktop from "./LabelFormTileDesktop";
 import InfoTabs from "./InfoTabs";
 import SaveModal from "./SaveModal";
+import BackModal from "./BackModal";
+
 import CurrentLabel from "./CurrentLabel";
 import LoadingIcon from "./LoadingIcon";
 import dakImage from './img/dak.svg';
 import tuinImage from './img/tuin.svg';
 import voorzieningImage from './img/voorziening.svg';
 import {scrollElementIntoViewWorkaround} from './utils/browserFunctions'
+import {getLabelAssetsTotalArea} from './utils/labelFunctions';
 
 
 export default AppRender;
@@ -69,10 +73,13 @@ function AppRender (props) {
     setSearchOnCityStreet,
     selectAddress,
     setGuiLabelTab,
+    setGuiLabelTabDesktop,
     setEmail,
     setGuiShowEmail,
     closeSaveModal,
     setGuiInfoTab,
+    setGuiShowBackModal,
+    guiShowBackModal
 
   } = props;
 
@@ -103,11 +110,19 @@ function AppRender (props) {
         guiShowVideo ={guiShowVideo}
         setGuiShowVideo={setGuiShowVideo}
       />
+      <BackModal
+        backToAddressSearchForm={backToAddressSearchForm}
+        guiShowBackModal={guiShowBackModal}
+        setGuiShowBackModal={setGuiShowBackModal}
+      />
       
       <Header
         foundAddressesList={foundAddressesList}
         backToAddressSearchForm={backToAddressSearchForm}
         selectedAddress={selectedAddress}
+        setGuiShowBackModal={setGuiShowBackModal}
+        editedFinishedWaterlabel={editedFinishedWaterlabel}
+        editedWaterlabel={editedWaterlabel}
       />
       <div
         className={
@@ -151,7 +166,7 @@ function AppRender (props) {
           />
         </div>
         <div
-          className="Tile"
+          className="Mobile Tile"
         >
           <CurrentLabel
             selectedAddress={selectedAddress}
@@ -161,8 +176,27 @@ function AppRender (props) {
             editedFinishedWaterlabel={editedFinishedWaterlabel}
           />
         </div>
+        <div
+          className="Desktop Tile Currentlabel"
+          style={
+            selectedAddress !== null 
+            ? 
+            {} 
+            : 
+            {display: "none"} 
+          }
+        >
+          <CurrentLabel
+            selectedAddress={selectedAddress}
+            latestWaterlabel={latestWaterlabel}
+            editedWaterlabel={editedWaterlabel}
+            computedWaterlabel={computedWaterlabel}
+            editedFinishedWaterlabel={editedFinishedWaterlabel}
+            openSaveModal={openSaveModal}
+          />
+        </div>
         <button
-          className="Button StandardButton NewButton"
+          className="Mobile Button StandardButton NewButton"
           onClick={ e =>{
             e.preventDefault();
             createNewLabel();
@@ -184,7 +218,7 @@ function AppRender (props) {
           NIEUW LABEL
         </button>
         <button
-          className="Button StandardButton NewButton"
+          className="Mobile Button StandardButton NewButton"
           onClick={e=>{
             e.preventDefault();
             openSaveModal(_=>{
@@ -200,9 +234,34 @@ function AppRender (props) {
             :
             {display: "none"}
           }
+          disabled={editedFinishedWaterlabel && getLabelAssetsTotalArea(editedFinishedWaterlabel.assets) === 0}
         >
           LABEL OPSLAAN
         </button>
+        <LabelFormTileDesktop
+          assetTypeFetchState={assetTypeFetchState}
+          latestWaterlabel={latestWaterlabel}
+          editedWaterlabel={editedWaterlabel}
+          editedFinishedWaterlabel={editedFinishedWaterlabel}
+          guiLabelTab={guiLabelTab}
+          setGuiLabelTab={setGuiLabelTab}
+          setGuiLabelTabDesktop={setGuiLabelTabDesktop}
+          changeLabel={changeLabel}
+          assetTypesFromServer={assetTypesFromServer}
+          showLabelFormDetails={showLabelFormDetails}
+          setShowLabelFormDetails={setShowLabelFormDetails}
+          createNewLabel={createNewLabel}
+          setEditedWaterlabel={setEditedWaterlabel}
+          editingWaterlabelReady={editingWaterlabelReady}
+          computedWaterlabelState={computedWaterlabelState}
+          computedWaterlabel={computedWaterlabel}
+
+          tabImage={tuinImage}
+          tabText={"Mijn tuin"}
+          TabName={"Tuin"}
+          tileClassName={"TileTuin"}
+          selectedAddress={selectedAddress}
+        />
         <LabelFormTileMobile
           assetTypeFetchState={assetTypeFetchState}
           latestWaterlabel={latestWaterlabel}
@@ -339,7 +398,7 @@ function AppRender (props) {
             className="InfoPage"
           >
             <p>
-              Uitleg van de berekening is momenteel nog niet beschikbaar.
+            STOWA en Stichting RIONED hebben een nieuwe uniforme scoringsmethodiek voor maatregelen tegen wateroverlast op particulier terrein gemaakt. Het waterlabel wordt bepaald door de hoeveelheid neerslag (in millimeters) die een perceel kan bergen en laten infiltreren bij een piekbui die in één uur valt. Daarbij gaat het om de gemiddelde berging over het gehele perceel. Het maakt dus niet uit of de eigenaar deze berging op het dak, ondergronds of in de tuin heeft gerealiseerd.
             </p>
           </div>
         </div>

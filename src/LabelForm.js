@@ -254,7 +254,7 @@ function LabelForm (props) {
           <button
             onClick={e => {
               e.preventDefault();
-              editingWaterlabelReady();
+              editingWaterlabelReady(guiLabelTab);
               
             }}
             style={

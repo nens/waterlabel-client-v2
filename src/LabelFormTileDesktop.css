@@ -1,0 +1,72 @@
+.Body .Desktop.Tile .TabContainerHorizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.Body .Desktop.Tile .TabContainerHorizontal > button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.Body .Desktop.Tile .TabContainerHorizontal > button > span {
+  margin: 4px;
+}
+
+.Body .Desktop.Tile .DesktopLabelformTileBody {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+}
+.Body .Desktop.Tile .DesktopLabelformTileBody .DesktopLabelformTileBodyLeft {
+  max-width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: left;
+  padding: 16px;
+  /* border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: grey; */
+}
+
+.Body .Desktop.Tile .DesktopLabelformTileBody .DesktopLabelformTileBodyLeft+div {
+  display: flex;
+  align-items: center;
+}
+.Body .Desktop.Tile .DesktopLabelformTileBody .DesktopLabelformTileBodyLeft+div>div {
+  height: 80%;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: #707070;
+  display: block;
+}
+
+.Body .Desktop.Tile .DesktopLabelformTileBody .DesktopLabelformTileBodyLeft h1 {
+  color: #707070;
+  font-size: 20px;
+  text-align: left;
+}
+
+.Body .Desktop.Tile .DesktopLabelformTileBody .DesktopLabelformTileBodyLeft p {
+  color: #707070;
+  font-size: 15px;
+  text-align: left;
+}
+
+
+.Body .Desktop.Tile .DesktopLabelformTileBody .DesktopLabelformTileBodyLeft .ImgContainer {
+  max-width: 240px;
+}
+.Body .Desktop.Tile .DesktopLabelformTileBody .DesktopLabelformTileBodyLeft .ImgContainer img {
+  width: 100%;
+}
+
+.Body .Desktop.Tile .TabContainerHorizontal > .TabInActive {
+  background-color: #E9E9E9;
+}
+
+.Body .Desktop.Tile .TabContainerHorizontal > .Tab:disabled * {
+  opacity: 0.5;
+}

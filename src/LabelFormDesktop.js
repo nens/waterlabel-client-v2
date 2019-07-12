@@ -1,13 +1,10 @@
 import React from 'react';
 
 import {copyLabelData, } from "./utils/labelFunctions";
-import './LabelFormMobile.css';
+import './LabelFormDesktop.css';
 import AssetList from "./AssetList";
 
-
-export default LabelFormMobile;
-
-function LabelFormMobile (props) {
+export default function LabelFormDesktop (props) {
 
   const { 
     assetTypesFromServer,
@@ -21,6 +18,7 @@ function LabelFormMobile (props) {
     setShowLabelFormDetails,
     setEditedWaterlabel,
     editingWaterlabelReady,
+    setGuiLabelTabDesktop,
   } = props;
 
   const waterlabelToUse = 
@@ -41,9 +39,7 @@ function LabelFormMobile (props) {
       alignItems: "stretch",
     }}
     >
-      <p >
-      Hoe meer water in de tuin kan worden vast gehouden, hoe beter! Dat betekent dus hoe groener, hoe beter! Voer hieronder de statistieken van uw tuin in, daarmee berekenen wij een label!
-      </p>
+      
 
 
       <div> 
@@ -70,6 +66,7 @@ function LabelFormMobile (props) {
           guiLabelTab={guiLabelTab}
           changeLabel={changeLabel}
           setEditedWaterlabel={setEditedWaterlabel}
+          setGuiLabelTabDesktop={setGuiLabelTabDesktop}
         />
       </div>
       <div
@@ -81,14 +78,15 @@ function LabelFormMobile (props) {
           onClick={e => {
             e.preventDefault();
             setEditedWaterlabel(null);
-            setGuiLabelTab(null);
+            // setGuiLabelTab(null);
             
           }}
           style={
             editedWaterlabel !== null ?
             {}
             :
-            {display: "none"}
+            // {display: "none"}
+            {visibility: "hidden"}
           }
         >
           ANNULEER
@@ -104,11 +102,12 @@ function LabelFormMobile (props) {
             disabled={editedWaterlabel && editedWaterlabel.assets.map(asset => asset.asset_type).includes(null)}
             onClick={e => {
               e.preventDefault();
-              editingWaterlabelReady(null);
+              editingWaterlabelReady(guiLabelTab);
               
             }}
             style={
-              editedWaterlabel !== null ?
+              editedWaterlabel !== null
+              ?
               {}
               :
               {display: "none"}
@@ -118,6 +117,26 @@ function LabelFormMobile (props) {
           </button>
           <span>Kies eerst het type in het dropdown menu</span>
         </div>
+        <button
+          className="StandardButton Verander"
+          onClick={e => {
+            e.preventDefault();
+            changeLabel();
+            setGuiLabelTabDesktop(guiLabelTab || "Tuin", _ => {
+              // no op
+            });
+            
+          }}
+          style={
+            editedWaterlabel === null && (latestWaterlabel!==null || editedFinishedWaterlabel!==null) ?
+            {}
+            :
+            {display: "none"}
+          }
+          
+        >
+          Verander
+        </button>
       </div>
         
     </div>

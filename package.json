@@ -10,7 +10,7 @@
     "release-it": "^12.3.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HOST=0.0.0.0 react-scripts start",
     "build": "rm -rf dist/*.zip && react-scripts build && scripts/makedist.sh",
     "release": "release-it --verbose",
     "test": "react-scripts test",
@@ -31,5 +31,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://waterlabel.staging.lizard.net/"
+  "proxy": "http://0.0.0.0:5050/"
 }

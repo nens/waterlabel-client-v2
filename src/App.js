@@ -1,7 +1,7 @@
 import React,  { Component } from 'react';
 
 import AppRender from './AppRender';
-import {copyLabelData, setAssetCategories} from "./utils/labelFunctions";
+import {copyLabelData, copyLabelDataWithoutNullCategories, setAssetCategories} from "./utils/labelFunctions";
 
 
 class App extends Component {
@@ -12,19 +12,20 @@ class App extends Component {
       assetTypesFromServer: [],
       assetTypeFetchState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
       
-      searchPostcode: "",
-      searchStreet: "",
-      searchNumber: "",
-      searchAddition: "",
-      searchCity: "",
-      email: "",
-      
-      // searchPostcode: "1188AL",
-      // searchStreet: "KABELWEG",
-      // searchCity: "AMSTERDAM",
-      // searchNumber: "20",//"36",
+      // searchPostcode: "",
+      // searchStreet: "",
+      // searchNumber: "",
       // searchAddition: "",
-      // email: "1231@32132.COM",
+      // searchCity: "",
+      // email: "",
+      
+      searchPostcode: "1188AL",
+      searchStreet: "KABELWEG",
+      searchCity: "AMSTERDAM",
+      // searchNumber: "20",//"36",
+      searchNumber: "",//"36",
+      searchAddition: "",
+      email: "1231@32132.COM",
 
       searchOnCityStreet: false,
       searchAddressState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
@@ -42,13 +43,26 @@ class App extends Component {
       computedWaterlabel: null,
       guiShowVideo: false,
       guiShowEmail: false,
+      guiShowBackModal: false,
       guiShowSuccesSave: false,
       guiLabelTab: null,//"Dak", // "Tuin", "Voorziening"
       guiInfoTab: null,//"PERSONAL", // "CALCULATION", "WHY"
     };
 
     this.fetchAssetTypes();
+    
+    // window.addEventListener("beforeunload", this.confirmLeave);
   };
+
+  confirmLeave = (event) => {
+    const questionString = 'Weet u zeker dat u het waterlabel niet wilt opslaan?';
+    console.log('this.state.editedWaterlabel', this.state.editedWaterlabel, this.state.editedFinishedWaterlabel)
+    if (this.state.editedWaterlabel || this.state.editedFinishedWaterlabel) {
+      event.returnValue = questionString;
+      return questionString;
+    }
+  }
+
   fetchAssetTypes = () => {
     const that = this;
     fetch( "/api/v2/waterlabelassettypes/")
@@ -91,8 +105,14 @@ class App extends Component {
     })
     .then(function(parsedJSON) {
       const foundBuildingList = (parsedJSON.results && parsedJSON.results.length)? parsedJSON.results : [];
-      const unFlatFoundAddressesList = foundBuildingList.map( building => building.houseaddresses);
+      const unFlatFoundAddressesList = foundBuildingList.map( building => {
+        return building.houseaddresses.map(address => {
+          address.building = building.id;
+          return address;
+        })
+      });
       const foundAddressesList = [].concat.apply([], unFlatFoundAddressesList);
+      
       that.setState(
         {
         searchAddressState: "RECEIVED",
@@ -176,7 +196,7 @@ class App extends Component {
     this.setState({
       guiShowEmail: true,
     },
-    callBack
+    callBack && callBack
     )
   }
   saveLabel = () => {
@@ -222,11 +242,12 @@ class App extends Component {
 
     });
   }
-  setEditedWaterlabel = (newLabel) => {
+  setEditedWaterlabel = (newLabel, callBack) => {
     this.setState(
       {editedWaterlabel: newLabel},
       (_ => {
         this.fetchComputedLabel(this.state.editedWaterlabel);
+        callBack && callBack();
       })
     )
   }
@@ -238,7 +259,7 @@ class App extends Component {
       ||
       label.assets
         .filter(asset => asset.asset_type !== null)
-        .reduce((acc, curr)=>acc+curr.area, 0 )
+        .reduce((acc, curr)=>acc+((parseInt(curr.area) || 0)), 0 )
          === 0
         // .length === 0 
     )
@@ -291,8 +312,8 @@ class App extends Component {
 
     });
   }
-  editingWaterlabelReady = () => {
-    let finishedWaterlabel = copyLabelData(this.state.editedWaterlabel);
+  editingWaterlabelReady = (guiLabelTab) => {
+    let finishedWaterlabel = copyLabelDataWithoutNullCategories(this.state.editedWaterlabel);
     finishedWaterlabel.code = this.state.computedWaterlabel && this.state.computedWaterlabel.code;
     finishedWaterlabel.building = this.state.selectedAddress.building;
     // email is set In later state ! only pass it to the api
@@ -301,9 +322,10 @@ class App extends Component {
     this.setState({
       editedFinishedWaterlabel: finishedWaterlabel,
       editedWaterlabel: null,
-      guiLabelTab: null,
+      guiLabelTab: guiLabelTab,
     })
   }
+
   setShowLabelFormDetails = (bool) => {
     this.setState({showLabelFormDetails:bool});
   }
@@ -323,6 +345,7 @@ class App extends Component {
       guiShowVideo: false,
       guiShowEmail: false,
       guiShowSuccesSave: false,
+      guiLabelTab: null,
     })
   }
   setGuiShowVideo = (bool) => {
@@ -350,7 +373,7 @@ class App extends Component {
     this.setState(
       {selectedAddress: address},
       (_=>{
-        callback();
+        callback && callback();
         this.fetchWaterlabelsFromBuilding();
       })
     )
@@ -362,6 +385,12 @@ class App extends Component {
     if (this.state.editedWaterlabel === null) {
       this.changeLabel();
     }
+    this.setState({guiLabelTab:tab}, callback);
+  }
+  setGuiLabelTabDesktop = (tab, callback) => {
+    // if (this.state.editedWaterlabel === null) {
+    //   this.changeLabel();
+    // }
     this.setState({guiLabelTab:tab}, callback);
   }
   setEmail = (email) => {
@@ -384,6 +413,10 @@ class App extends Component {
   }
   setGuiInfoTab = (tab, callback) => {
     this.setState({guiInfoTab: tab}, callback);
+  }
+
+  setGuiShowBackModal = (bool) => {
+    this.setState({guiShowBackModal: bool})
   }
 
   render  = () => {
@@ -422,6 +455,7 @@ class App extends Component {
       guiShowSuccesSave,
       guiLabelTab, // "Tuin", "Voorziening"
       guiInfoTab, 
+      guiShowBackModal,
     } = this.state;
 
     return (
@@ -474,10 +508,13 @@ class App extends Component {
           setSearchOnCityStreet={this.setSearchOnCityStreet}
           selectAddress={this.selectAddress}
           setGuiLabelTab={this.setGuiLabelTab}
+          setGuiLabelTabDesktop={this.setGuiLabelTabDesktop}
           setEmail={this.setEmail}
           setGuiShowEmail={this.setGuiShowEmail}
           closeSaveModal={this.closeSaveModal}
           setGuiInfoTab={this.setGuiInfoTab}
+          guiShowBackModal={guiShowBackModal}
+          setGuiShowBackModal={this.setGuiShowBackModal}
         />
     );
   };

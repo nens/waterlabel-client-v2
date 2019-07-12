@@ -32,13 +32,14 @@ function LabelFormTileMobile (props) {
 
   return (
     <div
-    className={`Tile ${tileClassName}`}
+    className={`Mobile Tile ${tileClassName}`}
     style={
       assetTypeFetchState === "RECEIVED" &&
       ( latestWaterlabel || editedWaterlabel || editedFinishedWaterlabel ) &&
       (
       guiLabelTab === TabName ||
-      guiLabelTab === null 
+      guiLabelTab === null ||
+      (guiLabelTab !== TabName && editedWaterlabel ===null)
       )
       ?
       {}
@@ -56,7 +57,7 @@ function LabelFormTileMobile (props) {
                   
       }}
       className={
-        guiLabelTab === TabName ? "TabActive Tab" : "Tab TabInActive" 
+        guiLabelTab === TabName && editedWaterlabel !== null ? "TabActive Tab" : "Tab TabInActive" 
       }
     >
       <span>

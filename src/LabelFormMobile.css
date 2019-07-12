@@ -28,6 +28,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
 }
 
 .LabelFormMobile .RowForButtons .Annuleer {
@@ -37,9 +38,51 @@
 .LabelFormMobile .RowForButtons .Annuleer,
 .LabelFormMobile .RowForButtons .Klaar {
   width: 101px;
-  height: 31px;
   font-size: 14px;
 }
+.RowForButtons .Klaar:disabled {
+  background-color: #8A9294;
+  color: #707070;
+  cursor: not-allowed;
+}
+
+.RowForButtons .KlaarButtonContainer {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.RowForButtons .Klaar+span{
+  position: absolute;
+  top: -100px;
+  color: #d2604e;
+  background-color: white;
+  visibility: hidden;
+}
+.RowForButtons .Klaar:disabled:hover+span {
+  visibility: visible;
+}
+/* .Desktop .RowForButtons .Klaar+span {
+  top: 40px;
+}
+.Mobile .RowForButtons .Klaar+span {
+  top: -100px;
+} */
+/* .RowForButtons .Klaar:disabled:hover {
+  background-color: red;
+} */
+/* .RowForButtons .Klaar:disabled:hover::after {
+  content: "Kies eerst het type in het dropdown menu"; 
+  color: #d2604e;
+  position: absolute;
+  top:10px;
+} */
+
+/* does not work */
+/* .RowForButtons .Klaar:disabled:focus {
+  background-color: green;
+} */
+
 .LabelFormMobile ul {
   list-style-type: none;
   padding-left: 0;
@@ -82,7 +125,6 @@
 }
 
 .LabelFormMobile .Row .NewAssetButton {
-  height: 31px;
   width: 100%;
   font-size: 14px;
 }

@@ -1,0 +1,41 @@
+.ColumnAssetArea > div ,
+.ColumnAssetStorage > div {
+  position: relative;
+}
+
+.ColumnAssetArea > div > span,
+.ColumnAssetStorage > div > span {
+  color: #3F3F3F;
+  opacity: 0.39;
+  position: relative;
+}
+.ColumnAssetArea > div > span {
+  left: -30px;
+}
+.ColumnAssetStorage > div > span {
+  left: -18px;
+}
+
+
+
+.AssetList .Row {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+}
+.AssetList .Row input,
+.AssetList .Row select, 
+.AssetList .Row .ColumnAssetType,
+.AssetList .Row .ColumnAssetArea,
+.AssetList .Row .ColumnAssetStorage {
+  height: 40px;
+  box-sizing: border-box;
+  
+}
+.AssetList .Row .ColumnAssetType,
+.AssetList .Row .ColumnAssetArea,
+.AssetList .Row .ColumnAssetStorage {
+  display: flex;
+  align-items: center;
+}
+
