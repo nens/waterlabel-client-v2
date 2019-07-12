@@ -1,6 +1,6 @@
 {
   "name": "waterlabel-client-v2",
-  "version": "0.1.1",
+  "version": "1.0.0-0",
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
