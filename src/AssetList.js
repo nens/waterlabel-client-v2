@@ -2,6 +2,19 @@ import React from 'react';
 
 import {copyLabelData, } from "./utils/labelFunctions";
 
+const getElementByClassWithinSameUnorderedListAsSourceElement = (sourceElement, className) => {
+  const parent = sourceElement.closest("ul");
+  console.log('parent', parent, sourceElement)
+  if (parent) {
+    const element = parent.getElementsByClassName(className);
+    console.log('element', element)
+    if (element && element[0]) {
+      return element[0];
+    }
+  }
+  return null;
+}
+
 export default function AssetList (props) {
 
   const { 
@@ -21,7 +34,9 @@ export default function AssetList (props) {
 
   const assetsToUse = waterlabelToUse && waterlabelToUse.assets;
   const filteredAssetTypes = assetTypesFromServer.filter(type=>type.category === guiLabelTab)
-  
+  const htmlSuffixSelect = '_index_asset_select';
+  const htmlSuffixArea = '_index_area_select';
+  const htmlSuffixStorage = '_index_storage_select';
 
 
   return (
@@ -31,7 +46,11 @@ export default function AssetList (props) {
               .map( (asset, index) => {
                 // const assetInActiveTab = 
                 //   asset.category ===  guiLabelTab;
-                const htmlId = index + '_index_asset_edited_waterlabel';
+
+                const htmlSelectClass = index + htmlSuffixSelect;
+                const htmlAreaClass = index + htmlSuffixArea;
+                const htmlStorageClass = index + htmlSuffixStorage;
+                
                 
                 return (
                   <li
@@ -43,13 +62,14 @@ export default function AssetList (props) {
                     <div
                       className="ColumnAssetType"
                     >
-                    { asset.type === null 
-                      ?
+                    
                       <select
-                        className={htmlId}
+                        style={asset.type === null ? {} : {display: "none"}}
+                        className={htmlSelectClass}
                         onChange={ event => {
                           event.preventDefault();
                           console.log(JSON.stringify(event.target.value));
+                          const target = event.target;
 
                           const selectedAsset = assetTypesFromServer.filter(type=>type.code === event.target.value)[0];
                           const copyLabel = copyLabelData(waterlabelToUse);
@@ -63,17 +83,31 @@ export default function AssetList (props) {
                           if (copyLabel.assets[index].infiltration == 0) {
                             copyLabel.assets[index].infiltration = selectedAsset.infiltration
                           }
-                          setEditedWaterlabel(copyLabel);
-                        }}
+                          setEditedWaterlabel(copyLabel, _ => {
+                            setTimeout(_=> {
+                              let inputElement
+                              if (guiLabelTab === "Voorziening") {
+                                inputElement = getElementByClassWithinSameUnorderedListAsSourceElement(target, htmlStorageClass);
+                              } else {
+                                inputElement = getElementByClassWithinSameUnorderedListAsSourceElement(target, htmlAreaClass);
+                              }
+                              if (inputElement) {
+                                inputElement.focus(); // unfortuenedly this does not open the select, seems impossible ...
+                              }
+                            })
+                          })
+                          }}
+                        >
+                          {filteredAssetTypes.map(assetType=>
+                            <option key={assetType.name} value={assetType.code}>{assetType.name}</option>
+                          )}
+                          <option style={{display:"none"}} disabled selected value> Kies een type </option>
+                        </select>
+                      <div
+                        style={asset.type === null ? {display: "none"} : {}}
                       >
-                        {filteredAssetTypes.map(assetType=>
-                          <option key={assetType.name} value={assetType.code}>{assetType.name}</option>
-                        )}
-                        <option style={{display:"none"}} disabled selected value> Kies een type </option>
-                      </select>
-                      :
-                      <div>{asset.type && asset.type.name}</div>
-                    }
+                        {asset.type && asset.type.name}
+                      </div>
                     </div>
 
                     {/* ___________________________________________ AREA OPPERVLAK */}
@@ -89,6 +123,7 @@ export default function AssetList (props) {
                           <div>
                             {/* <label>area: </label>  */}
                             <input
+                              className={htmlAreaClass}
                               value={asset.area}
                               onChange={ event => {
                                 const copyLabel = copyLabelData(waterlabelToUse);
@@ -115,6 +150,7 @@ export default function AssetList (props) {
                       editedWaterlabel ?
                       <div>
                         <input
+                          className={htmlStorageClass}
                           value={asset.storage}
                           onChange={ event => {
                             const copyLabel = copyLabelData(waterlabelToUse);
@@ -186,16 +222,11 @@ export default function AssetList (props) {
                     
                     const htmlId = index + '_index_asset_edited_waterlabel';
                     setTimeout(_=> {
-                      console.log('htmlId ' + htmlId, document.getElementById(htmlId))//that.refs[htmlId]);
-                      const parent = target.closest("ul");
-                      console.log('parent', parent)
-                      if (parent) {
-                        const selectBox = parent.getElementsByClassName(htmlId);//document.getElementById(htmlId);
-                        if (selectBox && selectBox[0]) {
-                          selectBox[0].focus(); // unfortuenedly this does not open the select, seems impossible ...
-                        }
+                      const index = waterlabelToUse.assets.length;
+                      const selectBox = getElementByClassWithinSameUnorderedListAsSourceElement(target, index + htmlSuffixSelect);
+                      if (selectBox) {
+                        selectBox.focus(); // unfortuenedly this does not open the select, seems impossible ...
                       }
-                      
                     },
                     0
                     )
