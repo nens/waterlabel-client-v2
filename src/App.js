@@ -12,20 +12,20 @@ class App extends Component {
       assetTypesFromServer: [],
       assetTypeFetchState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
       
-      // searchPostcode: "",
-      // searchStreet: "",
-      // searchNumber: "",
-      // searchAddition: "",
-      // searchCity: "",
-      // email: "",
-      
-      searchPostcode: "1188AL",
-      searchStreet: "KABELWEG",
-      searchCity: "AMSTERDAM",
-      // searchNumber: "20",//"36",
-      searchNumber: "",//"36",
+      searchPostcode: "",
+      searchStreet: "",
+      searchNumber: "",
       searchAddition: "",
-      email: "1231@32132.COM",
+      searchCity: "",
+      email: "",
+      
+      // searchPostcode: "1188AL",
+      // searchStreet: "KABELWEG",
+      // searchCity: "AMSTERDAM",
+      // // searchNumber: "20",//"36",
+      // searchNumber: "",//"36",
+      // searchAddition: "",
+      // email: "1231@32132.COM",
 
       searchOnCityStreet: false,
       searchAddressState: "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
