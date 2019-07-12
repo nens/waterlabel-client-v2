@@ -125,7 +125,7 @@ export default function AssetList (props) {
                         {
                           editedWaterlabel ?
                           <div
-                          className="AssetReadOnly"
+                          className="AssetInputContainer"
                           >
                             {/* <label>area: </label>  */}
                             <input
@@ -143,7 +143,9 @@ export default function AssetList (props) {
                               }}
                             >
                             </input>
-                            <span>m2</span>
+                            <div>
+                              <span>m2</span>
+                            </div>
                           </div>
                           :
                           <div>{asset.area + ' m2'}</div>
@@ -156,7 +158,9 @@ export default function AssetList (props) {
                     >
                     {
                       editedWaterlabel ?
-                      <div>
+                      <div
+                        className="AssetInputContainer"
+                      >
                         <input
                           className={htmlStorageClass}
                           value={asset.storage}
@@ -173,7 +177,7 @@ export default function AssetList (props) {
                           }}
                         >
                         </input>
-                        <span>L.</span>
+                        <div><span>L.</span></div>
                       </div>
                       :
                       <div>{asset.storage + ' L.'}</div>
