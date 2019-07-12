@@ -54,7 +54,8 @@ export default function AssetList (props) {
                 
                 
                 return (
-                  <li
+                  {asset:asset,
+                  html: <li
                     key={index}
                     // style={assetInActiveTab? {}:{display:"none"}}
                     className="Row"
@@ -157,8 +158,14 @@ export default function AssetList (props) {
                           value={asset.storage}
                           onChange={ event => {
                             const copyLabel = copyLabelData(waterlabelToUse);
-                            copyLabel.assets[index].storage = event.target.value;                          
+                            let value = event.target.value;
+                            if (parseInt(value)) { // also ignore 0
+                              copyLabel.assets[index].storage = parseInt(value); 
+                            } else if (value==='') {
+                              copyLabel.assets[index].storage = ''; 
+                            }                         
                             setEditedWaterlabel(copyLabel);
+
                           }}
                         >
                         </input>
@@ -190,13 +197,13 @@ export default function AssetList (props) {
                     </div>
                     </div>
                   </li>
-                );
+                ,});
               })
-              // .filter(asset => {
-              //   const assetInActiveTab = 
-              //         asset.category ===  guiLabelTab || asset.category === null; 
-              //       return assetInActiveTab;
-              // })
+              .filter(assetObj => {
+                const assetInActiveTab = 
+                  assetObj.asset.category ===  guiLabelTab || assetObj.asset.category === null; 
+                    return assetInActiveTab;
+              }).map(assetObj=>assetObj.html)
           }
           <li
             style={!editedWaterlabel || editedWaterlabel.assets.map(asset => asset.asset_type).includes(null)? {visibility:"hidden"}:{}}
