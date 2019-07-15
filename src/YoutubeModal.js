@@ -21,7 +21,8 @@ function YoutubeModal (props) {
         className="YoutubeFrame"
       >
           {guiShowVideo? 
-          <iframe 
+          <iframe
+            title="Uitleg waterlabel op youtube"
             allowFullScreen
             frameBorder="0"
             src="https://www.youtube.com/embed/jARteOPf_aI?rel=0&autoplay=0">

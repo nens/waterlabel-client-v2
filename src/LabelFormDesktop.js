@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {copyLabelData, } from "./utils/labelFunctions";
 import './LabelFormDesktop.css';
 import AssetList from "./AssetList";
 
@@ -11,23 +10,12 @@ export default function LabelFormDesktop (props) {
     latestWaterlabel,
     editedWaterlabel,
     editedFinishedWaterlabel,
-    setGuiLabelTab,
     guiLabelTab,
     changeLabel,
-    showLabelFormDetails,
-    setShowLabelFormDetails,
     setEditedWaterlabel,
     editingWaterlabelReady,
     setGuiLabelTabDesktop,
   } = props;
-
-  const waterlabelToUse = 
-    editedWaterlabel ? editedWaterlabel : 
-    (editedFinishedWaterlabel ? editedFinishedWaterlabel : latestWaterlabel);
-
-  const assetsToUse = waterlabelToUse && waterlabelToUse.assets;
-  const filteredAssetTypes = assetTypesFromServer.filter(type=>type.category === guiLabelTab)
-
 
   return (
     <div

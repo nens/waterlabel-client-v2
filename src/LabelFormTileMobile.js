@@ -61,7 +61,7 @@ function LabelFormTileMobile (props) {
       }
     >
       <span>
-        <img src={tabImage} width="36px"/>
+        <img src={tabImage} alt="" width="36px"/>
       </span>
       <span>{tabText}</span>
       <span

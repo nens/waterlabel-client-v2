@@ -1,6 +1,5 @@
 import React from 'react';
 import LabelFormDesktop from "./LabelFormDesktop";
-import {scrollElementIntoViewWorkaround} from './utils/browserFunctions';
 import './LabelFormTileDesktop.css';
 
 import dakImage from './img/dak.svg';
@@ -20,10 +19,6 @@ export default function LabelFormTileDesktop (props) {
     setGuiLabelTab,
     setGuiLabelTabDesktop,
     changeLabel,
-    tabImage,
-    tabText,
-    TabName,
-    tileClassName,
     assetTypesFromServer,
     showLabelFormDetails,
     setShowLabelFormDetails,
@@ -66,7 +61,7 @@ export default function LabelFormTileDesktop (props) {
         disabled={editedWaterlabel !== null && guiLabelTabConsideredDefault !== "Dak"}
       >
         <span>
-          <img src={dakImage} width="36px"/>
+          <img src={dakImage} alt=""  width="36px"/>
         </span>
         <span>{"Mijn dak"}</span>
         
@@ -86,7 +81,7 @@ export default function LabelFormTileDesktop (props) {
         disabled={editedWaterlabel !== null && guiLabelTabConsideredDefault !== "Tuin"}
       >
         <span>
-          <img src={tuinImage} width="36px"/>
+          <img src={tuinImage} alt=""  width="36px"/>
         </span>
         <span>{"Mijn tuin"}</span>
       </button>
@@ -104,7 +99,7 @@ export default function LabelFormTileDesktop (props) {
         disabled={editedWaterlabel !== null && guiLabelTabConsideredDefault !== "Voorziening"}
       >
         <span>
-          <img src={voorzieningImage} width="36px"/>
+          <img src={voorzieningImage} alt=""  width="36px"/>
         </span>
         <span>{"Mijn voorziening"}</span>
       </button>
@@ -123,7 +118,7 @@ export default function LabelFormTileDesktop (props) {
         <div
           className="ImgContainer"
         >
-          <img src={tuinHuisGrasImage}/>
+          <img alt="Schematische afbeelsing groene tuin"  src={tuinHuisGrasImage}/>
         </div>
         
       </div>

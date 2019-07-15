@@ -34,7 +34,7 @@ function SaveModal (props) {
       }
     >
           <div
-            className={saveWaterlabelState == "SEND" ? 
+            className={saveWaterlabelState === "SEND" ? 
               "SpinnerContainer Visible" 
               : 
               "SpinnerContainer Invisible" 

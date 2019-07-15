@@ -38,7 +38,7 @@ function SearchAddressForm (props) {
     }
   >
     <div
-      className={searchAddressState == "SEND" ? 
+      className={searchAddressState === "SEND" ? 
         "SpinnerContainer Visible" 
         : 
         "SpinnerContainer Invisible" 

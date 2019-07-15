@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {copyLabelData, } from "./utils/labelFunctions";
 import './LabelFormMobile.css';
 import AssetList from "./AssetList";
 
@@ -17,19 +16,9 @@ function LabelFormMobile (props) {
     setGuiLabelTab,
     guiLabelTab,
     changeLabel,
-    showLabelFormDetails,
-    setShowLabelFormDetails,
     setEditedWaterlabel,
     editingWaterlabelReady,
   } = props;
-
-  const waterlabelToUse = 
-    editedWaterlabel ? editedWaterlabel : 
-    (editedFinishedWaterlabel ? editedFinishedWaterlabel : latestWaterlabel);
-
-  const assetsToUse = waterlabelToUse && waterlabelToUse.assets;
-  const filteredAssetTypes = assetTypesFromServer.filter(type=>type.category === guiLabelTab)
-
 
   return (
     <div

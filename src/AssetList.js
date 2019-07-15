@@ -101,10 +101,10 @@ export default function AssetList (props) {
                           copyLabel.assets[index].asset_type = selectedAsset.code;
                           copyLabel.assets[index].category = guiLabelTab
                           // only set storage and infiltration if not touched by the user
-                          if (copyLabel.assets[index].storage == 0) {
+                          if (copyLabel.assets[index].storage === 0) {
                             copyLabel.assets[index].storage = selectedAsset.storage
                           }
-                          if (copyLabel.assets[index].infiltration == 0) {
+                          if (copyLabel.assets[index].infiltration === 0) {
                             copyLabel.assets[index].infiltration = selectedAsset.infiltration
                           }
                           setEditedWaterlabel(copyLabel, _ => {
@@ -256,10 +256,7 @@ export default function AssetList (props) {
                     type: null,
                     asset_type: null,
                   })                
-                  setEditedWaterlabel(copyLabel, _ => {
-                    const index = waterlabelToUse.assets.length;
-                    
-                    const htmlId = index + '_index_asset_edited_waterlabel';
+                  setEditedWaterlabel(copyLabel, _ => {                    
                     setTimeout(_=> {
                       const index = waterlabelToUse.assets.length;
                       const selectBox = getElementByClassWithinSameUnorderedListAsSourceElement(target, index + htmlSuffixSelect);
@@ -270,7 +267,6 @@ export default function AssetList (props) {
                     0
                     )
 
-                    // document.getElementById(htmlId) //.getElementsByTagName('select').focus();
                   });
                 }}
               >

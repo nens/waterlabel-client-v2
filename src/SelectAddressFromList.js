@@ -9,7 +9,6 @@ export default SelectAddressFromList;
   const {
     foundAddressesList,
     selectedAddress,
-    searchAddressState,
     selectAddress,
   } = props;
 

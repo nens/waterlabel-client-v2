@@ -1,8 +1,4 @@
 import React from 'react';
-// import './SaveModal.css';
-import LoadingIcon from "./LoadingIcon";
-import {scrollElementIntoViewWorkaround} from './utils/browserFunctions'
-
 
 export default function BackModal (props) {
 
