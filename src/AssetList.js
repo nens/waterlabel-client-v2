@@ -276,7 +276,6 @@ export default function AssetList (props) {
           </li>
           <li
             style={
-              //  editedWaterlabel === null && latestWaterlabel===null && editedFinishedWaterlabel===null ?
               editedWaterlabel === null && assetsToUse.filter(asset =>  asset.category ===  guiLabelTab).length === 0
               ?
               {}
@@ -308,8 +307,13 @@ export default function AssetList (props) {
               :
               {display: "none"}
             }
+            className="Row VeranderButtonRow"
           >
-            <span>Kloppen deze cijfers niet (meer)?</span>
+            <legend
+              className="Verander"
+            >   
+              Kloppen deze cijfers niet (meer)?
+            </legend>
             <button
               className="StandardButton Verander"
               onClick={e => {
