@@ -218,6 +218,8 @@ function SearchAddressForm (props) {
       <a 
         href="https://www.waterlabel.net"
         className="LinkOldSite"
+        // target = blank is probably a bad idea
+        // target="_blank"
       >
         Klik hier voor de oude waterlabel site
       </a>
