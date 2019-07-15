@@ -4,16 +4,12 @@ import Header from "./Header";
 import YoutubeModal from './YoutubeModal';
 import SearchAddressForm from './SearchAddressForm';
 import SelectAddressFromList from "./SelectAddressFromList";
-import LabelForm from "./LabelForm";
-import LabelFormMobile from "./LabelFormMobile";
 import LabelFormTileMobile from "./LabelFormTileMobile";
 import LabelFormTileDesktop from "./LabelFormTileDesktop";
-import InfoTabs from "./InfoTabs";
 import SaveModal from "./SaveModal";
 import BackModal from "./BackModal";
 
 import CurrentLabel from "./CurrentLabel";
-import LoadingIcon from "./LoadingIcon";
 import dakImage from './img/dak.svg';
 import tuinImage from './img/tuin.svg';
 import voorzieningImage from './img/voorziening.svg';
@@ -36,8 +32,6 @@ function AppRender (props) {
     searchAddressState, // "SEND", "RECEIVED", "FAILED"
     foundAddressesList,
     selectedAddress,
-    fetchWaterlabelState, // "SEND", "RECEIVED", "FAILED"
-    currentWaterLabels,
     latestWaterlabel,
     editedWaterlabel,
     showLabelFormDetails,
@@ -52,15 +46,12 @@ function AppRender (props) {
     guiLabelTab, // "Tuin", "Voorziening"
     guiInfoTab,
     
-    fetchAssetTypes,
     fetchBuildings,
-    fetchWaterlabelsFromBuilding,
     createNewLabel,
     changeLabel,
     openSaveModal,
     saveLabel,
     setEditedWaterlabel,
-    fetchComputedLabel,
     editingWaterlabelReady,
     setShowLabelFormDetails,
     backToAddressSearchForm,

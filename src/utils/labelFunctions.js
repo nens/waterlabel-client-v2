@@ -3,7 +3,6 @@ export function copyLabelData (labelToCopy) {
 }
 
 export function copyLabelDataWithoutNullCategories (labelToCopy) {
-  // console.log('labelToCopy', labelToCopy, JSON.stringify(labelToCopy));
   let copiedLabel = JSON.parse(JSON.stringify(labelToCopy));
   copiedLabel.assets = 
     copiedLabel.assets

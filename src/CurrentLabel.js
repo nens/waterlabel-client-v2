@@ -91,7 +91,7 @@ function CurrentLabel (props) {
                 }
               </div>
               
-              <img src={labelsImage}/>
+              <img src={labelsImage} alt="Afbeelding van mogelijk te behalen labels"/>
               
             </div>
         </div>

@@ -5,10 +5,8 @@ import {copyLabelData, } from "./utils/labelFunctions";
 
 const getElementByClassWithinSameUnorderedListAsSourceElement = (sourceElement, className) => {
   const parent = sourceElement.closest("ul");
-  console.log('parent', parent, sourceElement)
   if (parent) {
     const element = parent.getElementsByClassName(className);
-    console.log('element', element)
     if (element && element[0]) {
       return element[0];
     }
@@ -33,7 +31,7 @@ export default function AssetList (props) {
     editedWaterlabel ? editedWaterlabel : 
     (editedFinishedWaterlabel ? editedFinishedWaterlabel : latestWaterlabel);
 
-  const assetsToUse = waterlabelToUse && waterlabelToUse.assets;
+  const assetsToUse = (waterlabelToUse && waterlabelToUse.assets) || [];
   const filteredAssetTypes = assetTypesFromServer.filter(type=>type.category === guiLabelTab)
   const htmlSuffixSelect = '_index_asset_select';
   const htmlSuffixArea = '_index_area_select';
@@ -41,6 +39,29 @@ export default function AssetList (props) {
 
 
   return (
+      <div style={{maxWidth: "600px"}}> 
+        <div 
+          className="Row AssetRow AssetRowHeader"
+          style={
+            assetsToUse.filter(asset =>  asset.category ===  guiLabelTab).length !== 0
+            ?
+            {}
+            :
+            {display: "none"}
+          }
+        >
+          <div
+            className="ColumnAssetType"
+          >
+
+          </div>
+          <div
+            className="ColumnAssetArea"
+          >
+            {guiLabelTab === "Voorziening" ? "Berging" : "Opp."}
+          </div>
+
+        </div>
         <ul
           className="AssetList"
         >
@@ -72,7 +93,6 @@ export default function AssetList (props) {
                         className={htmlSelectClass}
                         onChange={ event => {
                           event.preventDefault();
-                          console.log(JSON.stringify(event.target.value));
                           const target = event.target;
 
                           const selectedAsset = assetTypesFromServer.filter(type=>type.code === event.target.value)[0];
@@ -81,10 +101,10 @@ export default function AssetList (props) {
                           copyLabel.assets[index].asset_type = selectedAsset.code;
                           copyLabel.assets[index].category = guiLabelTab
                           // only set storage and infiltration if not touched by the user
-                          if (copyLabel.assets[index].storage == 0) {
+                          if (copyLabel.assets[index].storage === 0) {
                             copyLabel.assets[index].storage = selectedAsset.storage
                           }
-                          if (copyLabel.assets[index].infiltration == 0) {
+                          if (copyLabel.assets[index].infiltration === 0) {
                             copyLabel.assets[index].infiltration = selectedAsset.infiltration
                           }
                           setEditedWaterlabel(copyLabel, _ => {
@@ -236,10 +256,7 @@ export default function AssetList (props) {
                     type: null,
                     asset_type: null,
                   })                
-                  setEditedWaterlabel(copyLabel, _ => {
-                    const index = waterlabelToUse.assets.length;
-                    
-                    const htmlId = index + '_index_asset_edited_waterlabel';
+                  setEditedWaterlabel(copyLabel, _ => {                    
                     setTimeout(_=> {
                       const index = waterlabelToUse.assets.length;
                       const selectBox = getElementByClassWithinSameUnorderedListAsSourceElement(target, index + htmlSuffixSelect);
@@ -250,7 +267,6 @@ export default function AssetList (props) {
                     0
                     )
 
-                    // document.getElementById(htmlId) //.getElementsByTagName('select').focus();
                   });
                 }}
               >
@@ -260,12 +276,16 @@ export default function AssetList (props) {
           </li>
           <li
             style={
-              editedWaterlabel === null && latestWaterlabel===null && editedFinishedWaterlabel===null ?
+              editedWaterlabel === null && assetsToUse.filter(asset =>  asset.category ===  guiLabelTab).length === 0
+              ?
               {}
               :
               {display: "none"}
             }
           >
+            <div>
+              Er zijn op dit adres nog geen statistieken bekend.
+            </div>
             <button
               className="StandardButton Voerin"
               onClick={e => {
@@ -279,7 +299,39 @@ export default function AssetList (props) {
               VOER STATISTIEKEN IN
             </button>
           </li>
+          <li
+            style={
+              editedWaterlabel === null && assetsToUse.filter(asset =>  asset.category ===  guiLabelTab).length !== 0
+              ?
+              {}
+              :
+              {display: "none"}
+            }
+            className="Row VeranderButtonRow"
+          >
+            <legend
+              className="Verander"
+            >   
+              Kloppen deze cijfers niet (meer)?
+            </legend>
+            <button
+              className="StandardButton Verander"
+              onClick={e => {
+                e.preventDefault();
+                changeLabel();
+                setGuiLabelTabDesktop(guiLabelTab || "Tuin", _ => {
+                  // no op
+                });
+                
+              }}
+              
+              
+            >
+              Verander
+            </button>
+          </li>
         </ul>
+      </div>
   );
 }
 

@@ -49,3 +49,13 @@
 .ColumnAssetStorage .AssetInputContainer > div > span {
   left: -18px;
 }
+.AssetList .Row.VeranderButtonRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+legend.Verander {
+  color: #707070;
+  font-size: 16px;
+}
+

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {copyLabelData, } from "./utils/labelFunctions";
 import './LabelFormDesktop.css';
 import AssetList from "./AssetList";
 
@@ -11,23 +10,12 @@ export default function LabelFormDesktop (props) {
     latestWaterlabel,
     editedWaterlabel,
     editedFinishedWaterlabel,
-    setGuiLabelTab,
     guiLabelTab,
     changeLabel,
-    showLabelFormDetails,
-    setShowLabelFormDetails,
     setEditedWaterlabel,
     editingWaterlabelReady,
     setGuiLabelTabDesktop,
   } = props;
-
-  const waterlabelToUse = 
-    editedWaterlabel ? editedWaterlabel : 
-    (editedFinishedWaterlabel ? editedFinishedWaterlabel : latestWaterlabel);
-
-  const assetsToUse = waterlabelToUse && waterlabelToUse.assets;
-  const filteredAssetTypes = assetTypesFromServer.filter(type=>type.category === guiLabelTab)
-
 
   return (
     <div
@@ -39,36 +27,17 @@ export default function LabelFormDesktop (props) {
       alignItems: "stretch",
     }}
     >
-      
 
-
-      <div> 
-        <div 
-          className="Row AssetRow AssetRowHeader"
-        >
-          <div
-            className="ColumnAssetType"
-          >
-
-          </div>
-          <div
-            className="ColumnAssetArea"
-          >
-            {guiLabelTab === "Voorziening" ? "Berging" : "Opp."}
-          </div>
-
-        </div>
-        <AssetList
-          assetTypesFromServer={assetTypesFromServer}
-          latestWaterlabel={latestWaterlabel}
-          editedWaterlabel={editedWaterlabel}
-          editedFinishedWaterlabel={editedFinishedWaterlabel}
-          guiLabelTab={guiLabelTab}
-          changeLabel={changeLabel}
-          setEditedWaterlabel={setEditedWaterlabel}
-          setGuiLabelTabDesktop={setGuiLabelTabDesktop}
-        />
-      </div>
+      <AssetList
+        assetTypesFromServer={assetTypesFromServer}
+        latestWaterlabel={latestWaterlabel}
+        editedWaterlabel={editedWaterlabel}
+        editedFinishedWaterlabel={editedFinishedWaterlabel}
+        guiLabelTab={guiLabelTab}
+        changeLabel={changeLabel}
+        setEditedWaterlabel={setEditedWaterlabel}
+        setGuiLabelTabDesktop={setGuiLabelTabDesktop}
+      />
       <div
         className="RowForButtons"
       >
@@ -117,7 +86,7 @@ export default function LabelFormDesktop (props) {
           </button>
           <span>Kies eerst het type in het dropdown menu</span>
         </div>
-        <button
+        {/* <button
           className="StandardButton Verander"
           onClick={e => {
             e.preventDefault();
@@ -136,7 +105,7 @@ export default function LabelFormDesktop (props) {
           
         >
           Verander
-        </button>
+        </button> */}
       </div>
         
     </div>
