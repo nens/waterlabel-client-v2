@@ -56,7 +56,6 @@ class App extends Component {
 
   confirmLeave = (event) => {
     const questionString = 'Weet u zeker dat u het waterlabel niet wilt opslaan?';
-    console.log('this.state.editedWaterlabel', this.state.editedWaterlabel, this.state.editedFinishedWaterlabel)
     if (this.state.editedWaterlabel || this.state.editedFinishedWaterlabel) {
       event.returnValue = questionString;
       return questionString;
@@ -74,7 +73,6 @@ class App extends Component {
         assetTypeFetchState: "RECEIVED",
         assetTypesFromServer: parsedJSON ? parsedJSON : [],
       })
-      console.log(JSON.stringify(parsedJSON));
     })
     .catch(error => {
       that.setState({assetTypeFetchState: "FAILED"})
@@ -124,7 +122,6 @@ class App extends Component {
         }
         ,( _ => that.fetchWaterlabelsFromBuilding())
       )
-      console.log(JSON.stringify(parsedJSON));
     })
     .catch(error => {
       that.setState({searchAddressState: "FAILED"})
@@ -164,7 +161,6 @@ class App extends Component {
         currentWaterLabels: preppedWaterLabelsNewestFirst,
         latestWaterlabel: preppedWaterLabelsNewestFirst[0] || null, // assume first one from api is latest waterlabel
       })
-      console.log(JSON.stringify(preppedWaterlabels));
     })
     .catch(error => {
       that.setState({fetchWaterlabelState: "FAILED"})
@@ -239,10 +235,7 @@ class App extends Component {
         saveWaterlabelState: "RECEIVED",
         guiShowSuccesSave: true,
         guiShowEmail: false,
-        // currentWaterLabels: parsedJSON.results,
-        // latestWaterlabel: parsedJSON.results[0], // assume first one from api is latest waterlabel
       });
-      console.log(JSON.stringify(parsedJSON));
       that.fetchWaterlabelsFromBuilding();
     })
     .catch(error => {
@@ -270,7 +263,6 @@ class App extends Component {
         .filter(asset => asset.asset_type !== null)
         .reduce((acc, curr)=>acc+((parseInt(curr.area) || 0)), 0 )
          === 0
-        // .length === 0 
     )
     {
       this.setState({
@@ -279,7 +271,6 @@ class App extends Component {
       return;
     }
     this.setState({computedWaterlabelState: "SEND"});
-    console.log('fetchComputedLabel label', label);
 
     const that = this;
     fetch( 
@@ -313,7 +304,6 @@ class App extends Component {
         computedWaterlabelState: "RECEIVED",
         computedWaterlabel: parsedJSON,
       })
-      console.log(JSON.stringify(parsedJSON));
     })
     .catch(error => {
       that.setState({computedWaterlabelState: "FAILED"})

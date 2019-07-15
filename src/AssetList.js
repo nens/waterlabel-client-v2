@@ -5,10 +5,8 @@ import {copyLabelData, } from "./utils/labelFunctions";
 
 const getElementByClassWithinSameUnorderedListAsSourceElement = (sourceElement, className) => {
   const parent = sourceElement.closest("ul");
-  console.log('parent', parent, sourceElement)
   if (parent) {
     const element = parent.getElementsByClassName(className);
-    console.log('element', element)
     if (element && element[0]) {
       return element[0];
     }
@@ -95,7 +93,6 @@ export default function AssetList (props) {
                         className={htmlSelectClass}
                         onChange={ event => {
                           event.preventDefault();
-                          console.log(JSON.stringify(event.target.value));
                           const target = event.target;
 
                           const selectedAsset = assetTypesFromServer.filter(type=>type.code === event.target.value)[0];

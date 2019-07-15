@@ -63,7 +63,6 @@ function LabelForm (props) {
                         <select
                           onChange={ event => {
                             event.preventDefault();
-                            console.log(JSON.stringify(event.target.value));
 
                             const selectedAsset = assetTypesFromServer.filter(type=>type.code === event.target.value)[0];
                             const copyLabel = copyLabelData(waterlabelToUse);
