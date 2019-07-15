@@ -44,34 +44,15 @@ function LabelFormMobile (props) {
       <p >
       Hoe meer water in de tuin kan worden vast gehouden, hoe beter! Dat betekent dus hoe groener, hoe beter! Voer hieronder de statistieken van uw tuin in, daarmee berekenen wij een label!
       </p>
-
-
-      <div> 
-        <div 
-          className="Row AssetRow AssetRowHeader"
-        >
-          <div
-            className="ColumnAssetType"
-          >
-
-          </div>
-          <div
-            className="ColumnAssetArea"
-          >
-            {guiLabelTab === "Voorziening" ? "Berging" : "Opp."}
-          </div>
-
-        </div>
-        <AssetList
-          assetTypesFromServer={assetTypesFromServer}
-          latestWaterlabel={latestWaterlabel}
-          editedWaterlabel={editedWaterlabel}
-          editedFinishedWaterlabel={editedFinishedWaterlabel}
-          guiLabelTab={guiLabelTab}
-          changeLabel={changeLabel}
-          setEditedWaterlabel={setEditedWaterlabel}
-        />
-      </div>
+      <AssetList
+        assetTypesFromServer={assetTypesFromServer}
+        latestWaterlabel={latestWaterlabel}
+        editedWaterlabel={editedWaterlabel}
+        editedFinishedWaterlabel={editedFinishedWaterlabel}
+        guiLabelTab={guiLabelTab}
+        changeLabel={changeLabel}
+        setEditedWaterlabel={setEditedWaterlabel}
+      />
       <div
         className="RowForButtons"
       >

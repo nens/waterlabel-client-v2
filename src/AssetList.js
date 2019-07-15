@@ -33,7 +33,7 @@ export default function AssetList (props) {
     editedWaterlabel ? editedWaterlabel : 
     (editedFinishedWaterlabel ? editedFinishedWaterlabel : latestWaterlabel);
 
-  const assetsToUse = waterlabelToUse && waterlabelToUse.assets;
+  const assetsToUse = (waterlabelToUse && waterlabelToUse.assets) || [];
   const filteredAssetTypes = assetTypesFromServer.filter(type=>type.category === guiLabelTab)
   const htmlSuffixSelect = '_index_asset_select';
   const htmlSuffixArea = '_index_area_select';
@@ -41,6 +41,29 @@ export default function AssetList (props) {
 
 
   return (
+      <div style={{maxWidth: "600px"}}> 
+        <div 
+          className="Row AssetRow AssetRowHeader"
+          style={
+            assetsToUse.filter(asset =>  asset.category ===  guiLabelTab).length !== 0
+            ?
+            {}
+            :
+            {display: "none"}
+          }
+        >
+          <div
+            className="ColumnAssetType"
+          >
+
+          </div>
+          <div
+            className="ColumnAssetArea"
+          >
+            {guiLabelTab === "Voorziening" ? "Berging" : "Opp."}
+          </div>
+
+        </div>
         <ul
           className="AssetList"
         >
@@ -260,12 +283,17 @@ export default function AssetList (props) {
           </li>
           <li
             style={
-              editedWaterlabel === null && latestWaterlabel===null && editedFinishedWaterlabel===null ?
+              //  editedWaterlabel === null && latestWaterlabel===null && editedFinishedWaterlabel===null ?
+              editedWaterlabel === null && assetsToUse.filter(asset =>  asset.category ===  guiLabelTab).length === 0
+              ?
               {}
               :
               {display: "none"}
             }
           >
+            <div>
+              Er zijn op dit adres nog geen statistieken bekend.
+            </div>
             <button
               className="StandardButton Voerin"
               onClick={e => {
@@ -279,7 +307,34 @@ export default function AssetList (props) {
               VOER STATISTIEKEN IN
             </button>
           </li>
+          <li
+            style={
+              editedWaterlabel === null && assetsToUse.filter(asset =>  asset.category ===  guiLabelTab).length !== 0
+              ?
+              {}
+              :
+              {display: "none"}
+            }
+          >
+            <span>Kloppen deze cijfers niet (meer)?</span>
+            <button
+              className="StandardButton Verander"
+              onClick={e => {
+                e.preventDefault();
+                changeLabel();
+                setGuiLabelTabDesktop(guiLabelTab || "Tuin", _ => {
+                  // no op
+                });
+                
+              }}
+              
+              
+            >
+              Verander
+            </button>
+          </li>
         </ul>
+      </div>
   );
 }
 

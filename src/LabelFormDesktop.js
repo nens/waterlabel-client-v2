@@ -39,36 +39,17 @@ export default function LabelFormDesktop (props) {
       alignItems: "stretch",
     }}
     >
-      
 
-
-      <div> 
-        <div 
-          className="Row AssetRow AssetRowHeader"
-        >
-          <div
-            className="ColumnAssetType"
-          >
-
-          </div>
-          <div
-            className="ColumnAssetArea"
-          >
-            {guiLabelTab === "Voorziening" ? "Berging" : "Opp."}
-          </div>
-
-        </div>
-        <AssetList
-          assetTypesFromServer={assetTypesFromServer}
-          latestWaterlabel={latestWaterlabel}
-          editedWaterlabel={editedWaterlabel}
-          editedFinishedWaterlabel={editedFinishedWaterlabel}
-          guiLabelTab={guiLabelTab}
-          changeLabel={changeLabel}
-          setEditedWaterlabel={setEditedWaterlabel}
-          setGuiLabelTabDesktop={setGuiLabelTabDesktop}
-        />
-      </div>
+      <AssetList
+        assetTypesFromServer={assetTypesFromServer}
+        latestWaterlabel={latestWaterlabel}
+        editedWaterlabel={editedWaterlabel}
+        editedFinishedWaterlabel={editedFinishedWaterlabel}
+        guiLabelTab={guiLabelTab}
+        changeLabel={changeLabel}
+        setEditedWaterlabel={setEditedWaterlabel}
+        setGuiLabelTabDesktop={setGuiLabelTabDesktop}
+      />
       <div
         className="RowForButtons"
       >
@@ -117,7 +98,7 @@ export default function LabelFormDesktop (props) {
           </button>
           <span>Kies eerst het type in het dropdown menu</span>
         </div>
-        <button
+        {/* <button
           className="StandardButton Verander"
           onClick={e => {
             e.preventDefault();
@@ -136,7 +117,7 @@ export default function LabelFormDesktop (props) {
           
         >
           Verander
-        </button>
+        </button> */}
       </div>
         
     </div>
