@@ -363,7 +363,7 @@ html, body, #root, .App {
 }
 
 .SearchAddressForm form h1 {
-  margin-top: -10px; /*this will move the entire content up */
+  /* margin-top: 10px;  */
   margin-bottom: 10px; /*To make the subheader closer to the header */
   color: black;
   font-size: 30px;
@@ -476,6 +476,19 @@ html, body, #root, .App {
 .SearchAddressForm form .ErrorText > div:first-child {
   font-weight: bold;
 }
+.SearchAddressForm .LinkOldSite {
+  color: #707070;
+  font-size: 16px;
+  margin-bottom: 4px;
+  text-decoration: none;
+}
+.SearchAddressForm .Logos {
+  /* display: none; */
+  width: 100%;
+  background-color: white;
+  margin-top: auto;
+}
+
 /* __________________________________________________________ Search Address From List */
 .SelectAddressFromList {
   display: flex;
@@ -595,7 +608,7 @@ html, body, #root, .App {
   color: #707070;
   box-sizing: border-box;
   /* move whole info tile op to overlap with button. Hacky.. */
-  margin-top: -14px;
+  /* margin-top: -14px; */
 }
 .InfoTabContainer .Info pre {
   white-space: normal;

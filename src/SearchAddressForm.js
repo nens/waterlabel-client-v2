@@ -1,5 +1,6 @@
 import React from 'react';
 import playButton from './img/play-knop.svg';
+import deWaagLogo from './img/de_waag.png';
 import LoadingIcon from "./LoadingIcon";
 
 
@@ -213,6 +214,22 @@ function SearchAddressForm (props) {
         </div>
       {/* </div> */}
     </form>
+    <div>
+      <a 
+        href="https://www.waterlabel.net"
+        className="LinkOldSite"
+      >
+        Klik hier voor de oude waterlabel site
+      </a>
+    </div>
+    {/* <div
+      className="Logos"
+    >
+      <img
+        alt="Logo de Waag"
+        src={deWaagLogo}
+      />
+    </div> */}
   </div>
   );
 }
