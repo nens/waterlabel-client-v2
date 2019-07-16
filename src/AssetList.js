@@ -25,6 +25,7 @@ export default function AssetList (props) {
     changeLabel,
     setEditedWaterlabel,
     setGuiLabelTabDesktop,
+    showLabelFormDetails,
   } = props;
 
   const waterlabelToUse = 
@@ -51,9 +52,27 @@ export default function AssetList (props) {
           }
         >
           <div
-            className="ColumnAssetType"
+            className={
+              guiLabelTab !== "Voorziening" && editedWaterlabel && showLabelFormDetails
+              ?
+              "ColumnAssetType ColumnAssetTypeSmall"
+              :
+              "ColumnAssetType"
+            }
           >
 
+          </div>
+          <div
+            className="ColumnAssetArea"
+            style={
+              guiLabelTab !== "Voorziening" && editedWaterlabel && showLabelFormDetails
+              ?
+              {}
+              :
+              {display: "none"}
+            }
+          >
+            Berging
           </div>
           <div
             className="ColumnAssetArea"
@@ -85,7 +104,13 @@ export default function AssetList (props) {
                   >
                     {/* _______________________________________________SELECT CATEGORY */}
                     <div
-                      className="ColumnAssetType"
+                      className={
+                        guiLabelTab !== "Voorziening" && editedWaterlabel && showLabelFormDetails
+                        ?
+                        "ColumnAssetType ColumnAssetTypeSmall"
+                        :
+                        "ColumnAssetType"
+                      }
                     >
                     
                       <select
@@ -132,6 +157,40 @@ export default function AssetList (props) {
                         style={asset.type === null ? {display: "none"} : {}}
                       >
                         {asset.type && asset.type.name}
+                      </div>
+                    </div>
+                    {/*____________________________________________________________________________________EXTRA DETAILS */}
+                    <div
+                      className="ColumnAssetArea ColumnAssetStorage"
+                      title="Opslag in Liters"
+                      style={
+                        guiLabelTab !== "Voorziening" && editedWaterlabel && showLabelFormDetails
+                        ?
+                        {}
+                        :
+                        {display: "none"}
+                      }
+                    >
+                      <div
+                        className="AssetInputContainer"
+                      >
+                        <input
+                          className={htmlStorageClass}
+                          value={asset.storage}
+                          onChange={ event => {
+                            const copyLabel = copyLabelData(waterlabelToUse);
+                            let value = event.target.value;
+                            if (parseInt(value)) { // also ignore 0
+                              copyLabel.assets[index].storage = parseInt(value); 
+                            } else if (value==='') {
+                              copyLabel.assets[index].storage = ''; 
+                            }                         
+                            setEditedWaterlabel(copyLabel);
+
+                          }}
+                        >
+                        </input>
+                        <div><span>L.</span></div>
                       </div>
                     </div>
 

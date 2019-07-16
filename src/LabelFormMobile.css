@@ -104,8 +104,17 @@
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: 60%;
-
 }
+
+/* This is to make it smaller in case of "show more" checkbox is checked */
+.LabelFormMobile .Row .ColumnAssetTypeSmall {
+  flex-basis: 40%;
+}
+.LabelFormMobile .Row .ColumnAssetTypeSmall ~ .ColumnAssetArea,
+.LabelFormMobile .Row .ColumnAssetTypeSmall ~ .ColumnAssetStorage {
+  flex-basis: 20%;
+}
+
 .LabelFormMobile .Row .ColumnAssetType select {
   width: 100%;
 }

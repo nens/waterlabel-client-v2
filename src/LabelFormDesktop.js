@@ -41,6 +41,7 @@ export default function LabelFormDesktop (props) {
         changeLabel={changeLabel}
         setEditedWaterlabel={setEditedWaterlabel}
         setGuiLabelTabDesktop={setGuiLabelTabDesktop}
+        showLabelFormDetails={showLabelFormDetails}
       />
       <div
         className="RowForButtons"
@@ -84,14 +85,14 @@ export default function LabelFormDesktop (props) {
           <img
             height="20px"
             width="20px"
-            src={checkboxUnchecked}
+            src={checkboxChecked}
             alt=""
           ></img>
           :
            <img
             height="20px"
             width="20px"
-            src={checkboxChecked}
+            src={checkboxUnchecked}
             alt=""
           ></img>
           }
