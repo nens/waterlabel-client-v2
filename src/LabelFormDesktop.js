@@ -15,6 +15,8 @@ export default function LabelFormDesktop (props) {
     setEditedWaterlabel,
     editingWaterlabelReady,
     setGuiLabelTabDesktop,
+    showLabelFormDetails,
+    setShowLabelFormDetails,
   } = props;
 
   return (
@@ -40,6 +42,13 @@ export default function LabelFormDesktop (props) {
       />
       <div
         className="RowForButtons"
+        style={
+          editedWaterlabel !== null
+          ?
+          {}
+          :
+          {display: "none"}
+        }
       >
         {/* _____________________________________________ Annuleer FINISHED BUTTON */}
         <button
@@ -47,18 +56,28 @@ export default function LabelFormDesktop (props) {
           onClick={e => {
             e.preventDefault();
             setEditedWaterlabel(null);
-            // setGuiLabelTab(null);
-            
           }}
-          style={
-            editedWaterlabel !== null ?
-            {}
-            :
-            // {display: "none"}
-            {visibility: "hidden"}
-          }
         >
           ANNULEER
+        </button>
+        
+        <button
+          className={
+            showLabelFormDetails
+            ?
+            "ShowMoreButton Checked"
+            :
+            "ShowMoreButton UnChecked"
+          }
+          onClick={_=>{
+            if (showLabelFormDetails===false) {
+              setShowLabelFormDetails(true);
+            } else {
+              setShowLabelFormDetails(false);
+            }
+          }}
+        >
+          Extra Details
         </button>
         
       
@@ -74,38 +93,11 @@ export default function LabelFormDesktop (props) {
               editingWaterlabelReady(guiLabelTab);
               
             }}
-            style={
-              editedWaterlabel !== null
-              ?
-              {}
-              :
-              {display: "none"}
-            }
           >
             KLAAR
           </button>
           <span>Kies eerst het type in het dropdown menu</span>
         </div>
-        {/* <button
-          className="StandardButton Verander"
-          onClick={e => {
-            e.preventDefault();
-            changeLabel();
-            setGuiLabelTabDesktop(guiLabelTab || "Tuin", _ => {
-              // no op
-            });
-            
-          }}
-          style={
-            editedWaterlabel === null && (latestWaterlabel!==null || editedFinishedWaterlabel!==null) ?
-            {}
-            :
-            {display: "none"}
-          }
-          
-        >
-          Verander
-        </button> */}
       </div>
         
     </div>
