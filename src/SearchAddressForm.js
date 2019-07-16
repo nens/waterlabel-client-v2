@@ -242,63 +242,55 @@ function SearchAddressForm (props) {
         </a>
       </div>
     </form>
-    
-    {/* <div
-      className="Logos"
-    >
-      <img
-        alt="Logo de Waag"
-        src={deWaagLogo}
-      />
-      <img
-        alt="Logo de Waag"
-        src={huisjeBoompjeBeterLogo}
-      />
-      <img
-        alt="Logo de Waag"
-        src={denHaagLogo}
-      />
-      <img
-        alt="Logo de Waag"
-        src={amstelGooiVechtLogo}
-      />
-      <img
-        alt="Logo de Waag"
-        src={rotterdamLogo}
-      />
-      <img
-        alt="Logo de Waag"
-        src={amsterdamRainproofLogo}
-      />
-    </div> */}
   </div>
   <div
       className="Logos"
     >
+      {/* van deWaag bestaat geen website ? */}
       <img
         alt="Logo de Waag"
         src={deWaagLogo}
       />
+      <a
+      href="https://www.huisjeboompjebeter.nl/"
+      >
       <img
-        alt="Logo de Waag"
+        alt="Logo huisje boompje beter"
         src={huisjeBoompjeBeterLogo}
       />
+      </a>
+      <a
+      href="https://www.denhaag.nl"
+      >
       <img
-        alt="Logo de Waag"
+        alt="Logo Den Haag"
         src={denHaagLogo}
       />
+      </a>
+      <a
+      href="https://www.agv.nl/"
+      >
       <img
-        alt="Logo de Waag"
+        alt="Logo Waterschap Amstel Gooi en Vecht"
         src={amstelGooiVechtLogo}
       />
+      </a>
+      <a
+      href="https://www.rotterdam.nl/"
+      >
       <img
-        alt="Logo de Waag"
+        alt="Logo Rotterdam"
         src={rotterdamLogo}
       />
+      </a>
+      <a
+      href="https://www.rainproof.nl/"
+      >
       <img
-        alt="Logo de Waag"
+        alt="Logo Rainproof"
         src={amsterdamRainproofLogo}
       />
+      </a>
     </div>
   </div>
   );
