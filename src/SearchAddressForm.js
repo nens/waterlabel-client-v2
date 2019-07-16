@@ -38,7 +38,6 @@ function SearchAddressForm (props) {
   return (
     // {/*_______________________________________ SEARCH ADDDRESS FORM */}
     <div
-      className="SearchAddressFormContainer"
       className={
         foundAddressesList.length === 0 &&
         assetTypeFetchState === "RECEIVED" ? 
@@ -49,6 +48,7 @@ function SearchAddressForm (props) {
     >
     <div
     className={
+      // class was moved to div higher
       // foundAddressesList.length === 0 &&
       // assetTypeFetchState === "RECEIVED" ? 
       "SearchAddressForm" 
