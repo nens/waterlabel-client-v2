@@ -77,7 +77,7 @@ export default function LabelFormDesktop (props) {
             }
           }}
         >
-          Extra Details
+          <span>Extra Details</span>
         </button>
         
       
