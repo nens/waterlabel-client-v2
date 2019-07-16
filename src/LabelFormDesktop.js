@@ -2,6 +2,8 @@ import React from 'react';
 
 import './LabelFormDesktop.css';
 import AssetList from "./AssetList";
+import checkboxUnchecked from './img/checkbox_unchecked.png';
+import checkboxChecked from './img/checkbox_checked.png';
 
 export default function LabelFormDesktop (props) {
 
@@ -77,6 +79,23 @@ export default function LabelFormDesktop (props) {
             }
           }}
         >
+          {showLabelFormDetails
+          ?
+          <img
+            height="20px"
+            width="20px"
+            src={checkboxUnchecked}
+            alt=""
+          ></img>
+          :
+           <img
+            height="20px"
+            width="20px"
+            src={checkboxChecked}
+            alt=""
+          ></img>
+          }
+          
           <span>Extra Details</span>
         </button>
         

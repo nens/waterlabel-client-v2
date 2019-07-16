@@ -40,6 +40,18 @@
   width: 101px;
   font-size: 14px;
 }
+
+.ShowMoreButton {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin:0px;
+  padding:0px;
+}
+
 .RowForButtons .Klaar:disabled {
   background-color: #8A9294;
   color: #707070;
