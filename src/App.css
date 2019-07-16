@@ -47,7 +47,7 @@ button::-moz-focus-inner {
   margin-top: auto;
   flex-wrap: wrap;
 }
-.Logos > img {
+.Logos img {
   height: 7vh;
 }
 
