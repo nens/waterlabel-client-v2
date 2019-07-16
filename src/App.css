@@ -571,6 +571,10 @@ html, body, #root, .App {
   width: 90%;
   margin-top: 16px;
 }
+.AnyLabelVisual .BackgroundImage .Margin svg {
+  width: 90%;
+  margin-top: 16px;
+}
 
 
 .AnyLabelVisual .Text {
