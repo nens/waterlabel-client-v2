@@ -89,6 +89,7 @@ export default function AssetList (props) {
                     >
                     
                       <select
+                        defaultValue="default"
                         style={asset.type === null ? {} : {display: "none"}}
                         className={htmlSelectClass}
                         onChange={ event => {
@@ -125,7 +126,7 @@ export default function AssetList (props) {
                           {filteredAssetTypes.map(assetType=>
                             <option key={assetType.name} value={assetType.code}>{assetType.name}</option>
                           )}
-                          <option style={{display:"none"}} disabled selected value> Kies een type </option>
+                          <option style={{display:"none"}} disabled value="default"> Kies een type </option>
                         </select>
                       <div
                         style={asset.type === null ? {display: "none"} : {}}
