@@ -1,6 +1,14 @@
 import React from 'react';
 import playButton from './img/play-knop.svg';
+
 import deWaagLogo from './img/de_waag.png';
+import huisjeBoompjeBeterLogo from './img/huisjeBoompjeBeter.png';
+import denHaagLogo from './img/denHaag.png';
+import amstelGooiVechtLogo from './img/amstelGooiVecht.png';
+import rotterdamLogo from './img/rotterdam.png';
+import amsterdamRainproofLogo from './img/amsterdamRainproof.png';
+
+
 import LoadingIcon from "./LoadingIcon";
 
 
@@ -30,12 +38,22 @@ function SearchAddressForm (props) {
   return (
     // {/*_______________________________________ SEARCH ADDDRESS FORM */}
     <div
+      className="SearchAddressFormContainer"
+      className={
+        foundAddressesList.length === 0 &&
+        assetTypeFetchState === "RECEIVED" ? 
+        "SearchAddressFormContainer" 
+        : 
+        "SearchAddressFormContainer HideSearchAddressForm"
+      }
+    >
+    <div
     className={
-      foundAddressesList.length === 0 &&
-      assetTypeFetchState === "RECEIVED" ? 
+      // foundAddressesList.length === 0 &&
+      // assetTypeFetchState === "RECEIVED" ? 
       "SearchAddressForm" 
-      : 
-      "SearchAddressForm HideSearchAddressForm"
+      // : 
+      // "SearchAddressForm HideSearchAddressForm"
     }
   >
     <div
@@ -213,17 +231,18 @@ function SearchAddressForm (props) {
           <div>Probeert u het nogmaals </div>
         </div>
       {/* </div> */}
+      <div>
+        <a 
+          href="https://www.waterlabel.net"
+          className="LinkOldSite"
+          // target = blank is probably a bad idea
+          // target="_blank"
+        >
+          Klik hier voor de oude waterlabel site
+        </a>
+      </div>
     </form>
-    <div>
-      <a 
-        href="https://www.waterlabel.net"
-        className="LinkOldSite"
-        // target = blank is probably a bad idea
-        // target="_blank"
-      >
-        Klik hier voor de oude waterlabel site
-      </a>
-    </div>
+    
     {/* <div
       className="Logos"
     >
@@ -231,7 +250,56 @@ function SearchAddressForm (props) {
         alt="Logo de Waag"
         src={deWaagLogo}
       />
+      <img
+        alt="Logo de Waag"
+        src={huisjeBoompjeBeterLogo}
+      />
+      <img
+        alt="Logo de Waag"
+        src={denHaagLogo}
+      />
+      <img
+        alt="Logo de Waag"
+        src={amstelGooiVechtLogo}
+      />
+      <img
+        alt="Logo de Waag"
+        src={rotterdamLogo}
+      />
+      <img
+        alt="Logo de Waag"
+        src={amsterdamRainproofLogo}
+      />
     </div> */}
+  </div>
+  <div
+      className="Logos"
+    >
+      <img
+        alt="Logo de Waag"
+        src={deWaagLogo}
+      />
+      <img
+        alt="Logo de Waag"
+        src={huisjeBoompjeBeterLogo}
+      />
+      <img
+        alt="Logo de Waag"
+        src={denHaagLogo}
+      />
+      <img
+        alt="Logo de Waag"
+        src={amstelGooiVechtLogo}
+      />
+      <img
+        alt="Logo de Waag"
+        src={rotterdamLogo}
+      />
+      <img
+        alt="Logo de Waag"
+        src={amsterdamRainproofLogo}
+      />
+    </div>
   </div>
   );
 }
