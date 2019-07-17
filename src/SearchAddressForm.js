@@ -244,7 +244,7 @@ function SearchAddressForm (props) {
         {/* </div> */}
         <div>
           <a 
-            href="https://www.waterlabel.net"
+            href="https://waterlabel-v1.lizard.net/"
             className="LinkOldSite"
             // target = blank is probably a bad idea
             // target="_blank"
