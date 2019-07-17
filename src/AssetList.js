@@ -63,7 +63,7 @@ export default function AssetList (props) {
 
           </div>
           <div
-            className="ColumnAssetArea"
+            className="ColumnAssetArea ColumnAssetStorage"
             style={
               guiLabelTab !== "Voorziening" && editedWaterlabel && showLabelFormDetails
               ?

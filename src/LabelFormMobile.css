@@ -110,7 +110,7 @@
 .LabelFormMobile .Row .ColumnAssetTypeSmall {
   flex-basis: 40%;
 }
-.LabelFormMobile .Row .ColumnAssetTypeSmall ~ .ColumnAssetArea,
+/* .LabelFormMobile .Row .ColumnAssetTypeSmall ~ .ColumnAssetArea, */
 .LabelFormMobile .Row .ColumnAssetTypeSmall ~ .ColumnAssetStorage {
   flex-basis: 20%;
 }
