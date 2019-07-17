@@ -1,5 +1,5 @@
 import React from 'react';
-// import labelsImage from './img/labels.png';
+// import labelsImage from './img/labels.png'; // no longer used
 import {getLabelAssetsTotalArea} from './utils/labelFunctions';
 
 export default CurrentLabel;
@@ -53,21 +53,6 @@ function CurrentLabel (props) {
             <div 
               className="Text NoLabelYetLayOver"
               style={
-                // (
-                // selectedAddress !== null &&
-                // latestWaterlabel === null &&
-                // editedWaterlabel === null &&
-                // computedWaterlabel == null &&
-                // (editedFinishedWaterlabel === null || (editedFinishedWaterlabel && editedFinishedWaterlabel.code===null))
-                // )
-                // ||
-                //   (
-                //     editedWaterlabel && 
-                //     (
-                //       computedWaterlabel === null ||
-                //       ( computedWaterlabel && computedWaterlabel.detail === "The assets sum up to zero area")
-                //     )
-                //   )
                 !waterlabelCodeToUse
                 ?
                 {}
@@ -83,9 +68,6 @@ function CurrentLabel (props) {
               <div
                 className="Text"
                 style={
-                  // (editedFinishedWaterlabel && editedFinishedWaterlabel.code) ||
-                  // computedWaterlabel ||
-                  // latestWaterlabel 
                   waterlabelCodeToUse
                   ?
                   {}
@@ -103,8 +85,6 @@ function CurrentLabel (props) {
                 }
               </div>
               
-              {/* <img src={labelsImage} alt="Afbeelding van mogelijk te behalen labels"/> */}
-              {/* _______________________________________________________________________________________ */}
               <svg xmlns="http://www.w3.org/2000/svg" width="394.33" height="528" viewBox="0 0 394.33 528">
                 <g id="Group_26" data-name="Group 26" transform="translate(-10072 -414)">
                   <path id="Union_1" data-name="Union 1" d="M70,0l32,24L70,48ZM0,48V0H70V48Z" transform="translate(10072 894)" fill="#ce342a"/>
@@ -125,7 +105,6 @@ function CurrentLabel (props) {
                   <text id="A" transform="translate(10082 569)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">A</tspan></text>
                   <text id="A_" data-name="A+" transform="translate(10082 509)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">A+</tspan></text>
                   <text id="A_2" data-name="A++" transform="translate(10082 449)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">A++</tspan></text>
-                  {/* <g id="Group_25" data-name="Group 25" transform="translate(10063 222.935)"> */}
                   <g id="Group_25" data-name="Group 25" transform={`translate(10063 ${waterLabelArrowYCoordinate})`}>
                     <line id="Line_5" data-name="Line 5" x2="60.43" transform="translate(342.9 515.533)" fill="none" stroke="#707070" strokeWidth="5"/>
                     <g id="Polygon_2" data-name="Polygon 2" transform="translate(335.5 531.565) rotate(-90)" fill="#707070">
@@ -135,7 +114,6 @@ function CurrentLabel (props) {
                   </g>
                 </g>
               </svg>
-{/* __________________________________________________________________---- */}
               
             </div>
         </div>
