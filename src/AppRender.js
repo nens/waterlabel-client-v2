@@ -165,6 +165,8 @@ function AppRender (props) {
             editedWaterlabel={editedWaterlabel}
             computedWaterlabel={computedWaterlabel}
             editedFinishedWaterlabel={editedFinishedWaterlabel}
+            guiShowEmail={guiShowEmail}
+            guiShowSuccesSave={guiShowSuccesSave}
           />
         </div>
         <div
@@ -184,6 +186,8 @@ function AppRender (props) {
             computedWaterlabel={computedWaterlabel}
             editedFinishedWaterlabel={editedFinishedWaterlabel}
             openSaveModal={openSaveModal}
+            guiShowEmail={guiShowEmail}
+            guiShowSuccesSave={guiShowSuccesSave}
           />
         </div>
         <button
@@ -209,7 +213,14 @@ function AppRender (props) {
           NIEUW LABEL
         </button>
         <button
-          className="Mobile Button StandardButton NewButton"
+          className={
+            !guiShowEmail &&
+            !guiShowSuccesSave
+            ?
+            "Mobile Button StandardButton NewButton NieuwLabelOpslaan Alert"
+            :
+            "Mobile Button StandardButton NewButton NieuwLabelOpslaan"
+          }
           onClick={e=>{
             e.preventDefault();
             openSaveModal(_=>{
