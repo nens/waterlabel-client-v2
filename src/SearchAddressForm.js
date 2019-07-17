@@ -1,6 +1,7 @@
 import React from 'react';
 import playButton from './img/play-knop.svg';
 
+import backgroundImage from "./img/background.jpg";
 import deWaagLogo from './img/de_waag.png';
 import huisjeBoompjeBeterLogo from './img/huisjeBoompjeBeter.png';
 import denHaagLogo from './img/denHaag.png';
