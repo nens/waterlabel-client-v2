@@ -2,6 +2,8 @@ import React from 'react';
 
 import './LabelFormDesktop.css';
 import AssetList from "./AssetList";
+import checkboxUnchecked from './img/checkbox_unchecked.png';
+import checkboxChecked from './img/checkbox_checked.png';
 
 export default function LabelFormDesktop (props) {
 
@@ -15,6 +17,8 @@ export default function LabelFormDesktop (props) {
     setEditedWaterlabel,
     editingWaterlabelReady,
     setGuiLabelTabDesktop,
+    showLabelFormDetails,
+    setShowLabelFormDetails,
   } = props;
 
   return (
@@ -37,9 +41,17 @@ export default function LabelFormDesktop (props) {
         changeLabel={changeLabel}
         setEditedWaterlabel={setEditedWaterlabel}
         setGuiLabelTabDesktop={setGuiLabelTabDesktop}
+        showLabelFormDetails={showLabelFormDetails}
       />
       <div
         className="RowForButtons"
+        style={
+          editedWaterlabel !== null
+          ?
+          {}
+          :
+          {display: "none"}
+        }
       >
         {/* _____________________________________________ Annuleer FINISHED BUTTON */}
         <button
@@ -47,18 +59,45 @@ export default function LabelFormDesktop (props) {
           onClick={e => {
             e.preventDefault();
             setEditedWaterlabel(null);
-            // setGuiLabelTab(null);
-            
           }}
-          style={
-            editedWaterlabel !== null ?
-            {}
-            :
-            // {display: "none"}
-            {visibility: "hidden"}
-          }
         >
           ANNULEER
+        </button>
+        
+        <button
+          className={
+            showLabelFormDetails
+            ?
+            "ShowMoreButton Checked"
+            :
+            "ShowMoreButton UnChecked"
+          }
+          onClick={_=>{
+            if (showLabelFormDetails===false) {
+              setShowLabelFormDetails(true);
+            } else {
+              setShowLabelFormDetails(false);
+            }
+          }}
+        >
+          {showLabelFormDetails
+          ?
+          <img
+            height="20px"
+            width="20px"
+            src={checkboxChecked}
+            alt=""
+          ></img>
+          :
+           <img
+            height="20px"
+            width="20px"
+            src={checkboxUnchecked}
+            alt=""
+          ></img>
+          }
+          
+          <span>Extra Details</span>
         </button>
         
       
@@ -74,38 +113,11 @@ export default function LabelFormDesktop (props) {
               editingWaterlabelReady(guiLabelTab);
               
             }}
-            style={
-              editedWaterlabel !== null
-              ?
-              {}
-              :
-              {display: "none"}
-            }
           >
             KLAAR
           </button>
           <span>Kies eerst het type in het dropdown menu</span>
         </div>
-        {/* <button
-          className="StandardButton Verander"
-          onClick={e => {
-            e.preventDefault();
-            changeLabel();
-            setGuiLabelTabDesktop(guiLabelTab || "Tuin", _ => {
-              // no op
-            });
-            
-          }}
-          style={
-            editedWaterlabel === null && (latestWaterlabel!==null || editedFinishedWaterlabel!==null) ?
-            {}
-            :
-            {display: "none"}
-          }
-          
-        >
-          Verander
-        </button> */}
       </div>
         
     </div>

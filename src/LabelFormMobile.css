@@ -40,6 +40,18 @@
   width: 101px;
   font-size: 14px;
 }
+
+.ShowMoreButton {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin:0px;
+  padding:0px;
+}
+
 .RowForButtons .Klaar:disabled {
   background-color: #8A9294;
   color: #707070;
@@ -92,8 +104,17 @@
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: 60%;
-
 }
+
+/* This is to make it smaller in case of "show more" checkbox is checked */
+.LabelFormMobile .Row .ColumnAssetTypeSmall {
+  flex-basis: 40%;
+}
+/* .LabelFormMobile .Row .ColumnAssetTypeSmall ~ .ColumnAssetArea, */
+.LabelFormMobile .Row .ColumnAssetTypeSmall ~ .ColumnAssetStorage {
+  flex-basis: 20%;
+}
+
 .LabelFormMobile .Row .ColumnAssetType select {
   width: 100%;
 }
