@@ -116,15 +116,15 @@ function CurrentLabel (props) {
                   <path id="Union_7" data-name="Union 7" d="M220,0l32,24L220,48ZM0,48V0H220V48Z" transform="translate(10072 534)" fill="#1b8e43"/>
                   <path id="Union_8" data-name="Union 8" d="M245,0l32,24L245,48ZM0,48V0H245V48Z" transform="translate(10072 474)" fill="#007629"/>
                   <path id="Union_9" data-name="Union 9" d="M270,0l32,24L270,48ZM0,48V0H270V48Z" transform="translate(10072 414)" fill="#005c20"/>
-                  <text id="G" transform="translate(10082 929)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto"><tspan x="0" y="0">G</tspan></text>
-                  <text id="F" transform="translate(10082 869)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto"><tspan x="0" y="0">F</tspan></text>
-                  <text id="E" transform="translate(10082 809)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto"><tspan x="0" y="0">E</tspan></text>
-                  <text id="D" transform="translate(10082 749)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto"><tspan x="0" y="0">D</tspan></text>
-                  <text id="C" transform="translate(10082 689)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto"><tspan x="0" y="0">C</tspan></text>
-                  <text id="B" transform="translate(10082 629)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto"><tspan x="0" y="0">B</tspan></text>
-                  <text id="A" transform="translate(10082 569)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto"><tspan x="0" y="0">A</tspan></text>
-                  <text id="A_" data-name="A+" transform="translate(10082 509)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto"><tspan x="0" y="0">A+</tspan></text>
-                  <text id="A_2" data-name="A++" transform="translate(10082 449)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto"><tspan x="0" y="0">A++</tspan></text>
+                  <text id="G" transform="translate(10082 929)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">G</tspan></text>
+                  <text id="F" transform="translate(10082 869)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">F</tspan></text>
+                  <text id="E" transform="translate(10082 809)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">E</tspan></text>
+                  <text id="D" transform="translate(10082 749)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">D</tspan></text>
+                  <text id="C" transform="translate(10082 689)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">C</tspan></text>
+                  <text id="B" transform="translate(10082 629)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">B</tspan></text>
+                  <text id="A" transform="translate(10082 569)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">A</tspan></text>
+                  <text id="A_" data-name="A+" transform="translate(10082 509)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">A+</tspan></text>
+                  <text id="A_2" data-name="A++" transform="translate(10082 449)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">A++</tspan></text>
                   {/* <g id="Group_25" data-name="Group 25" transform="translate(10063 222.935)"> */}
                   <g id="Group_25" data-name="Group 25" transform={`translate(10063 ${waterLabelArrowYCoordinate})`}>
                     <line id="Line_5" data-name="Line 5" x2="60.43" transform="translate(342.9 515.533)" fill="none" stroke="#707070" strokeWidth="5"/>
