@@ -12,6 +12,8 @@ function CurrentLabel (props) {
     computedWaterlabel,
     editedFinishedWaterlabel,
     openSaveModal,
+    guiShowEmail,
+    guiShowSuccesSave,
   } = props;
 
   let waterlabelCodeToUse = 
@@ -126,7 +128,15 @@ function CurrentLabel (props) {
           }
         >
           <button
-              className="Desktop StandardButton NieuwLabelOpslaan"
+              // className="Desktop StandardButton NieuwLabelOpslaan"
+              className={
+                !guiShowEmail &&
+                !guiShowSuccesSave
+                ?
+                "Desktop StandardButton NieuwLabelOpslaan Alert"
+                :
+                "Desktop StandardButton NieuwLabelOpslaan"
+              }
               
               onClick={e=>{
                 e.preventDefault();

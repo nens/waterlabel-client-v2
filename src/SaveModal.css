@@ -97,8 +97,8 @@
 .ModalSave .Email .Annuleer,
 .ModalSave .Email .Verzend,
 .ModalSave .Back button {
-  width: 101px;
-  font-size: 14px;
+  min-width: 101px;
+  /* font-size: 14px; */
 }
 
 .ModalSave .Email .Verzend:disabled {

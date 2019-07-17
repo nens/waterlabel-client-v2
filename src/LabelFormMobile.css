@@ -37,8 +37,8 @@
 
 .LabelFormMobile .RowForButtons .Annuleer,
 .LabelFormMobile .RowForButtons .Klaar {
-  width: 101px;
-  font-size: 14px;
+  min-width: 101px;
+  /* font-size: 14px; */
 }
 
 .ShowMoreButton {
