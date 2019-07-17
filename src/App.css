@@ -61,6 +61,23 @@ button::-moz-focus-inner {
   padding: 8px;
 }
 
+.SearchAddressFormContainerTop {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  flex: 1;
+}
+
+.SearchAddressFormContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%
+}
+.BackgroundImageSearchAddressForm {
+  display: none;
+}
+
 @media only screen and (min-width: 900px) {
   .Mobile {
     display: none;
@@ -83,6 +100,13 @@ button::-moz-focus-inner {
   }
   .StandardButton {
     padding: 12px;
+  }
+  .SearchAddressFormContainer {
+    width: 50%;
+  }
+  .BackgroundImageSearchAddressForm {
+    display: flex;
+    width: 50%;
   }
 }
 
@@ -333,11 +357,7 @@ html, body, #root, .App {
 
 /* _________________________________________________________ Search Address Form */
 
-.SearchAddressFormContainer {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
+
 
 .SearchAddressForm {
   width: 100%;
