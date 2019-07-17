@@ -78,6 +78,13 @@ button::-moz-focus-inner {
   display: none;
 }
 
+.SearchAddressForm form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 @media only screen and (min-width: 900px) {
   .Mobile {
     display: none;
@@ -107,6 +114,10 @@ button::-moz-focus-inner {
   .BackgroundImageSearchAddressForm {
     display: flex;
     width: 50%;
+  }
+  .SearchAddressForm form {
+    align-items: flex-end;
+    padding-right: 5%;
   }
 }
 
@@ -403,12 +414,7 @@ html, body, #root, .App {
   transition: opacity 1s;
 }
 
-.SearchAddressForm form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .SearchAddressForm form h1 {
   /* margin-top: 10px;  */
@@ -444,9 +450,9 @@ html, body, #root, .App {
   margin-bottom: 16px;
 }
 
-/* .SearchAddressForm form .InputBlock {
-  background-color: red; 
-} */
+.SearchAddressForm form .InputBlock {
+  min-width: 278px; 
+}
 
 .SearchAddressForm form .InputBlock .Row {
   display: flex;
@@ -479,7 +485,7 @@ html, body, #root, .App {
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: 100px;
-  max-width: 100px;
+  max-width: 74px;
 }
 .SearchAddressForm form .InputBlock .Row .LabelRight + input {
   flex-grow: 0;
@@ -488,10 +494,12 @@ html, body, #root, .App {
   max-width: 50px;
 }
 .SearchAddressForm form .InputBlock .Row .LabelLeft + .InputWholeRow {
-  flex-grow: 0;
+  /* flex-grow: 0;
   flex-shrink: 0;
-  flex-basis: 204px;
+  flex-basis: 204px; */
   max-width: 204px;
+  flex: 1;
+  min-width: 0;
 }
 .SearchAddressForm form .ButtonToggleStreetPostcode {
   color: #707070;
