@@ -91,11 +91,13 @@ class App extends Component {
       searchOnCityStreet,
     } = this.state;
 
+    const postcodeNoSpaces = searchPostcode.split(' ').join('')
+
     const url = 
       searchOnCityStreet ?
       `/api/v2/buildings/?city=${searchCity}&street=${searchStreet}&housenumber=${searchNumber}&page_size=1000000`
       :
-      `/api/v2/buildings/?postalcode=${searchPostcode}&housenumber=${searchNumber}&page_size=1000000`;
+      `/api/v2/buildings/?postalcode=${postcodeNoSpaces}&housenumber=${searchNumber}&page_size=1000000`;
 
     fetch(url)
     .then(function(response) {
