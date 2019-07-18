@@ -79,6 +79,13 @@ export default function LabelFormDesktop (props) {
               setShowLabelFormDetails(false);
             }
           }}
+          style={
+            guiLabelTab==='Voorziening'
+            ?
+            {display:"none"}
+            :
+            {}
+          }
         >
           {showLabelFormDetails
           ?

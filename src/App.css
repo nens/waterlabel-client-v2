@@ -85,6 +85,33 @@ button::-moz-focus-inner {
   align-items: center;
 }
 
+.ModalYoutube .YoutubeFrame {
+  background-color: #3D3D3D;
+  /* HOW CAN WE CUSTOMIZE THIS ? */
+  /* min-width: 40%; */
+  /* max-width: 90%; */
+  width: 80%;
+  min-height: 40%;
+  max-height: 80%;
+
+  padding: 18px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+}
+
+.SearchAddressForm form .ButtonToggleStreetPostcode {
+  color: #707070;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin: 20px;
+  text-decoration: underline;
+}
+
 @media only screen and (min-width: 900px) {
   .Mobile {
     display: none;
@@ -118,6 +145,14 @@ button::-moz-focus-inner {
   .SearchAddressForm form {
     align-items: flex-end;
     padding-right: 5%;
+  }
+  .ModalYoutube .YoutubeFrame {
+    width: 40%;
+  }
+  .SearchAddressForm form .ButtonToggleStreetPostcode {
+    text-align: right;
+    margin-right: 0;
+    padding-right: 0;
   }
 }
 
@@ -313,23 +348,14 @@ html, body, #root, .App {
   left:0px;
 }
 
-.ModalYoutube .YoutubeFrame {
-  background-color: #3D3D3D;
-  /* HOW CAN WE CUSTOMIZE THIS ? */
-  /* https://stackoverflow.com/questions/52393814/css-100-width-of-youtube-embed-video */
-  /* width: 320px; */
-  /* height: 190px; */
-  /* width: 90%;
-  height: 200px; */
-  padding: 18px;
-  margin-bottom: 15px;
-  display: flex;
-  justify-content: center;
-  align-content: center;
+
+.ModalYoutube .YoutubeFrame iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
-/* .ModalYoutube .YoutubeFrame iframe {
-  margin: 18px;
-}  */
 
 /* ________________________________________________ADDRESS HEADER */
 .AddressHeader {
@@ -451,7 +477,7 @@ html, body, #root, .App {
 }
 
 .SearchAddressForm form .InputBlock {
-  min-width: 278px; 
+  min-width: 320px; 
 }
 
 .SearchAddressForm form .InputBlock .Row {
@@ -472,6 +498,7 @@ html, body, #root, .App {
   flex-basis: 100px;
 }
 .SearchAddressForm form .InputBlock .Row .LabelRight {
+  width: 40px;
   margin-left: 10px;
 }
 .SearchAddressForm form .InputBlock .Row input {
@@ -484,32 +511,27 @@ html, body, #root, .App {
 .SearchAddressForm form .InputBlock .Row .LabelLeft + input {
   flex-grow: 0;
   flex-shrink: 0;
-  flex-basis: 100px;
-  max-width: 74px;
+  flex-basis: 94px;
+  max-width: 94px;
 }
 .SearchAddressForm form .InputBlock .Row .LabelRight + input {
   flex-grow: 0;
   flex-shrink: 0;
-  flex-basis: 50px;
-  max-width: 50px;
+  /* how to make dynamic ?? */
+  flex-basis: 72px;
+  max-width: 72px;
 }
 .SearchAddressForm form .InputBlock .Row .LabelLeft + .InputWholeRow {
   /* flex-grow: 0;
   flex-shrink: 0;
   flex-basis: 204px; */
-  max-width: 204px;
+  
+  max-width: 232px;
+  /* max-width: 100%; */
   flex: 1;
   min-width: 0;
 }
-.SearchAddressForm form .ButtonToggleStreetPostcode {
-  color: #707070;
-  font-size: 16px;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  margin-top: 6px;
-  margin-bottom: 20px;
-}
+
 
 .SearchAddressForm form .ButtonSearch {
   /* color: white;
@@ -535,8 +557,6 @@ html, body, #root, .App {
 .SearchAddressForm .LinkOldSite {
   color: #707070;
   font-size: 16px;
-  /* margin-bottom: 4px; */
-  text-decoration: none;
 }
 
 
