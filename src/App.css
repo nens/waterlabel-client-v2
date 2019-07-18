@@ -102,6 +102,16 @@ button::-moz-focus-inner {
   position: relative;
 }
 
+.SearchAddressForm form .ButtonToggleStreetPostcode {
+  color: #707070;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin: 20px;
+  text-decoration: underline;
+}
+
 @media only screen and (min-width: 900px) {
   .Mobile {
     display: none;
@@ -138,6 +148,11 @@ button::-moz-focus-inner {
   }
   .ModalYoutube .YoutubeFrame {
     width: 40%;
+  }
+  .SearchAddressForm form .ButtonToggleStreetPostcode {
+    text-align: right;
+    margin-right: 0;
+    padding-right: 0;
   }
 }
 
@@ -512,15 +527,7 @@ html, body, #root, .App {
   flex: 1;
   min-width: 0;
 }
-.SearchAddressForm form .ButtonToggleStreetPostcode {
-  color: #707070;
-  font-size: 16px;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  margin-top: 6px;
-  margin-bottom: 20px;
-}
+
 
 .SearchAddressForm form .ButtonSearch {
   /* color: white;
@@ -546,8 +553,6 @@ html, body, #root, .App {
 .SearchAddressForm .LinkOldSite {
   color: #707070;
   font-size: 16px;
-  /* margin-bottom: 4px; */
-  text-decoration: none;
 }
 
 
