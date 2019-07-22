@@ -71,6 +71,7 @@ function SearchAddressForm (props) {
           <span>Wat doe ik tegen wateroverlast?</span>
         
           <button
+            type="button"
             className="YoutubeButton"
             onClick={e=>{
               e.preventDefault();
@@ -179,6 +180,7 @@ function SearchAddressForm (props) {
           </div>
           <div>
             <button
+              type="button"
               className="ButtonToggleStreetPostcode"
               style={
                 searchOnCityStreet===false ? {} : {display: "none"} 
@@ -191,6 +193,7 @@ function SearchAddressForm (props) {
               Zoek op straat
             </button>
             <button
+              type="button"
               className="ButtonToggleStreetPostcode"
               style={
                 searchOnCityStreet===true ? {} : {display: "none"} 
