@@ -286,6 +286,7 @@ function SearchAddressForm (props) {
       className="BackgroundImageSearchAddressForm"
       style={{
         backgroundImage: `url("${backgroundImage}")`,
+        backgroundRepeat: "no-repeat",
       }}
     ></div>
   </div>
