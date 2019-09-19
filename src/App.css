@@ -597,15 +597,25 @@ html, body, #root, .App {
   padding-bottom: 26px;
   padding-left: 40px;
   padding-right: 40px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .AnyLabelVisual .BackgroundImage {
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
+
+
   /* display: flex;
   justify-content: flex-start;
   align-items: center; */
 
 }
 .AnyLabelVisual .BackgroundImage .Margin {
+  width: 100%;
+  box-sizing: border-box;
+
+
   /* width: 200px; */
 
   /* margin-top: 26px;
@@ -640,6 +650,13 @@ html, body, #root, .App {
   height: 100%;
   background-color: hsla(120, 0%, 100%, 0.50);
   position: absolute;
+}
+
+.AnyLabelVisual > div {
+  /* fix ie11 bug that opslaan button is too much to left */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* _____________________________________________________ new BUTTON */
