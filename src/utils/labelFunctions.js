@@ -6,8 +6,12 @@ export function copyLabelDataWithoutNullCategories (labelToCopy) {
   let copiedLabel = JSON.parse(JSON.stringify(labelToCopy));
   copiedLabel.assets = 
     copiedLabel.assets
+      // asset type has to be choosen
       .filter(asset => asset.asset_type !== null)
-      .filter(asset => asset.area !== '');
+      // area should not be the empty string
+      .filter(asset => asset.area !== '')
+      // if it is a voorziening then storage should not be the empty string
+      .filter(asset => asset.category !== 'Voorziening' || asset.storage !== '');
   return copiedLabel;
 }
 
