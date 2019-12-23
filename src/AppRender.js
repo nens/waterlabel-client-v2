@@ -441,69 +441,8 @@ function AppRender (props) {
             Hevige neerslag gaat steeds vaker voorkomen. Om de wateroverlast in de stad te beperken moet de overheid maatregelen nemen. Ook burgers kunnen maatregelen treffen om hun stad klimaatbestendiger te maken. Om de burger bewuster te maken is het regenwaterlabel, kortweg waterlabel, voor woningen ontwikkeld. Het waterlabel geeft informatie over de capaciteit van een huis / tuin om water vast te houden. Dit label is een initiatief van De Waag, de gemeente Rotterdam en Huisje Boompje Beter.
             </p>
           </div>
-        </div>
-        {/* _______________________________________ */}
-        
+        </div>        
       </div>
-      
-      
-      
-      
-       {/*_______________________________________ SAVE BUTTON */}
-      {/* {
-      editedFinishedWaterlabel ?
-      <div>
-        <button
-          onClick={e=>{
-            e.preventDefault();
-            openSaveModal();
-          }}
-        >
-          Label Opslaan
-        </button>
-      </div>
-      :
-      null
-      } */}
-
-      {/*_______________________________________ WATERLABEL TAB + FROM */}
-      {/* <form>
-        {
-        assetTypeFetchState === "RECEIVED" &&
-        ( latestWaterlabel || editedWaterlabel || editedFinishedWaterlabel) ?
-        <div>
-          <LabelForm
-            assetTypesFromServer={assetTypesFromServer}
-            latestWaterlabel={latestWaterlabel}
-            editedWaterlabel={editedWaterlabel}
-            editedFinishedWaterlabel={editedFinishedWaterlabel}
-            guiLabelTab={guiLabelTab}
-            showLabelFormDetails={showLabelFormDetails}
-            setShowLabelFormDetails={bool=>setShowLabelFormDetails(bool)}
-            createNewLabel={createNewLabel}
-            changeLabel={changeLabel}
-            setGuiLabelTab={tab => setGuiLabelTab(tab)}
-            setEditedWaterlabel={setEditedWaterlabel}
-            editingWaterlabelReady={editingWaterlabelReady}
-            computedWaterlabelState={computedWaterlabelState}
-            computedWaterlabel={computedWaterlabel}
-          />
-        </div>
-        :
-        null
-        }
-      </form>
-          */}
-      {/*_______________________________________ INFO TABS */}
-      {/* <div
-        style={selectedAddress===null? {display:"none"}:{}}
-        className="InfoTabContainer"
-      >
-        <InfoTabs
-          setInfoTab={tab=>setGuiInfoTab(tab)}
-          guiInfoTab={guiInfoTab}
-        />
-      </div>  */}
     </div>
   );
 }
