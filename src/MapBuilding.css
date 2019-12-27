@@ -1,0 +1,15 @@
+.MapContainer {
+    /*border: 1px solid red;*/
+    margin: 20px;
+    min-height: 256px;
+    max-height: 550px;
+    /*box-shadow: 0px 3px 3px hsla(120,0%,0%,0.16);*/
+    /*visibility: hidden;*/
+    /*float: left;*/
+}
+
+.leaflet-container {
+	width: 100%;
+    min-height: 256px;
+    max-height: 550px;
+}

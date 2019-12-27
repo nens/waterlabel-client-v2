@@ -8,6 +8,7 @@ import LabelFormTileMobile from "./LabelFormTileMobile";
 import LabelFormTileDesktop from "./LabelFormTileDesktop";
 import SaveModal from "./SaveModal";
 import BackModal from "./BackModal";
+import MapBuilding from "./MapBuilding";
 
 import CurrentLabel from "./CurrentLabel";
 import dakImage from './img/dak.svg';
@@ -168,6 +169,7 @@ function AppRender (props) {
             guiShowEmail={guiShowEmail}
             guiShowSuccesSave={guiShowSuccesSave}
           />
+          <MapBuilding />
         </div>
         <div
           className="Desktop Tile Currentlabel"
@@ -189,6 +191,7 @@ function AppRender (props) {
             guiShowEmail={guiShowEmail}
             guiShowSuccesSave={guiShowSuccesSave}
           />
+          <MapBuilding />
         </div>
         <button
           className="Mobile Button StandardButton NewButton"
