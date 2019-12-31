@@ -7,6 +7,7 @@ import './MapBuilding.css';
 
 export default function MapBuilding (props) {
 	const position = [52.092802, 5.1137246];
+	const { showMap, selectedAddress } = props;
 	const map = (
   		<Map center={position} zoom={19}>
   		  <TileLayer
@@ -18,7 +19,7 @@ export default function MapBuilding (props) {
 	);
 	return (
 		<div className="MapContainer">
-			{map}
+			{selectedAddress ? map : null}
 		</div>
 	);
 }
