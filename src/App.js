@@ -36,7 +36,6 @@ class App extends Component {
       latestWaterlabel: null,
       editedWaterlabel: null,
       showLabelFormDetails: false,
-      showMap: true,
 
       editedFinishedWaterlabel: null,
       saveWaterlabelState:  "NOT_SEND", // "SEND", "RECEIVED", "FAILED"
@@ -54,12 +53,6 @@ class App extends Component {
     
     // window.addEventListener("beforeunload", this.confirmLeave);
   };
-
-  // componentDidMount() {
-  //   if (this.state.showMap === false) {
-  //     this.setState({ showMap: true }); //werkt niet, want op hoofdpagina, niet op tile
-  //   }
-  // }
 
   confirmLeave = (event) => {
     const questionString = 'Weet u zeker dat u het waterlabel niet wilt opslaan?';
@@ -449,7 +442,6 @@ class App extends Component {
       latestWaterlabel,
       editedWaterlabel,
       showLabelFormDetails,
-      showMap,
       
       editedFinishedWaterlabel,
       saveWaterlabelState, // "SEND", "RECEIVED", "FAILED"
@@ -485,7 +477,6 @@ class App extends Component {
           latestWaterlabel={latestWaterlabel}
           editedWaterlabel={editedWaterlabel}
           showLabelFormDetails={showLabelFormDetails}
-          showMap={showMap}
           editedFinishedWaterlabel={editedFinishedWaterlabel}
           saveWaterlabelState={saveWaterlabelState}
           computedWaterlabelState={computedWaterlabelState}

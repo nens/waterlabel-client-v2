@@ -20,11 +20,6 @@ import {getLabelAssetsTotalArea} from './utils/labelFunctions';
 
 export default AppRender;
 function AppRender (props) {
-  // const [showMapTwo, setShowMap] = useState(false);
-  // useEffect(() => {
-  //   //
-  // });
-  // // setShowMap in return statement?
 
   const {
     assetTypesFromServer,
@@ -41,7 +36,6 @@ function AppRender (props) {
     latestWaterlabel,
     editedWaterlabel,
     showLabelFormDetails,
-    showMap,  // niet meer nodig, kan ook weg uit App.js
     editedFinishedWaterlabel,
     saveWaterlabelState, // "SEND", "RECEIVED", "FAILED"
     computedWaterlabelState, // "SEND", "RECEIVED", "FAILED"
@@ -175,7 +169,7 @@ function AppRender (props) {
             guiShowEmail={guiShowEmail}
             guiShowSuccesSave={guiShowSuccesSave}
           />
-          <MapBuilding showMap={showMap} selectedAddress={selectedAddress} />
+          <MapBuilding selectedAddress={selectedAddress} />
         </div>
         <div
           className="Desktop Tile Currentlabel"
@@ -197,7 +191,7 @@ function AppRender (props) {
             guiShowEmail={guiShowEmail}
             guiShowSuccesSave={guiShowSuccesSave}
           />
-          <MapBuilding showMap={showMap} selectedAddress={selectedAddress} />
+          <MapBuilding selectedAddress={selectedAddress} />
         </div>
         <button
           className="Mobile Button StandardButton NewButton"
