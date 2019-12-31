@@ -1,6 +1,7 @@
 import React from 'react';
 // import labelsImage from './img/labels.png'; // no longer used
 import {getLabelAssetsTotalArea} from './utils/labelFunctions';
+import MapBuilding from "./MapBuilding";
 
 export default CurrentLabel;
 function CurrentLabel (props) {
@@ -116,6 +117,7 @@ function CurrentLabel (props) {
                   </g>
                 </g>
               </svg>
+              <MapBuilding selectedAddress={selectedAddress} />
               
             </div>
         </div>
