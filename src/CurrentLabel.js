@@ -88,7 +88,7 @@ function CurrentLabel (props) {
                 }
               </div>
               
-              <svg xmlns="http://www.w3.org/2000/svg" width="394.33" height="528" viewBox="0 0 394.33 528">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 394.33 528">
                 <g id="Group_26" data-name="Group 26" transform="translate(-10072 -414)">
                   <path id="Union_1" data-name="Union 1" d="M70,0l32,24L70,48ZM0,48V0H70V48Z" transform="translate(10072 894)" fill="#ce342a"/>
                   <path id="Union_2" data-name="Union 2" d="M95,0l32,24L95,48ZM0,48V0H95V48Z" transform="translate(10072 834)" fill="#cf651d"/>

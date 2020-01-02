@@ -1,9 +1,10 @@
 .MapContainer {
+    display: flex;
     margin-top: 30px;
+    flex: 1;
 }
 
 .leaflet-container {
 	width: 100%;
-    min-height: 150px;
-    max-height: 70vh;
+    height: 100%;
 }
