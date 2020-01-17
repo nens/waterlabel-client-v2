@@ -15,6 +15,7 @@ import tuinImage from './img/tuin.svg';
 import voorzieningImage from './img/voorziening.svg';
 import {scrollElementIntoViewWorkaround} from './utils/browserFunctions'
 import {getLabelAssetsTotalArea} from './utils/labelFunctions';
+import MapBuilding from "./MapBuilding";
 
 
 export default AppRender;
@@ -70,9 +71,12 @@ function AppRender (props) {
     closeSaveModal,
     setGuiInfoTab,
     setGuiShowBackModal,
-    guiShowBackModal
-
+    guiShowBackModal,
+    buildingGeoJSON,
   } = props;
+  if (buildingGeoJSON) {
+    console.log(buildingGeoJSON);
+  }
 
   return (
     <div
@@ -107,6 +111,9 @@ function AppRender (props) {
         setGuiShowBackModal={setGuiShowBackModal}
       />
       
+      <MapBuilding
+        selectedAddress={selectedAddress}
+      />
       <Header
         foundAddressesList={foundAddressesList}
         backToAddressSearchForm={backToAddressSearchForm}
@@ -167,6 +174,7 @@ function AppRender (props) {
             editedFinishedWaterlabel={editedFinishedWaterlabel}
             guiShowEmail={guiShowEmail}
             guiShowSuccesSave={guiShowSuccesSave}
+            buildingGeoJSON={buildingGeoJSON}
           />
         </div>
         <div

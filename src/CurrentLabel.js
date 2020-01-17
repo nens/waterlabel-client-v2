@@ -15,7 +15,11 @@ function CurrentLabel (props) {
     openSaveModal,
     guiShowEmail,
     guiShowSuccesSave,
+    buildingGeoJSON,
   } = props;
+  if (buildingGeoJSON) {
+    console.log(buildingGeoJSON);
+  }
 
   let waterlabelCodeToUse = 
     editedWaterlabel && computedWaterlabel && computedWaterlabel.code ? computedWaterlabel.code :
@@ -117,7 +121,13 @@ function CurrentLabel (props) {
                   </g>
                 </g>
               </svg>
-              <MapBuilding selectedAddress={selectedAddress} />
+              {selectedAddress!==null && buildingGeoJSON
+                ? <MapBuilding
+                  selectedAddress={selectedAddress}
+                  buildingGeoJSON={buildingGeoJSON}
+                />
+                : null
+              }
               
             </div>
         </div>

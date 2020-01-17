@@ -47,6 +47,26 @@ class App extends Component {
       guiShowSuccesSave: false,
       guiLabelTab: null,//"Dak", // "Tuin", "Voorziening"
       guiInfoTab: null,//"PERSONAL", // "CALCULATION", "WHY"
+
+      buildingGeoJSON: {
+        type: "Polygon",
+        coordinates: [
+          [5.558407963674824, 52.02891795362399, 43.553980556316674],
+          [5.558556125263742, 52.028895006882905, 43.554011701606214],
+          [5.558555978139519, 52.028894638584, 43.5540123321116],
+          [5.558638842742482, 52.028882464748605, 43.554028634913266],
+          [5.558639078224903, 52.028883075597996, 43.55402759555727],
+          [5.558791728506017, 52.02886037368467, 43.55405809171498],
+          [5.558811504331883, 52.02886861390884, 43.55404319893569],
+          [5.55882798548451, 52.02891064530849, 43.55397152528167],
+          [5.558707166953551, 52.028992451721535, 43.5538397943601],
+          [5.558616595942235, 52.02904320489045, 43.55375886056572],
+          [5.55861604078445, 52.02904282819822, 43.55375952459872],
+          [5.558529664351089, 52.02908930582589, 43.55368557944894],
+          [5.558470124059828, 52.029016624665395, 43.5538111012429],
+          [5.558407963674824, 52.02891795362399, 43.553980556316674],
+        ],
+      },
     };
 
     this.fetchAssetTypes();
@@ -80,6 +100,7 @@ class App extends Component {
     });
   }
   fetchBuildings = () => {
+    console.log("fetchBuildings");
     this.setState({searchAddressState: "SEND"});
     const that = this;
 
@@ -112,6 +133,11 @@ class App extends Component {
         })
       });
       const foundAddressesList = [].concat.apply([], unFlatFoundAddressesList);
+      // console.log(foundAddressesList);
+      // console.log(parsedJSON.results);
+      // console.log(parsedJSON.results[0].geometry);
+      const buildingGeoJSON = parsedJSON.results[0].geometry;
+      console.log(buildingGeoJSON);
       
       that.setState(
         {
@@ -119,6 +145,7 @@ class App extends Component {
         // foundAddressesList: (parsedJSON.results && parsedJSON.results.length)? parsedJSON.results : [],
         foundAddressesList: foundAddressesList,
         selectedAddress: (((foundAddressesList).length === 1 )? foundAddressesList[0] : null),
+        buildingGeoJSON: buildingGeoJSON,
         // currentWaterLabels: (parsedJSON.results && parsedJSON.results.length === 1 )? parsedJSON.results[0].waterlabels : [],
         // latestWaterlabel: (parsedJSON.results && parsedJSON.results.length === 1 )? parsedJSON.results[0].waterlabels[0] : null
         }
@@ -516,6 +543,7 @@ class App extends Component {
           setGuiInfoTab={this.setGuiInfoTab}
           guiShowBackModal={guiShowBackModal}
           setGuiShowBackModal={this.setGuiShowBackModal}
+          buildingGeoJSON={this.state.buildingGeoJSON}
         />
     );
   };
