@@ -85,7 +85,6 @@ class App extends Component {
     });
   }
   fetchBuildings = () => {
-    console.log("fetchBuildings");
     this.setState({searchAddressState: "SEND"});
     const that = this;
 
