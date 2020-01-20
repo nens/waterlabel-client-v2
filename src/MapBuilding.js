@@ -17,16 +17,6 @@ function getPolygonBounds (geoJSON) {
     if (coordinates[i][1] < yMin) {yMin = coordinates[i][1]};
     if (coordinates[i][1] > yMax) {yMax = coordinates[i][1]};
   }
-  // console.log(xMin, xMax, yMin, yMax);
-  // 5.558207963674824,5.55902798548451,52.02886037368467,52.02908930582589 // do we want this for the in_bbox parameter for the api?
-  // 5.558207963674824,52.02886037368467,5.55902798548451,52.02908930582589 // do we want this for the in_bbox parameter for the api?
-  // 52.02886037368467,5.558207963674824,52.02908930582589,5.55902798548451 // do we want this for the in_bbox parameter for the api?
-  // 52.02886037368467,52.02908930582589,5.558207963674824,5.55902798548451 // do we want this for the in_bbox parameter for the api?
-  // Larger than Veenendaal:
-  // 5.558407963674824,5.55882798548451,52.02884037368467,52.02918930582589 // do we want this for the in_bbox parameter for the api?
-  // 5.558407963674824,52.02884037368467,5.55882798548451,52.02918930582589 // do we want this for the in_bbox parameter for the api?
-  // 52.02884037368467,5.558407963674824,52.02918930582589,5.55882798548451 // do we want this for the in_bbox parameter for the api?
-  // 52.02884037368467,52.02918930582589,5.558407963674824,5.55882798548451 // do we want this for the in_bbox parameter for the api?
   return {xMin: xMin, xMax: xMax, yMin: yMin, yMax: yMax};
 }
 
