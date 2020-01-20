@@ -3,11 +3,38 @@ import { Map, TileLayer, Marker, FeatureGroup, Polygon } from "react-leaflet";
 
 import './MapBuilding.css';
 
+function getPolygonBounds (geoJSON) {
+	// Note: does not work for polygons crossing the datetime border.
+	const coordinates = geoJSON.coordinates[0];
+	let xMin = coordinates[0][0];
+	let xMax = coordinates[0][0];
+	let yMin = coordinates[0][1];
+	let yMax = coordinates[0][1];
+	console.log(xMin, xMax, yMin, yMax);
+	for (var i = 0; i < coordinates.length; i++) {
+		if(coordinates[i][0] < xMin) {xMin = coordinates[i][0]};
+		if(coordinates[i][0] > xMax) {xMax = coordinates[i][0]};
+		if (coordinates[i][1] < yMin) {yMin = coordinates[i][1]};
+		if (coordinates[i][1] > yMax) {yMax = coordinates[i][1]};
+	}
+	console.log(xMin, xMax, yMin, yMax);
+	return {xMin: xMin, xMax: xMax, yMin: yMin, yMax: yMax};
+}
+
+function getPolygonCenter (polygonBounds) {
+	let xMean = (polygonBounds.xMin + polygonBounds.xMax) / 2;
+	let yMean = (polygonBounds.yMin + polygonBounds.yMax) / 2;
+	return {xMean: xMean, yMean: yMean};
+}
 
 export default function MapBuilding (props) {
-    const zoomLevel = 19;//19
     const { buildingGeoJSON, selectedAddress } = props;//, buildingGeoJSON//, selectedAddress,
-    let position = [52.02897390884, 5.558607963674824];//[52.02891795362399, 5.558407963674824]; //[52.092802, 5.1137246];
+    const polygonBounds = getPolygonBounds(buildingGeoJSON);
+    console.log(polygonBounds);
+    const polygonCenter = getPolygonCenter(polygonBounds);
+    console.log(polygonCenter);
+    const zoomLevel = 19;//19 is the most zoomed in you still get a basemap
+    let position = [polygonCenter.yMean, polygonCenter.xMean];//polygon.getBounds().getCenter();//[52.02891795362399, 5.558407963674824]; //[52.092802, 5.1137246];
     // if (buildingGeoJSON===undefined || buildingGeoJSON===null) {
     // 	return (null);
     // }
