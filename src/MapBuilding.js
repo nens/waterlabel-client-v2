@@ -10,14 +10,13 @@ function getPolygonBounds (geoJSON) {
 	let xMax = coordinates[0][0];
 	let yMin = coordinates[0][1];
 	let yMax = coordinates[0][1];
-	console.log(xMin, xMax, yMin, yMax);
 	for (var i = 0; i < coordinates.length; i++) {
 		if(coordinates[i][0] < xMin) {xMin = coordinates[i][0]};
 		if(coordinates[i][0] > xMax) {xMax = coordinates[i][0]};
 		if (coordinates[i][1] < yMin) {yMin = coordinates[i][1]};
 		if (coordinates[i][1] > yMax) {yMax = coordinates[i][1]};
 	}
-	console.log(xMin, xMax, yMin, yMax); // 5.558407963674824, 5.55882798548451, 52.02886037368467, 52.02908930582589
+	// console.log(xMin, xMax, yMin, yMax); // 5.558407963674824, 5.55882798548451, 52.02886037368467, 52.02908930582589
 	// 5.558407963674824,5.55882798548451,52.02886037368467,52.02908930582589
 	// 5.558407963674824,52.02886037368467,5.55882798548451,52.02908930582589
 	// 52.02886037368467,5.558407963674824,52.02908930582589,5.55882798548451
@@ -34,16 +33,12 @@ function getPolygonCenter (polygonBounds) {
 export default function MapBuilding (props) {
     const { buildingGeoJSON, selectedAddress, waterLabelColor } = props;//, buildingGeoJSON//, selectedAddress,
     const polygonBounds = getPolygonBounds(buildingGeoJSON);
-    console.log(polygonBounds);
     const polygonCenter = getPolygonCenter(polygonBounds);
-    console.log(polygonCenter);
     const zoomLevel = 19;//19 is the most zoomed in you still get a basemap
     let position = [polygonCenter.yMean, polygonCenter.xMean];//polygon.getBounds().getCenter();//[52.02891795362399, 5.558407963674824]; //[52.092802, 5.1137246];
     // if (buildingGeoJSON===undefined || buildingGeoJSON===null) {
     // 	return (null);
     // }
-    console.log("In the mapbuilding");
-    console.log(buildingGeoJSON);
     let latlngs = [];
     // let latlngs2 = [ //Achterstraatje Veenendaal //3901BA nummer 16
  //      [52.02891795362399, 5.558407963674824],
@@ -62,7 +57,6 @@ export default function MapBuilding (props) {
  //      [52.02891795362399, 5.558407963674824]
     // ];
     if (buildingGeoJSON) {
-        console.log(buildingGeoJSON);
         for (var i = 0; i < buildingGeoJSON.coordinates[0].length; i++) {
             // if (i) {return ;}
             // if (i !== 0) {
@@ -72,7 +66,6 @@ export default function MapBuilding (props) {
             let lng = buildingGeoJSON.coordinates[0][i][1];
             // console.log(lng);
             latlngs.push([lng, lat]); // deze volgorde klopt voor Polygon van leaflet
-            console.log([lng, lat]);
             // }
         }
     } else {
@@ -92,9 +85,7 @@ export default function MapBuilding (props) {
           [52.029016624665395, 5.558470124059828],
           [52.02891795362399, 5.558407963674824]
         ];
-        console.log("Not using buildingGeoJSON");
     }
-    console.log(latlngs);
     // console.log(selectedAddress);
     // let key = new Date().getTime().toString();
     // console.log(key);

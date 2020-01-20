@@ -17,9 +17,6 @@ function CurrentLabel (props) {
     guiShowSuccesSave,
     buildingGeoJSON,
   } = props;
-  if (buildingGeoJSON) {
-    console.log(buildingGeoJSON);
-  }
 
   let waterlabelCodeToUse = 
     editedWaterlabel && computedWaterlabel && computedWaterlabel.code ? computedWaterlabel.code :

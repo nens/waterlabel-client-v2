@@ -133,11 +133,7 @@ class App extends Component {
         })
       });
       const foundAddressesList = [].concat.apply([], unFlatFoundAddressesList);
-      // console.log(foundAddressesList);
-      // console.log(parsedJSON.results);
-      // console.log(parsedJSON.results[0].geometry);
       const buildingGeoJSON = parsedJSON.results[0].geometry;
-      console.log(buildingGeoJSON);
       
       that.setState(
         {

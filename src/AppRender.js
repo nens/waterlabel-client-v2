@@ -74,9 +74,6 @@ function AppRender (props) {
     guiShowBackModal,
     buildingGeoJSON,
   } = props;
-  if (buildingGeoJSON) {
-    console.log(buildingGeoJSON);
-  }
 
   return (
     <div
