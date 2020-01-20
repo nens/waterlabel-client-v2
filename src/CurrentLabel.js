@@ -46,7 +46,7 @@ function CurrentLabel (props) {
   const colorLabelA1 = "#007629";
   const colorLabelA2 = "#005c20";
 
-  let waterLabelColor = "#ce342a"; // Worst water label is used for G and for no waterlabel yet
+  let waterLabelColor = "#ce342a"; // This default water label is used for G and for no waterlabel yet
   if (waterlabelCodeToUse === "F") {waterLabelColor = colorLabelF};
   if (waterlabelCodeToUse === "E") {waterLabelColor = colorLabelE};
   if (waterlabelCodeToUse === "D") {waterLabelColor = colorLabelD};
@@ -138,7 +138,7 @@ function CurrentLabel (props) {
                   </g>
                 </g>
               </svg>
-              {selectedAddress!==null// && buildingGeoJSON!==null
+              {selectedAddress!==null
                 ? <MapBuilding
                   selectedAddress={selectedAddress}
                   buildingGeoJSON={buildingGeoJSON}
