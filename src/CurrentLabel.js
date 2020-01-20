@@ -39,6 +39,26 @@ function CurrentLabel (props) {
   if (waterlabelCodeToUse === 'F') waterLabelArrowYCoordinate = 343;
   if (waterlabelCodeToUse === 'G') waterLabelArrowYCoordinate = 403;
 
+  const colorLabelG = "#ce342a";
+  const colorLabelF = "#cf651d";
+  const colorLabelE = "#eb9d21";
+  const colorLabelD = "#faec0d";
+  const colorLabelC = "#9dba3a";
+  const colorLabelB = "#4aa847";
+  const colorLabelA = "#1b8e43";
+  const colorLabelA1 = "#007629";
+  const colorLabelA2 = "#005c20";
+
+  let waterLabelColor = "#ce342a"; // Worst water label is used for G and for no waterlabel yet
+  if (waterlabelCodeToUse === "F") {waterLabelColor = colorLabelF};
+  if (waterlabelCodeToUse === "E") {waterLabelColor = colorLabelE};
+  if (waterlabelCodeToUse === "D") {waterLabelColor = colorLabelD};
+  if (waterlabelCodeToUse === "C") {waterLabelColor = colorLabelC};
+  if (waterlabelCodeToUse === "B") {waterLabelColor = colorLabelB};
+  if (waterlabelCodeToUse === "A") {waterLabelColor = colorLabelA};
+  if (waterlabelCodeToUse === "A+") {waterLabelColor = colorLabelA1};
+  if (waterlabelCodeToUse === "A++") {waterLabelColor = colorLabelA2};
+
 
   return (
     <div
@@ -94,15 +114,15 @@ function CurrentLabel (props) {
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 394.33 528">
                 <g id="Group_26" data-name="Group 26" transform="translate(-10072 -414)">
-                  <path id="Union_1" data-name="Union 1" d="M70,0l32,24L70,48ZM0,48V0H70V48Z" transform="translate(10072 894)" fill="#ce342a"/>
-                  <path id="Union_2" data-name="Union 2" d="M95,0l32,24L95,48ZM0,48V0H95V48Z" transform="translate(10072 834)" fill="#cf651d"/>
-                  <path id="Union_3" data-name="Union 3" d="M120,0l32,24L120,48ZM0,48V0H120V48Z" transform="translate(10072 774)" fill="#eb9d21"/>
-                  <path id="Union_4" data-name="Union 4" d="M145,0l32,24L145,48ZM0,48V0H145V48Z" transform="translate(10072 714)" fill="#faec0d"/>
-                  <path id="Union_5" data-name="Union 5" d="M170,0l32,24L170,48ZM0,48V0H170V48Z" transform="translate(10072 654)" fill="#9dba3a"/>
-                  <path id="Union_6" data-name="Union 6" d="M195,0l32,24L195,48ZM0,48V0H195V48Z" transform="translate(10072 594)" fill="#4aa847"/>
-                  <path id="Union_7" data-name="Union 7" d="M220,0l32,24L220,48ZM0,48V0H220V48Z" transform="translate(10072 534)" fill="#1b8e43"/>
-                  <path id="Union_8" data-name="Union 8" d="M245,0l32,24L245,48ZM0,48V0H245V48Z" transform="translate(10072 474)" fill="#007629"/>
-                  <path id="Union_9" data-name="Union 9" d="M270,0l32,24L270,48ZM0,48V0H270V48Z" transform="translate(10072 414)" fill="#005c20"/>
+                  <path id="Union_1" data-name="Union 1" d="M70,0l32,24L70,48ZM0,48V0H70V48Z" transform="translate(10072 894)" fill={colorLabelG} />
+                  <path id="Union_2" data-name="Union 2" d="M95,0l32,24L95,48ZM0,48V0H95V48Z" transform="translate(10072 834)" fill={colorLabelF} />
+                  <path id="Union_3" data-name="Union 3" d="M120,0l32,24L120,48ZM0,48V0H120V48Z" transform="translate(10072 774)" fill={colorLabelE} />
+                  <path id="Union_4" data-name="Union 4" d="M145,0l32,24L145,48ZM0,48V0H145V48Z" transform="translate(10072 714)" fill={colorLabelD} />
+                  <path id="Union_5" data-name="Union 5" d="M170,0l32,24L170,48ZM0,48V0H170V48Z" transform="translate(10072 654)" fill={colorLabelC} />
+                  <path id="Union_6" data-name="Union 6" d="M195,0l32,24L195,48ZM0,48V0H195V48Z" transform="translate(10072 594)" fill={colorLabelB} />
+                  <path id="Union_7" data-name="Union 7" d="M220,0l32,24L220,48ZM0,48V0H220V48Z" transform="translate(10072 534)" fill={colorLabelA} />
+                  <path id="Union_8" data-name="Union 8" d="M245,0l32,24L245,48ZM0,48V0H245V48Z" transform="translate(10072 474)" fill={colorLabelA1} />
+                  <path id="Union_9" data-name="Union 9" d="M270,0l32,24L270,48ZM0,48V0H270V48Z" transform="translate(10072 414)" fill={colorLabelA2} />
                   <text id="G" transform="translate(10082 929)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">G</tspan></text>
                   <text id="F" transform="translate(10082 869)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">F</tspan></text>
                   <text id="E" transform="translate(10082 809)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">E</tspan></text>
@@ -125,6 +145,7 @@ function CurrentLabel (props) {
                 ? <MapBuilding
                   selectedAddress={selectedAddress}
                   buildingGeoJSON={buildingGeoJSON}
+                  waterLabelColor={waterLabelColor}
                 />
                 : null
               }

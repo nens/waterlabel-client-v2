@@ -28,7 +28,7 @@ function getPolygonCenter (polygonBounds) {
 }
 
 export default function MapBuilding (props) {
-    const { buildingGeoJSON, selectedAddress } = props;//, buildingGeoJSON//, selectedAddress,
+    const { buildingGeoJSON, selectedAddress, waterLabelColor } = props;//, buildingGeoJSON//, selectedAddress,
     const polygonBounds = getPolygonBounds(buildingGeoJSON);
     console.log(polygonBounds);
     const polygonCenter = getPolygonCenter(polygonBounds);
@@ -149,7 +149,7 @@ export default function MapBuilding (props) {
           <FeatureGroup>
             <Polygon
               positions={latlngs}
-              color="brown"
+              color={waterLabelColor}
               height="50"
               width="50"
               //style={{color: "blue"}}// height: "50px", width: "50px",  //margin: "0 auto", height: "100%", width: "100%", 
