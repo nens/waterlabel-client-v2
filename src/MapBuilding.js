@@ -155,6 +155,7 @@ export default function MapBuilding (props) {
           trackResize={false}
           touchZoom={false}
           scrollWheelZoom={false}
+          draggable={false}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
