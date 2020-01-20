@@ -627,7 +627,6 @@ html, body, #root, .App {
 }
 .AnyLabelVisual .BackgroundImage .Margin svg {
   display: flex;
-  /*width: 90%;*/
   flex: 1;
   margin-top: 16px;
 }
