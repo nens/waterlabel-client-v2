@@ -17,7 +17,11 @@ function getPolygonBounds (geoJSON) {
 		if (coordinates[i][1] < yMin) {yMin = coordinates[i][1]};
 		if (coordinates[i][1] > yMax) {yMax = coordinates[i][1]};
 	}
-	console.log(xMin, xMax, yMin, yMax);
+	console.log(xMin, xMax, yMin, yMax); // 5.558407963674824, 5.55882798548451, 52.02886037368467, 52.02908930582589
+	// 5.558407963674824,5.55882798548451,52.02886037368467,52.02908930582589
+	// 5.558407963674824,52.02886037368467,5.55882798548451,52.02908930582589
+	// 52.02886037368467,5.558407963674824,52.02908930582589,5.55882798548451
+	// 52.02886037368467,52.02908930582589,5.558407963674824,5.55882798548451
 	return {xMin: xMin, xMax: xMax, yMin: yMin, yMax: yMax};
 }
 
@@ -139,8 +143,18 @@ export default function MapBuilding (props) {
     // if (selectedAddress) {buildingCode = selectedAddress.building; } //0345100002008052
     // console.log(buildingCode);
     const map = (
-        <Map center={position} zoom={zoomLevel}
-            //key={key}
+        <Map
+          center={position}
+          zoom={zoomLevel}
+          zoomControl={false} // removes + / - zoomcontrol on the map
+          doubleClickZoom={false}
+          closePopupOnClick={false}
+          dragging={false}
+          zoomSnap={false}
+          zoomDelta={false}
+          trackResize={false}
+          touchZoom={false}
+          scrollWheelZoom={false}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -157,6 +171,8 @@ export default function MapBuilding (props) {
           </FeatureGroup>
         </Map>
     );
+    // map.zoomControl.remove();
+    // console.log(map.getBounds());
     // var polygon = L.polygon(buildingGeoJSON.coordinates, {color: 'red'}).addTo(map);
     return (
         <div className="MapContainer">
