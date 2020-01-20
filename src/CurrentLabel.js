@@ -121,10 +121,10 @@ function CurrentLabel (props) {
                   </g>
                 </g>
               </svg>
-              {selectedAddress!==null
+              {selectedAddress!==null// && buildingGeoJSON!==null
                 ? <MapBuilding
                   selectedAddress={selectedAddress}
-                  //buildingGeoJSON={buildingGeoJSON}
+                  buildingGeoJSON={buildingGeoJSON}
                 />
                 : null
               }

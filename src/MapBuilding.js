@@ -6,12 +6,13 @@ import './MapBuilding.css';
 
 export default function MapBuilding (props) {
     const zoomLevel = 19;//19
-    const { selectedAddress } = props;//, buildingGeoJSON
+    const { buildingGeoJSON, selectedAddress } = props;//, buildingGeoJSON//, selectedAddress,
     let position = [52.02897390884, 5.558607963674824];//[52.02891795362399, 5.558407963674824]; //[52.092802, 5.1137246];
-    // if (!buildingGeoJSON) {
+    // if (buildingGeoJSON===undefined || buildingGeoJSON===null) {
     // 	return (null);
     // }
     console.log("In the mapbuilding");
+    console.log(buildingGeoJSON);
     let latlngs = [];
     // let latlngs2 = [ //Achterstraatje Veenendaal //3901BA nummer 16
  //      [52.02891795362399, 5.558407963674824],
@@ -29,21 +30,21 @@ export default function MapBuilding (props) {
  //      [52.029016624665395, 5.558470124059828],
  //      [52.02891795362399, 5.558407963674824]
     // ];
-    // if (buildingGeoJSON) {
-    // 	console.log(buildingGeoJSON);
-    // 	for (var i = 0; i < buildingGeoJSON.coordinates[0].length; i++) {
-    // 		// if (i) {return ;}
-    // 		// if (i !== 0) {
-    // 		// console.log(buildingGeoJSON.coordinates[0][i]);
-    // 		let lat = buildingGeoJSON.coordinates[0][i][0];
-    // 		// console.log(lat);
-    // 		let lng = buildingGeoJSON.coordinates[0][i][1];
-    // 		// console.log(lng);
-    // 		latlngs.push([lng, lat]); // deze volgorde klopt voor Polygon van leaflet
-    // 		console.log([lng, lat]);
-    // 		// }
-    // 	}
-    // } else {
+    if (buildingGeoJSON) {
+        console.log(buildingGeoJSON);
+        for (var i = 0; i < buildingGeoJSON.coordinates[0].length; i++) {
+            // if (i) {return ;}
+            // if (i !== 0) {
+            // console.log(buildingGeoJSON.coordinates[0][i]);
+            let lat = buildingGeoJSON.coordinates[0][i][0];
+            // console.log(lat);
+            let lng = buildingGeoJSON.coordinates[0][i][1];
+            // console.log(lng);
+            latlngs.push([lng, lat]); // deze volgorde klopt voor Polygon van leaflet
+            console.log([lng, lat]);
+            // }
+        }
+    } else {
 	    latlngs = [ //Achterstraatje Veenendaal //3901BA nummer 16
           [52.02891795362399, 5.558407963674824],
           [52.028895006882905, 5.558556125263742],
@@ -61,7 +62,7 @@ export default function MapBuilding (props) {
           [52.02891795362399, 5.558407963674824]
         ];
         console.log("Not using buildingGeoJSON");
-    // }
+    }
     console.log(latlngs);
     // console.log(selectedAddress);
     // let key = new Date().getTime().toString();

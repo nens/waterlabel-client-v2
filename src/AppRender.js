@@ -111,9 +111,6 @@ function AppRender (props) {
         setGuiShowBackModal={setGuiShowBackModal}
       />
       
-      <MapBuilding
-        selectedAddress={selectedAddress}
-      />
       <Header
         foundAddressesList={foundAddressesList}
         backToAddressSearchForm={backToAddressSearchForm}
@@ -196,6 +193,7 @@ function AppRender (props) {
             openSaveModal={openSaveModal}
             guiShowEmail={guiShowEmail}
             guiShowSuccesSave={guiShowSuccesSave}
+            buildingGeoJSON={buildingGeoJSON}
           />
         </div>
         <button
