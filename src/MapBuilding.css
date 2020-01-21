@@ -1,0 +1,15 @@
+.MapContainer {
+    display: flex;
+    margin-top: 30px;
+    flex: 1;
+}
+
+.leaflet-container {
+	width: 100%;
+    height: 100%;
+}
+/* Since we don't want to pan and zoom for now,
+I also set the cursor to default for the features shown on the map.*/
+.leaflet-interactive {
+  cursor: default;
+}

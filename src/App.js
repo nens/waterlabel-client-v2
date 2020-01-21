@@ -47,6 +47,11 @@ class App extends Component {
       guiShowSuccesSave: false,
       guiLabelTab: null,//"Dak", // "Tuin", "Voorziening"
       guiInfoTab: null,//"PERSONAL", // "CALCULATION", "WHY"
+
+      buildingGeoJSON: {
+        type: "Polygon",
+        coordinates: [],
+      },
     };
 
     this.fetchAssetTypes();
@@ -112,6 +117,7 @@ class App extends Component {
         })
       });
       const foundAddressesList = [].concat.apply([], unFlatFoundAddressesList);
+      const buildingGeoJSON = parsedJSON.results[0].geometry;
       
       that.setState(
         {
@@ -119,6 +125,7 @@ class App extends Component {
         // foundAddressesList: (parsedJSON.results && parsedJSON.results.length)? parsedJSON.results : [],
         foundAddressesList: foundAddressesList,
         selectedAddress: (((foundAddressesList).length === 1 )? foundAddressesList[0] : null),
+        buildingGeoJSON: buildingGeoJSON,
         // currentWaterLabels: (parsedJSON.results && parsedJSON.results.length === 1 )? parsedJSON.results[0].waterlabels : [],
         // latestWaterlabel: (parsedJSON.results && parsedJSON.results.length === 1 )? parsedJSON.results[0].waterlabels[0] : null
         }
@@ -516,6 +523,7 @@ class App extends Component {
           setGuiInfoTab={this.setGuiInfoTab}
           guiShowBackModal={guiShowBackModal}
           setGuiShowBackModal={this.setGuiShowBackModal}
+          buildingGeoJSON={this.state.buildingGeoJSON}
         />
     );
   };

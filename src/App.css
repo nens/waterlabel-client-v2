@@ -599,6 +599,7 @@ html, body, #root, .App {
   padding-right: 40px;
   width: 100%;
   box-sizing: border-box;
+  max-height: 80vh;
 }
 .AnyLabelVisual .BackgroundImage {
   position: relative;
@@ -613,18 +614,11 @@ html, body, #root, .App {
 }
 .AnyLabelVisual .BackgroundImage .Margin {
   width: 100%;
+  height: 75vh;
   box-sizing: border-box;
-
-
-  /* width: 200px; */
-
-  /* margin-top: 26px;
-  margin-bottom: 26px;
-  margin-left: 40px; */
-  /* padding-top: 26px;
-  padding-bottom: 26px;
-  padding-left: 40px;
-  padding-right: 40px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .AnyLabelVisual .BackgroundImage .Margin img {
@@ -632,7 +626,8 @@ html, body, #root, .App {
   margin-top: 16px;
 }
 .AnyLabelVisual .BackgroundImage .Margin svg {
-  width: 90%;
+  display: flex;
+  flex: 1;
   margin-top: 16px;
 }
 
