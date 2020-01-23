@@ -23,6 +23,18 @@ export default function MapBuilding (props) {
       latlngs.push([lat, lng]);
     }
   }
+  function arraysEqual(arr1, arr2) {
+    console.log(arr1, arr2);
+    if(arr1.length !== arr2.length)
+      return false;
+    for(var i = arr1.length; i--;) {
+      for(var j = arr1.length; j--;) {
+        if(arr1[i][j] !== arr2[i][j])
+          return false;
+      }
+    }
+    return true;
+  }
 
   useEffect(() => {
     fetch(
@@ -47,23 +59,29 @@ export default function MapBuilding (props) {
           let lat = coord[1];
           return ([lat, lng]); // Makes polygon react-leaeflet happy
         });
-        let waterlabel = "";  // default and worst label
-        if (building.waterlabels.length !== 0) {
-          waterlabel = building.waterlabels[0].code;
+        // check if invertedCoords are the same as the latlng (for the selectedBuilding)
+        // If so, remove it.
+        if (!arraysEqual(latlngs, invertedCoords)){
+          let waterlabel = "";  // default and worst label
+          if (building.waterlabels.length !== 0) {
+            waterlabel = building.waterlabels[0].code;
+          } else {
+            waterlabel = "G";
+          }
+          let color = labelColors[waterlabel];
+          if (waterlabel) {
+            if (waterlabel === "A++") {
+              color = labelColors.APlusPlus;
+            } else if (waterlabel === "A+") {
+              color = labelColors.APlus;
+            } else {
+              color = labelColors[waterlabel];
+            }
+          }
+          return ({ coords: invertedCoords, color: color });
         } else {
-        	waterlabel = "G";
+          return ({ coords: invertedCoords, color: "rgba(0, 0, 0, 0" }); //transparent
         }
-        let color = labelColors[waterlabel];
-        if (waterlabel) {
-        	if (waterlabel === "A++") {
-        		color = labelColors.APlusPlus;
-        	} else if (waterlabel === "A+") {
-        		color = labelColors.APlus;
-        	} else {
-        		color = labelColors[waterlabel];
-        	}
-        }
-        return ({ coords: invertedCoords, color: color });
       });
       setBuildingCoordsAndLabels(buildingCoordsAndLabels);
     })
@@ -93,6 +111,14 @@ export default function MapBuilding (props) {
       />
 
       <FeatureGroup>
+        {buildingCoordsAndLabels.map((building) => {
+          return(
+            <Polygon
+              positions={building.coords}
+              color={building.color}
+            />
+          );
+        })}
         {buildingGeoJSON
           ?<Polygon
             positions={latlngs}
@@ -100,14 +126,6 @@ export default function MapBuilding (props) {
           />
           : null
         }
-        {buildingCoordsAndLabels.map((building) => {
-          return(
-          <Polygon
-            positions={building.coords}
-            color={building.color}
-          />
-          );
-        })}
       </FeatureGroup>
     </Map>
   );
