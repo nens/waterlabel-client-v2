@@ -15,14 +15,12 @@ export default function MapBuilding (props) {
   let latlngs = [];
   const [buildingCoordsAndLabels, setBuildingCoordsAndLabels] = useState([]);
 
-  if (buildingGeoJSON) {
-    for (var i = 0; i < buildingGeoJSON.coordinates[0].length; i++) {
-      // GeoJSON has longitude first
-      let lng = buildingGeoJSON.coordinates[0][i][0];
-      let lat = buildingGeoJSON.coordinates[0][i][1];
-      // Polygon of react-leaflet has latitude first
-      latlngs.push([lat, lng]);
-    }
+  for (var i = 0; i < buildingGeoJSON.coordinates[0].length; i++) {
+    // GeoJSON has longitude first
+    let lng = buildingGeoJSON.coordinates[0][i][0];
+    let lat = buildingGeoJSON.coordinates[0][i][1];
+    // Polygon of react-leaflet has latitude first
+    latlngs.push([lat, lng]);
   }
 
   useEffect(() => {
@@ -58,7 +56,7 @@ export default function MapBuilding (props) {
           // Make the selected building transparent in the surrounding buildings
           return ({ coords: invertedCoords, color: "rgba(0, 0, 0, 0" });
         } else {
-          let waterlabel = "G";  // default and worst label
+          let waterlabel = "G";  // Default and worst label
           if (building.waterlabels.length !== 0) {
             waterlabel = building.waterlabels[0].code;
           }
@@ -80,13 +78,13 @@ export default function MapBuilding (props) {
     .catch(error => {
       console.error('Error:', error);
     });
-  }, [buildingGeoJSON]); // Only re-run the effect if count changes
+  }, [buildingGeoJSON]); // Only re-run the effect if buildingGeoJSON changes
 
   const map = (
     <Map
       center={position}
       zoom={zoomLevel}
-      zoomControl={false} // removes +/- zoomcontrol on the map
+      zoomControl={false} // Removes +/- zoomcontrol on the map
       doubleClickZoom={false}
       closePopupOnClick={false}
       dragging={false}
@@ -103,7 +101,7 @@ export default function MapBuilding (props) {
       />
 
       <FeatureGroup>
-        {buildingCoordsAndLabels.map((building) => {
+        {buildingCoordsAndLabels.map((building) => { // Shows the surrounding buildings
           return(
             <Polygon
               positions={building.coords}
@@ -111,7 +109,7 @@ export default function MapBuilding (props) {
             />
           );
         })}
-        {buildingGeoJSON
+        {buildingGeoJSON // Shows the selected building
           ?<Polygon
             positions={latlngs}
             color={waterLabelColor}
