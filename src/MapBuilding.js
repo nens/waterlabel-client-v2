@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Map, TileLayer, Marker, FeatureGroup, Polygon } from "react-leaflet";
 
 import {getPolygonBounds, getPolygonCenter} from './utils/polygonFunctions';
+import {arraysOfCoordsEqual} from './utils/polygonFunctions';
 import './MapBuilding.css';
 
 export default function MapBuilding (props) {
@@ -22,17 +23,6 @@ export default function MapBuilding (props) {
       // Polygon of react-leaflet has latitude first
       latlngs.push([lat, lng]);
     }
-  }
-  function arraysEqual(arr1, arr2) {
-    if(arr1.length !== arr2.length)
-      return false;
-    for(var i = arr1.length; i--;) {
-      for(var j = arr1.length; j--;) {
-        if(arr1[i][j] !== arr2[i][j])
-          return false;
-      }
-    }
-    return true;
   }
 
   useEffect(() => {
@@ -64,7 +54,7 @@ export default function MapBuilding (props) {
         // building), make the selected building of the surrounding buildings
         // transparent. To prevent from the selected building being drawn
         // twice.
-        if (arraysEqual(latlngs, invertedCoords)){
+        if (arraysOfCoordsEqual(latlngs, invertedCoords)){
           // Make the selected building transparent in the surrounding buildings
           return ({ coords: invertedCoords, color: "rgba(0, 0, 0, 0" });
         } else {
