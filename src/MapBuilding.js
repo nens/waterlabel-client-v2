@@ -8,7 +8,7 @@ export default function MapBuilding (props) {
   const { buildingGeoJSON, waterLabelColor, selectedAddress, surroundingBuildings, labelColors } = props;
   const polygonBounds = getPolygonBounds(buildingGeoJSON);
   const polygonCenter = getPolygonCenter(polygonBounds);
-  // zoomlevel 19 is the most zoomed in where you still get a basemap
+  // Zoomlevel 19 is the most zoomed in where you still get a basemap
   const zoomLevel = 19;
   let position = [polygonCenter.yMean, polygonCenter.xMean];
   let latlngs = [];
@@ -24,7 +24,6 @@ export default function MapBuilding (props) {
     }
   }
   function arraysEqual(arr1, arr2) {
-    console.log(arr1, arr2);
     if(arr1.length !== arr2.length)
       return false;
     for(var i = arr1.length; i--;) {
@@ -55,18 +54,23 @@ export default function MapBuilding (props) {
     .then(function(parsedJSON) {
      let buildingCoordsAndLabels = parsedJSON.results.map((building) => {
         let invertedCoords = building.geometry.coordinates[0].map((coord) => {
-          let lng = coord[0]; // GeoJSON thinks lng should be first
+          // GeoJSON has longitude first
+          let lng = coord[0];
           let lat = coord[1];
-          return ([lat, lng]); // Makes polygon react-leaeflet happy
+          // Polygon of react-leaflet has latitude first
+          return ([lat, lng]);
         });
-        // check if invertedCoords are the same as the latlng (for the selectedBuilding)
-        // If so, remove it.
-        if (!arraysEqual(latlngs, invertedCoords)){
-          let waterlabel = "";  // default and worst label
+        // If the invertedCoords are the same as latlngs (of the selected
+        // building), make the selected building of the surrounding buildings
+        // transparent. To prevent from the selected building being drawn
+        // twice.
+        if (arraysEqual(latlngs, invertedCoords)){
+          // Make the selected building transparent in the surrounding buildings
+          return ({ coords: invertedCoords, color: "rgba(0, 0, 0, 0" });
+        } else {
+          let waterlabel = "G";  // default and worst label
           if (building.waterlabels.length !== 0) {
             waterlabel = building.waterlabels[0].code;
-          } else {
-            waterlabel = "G";
           }
           let color = labelColors[waterlabel];
           if (waterlabel) {
@@ -79,8 +83,6 @@ export default function MapBuilding (props) {
             }
           }
           return ({ coords: invertedCoords, color: color });
-        } else {
-          return ({ coords: invertedCoords, color: "rgba(0, 0, 0, 0" }); //transparent
         }
       });
       setBuildingCoordsAndLabels(buildingCoordsAndLabels);
