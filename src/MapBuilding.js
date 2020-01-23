@@ -91,17 +91,23 @@ export default function MapBuilding (props) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
       />
+
       <FeatureGroup>
-      {
-        buildingCoordsAndLabels.map((building) => {
-          return (
-            <Polygon
-              positions={building.coords}
-              color={building.color}
-            />
+        {buildingGeoJSON
+          ?<Polygon
+            positions={latlngs}
+            color={waterLabelColor}
+          />
+          : null
+        }
+        {buildingCoordsAndLabels.map((building) => {
+          return(
+          <Polygon
+            positions={building.coords}
+            color={building.color}
+          />
           );
-        })
-      }
+        })}
       </FeatureGroup>
     </Map>
   );
@@ -111,13 +117,4 @@ export default function MapBuilding (props) {
       {map}
     </div>
   );
-
-        // {surroundingBuildings.map((buildingCoords) => {
-        //   return(
-        //   <Polygon
-        //     positions={buildingCoords}
-        //     color={"grey"}
-        //   />
-        //   );
-        // })}
 }
