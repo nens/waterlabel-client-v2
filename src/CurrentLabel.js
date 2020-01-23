@@ -16,6 +16,7 @@ function CurrentLabel (props) {
     guiShowEmail,
     guiShowSuccesSave,
     buildingGeoJSON,
+    surroundingBuildings
   } = props;
 
   let waterlabelCodeToUse = 
@@ -145,6 +146,8 @@ function CurrentLabel (props) {
                   selectedAddress={selectedAddress}
                   buildingGeoJSON={buildingGeoJSON}
                   waterLabelColor={waterLabelColor}
+                  surroundingBuildings={surroundingBuildings}
+                  labelColors={LABEL_COLOR}
                 />
                 : null
               }
