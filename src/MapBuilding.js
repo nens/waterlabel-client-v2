@@ -12,6 +12,16 @@ export default function MapBuilding (props) {
   // Zoomlevel 19 is the most zoomed in where you still get a basemap
   const zoomLevel = 19;
   let position = [polygonCenter.yMean, polygonCenter.xMean];
+  // Returning the getBounds of a react-leaflet map is quite complicated,
+  // so I went for an easier solution: substracting and adding from the
+  // x and y of the center of the map to get the bounding box for
+  // the api call for the surrounding buildings.
+  let bbox = [
+    polygonCenter.xMean-0.001,
+    polygonCenter.yMean-0.00075,
+    polygonCenter.xMean+0.001,
+    polygonCenter.yMean+0.00075
+  ]
   let latlngs = [];
   const [buildingCoordsAndLabels, setBuildingCoordsAndLabels] = useState([]);
 
@@ -25,7 +35,7 @@ export default function MapBuilding (props) {
 
   useEffect(() => {
     fetch(
-      `/api/v2/buildings/?in_bbox=${[5.558007963674824,52.02884037368467,5.55922798548451,52.02918930582589]}`,
+      `/api/v2/buildings/?in_bbox=${bbox}`,
       {
         method: 'GET',
         headers: {
@@ -40,7 +50,8 @@ export default function MapBuilding (props) {
       return response.json();
     })
     .then(function(parsedJSON) {
-     let buildingCoordsAndLabels = parsedJSON.results.map((building) => {
+      // A maximum of a 100 results will be given back by the api.
+      let buildingCoordsAndLabels = parsedJSON.results.map((building) => {
         let invertedCoords = building.geometry.coordinates[0].map((coord) => {
           // GeoJSON has longitude first
           let lng = coord[0];
