@@ -170,9 +170,7 @@ class App extends Component {
         fetchWaterlabelState: "RECEIVED",
         currentWaterLabels: preppedWaterLabelsNewestFirst,
         latestWaterlabel: preppedWaterLabelsNewestFirst[0] || null, // assume first one from api is latest waterlabel
-      }
-        // ,( _ => that.fetchSurroundingBuildings())
-      )
+      })
     })
     .catch(error => {
       that.setState({fetchWaterlabelState: "FAILED"})
@@ -180,84 +178,6 @@ class App extends Component {
 
     });
   }
-  // fetchSurroundingBuildings = () => {
-  //   // if adddress is not selected return;
-  //   if (!this.state.selectedAddress) return;
-
-  //   const that = this;
-
-  //   fetch( 
-  //     `/api/v2/buildings/?in_bbox=${[5.558007963674824,52.02884037368467,5.55922798548451,52.02918930582589]}`,
-  //     {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     }
-  //   )
-  //   .then(function(response) {
-  //     if (response.status !== 200) {
-  //       throw new Error("building get status not 200: " + response.status);
-  //     }
-  //     // console.log(response);
-  //     return response.json();
-  //   })
-  //   .then(function(parsedJSON) {
-  //     // that.setState({
-  //     //   saveWaterlabelState: "RECEIVED",
-  //     //   guiShowSuccesSave: true,
-  //     //   guiShowEmail: false,
-  //     // });
-  //     // that.fetchWaterlabelsFromBuilding();
-  //     // console.log(parsedJSON);
-  //     let buildingCoordsAndLabels = parsedJSON.results.map((building) => {
-  //       // console.log(parsedJSON.results[i]); // building
-  //       console.log(building.geometry.coordinates[0]); // building geometry
-  //       console.log(building);
-  //       // buildingCoordsAndLabels = parsedJSON.map((surroundingBuilding) {
-  //       //  for (var i = 0; i < surroundingBuilding.length; i++) {
-  //       //    surroundingBuilding[i]
-  //       //  }
-  //       //  return ({
-  //       //    geometry: geometry,
-  //       //    // leafletCoords: invertedCoords
-  //       //  });
-  //       // });
-  //       let invertedCoords = building.geometry.coordinates[0].map((coord) => {
-  //         console.log(coord);
-  //         // let latlng = [];
-  //         let lng = coord[0]; // GeoJSON thinks lng should be first
-  //         let lat = coord[1];
-  //         // for (var i = 0; i < coord.length; i++) {
-  //         //  lng = coord[0];
-  //         //  lat = coord[1];
-  //         //   latlng.push([lat, lng]);
-  //         // }
-  //         return ([lat, lng]); // Makes polygon react-leaeflet happy
-  //       });
-  //       console.log(invertedCoords); //klopt
-  //       // for (var i = 0; i < parsedJSON.results[i].geometry.coordinates[0].length; i++) {
-  //       //   parsedJSON.results[i].geometry.coordinates[i]
-  //       // }
-  //       let waterlabel = "G";  // default and worst label
-  //       // console.log(building.waterlabels[0] && building.waterlabels[0].code); // building waterlabel // undefined // array met laatste als laatste // of halen uit waterlabels[i]code 
-  //       if (building.waterlabels.length !== 0) {
-  //         // console.log(building.waterlabels[0].code);
-  //         waterlabel = building.waterlabels[0].code;
-  //       }
-  //       console.log(waterlabel);
-  //       return ({coords: invertedCoords, waterlabel: waterlabel});
-  //     });
-  //     // console.log(parsedJSON);
-  //     console.log(buildingCoordsAndLabels);// moet in setState
-  //     that.setState({surroundingBuildings: buildingCoordsAndLabels});
-  //   })
-  //   .catch(error => {
-  //     // that.setState({saveWaterlabelState: "FAILED"})
-  //     console.error('Error:', error);
-
-  //   });
-  // }
   createNewLabel = () => {
     this.setState({
       editedWaterlabel: {assets: []},
@@ -464,7 +384,6 @@ class App extends Component {
       (_=>{
         callback && callback();
         this.fetchWaterlabelsFromBuilding();
-        // this.fetchSurroundingBuildings();
       })
     )
   }
