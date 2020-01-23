@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Map, TileLayer, Marker, FeatureGroup, Polygon } from "react-leaflet";
 
-import {getPolygonBounds, getPolygonCenter} from './utils/polygonFunctions';
-import {arraysOfCoordsEqual} from './utils/polygonFunctions';
+import {
+	getPolygonBounds, getPolygonCenter, createBbox, arraysOfCoordsEqual
+} from './utils/geomFunctions';
 import './MapBuilding.css';
 
 export default function MapBuilding (props) {
@@ -16,12 +17,7 @@ export default function MapBuilding (props) {
   // so I went for an easier solution: substracting and adding from the
   // x and y of the center of the map to get the bounding box for
   // the api call for the surrounding buildings.
-  let bbox = [
-    polygonCenter.xMean-0.001,
-    polygonCenter.yMean-0.00075,
-    polygonCenter.xMean+0.001,
-    polygonCenter.yMean+0.00075
-  ]
+  const bbox = createBbox(polygonCenter.xMean, 0.001, polygonCenter.yMean, 0.00075);
   let latlngs = [];
   const [buildingCoordsAndLabels, setBuildingCoordsAndLabels] = useState([]);
 

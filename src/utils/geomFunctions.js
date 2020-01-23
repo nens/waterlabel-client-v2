@@ -21,6 +21,15 @@ export function getPolygonCenter (polygonBounds) {
   return {xMean: xMean, yMean: yMean};
 }
 
+export function createBbox (xMean, xDiviation, yMean, yDiviation) {
+  return [
+    xMean - xDiviation,
+    yMean - yDiviation,
+    xMean + xDiviation,
+    yMean + yDiviation
+  ];
+}
+
 export function arraysOfCoordsEqual(arr1, arr2) {
   if(arr1.length !== arr2.length)
     return false;
