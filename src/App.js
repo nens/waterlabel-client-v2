@@ -52,6 +52,7 @@ class App extends Component {
         type: "Polygon",
         coordinates: [],
       },
+      surroundingBuildings: [],
     };
 
     this.fetchAssetTypes();
@@ -524,6 +525,7 @@ class App extends Component {
           guiShowBackModal={guiShowBackModal}
           setGuiShowBackModal={this.setGuiShowBackModal}
           buildingGeoJSON={this.state.buildingGeoJSON}
+          surroundingBuildings={this.state.surroundingBuildings}
         />
     );
   };

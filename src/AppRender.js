@@ -73,6 +73,7 @@ function AppRender (props) {
     setGuiShowBackModal,
     guiShowBackModal,
     buildingGeoJSON,
+    surroundingBuildings
   } = props;
 
   return (
@@ -169,6 +170,7 @@ function AppRender (props) {
             guiShowEmail={guiShowEmail}
             guiShowSuccesSave={guiShowSuccesSave}
             buildingGeoJSON={buildingGeoJSON}
+            surroundingBuildings={surroundingBuildings}
           />
         </div>
         <div

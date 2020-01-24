@@ -20,3 +20,24 @@ export function getPolygonCenter (polygonBounds) {
   let yMean = (polygonBounds.yMin + polygonBounds.yMax) / 2;
   return {xMean: xMean, yMean: yMean};
 }
+
+export function createBbox (xMean, xDeviation, yMean, yDeviation) {
+  return [
+    xMean - xDeviation,
+    yMean - yDeviation,
+    xMean + xDeviation,
+    yMean + yDeviation
+  ];
+}
+
+export function arraysOfCoordsEqual(arr1, arr2) {
+  if(arr1.length !== arr2.length) { return false; }
+  for(var i = arr1.length; i--;) {
+    if (arr1[i].length !== arr2[i].length) { return false; }
+    for(var j = arr1.length[i]; j--;) {
+      if(arr1[i][j] !== arr2[i][j])
+        return false;
+    }
+  }
+  return true;
+}
