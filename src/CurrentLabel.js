@@ -123,7 +123,6 @@ function CurrentLabel (props) {
                 <legend>{"U heeft label " + (latestWaterlabel && latestWaterlabel.code)}</legend>
                 }
               </div>
-              
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 394.33 528">
                 <g id="Group_26" data-name="Group 26" transform="translate(-10072 -414)">
                   <path id="Union_1" data-name="Union 1" d="M70,0l32,24L70,48ZM0,48V0H70V48Z" transform="translate(10072 894)" fill={LABEL_COLOR.G} />
@@ -153,6 +152,38 @@ function CurrentLabel (props) {
                   </g>
                 </g>
               </svg>
+              <div
+                style={
+                  !editedWaterlabel && editedFinishedWaterlabel?
+                  {marginTop: "30px"}
+                  :
+                  {display:"none"}
+                }
+              >
+                <button
+                    // className="Desktop StandardButton NieuwLabelOpslaan"
+                    className={
+                      !guiShowEmail &&
+                      !guiShowSuccesSave
+                      ?
+                      "Desktop StandardButton NieuwLabelOpslaan Alert"
+                      :
+                      "Desktop StandardButton NieuwLabelOpslaan"
+                    }
+                    onClick={e=>{
+                      e.preventDefault();
+                      openSaveModal(_=>{
+                        // no op
+                      });
+                    }}
+                    disabled={editedFinishedWaterlabel && getLabelAssetsTotalArea(editedFinishedWaterlabel.assets) === 0}
+                >
+                  NIEUW LABEL OPSLAAN
+                </button>
+                <span>
+                  Kies tenminste één Dak of Tuin invoer.
+                </span>
+              </div>
               {selectedAddress!==null
                 ? <MapBuilding
                   selectedAddress={selectedAddress}
@@ -166,39 +197,6 @@ function CurrentLabel (props) {
               }
               
             </div>
-        </div>
-        <div
-          style={
-            !editedWaterlabel && editedFinishedWaterlabel?
-            {}
-            :
-            {visibility:"hidden"}
-          }
-        >
-          <button
-              // className="Desktop StandardButton NieuwLabelOpslaan"
-              className={
-                !guiShowEmail &&
-                !guiShowSuccesSave
-                ?
-                "Desktop StandardButton NieuwLabelOpslaan Alert"
-                :
-                "Desktop StandardButton NieuwLabelOpslaan"
-              }
-              
-              onClick={e=>{
-                e.preventDefault();
-                openSaveModal(_=>{
-                  // no op
-                });
-              }}
-              disabled={editedFinishedWaterlabel && getLabelAssetsTotalArea(editedFinishedWaterlabel.assets) === 0}
-          >
-            NIEUW LABEL OPSLAAN
-          </button>
-          <span>
-            Kies tenminste één Dak of Tuin invoer.
-          </span>
         </div>
       </div>
   );
