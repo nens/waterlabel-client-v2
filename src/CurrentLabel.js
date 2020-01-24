@@ -25,51 +25,39 @@ function CurrentLabel (props) {
     latestWaterlabel ? latestWaterlabel.code :
     null
 
-  const LABEL_CODE = {
-    G: "G",
-    F: "F",
-    E: "E",
-    D: "D",
-    C: "C",
-    B: "B",
-    A: "A",
-    APlus: "A+",
-    APlusPlus: "A++"
+  const LABELS = {
+    G: { code: "G", color: "#ce342a" },
+    F: { code: "F", color: "#cf651d" },
+    E: { code: "E", color: "#eb9d21" },
+    D: { code: "D", color: "#faec0d" },
+    C: { code: "C", color: "#9dba3a" },
+    B: { code: "B", color: "#4aa847" },
+    A: { code: "A", color: "#1b8e43" },
+    APlus: { code: "A+", color: "#007629" },
+    APlusPlus: { code: "A++", color: "#005c20" }
   }
 
   let waterLabelArrowYCoordinate;
   if (!waterlabelCodeToUse) waterLabelArrowYCoordinate = -99999; // do not show
-  if (waterlabelCodeToUse === LABEL_CODE.APlusPlus) waterLabelArrowYCoordinate = -77;
-  if (waterlabelCodeToUse === LABEL_CODE.APlus) waterLabelArrowYCoordinate = -17;
-  if (waterlabelCodeToUse === LABEL_CODE.A) waterLabelArrowYCoordinate = 43;
-  if (waterlabelCodeToUse === LABEL_CODE.B) waterLabelArrowYCoordinate = 103;
-  if (waterlabelCodeToUse === LABEL_CODE.C) waterLabelArrowYCoordinate = 163;
-  if (waterlabelCodeToUse === LABEL_CODE.D) waterLabelArrowYCoordinate = 222.935;
-  if (waterlabelCodeToUse === LABEL_CODE.E) waterLabelArrowYCoordinate = 283;
-  if (waterlabelCodeToUse === LABEL_CODE.F) waterLabelArrowYCoordinate = 343;
-  if (waterlabelCodeToUse === LABEL_CODE.G) waterLabelArrowYCoordinate = 403;
+  if (waterlabelCodeToUse === LABELS.APlusPlus.code) waterLabelArrowYCoordinate = -77;
+  if (waterlabelCodeToUse === LABELS.APlus.code) waterLabelArrowYCoordinate = -17;
+  if (waterlabelCodeToUse === LABELS.A.code) waterLabelArrowYCoordinate = 43;
+  if (waterlabelCodeToUse === LABELS.B.code) waterLabelArrowYCoordinate = 103;
+  if (waterlabelCodeToUse === LABELS.C.code) waterLabelArrowYCoordinate = 163;
+  if (waterlabelCodeToUse === LABELS.D.code) waterLabelArrowYCoordinate = 222.935;
+  if (waterlabelCodeToUse === LABELS.E.code) waterLabelArrowYCoordinate = 283;
+  if (waterlabelCodeToUse === LABELS.F.code) waterLabelArrowYCoordinate = 343;
+  if (waterlabelCodeToUse === LABELS.G.code) waterLabelArrowYCoordinate = 403;
 
-  const LABEL_COLOR = {
-    G: "#ce342a",
-    F: "#cf651d",
-    E: "#eb9d21",
-    D: "#faec0d",
-    C: "#9dba3a",
-    B: "#4aa847",
-    A: "#1b8e43",
-    APlus: "#007629",
-    APlusPlus: "#005c20"
-  }
-
-  let waterLabelColor = LABEL_COLOR.G; // This default water label is used for G and for no waterlabel yet
-  if (waterlabelCodeToUse === LABEL_CODE.F) {waterLabelColor = LABEL_COLOR.F};
-  if (waterlabelCodeToUse === LABEL_CODE.E) {waterLabelColor = LABEL_COLOR.E};
-  if (waterlabelCodeToUse === LABEL_CODE.D) {waterLabelColor = LABEL_COLOR.D};
-  if (waterlabelCodeToUse === LABEL_CODE.C) {waterLabelColor = LABEL_COLOR.C};
-  if (waterlabelCodeToUse === LABEL_CODE.B) {waterLabelColor = LABEL_COLOR.B};
-  if (waterlabelCodeToUse === LABEL_CODE.A) {waterLabelColor = LABEL_COLOR.A};
-  if (waterlabelCodeToUse === LABEL_CODE.APlus) {waterLabelColor = LABEL_COLOR.APlus};
-  if (waterlabelCodeToUse === LABEL_CODE.APlusPlus) {waterLabelColor = LABEL_COLOR.APlusPlus};
+  let waterLabelColor = LABELS.G.code; // This default water label is used for G and for no waterlabel yet
+  if (waterlabelCodeToUse === LABELS.F.code) {waterLabelColor = LABELS.F.color};
+  if (waterlabelCodeToUse === LABELS.E.code) {waterLabelColor = LABELS.E.color};
+  if (waterlabelCodeToUse === LABELS.D.code) {waterLabelColor = LABELS.D.color};
+  if (waterlabelCodeToUse === LABELS.C.code) {waterLabelColor = LABELS.C.color};
+  if (waterlabelCodeToUse === LABELS.B.code) {waterLabelColor = LABELS.B.color};
+  if (waterlabelCodeToUse === LABELS.A.code) {waterLabelColor = LABELS.A.color};
+  if (waterlabelCodeToUse === LABELS.APlus.code) {waterLabelColor = LABELS.APlus.color};
+  if (waterlabelCodeToUse === LABELS.APlusPlus.code) {waterLabelColor = LABELS.APlusPlus.color};
 
 
   return (
@@ -125,24 +113,24 @@ function CurrentLabel (props) {
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 394.33 528">
                 <g id="Group_26" data-name="Group 26" transform="translate(-10072 -414)">
-                  <path id="Union_1" data-name="Union 1" d="M70,0l32,24L70,48ZM0,48V0H70V48Z" transform="translate(10072 894)" fill={LABEL_COLOR.G} />
-                  <path id="Union_2" data-name="Union 2" d="M95,0l32,24L95,48ZM0,48V0H95V48Z" transform="translate(10072 834)" fill={LABEL_COLOR.F} />
-                  <path id="Union_3" data-name="Union 3" d="M120,0l32,24L120,48ZM0,48V0H120V48Z" transform="translate(10072 774)" fill={LABEL_COLOR.E} />
-                  <path id="Union_4" data-name="Union 4" d="M145,0l32,24L145,48ZM0,48V0H145V48Z" transform="translate(10072 714)" fill={LABEL_COLOR.D} />
-                  <path id="Union_5" data-name="Union 5" d="M170,0l32,24L170,48ZM0,48V0H170V48Z" transform="translate(10072 654)" fill={LABEL_COLOR.C} />
-                  <path id="Union_6" data-name="Union 6" d="M195,0l32,24L195,48ZM0,48V0H195V48Z" transform="translate(10072 594)" fill={LABEL_COLOR.B} />
-                  <path id="Union_7" data-name="Union 7" d="M220,0l32,24L220,48ZM0,48V0H220V48Z" transform="translate(10072 534)" fill={LABEL_COLOR.A} />
-                  <path id="Union_8" data-name="Union 8" d="M245,0l32,24L245,48ZM0,48V0H245V48Z" transform="translate(10072 474)" fill={LABEL_COLOR.APlus} />
-                  <path id="Union_9" data-name="Union 9" d="M270,0l32,24L270,48ZM0,48V0H270V48Z" transform="translate(10072 414)" fill={LABEL_COLOR.APlusPlus} />
-                  <text id="G" transform="translate(10082 929)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABEL_CODE.G}</tspan></text>
-                  <text id="F" transform="translate(10082 869)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABEL_CODE.F}</tspan></text>
-                  <text id="E" transform="translate(10082 809)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABEL_CODE.E}</tspan></text>
-                  <text id="D" transform="translate(10082 749)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABEL_CODE.D}</tspan></text>
-                  <text id="C" transform="translate(10082 689)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABEL_CODE.C}</tspan></text>
-                  <text id="B" transform="translate(10082 629)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABEL_CODE.B}</tspan></text>
-                  <text id="A" transform="translate(10082 569)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABEL_CODE.A}</tspan></text>
-                  <text id="A_" data-name="A+" transform="translate(10082 509)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABEL_CODE.APlus}</tspan></text>
-                  <text id="A_2" data-name="A++" transform="translate(10082 449)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABEL_CODE.APlusPlus}</tspan></text>
+                  <path id="Union_1" data-name="Union 1" d="M70,0l32,24L70,48ZM0,48V0H70V48Z" transform="translate(10072 894)" fill={LABELS.G.color} />
+                  <path id="Union_2" data-name="Union 2" d="M95,0l32,24L95,48ZM0,48V0H95V48Z" transform="translate(10072 834)" fill={LABELS.F.color} />
+                  <path id="Union_3" data-name="Union 3" d="M120,0l32,24L120,48ZM0,48V0H120V48Z" transform="translate(10072 774)" fill={LABELS.E.color} />
+                  <path id="Union_4" data-name="Union 4" d="M145,0l32,24L145,48ZM0,48V0H145V48Z" transform="translate(10072 714)" fill={LABELS.D.color} />
+                  <path id="Union_5" data-name="Union 5" d="M170,0l32,24L170,48ZM0,48V0H170V48Z" transform="translate(10072 654)" fill={LABELS.C.color} />
+                  <path id="Union_6" data-name="Union 6" d="M195,0l32,24L195,48ZM0,48V0H195V48Z" transform="translate(10072 594)" fill={LABELS.B.color} />
+                  <path id="Union_7" data-name="Union 7" d="M220,0l32,24L220,48ZM0,48V0H220V48Z" transform="translate(10072 534)" fill={LABELS.A.color} />
+                  <path id="Union_8" data-name="Union 8" d="M245,0l32,24L245,48ZM0,48V0H245V48Z" transform="translate(10072 474)" fill={LABELS.APlus.color} />
+                  <path id="Union_9" data-name="Union 9" d="M270,0l32,24L270,48ZM0,48V0H270V48Z" transform="translate(10072 414)" fill={LABELS.APlusPlus.color} />
+                  <text id="G" transform="translate(10082 929)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABELS.G.code}</tspan></text>
+                  <text id="F" transform="translate(10082 869)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABELS.F.code}</tspan></text>
+                  <text id="E" transform="translate(10082 809)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABELS.E.code}</tspan></text>
+                  <text id="D" transform="translate(10082 749)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABELS.D.code}</tspan></text>
+                  <text id="C" transform="translate(10082 689)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABELS.C.code}</tspan></text>
+                  <text id="B" transform="translate(10082 629)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABELS.B.code}</tspan></text>
+                  <text id="A" transform="translate(10082 569)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABELS.A.code}</tspan></text>
+                  <text id="A_" data-name="A+" transform="translate(10082 509)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABELS.APlus.code}</tspan></text>
+                  <text id="A_2" data-name="A++" transform="translate(10082 449)" fill="#fff" stroke="#fff" strokeWidth="1" fontSize="30" fontFamily="Roboto-Regular, Roboto, sans-serif"><tspan x="0" y="0">{LABELS.APlusPlus.code}</tspan></text>
                   <g id="Group_25" data-name="Group 25" transform={`translate(10063 ${waterLabelArrowYCoordinate})`}>
                     <line id="Line_5" data-name="Line 5" x2="60.43" transform="translate(342.9 515.533)" fill="none" stroke="#707070" strokeWidth="5"/>
                     <g id="Polygon_2" data-name="Polygon 2" transform="translate(335.5 531.565) rotate(-90)" fill="#707070">
@@ -190,8 +178,7 @@ function CurrentLabel (props) {
                   buildingGeoJSON={buildingGeoJSON}
                   waterLabelColor={waterLabelColor}
                   surroundingBuildings={surroundingBuildings}
-                  labelColors={LABEL_COLOR}
-                  labelCodes={LABEL_CODE}
+                  LABELS={LABELS}
                 />
                 : null
               }
