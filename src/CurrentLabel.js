@@ -49,7 +49,7 @@ function CurrentLabel (props) {
   if (waterlabelCodeToUse === LABELS.F.code) waterLabelArrowYCoordinate = 343;
   if (waterlabelCodeToUse === LABELS.G.code) waterLabelArrowYCoordinate = 403;
 
-  let waterLabelColor = LABELS.G.code; // This default water label is used for G and for no waterlabel yet
+  let waterLabelColor = LABELS.G.color; // This default water label is used for G and for no waterlabel yet
   if (waterlabelCodeToUse === LABELS.F.code) {waterLabelColor = LABELS.F.color};
   if (waterlabelCodeToUse === LABELS.E.code) {waterLabelColor = LABELS.E.color};
   if (waterlabelCodeToUse === LABELS.D.code) {waterLabelColor = LABELS.D.color};
