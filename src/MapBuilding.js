@@ -7,7 +7,7 @@ import {
 import './MapBuilding.css';
 
 export default function MapBuilding (props) {
-  const { buildingGeoJSON, waterLabelColor, selectedAddress, surroundingBuildings, labelColors } = props;
+  const { buildingGeoJSON, waterLabelColor, selectedAddress, surroundingBuildings, labelColors, labelCodes } = props;
   const polygonBounds = getPolygonBounds(buildingGeoJSON);
   const polygonCenter = getPolygonCenter(polygonBounds);
   // Zoomlevel 19 is the most zoomed in where you still get a basemap
@@ -63,15 +63,15 @@ export default function MapBuilding (props) {
           // Make the selected building transparent in the surrounding buildings
           return ({ coords: invertedCoords, color: "rgba(0, 0, 0, 0" });
         } else {
-          let waterlabel = "G";  // Default and worst label
+          let waterlabel = labelCodes.G;  // Default and worst label
           if (building.waterlabels.length !== 0) {
-            waterlabel = building.waterlabels[0].code;
+            waterlabel = building.waterlabels.slice(-1)[0].code; // fixes bug not showing right (last) label of surrounding buildings
           }
           let color = labelColors[waterlabel];
           if (waterlabel) {
-            if (waterlabel === "A++") {
+            if (waterlabel === labelCodes.APlusPlus) {
               color = labelColors.APlusPlus;
-            } else if (waterlabel === "A+") {
+            } else if (waterlabel === labelCodes.APlus) {
               color = labelColors.APlus;
             } else {
               color = labelColors[waterlabel];
