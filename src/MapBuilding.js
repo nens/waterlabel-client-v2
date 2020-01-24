@@ -65,17 +65,13 @@ export default function MapBuilding (props) {
         } else {
           let waterlabel = labelCodes.G;  // Default and worst label
           if (building.waterlabels.length !== 0) {
-            waterlabel = building.waterlabels.slice(-1)[0].code; // fixes bug not showing right (last) label of surrounding buildings
+            waterlabel = building.waterlabels.slice(-1)[0].code;
           }
           let color = labelColors[waterlabel];
-          if (waterlabel) {
-            if (waterlabel === labelCodes.APlusPlus) {
-              color = labelColors.APlusPlus;
-            } else if (waterlabel === labelCodes.APlus) {
-              color = labelColors.APlus;
-            } else {
-              color = labelColors[waterlabel];
-            }
+          if (waterlabel === labelCodes.APlusPlus) {
+            color = labelColors.APlusPlus;
+          } else if (waterlabel === labelCodes.APlus) {
+            color = labelColors.APlus;
           }
           return ({ coords: invertedCoords, color: color });
         }
