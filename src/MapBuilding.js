@@ -106,11 +106,12 @@ export default function MapBuilding (props) {
       />
 
       <FeatureGroup>
-        {buildingCoordsAndLabels.map((building) => { // Shows the surrounding buildings
+        {buildingCoordsAndLabels.map((building, index) => { // Shows the surrounding buildings
           return(
             <Polygon
               positions={building.coords}
               color={building.color}
+              key={index}
             />
           );
         })}
