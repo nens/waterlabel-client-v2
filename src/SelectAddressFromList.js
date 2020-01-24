@@ -41,10 +41,10 @@ export default SelectAddressFromList;
             <legend>Selecteer het gewenste adres</legend>
             <ul>
             {
-              foundAddressesList.map(address=>{
+              foundAddressesList.map((address, index)=>{
                 return (
                   <li
-                    key={address.housenumber + address.street}
+                    key={address.housenumber + address.street + index}
                   >
                     <button
                       className="StandardButton"
