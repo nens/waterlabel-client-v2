@@ -21,12 +21,12 @@ export function getPolygonCenter (polygonBounds) {
   return {xMean: xMean, yMean: yMean};
 }
 
-export function createBbox (xMean, xDiviation, yMean, yDiviation) {
+export function createBbox (xMean, xDeviation, yMean, yDeviation) {
   return [
-    xMean - xDiviation,
-    yMean - yDiviation,
-    xMean + xDiviation,
-    yMean + yDiviation
+    xMean - xDeviation,
+    yMean - yDeviation,
+    xMean + xDeviation,
+    yMean + yDeviation
   ];
 }
 
