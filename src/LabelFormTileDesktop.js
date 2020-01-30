@@ -101,7 +101,7 @@ export default function LabelFormTileDesktop (props) {
         <span>
           <img src={voorzieningImage} alt=""  width="36px"/>
         </span>
-        <span>{"Mijn voorziening"}</span>
+        <span>{"Mijn maatregel"}</span>
       </button>
     </div>
     
@@ -130,17 +130,17 @@ export default function LabelFormTileDesktop (props) {
         <h1
           style={guiLabelTabConsideredDefault === "Dak" ? {}:{display: "none"}}
         >
-          Statistieken dak
+          Gegevens dak
         </h1>
         <h1
           style={guiLabelTabConsideredDefault === "Tuin" ? {}:{display: "none"}}
         >
-          Statistieken tuin
+          Gegevens tuin
         </h1>
         <h1
           style={guiLabelTabConsideredDefault === "Voorziening" ? {}:{display: "none"}}
         >
-          Statistieken voorziening
+          Gegevens voorziening
         </h1>
 
 

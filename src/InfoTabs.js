@@ -34,7 +34,7 @@ function InfoTabs (props) {
             className="StandardTile Info"
             style={guiInfoTab==="PERSONAL"? {} : {display: "none"}}
           >
-            <pre>U hebt label D, dit kan dus beter! Persoonlijke tips op basis van uw statistieken: - Plaats een regenton in de tuin voor extra opvang. - Maak van uw dak een groen dak. - Verwijder tegels uit uw tuin voor extra opvang.</pre>
+            <pre>U hebt label D, dit kan dus beter! Persoonlijke tips op basis van uw gegevens: - Plaats een regenton in de tuin voor extra opvang. - Maak van uw dak een groen dak. - Verwijder tegels uit uw tuin voor extra opvang.</pre>
           </div>
         </div>
         <div
