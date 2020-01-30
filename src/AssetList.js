@@ -344,7 +344,7 @@ export default function AssetList (props) {
             }
           >
             <div>
-              Er zijn op dit adres nog geen statistieken bekend.
+              Er zijn op dit adres nog geen gegevens bekend.
             </div>
             <button
               className="StandardButton Voerin"
@@ -356,7 +356,7 @@ export default function AssetList (props) {
               }}
               
             >
-              VOER STATISTIEKEN IN
+              VOER GEGEVENS IN
             </button>
           </li>
           <li
