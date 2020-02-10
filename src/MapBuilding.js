@@ -17,7 +17,7 @@ export default function MapBuilding (props) {
   // so I went for an easier solution: substracting and adding from the
   // x and y of the center of the map to get the bounding box for
   // the api call for the surrounding buildings.
-  const bbox = createBbox(polygonCenter.xMean, 0.001, polygonCenter.yMean, 0.00075);
+  const bbox = createBbox(polygonCenter.xMean, 0.001, polygonCenter.yMean, 0.001);
   let latlngs = [];
   const [buildingCoordsAndLabels, setBuildingCoordsAndLabels] = useState([]);
 
