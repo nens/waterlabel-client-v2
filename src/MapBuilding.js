@@ -59,7 +59,7 @@ export default function MapBuilding (props) {
         // building), make the selected building of the surrounding buildings
         // transparent. To prevent from the selected building being drawn
         // twice.
-        if (arraysOfCoordsEqual(latlngs, invertedCoords)){
+        if (selectedAddress.building === building.id) {
           // Make the selected building transparent in the surrounding buildings
           return ({ coords: invertedCoords, color: "rgba(0, 0, 0, 0" });
         } else {
