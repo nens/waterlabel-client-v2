@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Map, TileLayer, Marker, FeatureGroup, Polygon } from "react-leaflet";
 
 import {
-	getPolygonBounds, getPolygonCenter, createBbox, arraysOfCoordsEqual
+	getPolygonBounds, getPolygonCenter, createBbox
 } from './utils/geomFunctions';
 import './MapBuilding.css';
 
@@ -17,7 +17,7 @@ export default function MapBuilding (props) {
   // so I went for an easier solution: substracting and adding from the
   // x and y of the center of the map to get the bounding box for
   // the api call for the surrounding buildings.
-  const bbox = createBbox(polygonCenter.xMean, 0.001, polygonCenter.yMean, 0.00075);
+  const bbox = createBbox(polygonCenter.xMean, 0.001, polygonCenter.yMean, 0.001);
   let latlngs = [];
   const [buildingCoordsAndLabels, setBuildingCoordsAndLabels] = useState([]);
 
@@ -55,11 +55,11 @@ export default function MapBuilding (props) {
           // Polygon of react-leaflet has latitude first
           return ([lat, lng]);
         });
-        // If the invertedCoords are the same as latlngs (of the selected
-        // building), make the selected building of the surrounding buildings
-        // transparent. To prevent from the selected building being drawn
-        // twice.
-        if (arraysOfCoordsEqual(latlngs, invertedCoords)){
+        // If the selected building id is the same as the building id of a
+        // surrounding building, make the selected building of the surrounding
+        // buildings transparent. To prevent from the selected building being
+        // drawn twice.
+        if (selectedAddress.building === building.id) {
           // Make the selected building transparent in the surrounding buildings
           return ({ coords: invertedCoords, color: "rgba(0, 0, 0, 0" });
         } else {
