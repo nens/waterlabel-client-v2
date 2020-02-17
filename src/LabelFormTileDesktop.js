@@ -130,17 +130,17 @@ export default function LabelFormTileDesktop (props) {
         <h1
           style={guiLabelTabConsideredDefault === "Dak" ? {}:{display: "none"}}
         >
-          Gegevens dak
+          Kenmerken dak
         </h1>
         <h1
           style={guiLabelTabConsideredDefault === "Tuin" ? {}:{display: "none"}}
         >
-          Gegevens tuin
+          Kenmerken tuin
         </h1>
         <h1
           style={guiLabelTabConsideredDefault === "Voorziening" ? {}:{display: "none"}}
         >
-          Gegevens voorziening
+          Kenmerken voorziening
         </h1>
 
 
