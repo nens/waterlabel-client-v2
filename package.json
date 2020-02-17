@@ -1,6 +1,6 @@
 {
   "name": "waterlabel-client-v2",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "private": true,
   "dependencies": {
     "leaflet": "^1.6.0",
