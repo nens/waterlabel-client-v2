@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Map, TileLayer, Marker, FeatureGroup, Polygon } from "react-leaflet";
+import { Map, TileLayer, FeatureGroup, Polygon } from "react-leaflet";
 
 import {
 	getPolygonBounds, getPolygonCenter, createBbox
@@ -7,7 +7,7 @@ import {
 import './MapBuilding.css';
 
 export default function MapBuilding (props) {
-  const { buildingGeoJSON, waterLabelColor, selectedAddress, surroundingBuildings, LABELS } = props;
+  const { buildingGeoJSON, waterLabelColor, selectedAddress, LABELS } = props;
   const polygonBounds = getPolygonBounds(buildingGeoJSON);
   const polygonCenter = getPolygonCenter(polygonBounds);
   // Zoomlevel 19 is the most zoomed in where you still get a basemap
@@ -83,7 +83,10 @@ export default function MapBuilding (props) {
     .catch(error => {
       console.error('Error:', error);
     });
+    /*eslint-disable */
   }, [buildingGeoJSON]); // Only re-run the effect if buildingGeoJSON changes
+  /*eslint-enable */
+  
 
   const map = (
     <Map
