@@ -223,16 +223,6 @@ function SearchAddressForm (props) {
               <div>Onbekend adres</div>
               <div>Probeert u het nogmaals </div>
             </div>
-          <div>
-            <a 
-              href="https://waterlabel-v1.lizard.net/"
-              className="LinkOldSite"
-              // target = blank is probably a bad idea
-              // target="_blank"
-            >
-              Klik hier voor de oude waterlabel site
-            </a>
-          </div>
         </form>
       </div>
       <div
