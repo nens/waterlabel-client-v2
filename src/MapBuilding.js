@@ -11,13 +11,13 @@ export default function MapBuilding (props) {
   const polygonBounds = getPolygonBounds(buildingGeoJSON);
   const polygonCenter = getPolygonCenter(polygonBounds);
   // Zoomlevel 19 is the most zoomed in where you still get a basemap
-  const zoomLevel = 19;
+  const zoomLevel = 18;
   let position = [polygonCenter.yMean, polygonCenter.xMean];
   // Returning the getBounds of a react-leaflet map is quite complicated,
   // so I went for an easier solution: substracting and adding from the
   // x and y of the center of the map to get the bounding box for
   // the api call for the surrounding buildings.
-  const bbox = createBbox(polygonCenter.xMean, 0.001, polygonCenter.yMean, 0.001);
+  const bbox = createBbox(polygonCenter.xMean, 0.0012, polygonCenter.yMean, 0.0005);
   let latlngs = [];
   const [buildingCoordsAndLabels, setBuildingCoordsAndLabels] = useState([]);
 
