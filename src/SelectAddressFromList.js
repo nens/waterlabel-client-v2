@@ -38,7 +38,7 @@ export default SelectAddressFromList;
         >
           <div>
             {/* <span>{searchAddressState}</span> */}
-            <legend>Selecteer het gewenste adres</legend>
+            <legend>Kies uw adres binnen het geselecteerde pand</legend>
             <ul>
             {
               foundAddressesList.map(address=>{
