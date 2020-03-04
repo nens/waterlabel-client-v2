@@ -162,7 +162,7 @@ export default function AssetList (props) {
                     {/*____________________________________________________________________________________EXTRA DETAILS */}
                     <div
                       className="ColumnAssetArea ColumnAssetStorage"
-                      title="Opslag in Liters"
+                      title="Opslag in mm"
                       style={
                         guiLabelTab !== "Voorziening" && editedWaterlabel && showLabelFormDetails
                         ?
@@ -190,7 +190,7 @@ export default function AssetList (props) {
                           }}
                         >
                         </input>
-                        <div><span>L.</span></div>
+                        <div><span>mm</span></div>
                       </div>
                     </div>
 
